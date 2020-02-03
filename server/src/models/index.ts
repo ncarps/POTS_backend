@@ -1,5 +1,3 @@
-// import { customerModel } from "./bindings/customer-binding-mongo";
+import { userModel } from './bindings/user-binding-mongo';
 
-// export {
-//   customerModel,
-// };
+export { userModel };

@@ -1,11 +1,8 @@
 import { mergeResolvers } from 'merge-graphql-schemas';
-
-// import address from "./address";
-
 import { IResolvers } from 'graphql-tools';
 
-const resolvers: IResolvers[] = [
-	//   address,
-];
+import user from './user';
+
+const resolvers: IResolvers[] = [user];
 
 export default mergeResolvers(resolvers);

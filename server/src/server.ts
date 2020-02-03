@@ -8,12 +8,10 @@ import express from 'express';
 import { resolvers, typeDefs } from './graphql';
 import bodyParser from 'body-parser';
 import serveIndex from 'serve-index';
-// import {
-//   customerModel,
 
-// } from "./models";
+import { userModel } from './models';
 
-// import * as controllers from "./controllers";
+import * as controllers from './controllers';
 
 // Database
 mongoose.set('useFindAndModify', false);
@@ -30,20 +28,21 @@ mongoose
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-// const {
-//   createCreateCustomerDB,
-// } = controllers;
 
-// const context = async session => {
-//   return {
-//     createCustomer: createCreateCustomerDB(customerModel),
-//   };
-// };
+const { createCreateUserDB, getAllDataDB, getByIDDB } = controllers;
+
+const context = async session => {
+	return {
+		createUser: createCreateUserDB(userModel),
+		getAllUser: getAllDataDB(userModel),
+		getUserById: getByIDDB(userModel),
+	};
+};
 
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
-	//   context
+	context,
 });
 
 const app = express();
