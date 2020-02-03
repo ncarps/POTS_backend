@@ -48,7 +48,7 @@
     "@types/mongodb": "^3.3.6",
     "@types/mongoose": "^5.5.20",
     "@types/node": "^12.7.12",
-    "apollo-server-testing": "^2.9.12",
+    "apollo-server-testing": "^2.9.16",
     "cross-env": "^6.0.3",
     "eslint": "^6.5.1",
     "graphql-tag": "^2.10.1",
