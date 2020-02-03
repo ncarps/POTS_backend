@@ -6,7 +6,6 @@ const typeDefs = gql`
 		name: String
 	}
 
-	" document chu chu"
 	type Query {
 		user(id: String): User
 		allUsers: [User]
