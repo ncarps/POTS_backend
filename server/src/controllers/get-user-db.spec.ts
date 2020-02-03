@@ -1,47 +1,47 @@
-import { getAllDataDB, getByIDDB } from "./retrieve-data-db";
+import { getAllDataDB, getByIDDB } from './retrieve-data-db';
 const mockUser = [
-  {
-    _id: "1",
-    name: "The Driver - 1"
-  },
-  {
-    _id: "2",
-    name: "The Driver - 2"
-  }
+	{
+		_id: '1',
+		name: 'Nat',
+	},
+	{
+		_id: '2',
+		name: 'Nats',
+	},
 ];
 
-describe("Retrieve User", () => {
-  it("Should be able to return all user from db", async () => {
-    const mockDB: any = {
-      getAll: jest.fn(async () => {
-        return [...mockUser];
-      })
-    };
+describe('Retrieve User', () => {
+	it('Should be able to return all user from db', async () => {
+		const mockDB: any = {
+			getAll: jest.fn(async () => {
+				return [...mockUser];
+			}),
+		};
 
-    const getAllData = getAllDataDB(mockDB);
-    const allData = await getAllData();
-    expect(mockDB.getAll.mock.calls.length).toBe(1);
-    expect(allData).toMatchObject(mockUser);
-  });
+		const getAllData = getAllDataDB(mockDB);
+		const allData = await getAllData();
+		expect(mockDB.getAll.mock.calls.length).toBe(1);
+		expect(allData).toMatchObject(mockUser);
+	});
 
-  it("Should be able to return one User from db", async () => {
-    const oneData = [mockUser[0]];
-    const mockDB: any = {
-      getById: jest.fn(async id => {
-        const filterMock = data => {
-          if (data._id === id) {
-            return data;
-          }
-        };
+	it('Should be able to return one User from db', async () => {
+		const oneData = [mockUser[0]];
+		const mockDB: any = {
+			getById: jest.fn(async id => {
+				const filterMock = data => {
+					if (data._id === id) {
+						return data;
+					}
+				};
 
-        return mockUser.filter(filterMock);
-      })
-    };
+				return mockUser.filter(filterMock);
+			}),
+		};
 
-    const getOneData = getByIDDB(mockDB);
-    const data = await getOneData("1");
-    expect(mockDB.getById.mock.calls.length).toBe(1);
+		const getOneData = getByIDDB(mockDB);
+		const data = await getOneData('1');
+		expect(mockDB.getById.mock.calls.length).toBe(1);
 
-    expect(data).toMatchObject(oneData);
-  });
+		expect(data).toMatchObject(oneData);
+	});
 });

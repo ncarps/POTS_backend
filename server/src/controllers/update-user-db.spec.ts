@@ -11,7 +11,7 @@ const mockUser = [
 	},
 ];
 
-describe('Update Driver', () => {
+describe('Update User', () => {
 	const mockDb: any = {
 		updateById: jest.fn(async input => {
 			return { ...input };
@@ -28,7 +28,7 @@ describe('Update Driver', () => {
 	};
 	const updateUser = updateUserByIDDB(mockDb);
 
-	it('should be able to update a driver in the DB', async () => {
+	it('should be able to update a user in the DB', async () => {
 		const given = {
 			id: '1',
 			name: 'Natsu',

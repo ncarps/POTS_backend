@@ -33,15 +33,15 @@ const userModel: IDBModel<any> = {
 	updateById: async data => {
 		const user: any = await User.findByIdAndUpdate(
 			{
-				_id: data.id,
+				id: data._id,
+				name: data.name,
 			},
-			{ name: data },
 			{
 				new: true,
 			}
 		).exec();
 		return {
-			id: user.id,
+			id: user._id,
 			name: user.name,
 		};
 	},
