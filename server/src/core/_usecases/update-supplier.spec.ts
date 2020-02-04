@@ -15,7 +15,7 @@ describe('UseCase: Update a Supplier ', () => {
 		};
 
 		const oldSupplierInput = {
-			name: 'Customer Name',
+			name: 'Supplier Name',
 			address: {
 				building_name: 'buildings',
 				street: 'streets',

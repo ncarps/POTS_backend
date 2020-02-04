@@ -1,15 +1,3 @@
-// import {
-//   createUCCreateCustomer,
-//   createUCCreateDelivery,
-//   createUCCreateFile,
-//   createUCCreateDriver,
-//   createUCCreateDeliveryItem
-// } from "./_usecases";
+import { createUCCreateSupplier } from './_usecases';
 
-// export {
-//   createUCCreateCustomer,
-//   createUCCreateDelivery,
-//   createUCCreateFile,
-//   createUCCreateDriver,
-//   createUCCreateDeliveryItem
-// };
+export { createUCCreateSupplier };
