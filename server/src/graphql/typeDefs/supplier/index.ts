@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 
 const suppliertypeDefs = gql`
-	type Customer {
+	type Supplier {
 		id: ID!
 		name: String!
 		address: Address!

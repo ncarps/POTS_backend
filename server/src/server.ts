@@ -54,7 +54,7 @@ const context = async session => {
 		getAllAddress: getAllDataDB(addressModel),
 		//Supplier
 		createSupplier: createCreateSupplierDB(supplierModel),
-		getAllSupplier: getAllDataDB(supplierModel),
+		getAllSuppliers: getAllDataDB(supplierModel),
 		getSupplierById: getByIDDB(supplierModel),
 		deleteSupplierById: DeleteRecordByIDDB(supplierModel),
 		updateSupplierById: updateSupplierByIDDB(supplierModel),
