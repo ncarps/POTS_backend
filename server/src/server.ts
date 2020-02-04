@@ -9,7 +9,7 @@ import { resolvers, typeDefs } from './graphql';
 import bodyParser from 'body-parser';
 import serveIndex from 'serve-index';
 
-import { userModel } from './models';
+import { userModel, addressModel } from './models';
 
 import * as controllers from './controllers';
 
@@ -49,6 +49,9 @@ const context = async session => {
 		getUserById: getByIDDB(userModel),
 		deleteUserById: DeleteRecordByIDDB(userModel),
 		updateUserById: updateUserByIDDB(userModel),
+		//Adress
+		getAddressById: getByIDDB(addressModel),
+		getAllAddress: getAllDataDB(addressModel),
 		//Supplier
 		// createSupplier: createCreateSupplierDB(supplierModel)
 	};
