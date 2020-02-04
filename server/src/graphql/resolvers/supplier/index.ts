@@ -25,10 +25,10 @@ const supplierResolvers = {
 			const { updateSupplierById } = context;
 			return await updateSupplierById(supplier);
 		},
-		//   deleteCustomer: async (parent, { id }, context, info) => {
-		//     const { deleteCustomerById } = context;
-		//     return await deleteCustomerById(id);
-		//   }
+		deleteSupplier: async (parent, { id }, context, info) => {
+			const { deleteSupplierById } = context;
+			return await deleteSupplierById(id);
+		},
 	},
 };
 
