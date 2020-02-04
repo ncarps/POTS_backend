@@ -1,3 +1,4 @@
 import User from './User';
+import Address from './Address';
 
-export { User };
+export { User, Address };

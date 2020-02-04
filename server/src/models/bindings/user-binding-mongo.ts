@@ -54,9 +54,6 @@ const userModel: IDBModel<any> = {
 			});
 		});
 	},
-	// getAllByDriver: async id => {},
-	// getByDeliverId: async id => {},
-	// submitDelivery: async id => {}
 };
 
 export { userModel };
