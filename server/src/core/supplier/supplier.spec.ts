@@ -7,7 +7,7 @@ describe('Supplier', () => {
 		expect(() => makeSupplier(supplier)).toThrow('Supplier name is required.');
 	});
 	it('must have an Address', () => {
-		const supplier = { name: 'Nat', address: { building: 'build' } };
-		expect(() => makeSupplier(supplier)).toThrow();
+		const supplier = { name: 'Nat', address: '' };
+		expect(() => makeSupplier(supplier)).toThrow('Address is required');
 	});
 });
