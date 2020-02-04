@@ -1,4 +1,5 @@
 import { getAllDataDB, getByIDDB } from './retrieve-data-db';
+
 const mockUser = [
 	{
 		_id: '1',
