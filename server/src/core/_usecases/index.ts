@@ -1,6 +1,9 @@
 //User
 import { createUCCreateUser } from './create-user-usecase';
 import { updateUCUser } from './update-user.usecase';
-import { createUCCreateSupplier } from './create-supplier-usecase';
 
-export { createUCCreateUser, updateUCUser, createUCCreateSupplier };
+//Supplier
+import { createUCCreateSupplier } from './create-supplier-usecase';
+import { updateUCSupplier } from './update-supplier-usecase';
+
+export { createUCCreateUser, updateUCUser, createUCCreateSupplier, updateUCSupplier };
