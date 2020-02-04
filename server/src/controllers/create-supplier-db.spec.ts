@@ -16,7 +16,7 @@ describe('Create Supplier', () => {
 				street: 'street',
 				city: 'city',
 				state: 'state',
-				zipcode: '124365',
+				zip_code: '124365',
 			},
 		};
 

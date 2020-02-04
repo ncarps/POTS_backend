@@ -16,20 +16,20 @@ const supplierResolvers = {
 			return await getAllSuppliers();
 		},
 	},
-	// Mutation: {
-	//   createCustomer: async (parent, { customer }, context, info) => {
-	//     const { createCustomer } = context;
-	//     return await createCustomer(customer);
-	//   },
-	//   updateCustomer: async (parent, { customer }, context, info) => {
-	//     const { updateCustomerByID } = context;
-	//     return await updateCustomerByID(customer);
-	//   },
-	//   deleteCustomer: async (parent, { id }, context, info) => {
-	//     const { deleteCustomerById } = context;
-	//     return await deleteCustomerById(id);
-	//   }
-	// }
+	Mutation: {
+		createSupplier: async (parent, { supplier }, context, info) => {
+			const { createSupplier } = context;
+			return await createSupplier(supplier);
+		},
+		updateSupplier: async (parent, { supplier }, context, info) => {
+			const { updateSupplierByID } = context;
+			return await updateSupplierByID(supplier);
+		},
+		//   deleteCustomer: async (parent, { id }, context, info) => {
+		//     const { deleteCustomerById } = context;
+		//     return await deleteCustomerById(id);
+		//   }
+	},
 };
 
 export default supplierResolvers;

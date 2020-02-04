@@ -11,7 +11,7 @@ describe('Supplier CRUD', () => {
 				street: 'street',
 				city: 'city',
 				state: 'state',
-				zipcode: '124365',
+				zip_code: '124365',
 			},
 		};
 		const newSupplier = addSupplier(supplierInput);

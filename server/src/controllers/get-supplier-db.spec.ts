@@ -8,7 +8,7 @@ const mockSupplier = [
 			building_name: 'building 1',
 			city: 'city 1',
 			street: 'street 1',
-			zipcode: '123',
+			zip_code: '123',
 		},
 	},
 	{
@@ -18,7 +18,7 @@ const mockSupplier = [
 			building_name: 'building 2',
 			city: 'city 2',
 			street: 'street 2',
-			zipcode: '123',
+			zip_code: '123',
 		},
 	},
 ];

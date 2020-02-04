@@ -9,7 +9,7 @@ const mockSupplier = [
 			street: 'street 1',
 			city: 'city 1',
 			state: 'state 1',
-			zipcode: '123',
+			zip_code: '123',
 		},
 	},
 	{
@@ -20,7 +20,7 @@ const mockSupplier = [
 			street: 'street 2',
 			city: 'city 2',
 			state: 'state 2',
-			zipcode: '123',
+			zip_code: '123',
 		},
 	},
 ];
@@ -50,7 +50,7 @@ describe('Update Supplier', () => {
 				street: 'street 1',
 				city: 'city 1',
 				state: 'state 1',
-				zipcode: '123',
+				zip_code: '123',
 			},
 		};
 

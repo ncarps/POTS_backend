@@ -3,11 +3,11 @@ export type TAddress = {
 	street: string;
 	city: string;
 	state: string;
-	zipcode: string;
+	zip_code: string;
 };
 
 const createMakeAddress = () => (address: TAddress) => {
-	const { building_name, state, city, street, zipcode } = address;
+	const { building_name, state, city, street, zip_code } = address;
 	if (!building_name) {
 		throw new Error('Building is required.');
 	}
@@ -24,8 +24,8 @@ const createMakeAddress = () => (address: TAddress) => {
 		throw new Error('State is required.');
 	}
 
-	if (!zipcode) {
-		throw new Error('Zipcode is required.');
+	if (!zip_code) {
+		throw new Error('zip_code is required.');
 	}
 
 	return address;

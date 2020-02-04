@@ -10,7 +10,7 @@ describe('UseCase: Update a Supplier ', () => {
 				street: 'street',
 				city: 'city',
 				state: 'state',
-				zipcode: '123',
+				zip_code: '123',
 			},
 		};
 
@@ -21,7 +21,7 @@ describe('UseCase: Update a Supplier ', () => {
 				street: 'streets',
 				city: 'cities',
 				state: 'states',
-				zipcode: '1234',
+				zip_code: '1234',
 			},
 		};
 		const newSupplier = updateSupplier(supplierInput, oldSupplierInput);
