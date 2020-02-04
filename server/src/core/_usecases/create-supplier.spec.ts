@@ -8,8 +8,9 @@ describe('Supplier CRUD', () => {
 			name: 'Nat',
 			address: {
 				building_name: 'building',
-				city: 'city',
 				street: 'street',
+				city: 'city',
+				state: 'state',
 				zipcode: '124365',
 			},
 		};

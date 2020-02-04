@@ -29,7 +29,17 @@ mongoose
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
 
-const { createCreateUserDB, updateUserByIDDB, getAllDataDB, getByIDDB, DeleteRecordByIDDB } = controllers;
+const {
+	getAllDataDB,
+	getByIDDB,
+	DeleteRecordByIDDB,
+	//User controllers
+	createCreateUserDB,
+	updateUserByIDDB,
+	//Supplier controllers
+	createCreateSupplierDB,
+	updateSupplierByIDDB,
+} = controllers;
 
 const context = async session => {
 	return {
@@ -39,6 +49,8 @@ const context = async session => {
 		getUserById: getByIDDB(userModel),
 		deleteUserById: DeleteRecordByIDDB(userModel),
 		updateUserById: updateUserByIDDB(userModel),
+		//Supplier
+		// createSupplier: createCreateSupplierDB(supplierModel)
 	};
 };
 

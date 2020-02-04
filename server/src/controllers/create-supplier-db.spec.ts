@@ -13,9 +13,10 @@ describe('Create Supplier', () => {
 			name: 'Supplier Name',
 			address: {
 				building_name: 'building',
-				city: 'city',
 				street: 'street',
-				zipcode: '123',
+				city: 'city',
+				state: 'state',
+				zipcode: '124365',
 			},
 		};
 

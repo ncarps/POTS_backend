@@ -6,8 +6,9 @@ const mockSupplier = [
 		name: 'Supplier Name-1',
 		address: {
 			building_name: 'building 1',
-			city: 'city 1',
 			street: 'street 1',
+			city: 'city 1',
+			state: 'state 1',
 			zipcode: '123',
 		},
 	},
@@ -16,8 +17,9 @@ const mockSupplier = [
 		name: 'Supplier Name-2',
 		address: {
 			building_name: 'building 2',
-			city: 'city 2',
 			street: 'street 2',
+			city: 'city 2',
+			state: 'state 2',
 			zipcode: '123',
 		},
 	},
@@ -45,8 +47,9 @@ describe('Update Supplier', () => {
 			name: 'Supplier Name-1.0',
 			address: {
 				building_name: 'building 1',
-				city: 'city 1',
 				street: 'street 1',
+				city: 'city 1',
+				state: 'state 1',
 				zipcode: '123',
 			},
 		};

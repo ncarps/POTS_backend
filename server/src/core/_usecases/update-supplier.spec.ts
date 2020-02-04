@@ -7,8 +7,9 @@ describe('UseCase: Update a Supplier ', () => {
 			name: 'Supplier Name',
 			address: {
 				building_name: 'building',
-				city: 'city',
 				street: 'street',
+				city: 'city',
+				state: 'state',
 				zipcode: '123',
 			},
 		};
@@ -17,8 +18,9 @@ describe('UseCase: Update a Supplier ', () => {
 			name: 'Customer Name',
 			address: {
 				building_name: 'buildings',
-				city: 'cities',
 				street: 'streets',
+				city: 'cities',
+				state: 'states',
 				zipcode: '1234',
 			},
 		};
