@@ -9,6 +9,10 @@ import { updateUserByIDDB } from './update-user-db';
 import { createCreateSupplierDB } from './create-supplier-db';
 import { updateSupplierByIDDB } from './update-supplier-db';
 
+//Supplier Status
+import { createCreateSupplierStatusDB } from './create-supplierStatus-db';
+import { updateSupplierStatusByIDDB } from './update-supplierStatus-db';
+
 export {
 	getAllDataDB,
 	getByIDDB,
@@ -19,4 +23,7 @@ export {
 	//Supplier exports
 	createCreateSupplierDB,
 	updateSupplierByIDDB,
+	//SupplierStatus exports
+	createCreateSupplierStatusDB,
+	updateSupplierStatusByIDDB,
 };
