@@ -7,7 +7,7 @@ ObjectID.prototype.valueOf = function() {
 	return this.toString();
 };
 
-const SupplierSchema = new Schema({
+const SupplierStatusSchema = new Schema({
 	status: {
 		type: String,
 		required: true,
@@ -18,4 +18,4 @@ const SupplierSchema = new Schema({
 	},
 });
 
-export default mongoose.model('Supplier', SupplierSchema);
+export default mongoose.model('SupplierStatus', SupplierStatusSchema);

@@ -1,5 +1,5 @@
 import { IDBModel } from '../../commons/types';
-import { Supplier, Address, User } from '../mongo-models';
+import { Supplier, Address } from '../mongo-models';
 
 const supplierModel: IDBModel<any> = {
 	insert: async supplier => {
@@ -64,7 +64,7 @@ const supplierModel: IDBModel<any> = {
 	},
 
 	updateById: async data => {
-		const supplier: any = await User.findByIdAndUpdate(
+		const supplier: any = await Supplier.findByIdAndUpdate(
 			{
 				_id: data.id,
 			},
