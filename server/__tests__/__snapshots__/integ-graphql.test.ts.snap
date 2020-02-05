@@ -88,3 +88,20 @@ Object {
   },
 }
 `;
+
+exports[`Queries update a user 1`] = `
+Object {
+  "data": Object {
+    "updateUser": Object {
+      "name": "User 1",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;

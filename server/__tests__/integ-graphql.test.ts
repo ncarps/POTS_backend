@@ -3,7 +3,18 @@ import gql from 'graphql-tag';
 import mockData from './mocks/mock-data';
 import * as controllers from '../src/controllers';
 import { constructTestServer } from './__utils';
-const { createCreateUserDB, getAllDataDB, getByIDDB, DeleteRecordByIDDB } = controllers;
+const {
+	//Generic
+	getAllDataDB,
+	getByIDDB,
+	DeleteRecordByIDDB,
+	//User
+	createCreateUserDB,
+	updateUserByIDDB,
+	//Supplie
+	createCreateSupplierDB,
+	updateSupplierByIDDB,
+} = controllers;
 
 //User
 
@@ -40,10 +51,12 @@ const userMock = {
 
 const { server }: any = constructTestServer({
 	context: {
+		//User
 		createUser: createCreateUserDB(userMock),
 		getUserById: getByIDDB(userMock),
 		getAllUser: getAllDataDB(userMock),
 		deleteUserById: DeleteRecordByIDDB(userMock),
+		updateUserById: updateUserByIDDB(userMock),
 	},
 });
 
@@ -146,6 +159,26 @@ describe('Queries', () => {
 		const res = await mutate({
 			mutation: DELETE_USER,
 			variables: { id: 'U1' },
+		});
+		expect(res.errors).toBeUndefined();
+		expect(res).toMatchSnapshot();
+	});
+
+	it('update a user', async () => {
+		const UPDATE_USER = gql`
+			mutation u($name: String!) {
+				updateUser(name: $name) {
+					name
+				}
+			}
+		`;
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: UPDATE_USER,
+			variables: {
+				id: '1',
+				name: 'User 1',
+			},
 		});
 		expect(res.errors).toBeUndefined();
 		expect(res).toMatchSnapshot();

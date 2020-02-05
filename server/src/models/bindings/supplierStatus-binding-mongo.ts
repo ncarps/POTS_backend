@@ -45,16 +45,24 @@ const supplierStatusModel: IDBModel<any> = {
 		});
 	},
 
-	updateById: async supplierStatus => {
-		return new Promise((resolve, reject) => {
-			SupplierStatus.findByIdAndUpdate(
-				{ _id: supplierStatus.id },
-				{ $set: { ...supplierStatus } },
-				{ new: true }
-			).exec((err, res) => {
-				err ? reject(err) : resolve(res);
-			});
-		});
+	updateById: async data => {
+		const supplierStatus: any = await SupplierStatus.findByIdAndUpdate(
+			{
+				_id: data.id,
+			},
+			{
+				status: data.status,
+				dateCreated: data.dateCreated,
+			},
+			{
+				new: true,
+			}
+		).exec();
+		return {
+			id: supplierStatus._id,
+			status: supplierStatus.status,
+			dateCreated: supplierStatus.dateCreated,
+		};
 	},
 };
 
