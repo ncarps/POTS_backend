@@ -21,9 +21,8 @@ const supplierResolvers = {
 			const { createSupplier } = context;
 			return await createSupplier(supplier);
 		},
-		updateSupplier: async (parent, { supplier }, context, info) => {
-			const { updateSupplierById } = context;
-			return await updateSupplierById(supplier);
+		updateSupplier: async (parent, { id, name, address }, { updateSupplierById }, info) => {
+			return updateSupplierById({ id, name, address });
 		},
 		deleteSupplier: async (parent, { id }, context, info) => {
 			const { deleteSupplierById } = context;

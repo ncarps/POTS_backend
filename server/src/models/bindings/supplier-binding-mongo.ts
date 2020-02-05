@@ -1,5 +1,5 @@
 import { IDBModel } from '../../commons/types';
-import { Supplier, Address } from '../mongo-models';
+import { Supplier, Address, User } from '../mongo-models';
 
 const supplierModel: IDBModel<any> = {
 	insert: async supplier => {
@@ -63,14 +63,24 @@ const supplierModel: IDBModel<any> = {
 		});
 	},
 
-	updateById: async supplier => {
-		return new Promise((resolve, reject) => {
-			Supplier.findByIdAndUpdate({ _id: supplier.id }, { $set: { ...supplier } }, { new: true }).exec(
-				(err, res) => {
-					err ? reject(err) : resolve(res);
-				}
-			);
-		});
+	updateById: async data => {
+		const supplier: any = await User.findByIdAndUpdate(
+			{
+				_id: data.id,
+			},
+			{
+				name: data.name,
+				address: data.address,
+			},
+			{
+				new: true,
+			}
+		).exec();
+		return {
+			id: supplier._id,
+			name: supplier.name,
+			address: supplier.address,
+		};
 	},
 };
 
