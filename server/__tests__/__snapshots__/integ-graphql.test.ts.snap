@@ -1,5 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Queries create a user 1`] = `
+Object {
+  "data": Object {
+    "createUser": Object {
+      "id": "1",
+      "name": "User 1",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries delete a user 1`] = `
+Object {
+  "data": Object {
+    "deleteUser": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries should error when no user 1`] = `
+Object {
+  "data": Object {
+    "user": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should fetch all user 1`] = `
 Object {
   "data": Object {
@@ -13,6 +61,23 @@ Object {
         "name": "User 2",
       },
     ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries should fetch one user 1`] = `
+Object {
+  "data": Object {
+    "user": Object {
+      "name": "User 1",
+    },
   },
   "errors": undefined,
   "extensions": undefined,
