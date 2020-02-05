@@ -49,6 +49,42 @@ const userMock = {
 	},
 };
 
+//Supplier
+
+const supplierMock = {
+	insert: jest.fn(async input => {
+		return { id: '1', ...input };
+	}),
+	getAll: jest.fn(async () => {
+		return mockData.suppliers;
+	}),
+	getById: jest.fn(async id => {
+		const filterData = cust => {
+			if (cust.id === id) {
+				return cust;
+			}
+		};
+
+		const res = mockData.suppliers.filter(filterData);
+		return res[0] || null;
+	}),
+
+	deleteById: async id => {
+		const filterData = cust => {
+			if (cust.id === id) {
+				return cust;
+			}
+		};
+
+		const res = mockData.suppliers.filter(filterData);
+		return res[0] || null;
+	},
+
+	updateById: jest.fn(async input => {
+		return { ...input };
+	}),
+};
+
 const { server }: any = constructTestServer({
 	context: {
 		//User
@@ -57,12 +93,17 @@ const { server }: any = constructTestServer({
 		getAllUser: getAllDataDB(userMock),
 		deleteUserById: DeleteRecordByIDDB(userMock),
 		updateUserById: updateUserByIDDB(userMock),
+		//Supplier
+		createSupplier: createCreateSupplierDB(supplierMock),
+		getSupplierById: getByIDDB(supplierMock),
+		getAllSuppliers: getAllDataDB(supplierMock),
+		deleteSupplierById: DeleteRecordByIDDB(supplierMock),
+		updateSupplierById: updateSupplierByIDDB(supplierMock),
 	},
 });
 
 describe('Queries', () => {
 	//User Queries
-
 	it('should fetch all user', async () => {
 		const USER_ALL = gql`
 			query {
@@ -115,8 +156,64 @@ describe('Queries', () => {
 		expect(res).toMatchSnapshot();
 	});
 
+	//Supplier Queries
+	it('should fetch all suppliers', async () => {
+		const SUPPLIER_ALL = gql`
+			query {
+				allSuppliers {
+					name
+					address {
+						id
+					}
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({ query: SUPPLIER_ALL });
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('should fetch one supplier', async () => {
+		const SINGLE_SUPPLIER = gql`
+			query supp($id: ID!) {
+				supplier(id: $id) {
+					name
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({
+			query: SINGLE_SUPPLIER,
+			variables: { id: '1' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('should error when no supplier', async () => {
+		const SINGLE_SUPPLIER = gql`
+			query supp($id: ID!) {
+				supplier(id: $id) {
+					name
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({
+			query: SINGLE_SUPPLIER,
+			variables: { id: '' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
 	//Mutations
 
+	//User Mutations
 	it('create a user', async () => {
 		const CREATE_USER = gql`
 			mutation createUser($name: String) {
@@ -181,6 +278,92 @@ describe('Queries', () => {
 			},
 		});
 		expect(res.errors).toBeUndefined();
+		expect(res).toMatchSnapshot();
+	});
+
+	//Supplier Mutation
+	it('create a supplier', async () => {
+		const CREATE_SUPPLIER = gql`
+			mutation createSupp($supplier: SupplierInput!) {
+				createSupplier(supplier: $supplier) {
+					id
+					name
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: CREATE_SUPPLIER,
+			variables: {
+				supplier: {
+					name: 'The Supplier',
+					address: {
+						building_name: 'bu',
+						street: 'St',
+						city: 'cty',
+						state: 'stat',
+						zip_code: 'zip',
+					},
+				},
+			},
+		});
+
+		expect(res.errors).toBeUndefined();
+		expect(supplierMock.insert.mock.calls.length).toBe(1);
+		expect(res.data).toMatchObject({
+			createSupplier: {
+				id: '1',
+				name: 'The Supplier',
+			},
+		});
+		expect(res).toMatchSnapshot();
+	});
+
+	it('update a supplier', async () => {
+		const UPDATE_SUPPLIER = gql`
+			mutation supp($supplier: UpdateSupplierInput!) {
+				updateSupplier(supplier: $supplier) {
+					id
+					name
+					address {
+						building_name
+						street
+					}
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: UPDATE_SUPPLIER,
+			variables: {
+				customer: {
+					id: '5dae933089d8fe07b8c6da18',
+					name: 'New name for this one',
+					address: 'A1',
+				},
+			},
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('delete a supplier', async () => {
+		const DELETE_SUPPLIER = gql`
+			mutation supp($id: ID!) {
+				deleteSupplier(id: $id) {
+					name
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: DELETE_SUPPLIER,
+			variables: { id: 'S1' },
+		});
+
 		expect(res).toMatchSnapshot();
 	});
 });

@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Queries create a supplier 1`] = `
+Object {
+  "data": Object {
+    "createSupplier": Object {
+      "id": "1",
+      "name": "The Supplier",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries create a user 1`] = `
 Object {
   "data": Object {
@@ -7,6 +25,21 @@ Object {
       "id": "1",
       "name": "User 1",
     },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries delete a supplier 1`] = `
+Object {
+  "data": Object {
+    "deleteSupplier": null,
   },
   "errors": undefined,
   "extensions": undefined,
@@ -33,12 +66,42 @@ Object {
 }
 `;
 
+exports[`Queries should error when no supplier 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Query.supplier.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should error when no user 1`] = `
 Object {
   "data": Object {
     "user": null,
   },
   "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries should fetch all suppliers 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: getAddressById is not a function],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -72,6 +135,21 @@ Object {
 }
 `;
 
+exports[`Queries should fetch one supplier 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Query.supplier.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should fetch one user 1`] = `
 Object {
   "data": Object {
@@ -80,6 +158,21 @@ Object {
     },
   },
   "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries update a supplier 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [GraphQLError: Variable "$supplier" of required type "UpdateSupplierInput!" was not provided.],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
