@@ -1,5 +1,5 @@
 import { IDBModel } from '../commons/types';
-import { updateUCSupplier } from '../core/_usecases';
+import { updateUCSupplier } from '../core/';
 
 const updateSupplierByIDDB = (db: IDBModel<any>) => async data => {
 	const a = await db.getById(data.id);

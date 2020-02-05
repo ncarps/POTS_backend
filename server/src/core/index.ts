@@ -1,3 +1,3 @@
-import { createUCCreateSupplier } from './_usecases';
+import { createUCCreateSupplier, createUCCreateUser, updateUCSupplier } from './_usecases';
 
-export { createUCCreateSupplier };
+export { createUCCreateSupplier, createUCCreateUser, updateUCSupplier };
