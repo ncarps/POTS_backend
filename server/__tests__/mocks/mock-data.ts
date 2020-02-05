@@ -10,6 +10,25 @@ export default {
 		},
 	],
 
+	address: [
+		{
+			id: 'A1',
+			building_name: 'building name',
+			street: 'street',
+			city: 'city',
+			state: 'state',
+			zip_code: 'zip_code',
+		},
+		{
+			id: 'A2',
+			building_name: 'building name 2',
+			street: 'street 2',
+			city: 'city 2',
+			state: 'state 2',
+			zip_code: 'zip_code 2',
+		},
+	],
+
 	suppliers: [
 		{
 			_id: '1',
