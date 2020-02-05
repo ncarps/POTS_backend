@@ -238,10 +238,17 @@ Object {
 
 exports[`Queries update a supplier 1`] = `
 Object {
-  "data": undefined,
-  "errors": Array [
-    [GraphQLError: Variable "$supplier" of required type "UpdateSupplierInput!" was not provided.],
-  ],
+  "data": Object {
+    "updateSupplier": Object {
+      "address": Object {
+        "building_name": "building name",
+        "street": "street",
+      },
+      "id": "5dae933089d8fe07b8c6da18",
+      "name": "Supp name",
+    },
+  },
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

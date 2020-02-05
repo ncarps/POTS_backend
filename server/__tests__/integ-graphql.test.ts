@@ -432,7 +432,7 @@ describe('Queries', () => {
 		const res = await mutate({
 			mutation: UPDATE_SUPPLIER,
 			variables: {
-				customer: {
+				supplier: {
 					id: '5dae933089d8fe07b8c6da18',
 					name: 'Supp name',
 					address: 'A1',
