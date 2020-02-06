@@ -30,10 +30,10 @@ const supplierStatusModel: IDBModel<any> = {
 	getAll: async () => {
 		const supplierStatus: any = await SupplierStatus.find({}).exec();
 
-		return supplierStatus.map(u => ({
-			id: supplierStatus._id.toString(),
-			status: supplierStatus.status,
-			dateCreated: supplierStatus.dateCreated,
+		return supplierStatus.map(ss => ({
+			id: ss._id.toString(),
+			status: ss.status,
+			dateCreated: ss.dateCreated,
 		}));
 	},
 
