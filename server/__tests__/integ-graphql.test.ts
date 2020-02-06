@@ -12,9 +12,12 @@ const {
 	//User
 	createCreateUserDB,
 	updateUserByIDDB,
-	//Supplie
+	//Supplier
 	createCreateSupplierDB,
 	updateSupplierByIDDB,
+	//SupplierStatu
+	createCreateSupplierStatusDB,
+	updateSupplierStatusByIDDB,
 } = controllers;
 
 //User
@@ -107,6 +110,39 @@ const supplierMock = {
 	}),
 };
 
+//SupplierStatus
+
+const supplierStatusMock = {
+	insert: jest.fn(async input => {
+		return { id: '1', ...input };
+	}),
+	getById: jest.fn(async id => {
+		const filterData = data => {
+			if (data.id === id) {
+				return data;
+			}
+		};
+		const res = mockData.users.filter(filterData);
+
+		return res[0] || null;
+	}),
+	getAll: jest.fn(async () => {
+		return mockData.users;
+	}),
+	updateById: jest.fn(async input => {
+		return { ...input };
+	}),
+	deleteById: async id => {
+		const filterData = data => {
+			if (data.id === id) {
+				return data;
+			}
+		};
+		const res = mockData.users.filter(filterData);
+		return res[0] || null;
+	},
+};
+
 const { server }: any = constructTestServer({
 	context: {
 		//User
@@ -124,6 +160,12 @@ const { server }: any = constructTestServer({
 		getAllSuppliers: getAllDataDB(supplierMock),
 		deleteSupplierById: DeleteRecordByIDDB(supplierMock),
 		updateSupplierById: updateSupplierByIDDB(supplierMock),
+		//SupplierStatus
+		createSupplierStatus: createCreateSupplierStatusDB(supplierStatusMock),
+		getSupplierStatusById: getByIDDB(supplierStatusMock),
+		getAllSupplierStatus: getAllDataDB(supplierStatusMock),
+		deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusMock),
+		updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusMock),
 	},
 });
 
@@ -305,6 +347,62 @@ describe('Queries', () => {
 		expect(res).toMatchSnapshot();
 	});
 
+	//SupplierStatus Queries
+	it('should fetch all supplier status', async () => {
+		const SUPPLIERSTATUS_ALL = gql`
+			query {
+				allSupplierStatus {
+					id
+					status
+					dateCreated
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({ query: SUPPLIERSTATUS_ALL });
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('should fetch one supplier status', async () => {
+		const SINGLE_SUPPLIERSTATUS = gql`
+			query ss($id: String!) {
+				supplierStatus(id: $id) {
+					status
+					dateCreated
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({
+			query: SINGLE_SUPPLIERSTATUS,
+			variables: { id: '1' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('should error when no user', async () => {
+		const SINGLE_SUPPLIERSTATUS = gql`
+			query ss($id: String!) {
+				supplierStatus(id: $id) {
+					status
+					dateCreated
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({
+			query: SINGLE_SUPPLIERSTATUS,
+			variables: { id: '' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
 	//Mutations
 
 	//User Mutations
@@ -432,8 +530,8 @@ describe('Queries', () => {
 		const res = await mutate({
 			mutation: UPDATE_SUPPLIER,
 			variables: {
-				customer: {
-					id: '5dae933089d8fe07b8c6da18',
+				supplier: {
+					id: '1',
 					name: 'Supp name',
 					address: 'A1',
 				},
@@ -456,6 +554,85 @@ describe('Queries', () => {
 		const res = await mutate({
 			mutation: DELETE_SUPPLIER,
 			variables: { id: 'S1' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	//SupplierStatus Mutations
+
+	it('create a supplier status', async () => {
+		const CREATE_SUPPPLIERSTATUS = gql`
+			mutation createSupplierStatus($status: String!, $dateCreated: String!) {
+				createSupplierStatus(status: $status, dateCreated: $dateCreated) {
+					id
+					status
+					dateCreated
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: CREATE_SUPPPLIERSTATUS,
+			variables: {
+				status: 'Dispatched',
+				dateCreated: 'February 14, 2020',
+			},
+		});
+
+		expect(res.errors).toBeUndefined();
+		expect(supplierStatusMock.insert.mock.calls.length).toBe(1);
+		expect(res.data).toMatchObject({
+			createSupplierStatus: {
+				id: '1',
+				status: 'Dispatched',
+				dateCreated: 'February 14, 2020',
+			},
+		});
+		expect(res).toMatchSnapshot();
+	});
+
+	it('delete a supplier status', async () => {
+		const DELETE_SUPPLIERSTATUS = gql`
+			mutation ss($id: ID!) {
+				deleteSupplierStatus(id: $id) {
+					status
+					dateCreated
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: DELETE_SUPPLIERSTATUS,
+			variables: { id: '1' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('update a supplier status', async () => {
+		const UPDATE_SUPPLIERSTATUS = gql`
+			mutation ss($status: String!, $dateCreated: String!) {
+				updateSupplier(status: $status, dateCreated: $dateCreated) {
+					id
+					status
+					dateCreated
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: UPDATE_SUPPLIERSTATUS,
+			variables: {
+				supplierStaus: {
+					id: '1',
+					status: 'Dispatched',
+					dateCreated: 'February 14, 2020',
+				},
+			},
 		});
 
 		expect(res).toMatchSnapshot();

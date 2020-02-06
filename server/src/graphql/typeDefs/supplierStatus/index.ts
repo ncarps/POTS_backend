@@ -15,7 +15,7 @@ const typeDefs = gql`
 	type Mutation {
 		createSupplierStatus(status: String!, dateCreated: String!): SupplierStatus
 		updateSupplierStatus(id: String, status: String, dateCreated: String): SupplierStatus
-		deleteSupplierStatus(id: String): SupplierStatus
+		deleteSupplierStatus(id: ID!): SupplierStatus
 	}
 `;
 

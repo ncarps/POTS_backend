@@ -18,6 +18,25 @@ Object {
 }
 `;
 
+exports[`Queries create a supplier status 1`] = `
+Object {
+  "data": Object {
+    "createSupplierStatus": Object {
+      "dateCreated": "February 14, 2020",
+      "id": "1",
+      "status": "Dispatched",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries create a user 1`] = `
 Object {
   "data": Object {
@@ -42,6 +61,23 @@ Object {
     "deleteSupplier": null,
   },
   "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries delete a supplier status 1`] = `
+Object {
+  "data": Object {
+    "deleteSupplierStatus": null,
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field SupplierStatus.status.],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -111,6 +147,21 @@ Object {
 }
 `;
 
+exports[`Queries should error when no user 2`] = `
+Object {
+  "data": Object {
+    "supplierStatus": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should fetch all address 1`] = `
 Object {
   "data": Object {
@@ -134,6 +185,27 @@ Object {
     ],
   },
   "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries should fetch all supplier status 1`] = `
+Object {
+  "data": Object {
+    "allSupplierStatus": Array [
+      null,
+      null,
+    ],
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field SupplierStatus.status.],
+    [GraphQLError: Cannot return null for non-nullable field SupplierStatus.status.],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -219,6 +291,23 @@ Object {
 }
 `;
 
+exports[`Queries should fetch one supplier status 1`] = `
+Object {
+  "data": Object {
+    "supplierStatus": null,
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field SupplierStatus.status.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should fetch one user 1`] = `
 Object {
   "data": Object {
@@ -238,9 +327,34 @@ Object {
 
 exports[`Queries update a supplier 1`] = `
 Object {
+  "data": Object {
+    "updateSupplier": Object {
+      "address": Object {
+        "building_name": "building name",
+        "street": "street",
+      },
+      "id": "1",
+      "name": "Supp name",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries update a supplier status 1`] = `
+Object {
   "data": undefined,
   "errors": Array [
-    [GraphQLError: Variable "$supplier" of required type "UpdateSupplierInput!" was not provided.],
+    [ValidationError: Unknown argument "status" on field "updateSupplier" of type "Mutation".],
+    [ValidationError: Unknown argument "dateCreated" on field "updateSupplier" of type "Mutation".],
+    [ValidationError: Cannot query field "status" on type "Supplier".],
+    [ValidationError: Cannot query field "dateCreated" on type "Supplier".],
   ],
   "extensions": undefined,
   "http": Object {
