@@ -15,7 +15,7 @@ const {
 	//Supplier
 	createCreateSupplierDB,
 	updateSupplierByIDDB,
-	//SupplierStatu
+	//SupplierStatus
 	createCreateSupplierStatusDB,
 	updateSupplierStatusByIDDB,
 } = controllers;
@@ -614,8 +614,8 @@ describe('Queries', () => {
 
 	it('update a supplier status', async () => {
 		const UPDATE_SUPPLIERSTATUS = gql`
-			mutation ss($status: String!, $dateCreated: String!) {
-				updateSupplier(status: $status, dateCreated: $dateCreated) {
+			mutation ss($status: String, $dateCreated: String) {
+				updateSupplierStatus(status: $status, dateCreated: $dateCreated) {
 					id
 					status
 					dateCreated
@@ -627,7 +627,7 @@ describe('Queries', () => {
 		const res = await mutate({
 			mutation: UPDATE_SUPPLIERSTATUS,
 			variables: {
-				supplierStaus: {
+				supplierStatus: {
 					id: '1',
 					status: 'Dispatched',
 					dateCreated: 'February 14, 2020',

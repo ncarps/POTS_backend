@@ -349,12 +349,11 @@ Object {
 
 exports[`Queries update a supplier status 1`] = `
 Object {
-  "data": undefined,
+  "data": Object {
+    "updateSupplierStatus": null,
+  },
   "errors": Array [
-    [ValidationError: Unknown argument "status" on field "updateSupplier" of type "Mutation".],
-    [ValidationError: Unknown argument "dateCreated" on field "updateSupplier" of type "Mutation".],
-    [ValidationError: Cannot query field "status" on type "Supplier".],
-    [ValidationError: Cannot query field "dateCreated" on type "Supplier".],
+    [GraphQLError: Status is required.],
   ],
   "extensions": undefined,
   "http": Object {
