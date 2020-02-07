@@ -10,11 +10,21 @@ import { updateUCSupplier } from './update-supplier-usecase';
 import { createUCCreateSupplierStatus } from './create-supplierStatus-usecase';
 import { updateUCSupplierStatus } from './update-supplierStatus-usecase';
 
+//Item
+import { createUCCreateItem } from './create-item-usecase';
+import { updateUCItem } from './update-item-usecase';
+
 export {
+	//User
 	createUCCreateUser,
 	updateUCUser,
+	//Supplier
 	createUCCreateSupplier,
 	updateUCSupplier,
+	//Supplier Status
 	updateUCSupplierStatus,
 	createUCCreateSupplierStatus,
+	//Item
+	createUCCreateItem,
+	updateUCItem,
 };
