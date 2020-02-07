@@ -347,6 +347,23 @@ Object {
 }
 `;
 
+exports[`Queries update a supplier status 1`] = `
+Object {
+  "data": Object {
+    "updateSupplierStatus": null,
+  },
+  "errors": Array [
+    [GraphQLError: Status is required.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries update a user 1`] = `
 Object {
   "data": Object {
