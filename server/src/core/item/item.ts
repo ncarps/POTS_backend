@@ -7,7 +7,7 @@ export type TItem = {
 	currency: string;
 };
 
-const createMakeItem = () => (item: TItem) => {
+const createMakeItem = () => (item): TItem => {
 	const { itemNo, description, quantity, uom, price, currency } = item;
 
 	if (!itemNo) {
@@ -34,7 +34,14 @@ const createMakeItem = () => (item: TItem) => {
 		throw new Error('Currency is required.');
 	}
 
-	return item;
+	return {
+		itemNo: itemNo,
+		description: description,
+		quantity: quantity,
+		uom: uom,
+		price: price,
+		currency: currency,
+	};
 };
 
 export { createMakeItem };

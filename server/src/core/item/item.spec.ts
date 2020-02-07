@@ -73,4 +73,18 @@ describe('Supplier', () => {
 		};
 		expect(() => makeItem(item)).toThrow('Currency is required.');
 	});
+
+	it("will return the item", () => {
+		//givens
+		const itemInput = {
+			itemNo: 'itemNo',
+			description: 'description',
+			quantity: 'quantity',
+			uom: 'uom',
+			price: 'price',
+			currency: 'currency',
+		};
+		const a = makeItem(itemInput);
+		expect(a).toMatchObject(itemInput);
+	  });
 });
