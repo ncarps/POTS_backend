@@ -55,6 +55,29 @@ Object {
 }
 `;
 
+exports[`Queries create an item 1`] = `
+Object {
+  "data": Object {
+    "createItem": Object {
+      "currency": "PHP",
+      "description": "Corned Beef",
+      "id": "1",
+      "itemNo": "1",
+      "price": "2000",
+      "quantity": "5",
+      "uom": "kg",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries delete a supplier 1`] = `
 Object {
   "data": Object {
@@ -102,10 +125,40 @@ Object {
 }
 `;
 
+exports[`Queries delete an item 1`] = `
+Object {
+  "data": Object {
+    "deleteItem": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should error when no address 1`] = `
 Object {
   "data": Object {
     "address": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries should error when no item 1`] = `
+Object {
+  "data": Object {
+    "item": null,
   },
   "errors": undefined,
   "extensions": undefined,
@@ -194,6 +247,27 @@ Object {
 }
 `;
 
+exports[`Queries should fetch all items 1`] = `
+Object {
+  "data": Object {
+    "allItems": Array [
+      null,
+      null,
+    ],
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Item.itemNo.],
+    [GraphQLError: Cannot return null for non-nullable field Item.itemNo.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should fetch all supplier status 1`] = `
 Object {
   "data": Object {
@@ -265,6 +339,21 @@ Object {
       "street": "street",
       "zip_code": "zip_code",
     },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries should fetch one item  1`] = `
+Object {
+  "data": Object {
+    "item": null,
   },
   "errors": undefined,
   "extensions": undefined,
@@ -369,6 +458,29 @@ Object {
   "data": Object {
     "updateUser": Object {
       "name": "User 1",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries update an item 1`] = `
+Object {
+  "data": Object {
+    "updateItem": Object {
+      "currency": "PHP",
+      "description": "Corned Beef",
+      "id": "1",
+      "itemNo": "1",
+      "price": "2000",
+      "quantity": "5",
+      "uom": "kg",
     },
   },
   "errors": undefined,

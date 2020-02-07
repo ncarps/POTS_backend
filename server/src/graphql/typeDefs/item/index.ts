@@ -17,8 +17,8 @@ const typeDefs = gql`
 	}
 
 	type Mutation {
-		createItem(item: ItemInput): Item
-		updateItem(item: UpdateItemInput): Item
+		createItem(item: ItemInput!): Item
+		updateItem(item: UpdateItemInput!): Item
 		deleteItem(id: ID!): Item
 	}
 

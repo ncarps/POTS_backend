@@ -64,4 +64,25 @@ export default {
 			dateCreated: 'February 14, 2020',
 		},
 	],
+
+	items: [
+		{
+			_id: '1',
+			itemNo: '1',
+			description: 'Corned Beef',
+			quantity: '5',
+			uom: 'kg',
+			price: '2000',
+			currency: 'PHP',
+		},
+		{
+			_id: '2',
+			itemNo: '2',
+			description: 'Burger',
+			quantity: '6',
+			uom: 'kg',
+			price: '3000',
+			currency: 'USD',
+		},
+	],
 };

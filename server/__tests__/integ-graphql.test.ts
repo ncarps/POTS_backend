@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import mockData from './mocks/mock-data';
 import * as controllers from '../src/controllers';
 import { constructTestServer } from './__utils';
-import { addressModel } from '../src/models';
+
 const {
 	//Generic
 	getAllDataDB,
@@ -18,6 +18,9 @@ const {
 	//SupplierStatus
 	createCreateSupplierStatusDB,
 	updateSupplierStatusByIDDB,
+	//Item
+	createCreateItemDB,
+	updateItemByIDDB,
 } = controllers;
 
 //User
@@ -112,6 +115,39 @@ const supplierMock = {
 
 //SupplierStatus
 
+const itemMock = {
+	insert: jest.fn(async input => {
+		return { id: '1', ...input };
+	}),
+	getById: jest.fn(async id => {
+		const filterData = data => {
+			if (data.id === id) {
+				return data;
+			}
+		};
+		const res = mockData.items.filter(filterData);
+
+		return res[0] || null;
+	}),
+	getAll: jest.fn(async () => {
+		return mockData.users;
+	}),
+	updateById: jest.fn(async input => {
+		return { ...input };
+	}),
+	deleteById: async id => {
+		const filterData = data => {
+			if (data.id === id) {
+				return data;
+			}
+		};
+		const res = mockData.items.filter(filterData);
+		return res[0] || null;
+	},
+};
+
+//Item
+
 const supplierStatusMock = {
 	insert: jest.fn(async input => {
 		return { id: '1', ...input };
@@ -166,6 +202,12 @@ const { server }: any = constructTestServer({
 		getAllSupplierStatus: getAllDataDB(supplierStatusMock),
 		deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusMock),
 		updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusMock),
+		//Item
+		createItem: createCreateItemDB(itemMock),
+		getItemById: getByIDDB(itemMock),
+		getAllItems: getAllDataDB(itemMock),
+		deleteItemById: DeleteRecordByIDDB(itemMock),
+		updateItemById: updateItemByIDDB(itemMock),
 	},
 });
 
@@ -403,6 +445,75 @@ describe('Queries', () => {
 		expect(res).toMatchSnapshot();
 	});
 
+	//Item
+
+	it('should fetch all items', async () => {
+		const ITEM_ALL = gql`
+			query {
+				allItems {
+					id
+					itemNo
+					description
+					quantity
+					uom
+					price
+					currency
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({ query: ITEM_ALL });
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('should fetch one item ', async () => {
+		const SINGLE_ITEM = gql`
+			query i($id: String!) {
+				item(id: $id) {
+					itemNo
+					description
+					quantity
+					uom
+					price
+					currency
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({
+			query: SINGLE_ITEM,
+			variables: { id: '1' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('should error when no item', async () => {
+		const SINGLE_ITEM = gql`
+			query i($id: String!) {
+				item(id: $id) {
+					itemNo
+					description
+					quantity
+					uom
+					price
+					currency
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({
+			query: SINGLE_ITEM,
+			variables: { id: '' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
 	//Mutations
 
 	//User Mutations
@@ -633,6 +744,111 @@ describe('Queries', () => {
 					dateCreated: 'February 14, 2020',
 				},
 			},
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	//Item Mutation
+	it('create an item', async () => {
+		const CREATE_ITEM = gql`
+			mutation createItem($item: ItemInput!) {
+				createItem(item: $item) {
+					id
+					itemNo
+					description
+					quantity
+					uom
+					price
+					currency
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: CREATE_ITEM,
+			variables: {
+				item: {
+					itemNo: '1',
+					description: 'Corned Beef',
+					quantity: '5',
+					uom: 'kg',
+					price: '2000',
+					currency: 'PHP',
+				},
+			},
+		});
+
+		expect(res.errors).toBeUndefined();
+		expect(itemMock.insert.mock.calls.length).toBe(1);
+		expect(res.data).toMatchObject({
+			createItem: {
+				id: '1',
+				itemNo: '1',
+				description: 'Corned Beef',
+				quantity: '5',
+				uom: 'kg',
+				price: '2000',
+				currency: 'PHP',
+			},
+		});
+		expect(res).toMatchSnapshot();
+	});
+
+	it('update an item', async () => {
+		const UPDATE_ITEM = gql`
+			mutation i($item: UpdateItemInput!) {
+				updateItem(item: $item) {
+					id
+					itemNo
+					description
+					quantity
+					uom
+					price
+					currency
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: UPDATE_ITEM,
+			variables: {
+				item: {
+					id: '1',
+					itemNo: '1',
+					description: 'Corned Beef',
+					quantity: '5',
+					uom: 'kg',
+					price: '2000',
+					currency: 'PHP',
+				},
+			},
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('delete an item', async () => {
+		const DELETE_ITEM = gql`
+			mutation i($id: ID!) {
+				deleteItem(id: $id) {
+					id
+					itemNo
+					description
+					quantity
+					uom
+					price
+					currency
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: DELETE_ITEM,
+			variables: { id: '1' },
 		});
 
 		expect(res).toMatchSnapshot();
