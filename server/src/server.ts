@@ -42,6 +42,9 @@ const {
 	//SupplierStatus
 	createCreateSupplierStatusDB,
 	updateSupplierStatusByIDDB,
+	//Item
+	createCreateItemDB,
+	updateItemByIDDB,
 } = controllers;
 
 const context = async session => {

@@ -7,27 +7,31 @@ ObjectID.prototype.valueOf = function() {
 	return this.toString();
 };
 
-const AddressSchema = new Schema({
-	building_name: {
+const ItemSchema = new Schema({
+	itemNo: {
 		type: String,
 		required: true,
 	},
-	street: {
+	description: {
 		type: String,
 		required: true,
 	},
-	city: {
+	quantity: {
 		type: String,
 		required: true,
 	},
-	state: {
+	uom: {
 		type: String,
 		required: true,
 	},
-	zip_code: {
+	price: {
+		type: String,
+		required: true,
+	},
+	currency: {
 		type: String,
 		required: true,
 	},
 });
 
-export default mongoose.model('Address', AddressSchema);
+export default mongoose.model('Item', ItemSchema);
