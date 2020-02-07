@@ -51,4 +51,17 @@ export default {
 			},
 		},
 	],
+
+	supplierStatus: [
+		{
+			_id: '1',
+			status: 'Dispatched',
+			dateCreated: 'February 14, 2020',
+		},
+		{
+			_id: '2',
+			status: 'Delivered',
+			dateCreated: 'February 14, 2020',
+		},
+	],
 };

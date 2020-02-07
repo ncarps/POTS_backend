@@ -8,19 +8,19 @@ const supplierSupplierResolvers = {
 			return getAllSupplierStatus();
 		},
 	},
-	// Mutation: {
-	//   createUser: async (_, { name }, { createUser }) => {
-	//     return createUser({ name });
-	//   },
+	Mutation: {
+		createSupplierStatus: async (_, { status, dateCreated }, { createSupplierStatus }) => {
+			return createSupplierStatus({ status, dateCreated });
+		},
 
-	//   updateUser: async (parent, { id, name }, { updateUserById }, info) => {
-	//     return updateUserById({ id, name });
-	//   },
+		updateSupplierStatus: async (parent, { id, status, dateCreated }, { updateSupplierStatusById }, info) => {
+			return updateSupplierStatusById({ id, status, dateCreated });
+		},
 
-	//   deleteUser: async (parent, { id }, { deleteUserById }, info) => {
-	//     return deleteUserById(id);
-	//   }
-	// }
+		deleteSupplierStatus: async (parent, { id }, { deleteSupplierStatusById }, info) => {
+			return deleteSupplierStatusById(id);
+		},
+	},
 };
 
 export default supplierSupplierResolvers;

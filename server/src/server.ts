@@ -63,7 +63,7 @@ const context = async session => {
 		updateSupplierById: updateSupplierByIDDB(supplierModel),
 		//SupplierStatus
 		createSupplierStatus: createCreateSupplierStatusDB(supplierStatusModel),
-		updateSupplierStatus: updateSupplierStatusByIDDB(supplierStatusModel),
+		updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusModel),
 		deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusModel),
 		getSupplierStatusById: getByIDDB(supplierStatusModel),
 		getAllSupplierStatus: getAllDataDB(supplierStatusModel),
