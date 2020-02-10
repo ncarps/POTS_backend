@@ -31,16 +31,6 @@ const typeDefs = gql`
 		currency: String!
 	}
 
-	# input ItemInputWithID {
-	# 	id: ID!
-	# 	itemNo: String!
-	# 	description: String!
-	# 	quantity: Float!
-	# 	uom: String!
-	# 	price: Float!
-	# 	currency: String!
-	# }
-
 	input UpdateItemInput {
 		id: ID!
 		itemNo: String!

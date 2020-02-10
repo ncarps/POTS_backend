@@ -1,5 +1,5 @@
 import { IDBModel } from '../../commons/types';
-import { PurchaseOrder, Item } from '../mongo-models';
+import { PurchaseOrder } from '../mongo-models';
 
 const purchaseOrderModel: IDBModel<any> = {
 	insert: async purchaseOrder => {
@@ -51,13 +51,15 @@ const purchaseOrderModel: IDBModel<any> = {
 			});
 		});
 	},
-	updateById: async delivery => {
+	updateById: async purchaseOrder => {
 		return new Promise((resolve, reject) => {
-			PurchaseOrder.findByIdAndUpdate({ _id: delivery.id }, { $set: { ...delivery } }, { new: true }).exec(
-				(err, res) => {
-					err ? reject(err) : resolve(res);
-				}
-			);
+			PurchaseOrder.findByIdAndUpdate(
+				{ _id: purchaseOrder.id },
+				{ $set: { ...purchaseOrder } },
+				{ new: true }
+			).exec((err, res) => {
+				err ? reject(err) : resolve(res);
+			});
 		});
 	},
 };

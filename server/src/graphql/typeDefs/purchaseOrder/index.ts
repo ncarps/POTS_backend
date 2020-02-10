@@ -17,14 +17,15 @@ const typeDefs = gql`
 
 	type Mutation {
 		createPurchaseOrder(purchaseOrder: PurchaseOrderInput): PurchaseOrder
+		deletePurchaseOrder(id: ID!): PurchaseOrder
 	}
 
 	input PurchaseOrderInput {
 		externalID: String!
 		status: String!
-		supplierStatus: ID!
-		supplier: ID!
-		items: ID!
+		supplierStatus: String!
+		supplier: String!
+		items: [String]!
 	}
 `;
 

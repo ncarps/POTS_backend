@@ -29,13 +29,13 @@ const purchaseOrderResolvers = {
 			const { createPurchaseOrder } = context;
 			return await createPurchaseOrder(purchaseOrder);
 		},
+		deletePurchaseOrder: async (parent, { id }, context, info) => {
+			const { deletePurchaseOrderbyId } = context;
+			return await deletePurchaseOrderbyId(id);
+		},
 		// updateDelivery: async (parent, { delivery }, context, info) => {
 		// 	const { updateDeliveryByID } = context;
 		// 	return await updateDeliveryByID(delivery);
-		// },
-		// deleteDelivery: async (parent, { id }, context, info) => {
-		// 	const { deleteDeliveryById } = context;
-		// 	return await deleteDeliveryById(id);
 		// },
 	},
 };
