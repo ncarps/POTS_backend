@@ -474,11 +474,18 @@ Object {
 
 exports[`Queries update an item 1`] = `
 Object {
-  "data": undefined,
-  "errors": Array [
-    [GraphQLError: Variable "$item" got invalid value "5" at "item.quantity"; Expected type Float. Float cannot represent non numeric value: "5"],
-    [GraphQLError: Variable "$item" got invalid value "2000" at "item.price"; Expected type Float. Float cannot represent non numeric value: "2000"],
-  ],
+  "data": Object {
+    "updateItem": Object {
+      "currency": "PHP",
+      "description": "Corned Beef",
+      "id": "1",
+      "itemNo": "1",
+      "price": 2000,
+      "quantity": 5,
+      "uom": "kg",
+    },
+  },
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
