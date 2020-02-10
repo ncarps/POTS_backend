@@ -13,9 +13,20 @@ const typeDefs = gql`
 	}
 
 	type Mutation {
-		createSupplierStatus(status: String!, dateCreated: String!): SupplierStatus
-		updateSupplierStatus(id: String, status: String, dateCreated: String): SupplierStatus
+		createSupplierStatus(supplierStatus: SupplierStatusInput!): SupplierStatus
+		updateSupplierStatus(supplierStatus: UpdateSupplierStatusInput!): SupplierStatus
 		deleteSupplierStatus(id: ID!): SupplierStatus
+	}
+
+	input SupplierStatusInput {
+		status: String!
+		dateCreated: String!
+	}
+
+	input UpdateSupplierStatusInput {
+		id: ID!
+		status: String!
+		dateCreated: String!
 	}
 `;
 

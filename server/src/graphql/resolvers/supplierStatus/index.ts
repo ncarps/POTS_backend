@@ -9,12 +9,12 @@ const supplierSupplierResolvers = {
 		},
 	},
 	Mutation: {
-		createSupplierStatus: async (_, { status, dateCreated }, { createSupplierStatus }) => {
-			return createSupplierStatus({ status, dateCreated });
+		createSupplierStatus: async (_, { supplierStatus }, { createSupplierStatus }) => {
+			return createSupplierStatus(supplierStatus);
 		},
 
-		updateSupplierStatus: async (parent, { id, status, dateCreated }, { updateSupplierStatusById }, info) => {
-			return updateSupplierStatusById({ id, status, dateCreated });
+		updateSupplierStatus: async (parent, { supplierStatus }, { updateSupplierStatusById }, info) => {
+			return updateSupplierStatusById(supplierStatus);
 		},
 
 		deleteSupplierStatus: async (parent, { id }, { deleteSupplierStatusById }, info) => {

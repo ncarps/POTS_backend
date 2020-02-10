@@ -1,5 +1,5 @@
 import { IDBModel } from '../../commons/types';
-import { PurchaseOrder } from '../mongo-models';
+import { PurchaseOrder, SupplierStatus, Supplier, Item } from '../mongo-models';
 
 const purchaseOrderModel: IDBModel<any> = {
 	insert: async purchaseOrder => {

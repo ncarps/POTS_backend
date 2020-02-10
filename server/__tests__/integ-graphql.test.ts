@@ -674,8 +674,8 @@ describe('Queries', () => {
 
 	it('create a supplier status', async () => {
 		const CREATE_SUPPPLIERSTATUS = gql`
-			mutation createSupplierStatus($status: String!, $dateCreated: String!) {
-				createSupplierStatus(status: $status, dateCreated: $dateCreated) {
+			mutation createSupplierStatus($supplierStatus: SupplierStatusInput!) {
+				createSupplierStatus(supplierStatus: $supplierStatus) {
 					id
 					status
 					dateCreated
@@ -687,8 +687,10 @@ describe('Queries', () => {
 		const res = await mutate({
 			mutation: CREATE_SUPPPLIERSTATUS,
 			variables: {
-				status: 'Dispatched',
-				dateCreated: 'February 14, 2020',
+				supplierStatus: {
+					status: 'yeeeeee',
+					dateCreated: 'Feb 14',
+				},
 			},
 		});
 
@@ -697,8 +699,8 @@ describe('Queries', () => {
 		expect(res.data).toMatchObject({
 			createSupplierStatus: {
 				id: '1',
-				status: 'Dispatched',
-				dateCreated: 'February 14, 2020',
+				status: 'yeeeeee',
+				dateCreated: 'Feb 14',
 			},
 		});
 		expect(res).toMatchSnapshot();
@@ -725,8 +727,8 @@ describe('Queries', () => {
 
 	it('update a supplier status', async () => {
 		const UPDATE_SUPPLIERSTATUS = gql`
-			mutation ss($status: String, $dateCreated: String) {
-				updateSupplierStatus(status: $status, dateCreated: $dateCreated) {
+			mutation ss($supplierStatus: UpdateSupplierStatusInput!) {
+				updateSupplierStatus(supplierStatus: $supplierStatus) {
 					id
 					status
 					dateCreated
@@ -772,9 +774,9 @@ describe('Queries', () => {
 				item: {
 					itemNo: '1',
 					description: 'Corned Beef',
-					quantity: '5',
+					quantity: 5,
 					uom: 'kg',
-					price: '2000',
+					price: 2000,
 					currency: 'PHP',
 				},
 			},
@@ -787,9 +789,9 @@ describe('Queries', () => {
 				id: '1',
 				itemNo: '1',
 				description: 'Corned Beef',
-				quantity: '5',
+				quantity: 5,
 				uom: 'kg',
-				price: '2000',
+				price: 2000,
 				currency: 'PHP',
 			},
 		});

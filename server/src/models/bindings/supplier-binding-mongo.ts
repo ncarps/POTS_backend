@@ -3,7 +3,7 @@ import { Supplier, Address } from '../mongo-models';
 
 const supplierModel: IDBModel<any> = {
 	insert: async supplier => {
-		const newItem = await new Address({
+		const newAddress = await new Address({
 			building_name: supplier.address.building_name,
 			street: supplier.address.street,
 			city: supplier.address.city,
@@ -12,7 +12,7 @@ const supplierModel: IDBModel<any> = {
 		});
 
 		const newAdd: any = await new Promise((resolve, reject) => {
-			newItem.save((err, res) => {
+			newAddress.save((err, res) => {
 				err ? reject(err) : resolve(res);
 			});
 		});

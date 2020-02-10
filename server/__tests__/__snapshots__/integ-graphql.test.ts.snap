@@ -22,9 +22,9 @@ exports[`Queries create a supplier status 1`] = `
 Object {
   "data": Object {
     "createSupplierStatus": Object {
-      "dateCreated": "February 14, 2020",
+      "dateCreated": "Feb 14",
       "id": "1",
-      "status": "Dispatched",
+      "status": "yeeeeee",
     },
   },
   "errors": undefined,
@@ -63,8 +63,8 @@ Object {
       "description": "Corned Beef",
       "id": "1",
       "itemNo": "1",
-      "price": "2000",
-      "quantity": "5",
+      "price": 2000,
+      "quantity": 5,
       "uom": "kg",
     },
   },
@@ -439,11 +439,13 @@ Object {
 exports[`Queries update a supplier status 1`] = `
 Object {
   "data": Object {
-    "updateSupplierStatus": null,
+    "updateSupplierStatus": Object {
+      "dateCreated": "February 14, 2020",
+      "id": "1",
+      "status": "Dispatched",
+    },
   },
-  "errors": Array [
-    [GraphQLError: Status is required.],
-  ],
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -472,18 +474,11 @@ Object {
 
 exports[`Queries update an item 1`] = `
 Object {
-  "data": Object {
-    "updateItem": Object {
-      "currency": "PHP",
-      "description": "Corned Beef",
-      "id": "1",
-      "itemNo": "1",
-      "price": "2000",
-      "quantity": "5",
-      "uom": "kg",
-    },
-  },
-  "errors": undefined,
+  "data": undefined,
+  "errors": Array [
+    [GraphQLError: Variable "$item" got invalid value "5" at "item.quantity"; Expected type Float. Float cannot represent non numeric value: "5"],
+    [GraphQLError: Variable "$item" got invalid value "2000" at "item.price"; Expected type Float. Float cannot represent non numeric value: "2000"],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
