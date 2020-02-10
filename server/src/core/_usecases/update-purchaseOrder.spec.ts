@@ -6,7 +6,7 @@ describe('UseCase: Update a Delivery ', () => {
 		const purchaseOrderInput = {
 			externalID: '002',
 			status: 'Delivered',
-			supplierStatus: 'Delivered',
+			supplierStatus: ['Delivered'],
 			supplier: 'Jollibee',
 			items: [
 				{
@@ -23,7 +23,7 @@ describe('UseCase: Update a Delivery ', () => {
 		const oldValue = {
 			externalID: '001',
 			status: 'Pending',
-			supplierStatus: 'Dispatched',
+			supplierStatus: ['Dispatched'],
 			supplier: 'Jollibee',
 			items: [
 				{

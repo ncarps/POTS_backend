@@ -7,7 +7,7 @@ describe('Purchase Order Create', () => {
 		const purchaseOrderInput = {
 			externalID: '001',
 			status: 'Pending',
-			supplierStatus: 'Dispatched',
+			supplierStatus: ['Dispatched'],
 			supplier: 'Jollibee',
 			items: [
 				{

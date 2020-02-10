@@ -1,10 +1,11 @@
-import { TItem, makeItem } from './../item';
+import { TItem } from './../item';
+import { TSupplierStatus } from './../supplierStatus';
 
 export type TPurchaseOrder = {
 	id?: string;
 	externalID: string;
 	status: string;
-	supplierStatus: string;
+	supplierStatus: [TSupplierStatus] | undefined;
 	supplier: string;
 	items: [TItem] | undefined;
 };
@@ -15,9 +16,6 @@ const createMakePurchaseOrder = () => ({ externalID, status, supplierStatus, sup
 	}
 	if (!status) {
 		throw new Error('Status is required');
-	}
-	if (!supplierStatus) {
-		throw new Error('Supplier Status is required');
 	}
 	if (!supplier) {
 		throw new Error('Supplier is required');

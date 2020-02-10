@@ -12,11 +12,13 @@ describe('Create Purchase Order', () => {
 		const given = {
 			externalID: '001',
 			status: 'Pending',
-			supplierStatus: {
-				_id: '1',
-				status: 'Dispatched',
-				dateCreated: 'February 14, 2020',
-			},
+			supplierStatus: [
+				{
+					_id: '1',
+					status: 'Dispatched',
+					dateCreated: 'February 14, 2020',
+				},
+			],
 			supplier: {
 				_id: '1',
 				name: 'Supplier Name-1',

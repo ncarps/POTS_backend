@@ -5,11 +5,13 @@ const mockPurchaseOrder = [
 		_id: '1',
 		externalID: '001',
 		status: 'Pending',
-		supplierStatus: {
-			_id: '1',
-			status: 'Dispatched',
-			dateCreated: 'February 14, 2020',
-		},
+		supplierStatus: [
+			{
+				_id: '1',
+				status: 'Dispatched',
+				dateCreated: 'February 14, 2020',
+			},
+		],
 		supplier: {
 			_id: '1',
 			name: 'Supplier Name-1',
@@ -35,11 +37,13 @@ const mockPurchaseOrder = [
 		_id: '2',
 		externalID: '002',
 		status: 'Shipped',
-		supplierStatus: {
-			_id: '1',
-			status: 'Dispatched',
-			dateCreated: 'February 14, 2020',
-		},
+		supplierStatus: [
+			{
+				_id: '1',
+				status: 'Dispatched',
+				dateCreated: 'February 14, 2020',
+			},
+		],
 		supplier: {
 			_id: '1',
 			name: 'Supplier Name-1',
@@ -83,11 +87,13 @@ describe('Update Purchase ORder', () => {
 		const given = {
 			externalID: '001',
 			status: 'Pending',
-			supplierStatus: {
-				_id: '1',
-				status: 'Dispatched',
-				dateCreated: 'February 14, 2020',
-			},
+			supplierStatus: [
+				{
+					_id: '1',
+					status: 'Dispatched',
+					dateCreated: 'February 14, 2020',
+				},
+			],
 			supplier: {
 				_id: '1',
 				name: 'Supplier Name-1',
