@@ -17,6 +17,10 @@ import { updateSupplierStatusByIDDB } from './update-supplierStatus-db';
 import { createCreateItemDB } from './create-item-db';
 import { updateItemByIDDB } from './update-item-db';
 
+//Purchase Order
+import { createCreatePurchaseOrderDB } from './create-purchaseOrder-db';
+import { updatePurchaseOrderByIDDB } from './update-purchaseOrder-db';
+
 export {
 	getAllDataDB,
 	getByIDDB,
@@ -33,4 +37,7 @@ export {
 	//Item
 	createCreateItemDB,
 	updateItemByIDDB,
+	//Purchase Order
+	createCreatePurchaseOrderDB,
+	updatePurchaseOrderByIDDB,
 };

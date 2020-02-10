@@ -26,14 +26,14 @@ const createMakePurchaseOrder = () => ({ externalID, status, supplierStatus, sup
 		throw new Error('Item/s is/are required');
 	}
 
-	const _items = items.map(item => makeItem(item));
+	// const _items = items.map(item => makeItem(item));
 
 	return {
 		externalID: externalID,
 		status: status,
 		supplierStatus: supplierStatus,
 		supplier: supplier,
-		items: _items,
+		items: items,
 	};
 };
 

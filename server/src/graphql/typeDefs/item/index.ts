@@ -5,9 +5,9 @@ const typeDefs = gql`
 		id: ID!
 		itemNo: String!
 		description: String!
-		quantity: String!
+		quantity: Float!
 		uom: String!
-		price: String!
+		price: Float!
 		currency: String!
 	}
 
@@ -25,19 +25,29 @@ const typeDefs = gql`
 	input ItemInput {
 		itemNo: String!
 		description: String!
-		quantity: String!
+		quantity: Float!
 		uom: String!
-		price: String!
+		price: Float!
 		currency: String!
 	}
+
+	# input ItemInputWithID {
+	# 	id: ID!
+	# 	itemNo: String!
+	# 	description: String!
+	# 	quantity: Float!
+	# 	uom: String!
+	# 	price: Float!
+	# 	currency: String!
+	# }
 
 	input UpdateItemInput {
 		id: ID!
 		itemNo: String!
 		description: String!
-		quantity: String!
+		quantity: Float!
 		uom: String!
-		price: String!
+		price: Float!
 		currency: String!
 	}
 `;
