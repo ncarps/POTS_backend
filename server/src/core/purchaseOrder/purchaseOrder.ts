@@ -2,11 +2,11 @@ import { TItem, makeItem } from './../item';
 
 export type TPurchaseOrder = {
 	id?: string;
-	externalID?: string;
-	status?: string;
-	supplierStatus?: string;
-	supplier?: string;
-	items?: [TItem] | undefined;
+	externalID: string;
+	status: string;
+	supplierStatus: string;
+	supplier: string;
+	items: [TItem] | undefined;
 };
 
 const createMakePurchaseOrder = () => ({ externalID, status, supplierStatus, supplier, items }): TPurchaseOrder => {

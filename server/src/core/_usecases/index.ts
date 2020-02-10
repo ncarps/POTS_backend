@@ -14,6 +14,10 @@ import { updateUCSupplierStatus } from './update-supplierStatus-usecase';
 import { createUCCreateItem } from './create-item-usecase';
 import { updateUCItem } from './update-item-usecase';
 
+//Purchase Order
+import { createUCPurchaseOrder } from './create-purchaseOrder-usecase';
+import { updateUCPurchaseOrder } from './update-purchaseOrder-usecase';
+
 export {
 	//User
 	createUCCreateUser,
@@ -27,4 +31,7 @@ export {
 	//Item
 	createUCCreateItem,
 	updateUCItem,
+	//Purchase Order
+	createUCPurchaseOrder,
+	updateUCPurchaseOrder,
 };
