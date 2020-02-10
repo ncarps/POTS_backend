@@ -35,24 +35,24 @@ describe('Retrieve Item', () => {
 		expect(allItems).toMatchObject(mockItem);
 	});
 
-	// it('Should be able to return one supplier status from db', async () => {
-	// 	const oneSupplierStatus = [mockSupplierStatus[0]];
-	// 	const mockDB: any = {
-	// 		getById: jest.fn(async id => {
-	// 			const filterSupplier = cust => {
-	// 				if (cust._id === id) {
-	// 					return cust;
-	// 				}
-	// 			};
+	it('Should be able to return one item from db', async () => {
+		const oneItem = [mockItem[0]];
+		const mockDB: any = {
+			getById: jest.fn(async id => {
+				const filterItem = cust => {
+					if (cust._id === id) {
+						return cust;
+					}
+				};
 
-	// 			return mockSupplierStatus.filter(filterSupplier);
-	// 		}),
-	// 	};
+				return mockItem.filter(filterItem);
+			}),
+		};
 
-	// 	const getOneSupplierStatus = getByIDDB(mockDB);
-	// 	const supplierStatus = await getOneSupplierStatus('1');
-	// 	expect(mockDB.getById.mock.calls.length).toBe(1);
+		const getOneItem = getByIDDB(mockDB);
+		const item = await getOneItem('1');
+		expect(mockDB.getById.mock.calls.length).toBe(1);
 
-	// 	expect(supplierStatus).toMatchObject(oneSupplierStatus);
-	// });
+		expect(item).toMatchObject(oneItem);
+	});
 });

@@ -31,13 +31,13 @@ describe('Retrieve Supplier Status', () => {
 		const oneSupplierStatus = [mockSupplierStatus[0]];
 		const mockDB: any = {
 			getById: jest.fn(async id => {
-				const filterSupplier = cust => {
+				const filterSupplierStatus = cust => {
 					if (cust._id === id) {
 						return cust;
 					}
 				};
 
-				return mockSupplierStatus.filter(filterSupplier);
+				return mockSupplierStatus.filter(filterSupplierStatus);
 			}),
 		};
 
