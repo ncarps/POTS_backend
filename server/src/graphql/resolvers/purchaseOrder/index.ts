@@ -26,7 +26,18 @@ const purchaseOrderResolvers = {
 	},
 	Mutation: {
 		createPurchaseOrder: async (parent, { purchaseOrder }, context, info) => {
-			const { createPurchaseOrder } = context;
+			const { createPurchaseOrder, createSupplier, createSupplierStatus, createItem } = context;
+
+			const supplierStatus = await createSupplierStatus(purchaseOrder.supplierStatus);
+			const supplier = await createSupplier(purchaseOrder.supplier);
+			const item = await createItem(purchaseOrder.items);
+
+			const po = {
+				supplierStatus: supplierStatus.id,
+				supplier: supplier.id,
+				item: item.id,
+			};
+
 			return await createPurchaseOrder(purchaseOrder);
 		},
 		deletePurchaseOrder: async (parent, { id }, context, info) => {
