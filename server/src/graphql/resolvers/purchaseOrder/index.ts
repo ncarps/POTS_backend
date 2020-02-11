@@ -28,26 +28,40 @@ const purchaseOrderResolvers = {
 		createPurchaseOrder: async (parent, { purchaseOrder }, context, info) => {
 			const { createPurchaseOrder, createSupplier, createSupplierStatus, createItem } = context;
 
-			const supplierStatus = await createSupplierStatus(purchaseOrder.supplierStatus);
 			const supplier = await createSupplier(purchaseOrder.supplier);
-			const item = await createItem(purchaseOrder.items);
+
+			const supplierStatus: Array<any> = await Promise.all(
+				purchaseOrder.supplierStatus.map(async ss => {
+					const poss = createSupplierStatus(ss);
+					return poss.id;
+				})
+			);
+
+			const items: Array<any> = await Promise.all(
+				purchaseOrder.items.map(async item => {
+					const poitem = createItem(item);
+					return poitem.id;
+				})
+			);
 
 			const po = {
-				supplierStatus: supplierStatus.id,
+				externalID: purchaseOrder.externalID,
+				status: purchaseOrder.status,
+				supplierStatus: supplierStatus,
 				supplier: supplier.id,
-				item: item.id,
+				items: items,
 			};
 
-			return await createPurchaseOrder(purchaseOrder);
+			return await createPurchaseOrder(po);
 		},
 		deletePurchaseOrder: async (parent, { id }, context, info) => {
 			const { deletePurchaseOrderbyId } = context;
 			return await deletePurchaseOrderbyId(id);
 		},
-		// updateDelivery: async (parent, { delivery }, context, info) => {
-		// 	const { updateDeliveryByID } = context;
-		// 	return await updateDeliveryByID(delivery);
-		// },
+		updatePurchaseOrder: async (parent, { purchaseOrder }, context, info) => {
+			const { updatePurchaseOrderByID } = context;
+			return await updatePurchaseOrderByID(purchaseOrder);
+		},
 	},
 };
 

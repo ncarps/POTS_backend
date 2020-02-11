@@ -7,7 +7,7 @@ const purchaseOrderModel: IDBModel<any> = {
 			externalID: purchaseOrder.externalID,
 			status: purchaseOrder.status,
 			supplierStatus: purchaseOrder.supplierStatus,
-			supplier: purchaseOrder.supplier.toString(),
+			supplier: purchaseOrder.supplier,
 			items: purchaseOrder.items,
 		});
 
