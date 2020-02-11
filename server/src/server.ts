@@ -81,7 +81,7 @@ const context = async session => {
 		getAllItems: getAllDataDB(itemModel),
 		//Purchase Order
 		createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderModel),
-		updatePurchaseOrder: updatePurchaseOrderByIDDB(purchaseOrderModel),
+		updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderModel),
 		deletePurchaseOrderbyId: DeleteRecordByIDDB(purchaseOrderModel),
 		getPurchaseOrderById: getByIDDB(purchaseOrderModel),
 		getAllPurchaseOrders: getAllDataDB(purchaseOrderModel),

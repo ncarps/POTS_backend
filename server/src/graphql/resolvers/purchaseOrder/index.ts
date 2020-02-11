@@ -1,17 +1,17 @@
 const purchaseOrderResolvers = {
 	PurchaseOrder: {
 		supplierStatus: async (parent, args, context, info) => {
-			const { getSupplierStatusById } = context;
-			return await getSupplierStatusById(parent.supplierStatus);
+			const { getAllSupplierStatus } = context;
+			return await getAllSupplierStatus(parent.supplierStatus.id);
 		},
 		supplier: async (parent, args, context, info) => {
 			const { getSupplierById } = context;
 			return await getSupplierById(parent.supplier);
 		},
 		items: async (parent, args, context, info) => {
-			const { getItemById } = context;
+			const { getAllItems } = context;
 
-			return await getItemById(parent.id);
+			return await getAllItems(parent.items.id);
 		},
 	},
 	Query: {
@@ -32,15 +32,15 @@ const purchaseOrderResolvers = {
 
 			const supplierStatus: Array<any> = await Promise.all(
 				purchaseOrder.supplierStatus.map(async ss => {
-					const poss = createSupplierStatus(ss);
-					return poss.id;
+					const poss = await createSupplierStatus(ss);
+					return poss.id.toString();
 				})
 			);
 
 			const items: Array<any> = await Promise.all(
 				purchaseOrder.items.map(async item => {
-					const poitem = createItem(item);
-					return poitem.id;
+					const poitem = await createItem(item);
+					return poitem.id.toString();
 				})
 			);
 
