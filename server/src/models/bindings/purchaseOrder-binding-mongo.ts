@@ -53,7 +53,7 @@ const purchaseOrderModel: IDBModel<any> = {
 			status: u.status,
 			supplierStatus: u.supplierStatus.toString(),
 			supplier: u.supplier.toString(),
-			items: u.toString(),
+			items: u.items.toString(),
 		}));
 	},
 
@@ -66,7 +66,7 @@ const purchaseOrderModel: IDBModel<any> = {
 			status: u.status,
 			supplierStatus: u.supplierStatus.toString(),
 			supplier: u.supplier.toString(),
-			items: u.toString(),
+			items: u.items.toString(),
 		}));
 	},
 
