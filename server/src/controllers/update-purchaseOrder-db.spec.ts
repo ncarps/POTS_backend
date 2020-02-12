@@ -67,7 +67,7 @@ const mockPurchaseOrder = [
 	},
 ];
 
-describe('Update Purchase ORder', () => {
+describe('Update Purchase Order', () => {
 	const mockDb: any = {
 		updateById: jest.fn(async input => {
 			return { ...input };
