@@ -19,9 +19,9 @@ const purchaseOrderResolvers = {
 			const { getAllPurchaseOrders } = context;
 			return getAllPurchaseOrders();
 		},
-		purchaseOrder: async (parent, { driver }, context, info) => {
+		purchaseOrder: async (parent, { id }, context, info) => {
 			const { getPurchaseOrderById } = context;
-			return getPurchaseOrderById(driver);
+			return getPurchaseOrderById(id);
 		},
 	},
 	Mutation: {
