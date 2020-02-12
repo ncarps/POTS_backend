@@ -23,6 +23,9 @@ const addressModel: IDBModel<any> = {
 		}));
 	},
 
+	getAllByItem: async id => {},
+	getAllBySupplierStatus: async id => {},
+
 	deleteById: async id => {},
 	updateById: async id => {},
 };

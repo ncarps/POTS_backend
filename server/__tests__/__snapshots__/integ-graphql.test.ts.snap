@@ -170,6 +170,21 @@ Object {
 }
 `;
 
+exports[`Queries should error when no purchase order 1`] = `
+Object {
+  "data": Object {
+    "purchaseOrder": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should error when no supplier 1`] = `
 Object {
   "data": null,
@@ -382,6 +397,21 @@ Object {
 }
 `;
 
+exports[`Queries should fetch one purchase order 1`] = `
+Object {
+  "data": Object {
+    "purchaseOrder": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should fetch one supplier 1`] = `
 Object {
   "data": null,
@@ -433,17 +463,10 @@ Object {
 
 exports[`Queries update a supplier 1`] = `
 Object {
-  "data": Object {
-    "updateSupplier": Object {
-      "address": Object {
-        "building_name": "building name",
-        "street": "street",
-      },
-      "id": "1",
-      "name": "Supp name",
-    },
-  },
-  "errors": undefined,
+  "data": undefined,
+  "errors": Array [
+    [GraphQLError: Variable "$supplier" got invalid value { id: "1", name: "Supp name", address: "A1" }; Field "address" is not defined by type UpdateSupplierInput.],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

@@ -7,4 +7,12 @@ const getByIDDB = (db: IDBModel<any>) => async id => {
 	return db.getById(id);
 };
 
-export { getAllDataDB, getByIDDB };
+const getAllBySupplierStatusDB = (db: IDBModel<any>) => async id => {
+	return db.getAllBySupplierStatus(id);
+};
+
+const getAllByItemDB = (db: IDBModel<any>) => async id => {
+	return db.getAllByItem(id);
+};
+
+export { getAllDataDB, getByIDDB, getAllByItemDB, getAllBySupplierStatusDB };

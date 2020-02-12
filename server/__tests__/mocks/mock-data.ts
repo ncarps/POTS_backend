@@ -47,6 +47,7 @@ export default {
 				building_name: 'building 2',
 				city: 'city 2',
 				street: 'street 2',
+				state: 'ph',
 				zip_code: '123',
 			},
 		},
@@ -83,6 +84,77 @@ export default {
 			uom: 'kg',
 			price: 3000,
 			currency: 'USD',
+		},
+	],
+
+	purchaseOrders: [
+		{
+			_id: '1',
+			externalID: '001',
+			status: 'Pending',
+			supplierStatus: [
+				{
+					_id: '1',
+					status: 'Dispatched',
+					dateCreated: 'February 14, 2020',
+				},
+			],
+			supplier: {
+				_id: '1',
+				name: 'Supplier Name-1',
+				address: {
+					building_name: 'building 1',
+					city: 'city 1',
+					street: 'street 1',
+					state: 'ph',
+					zip_code: '123',
+				},
+			},
+			items: [
+				{
+					id: '1',
+					itemNo: '1',
+					description: 'Corned Beef',
+					quantity: 5,
+					uom: 'kg',
+					price: 2000,
+					currency: 'PHP',
+				},
+			],
+		},
+		{
+			_id: '2',
+			externalID: '002',
+			status: 'Shipped',
+			supplierStatus: [
+				{
+					_id: '1',
+					status: 'Dispatched',
+					dateCreated: 'February 14, 2020',
+				},
+			],
+			supplier: {
+				_id: '1',
+				name: 'Supplier Name-1',
+				address: {
+					building_name: 'building 1',
+					city: 'city 1',
+					street: 'street 1',
+					state: 'ph',
+					zip_code: '123',
+				},
+			},
+			items: [
+				{
+					id: '1',
+					itemNo: '1',
+					description: 'Corned Beef',
+					quantity: 5,
+					uom: 'kg',
+					price: 2000,
+					currency: 'PHP',
+				},
+			],
 		},
 	],
 };

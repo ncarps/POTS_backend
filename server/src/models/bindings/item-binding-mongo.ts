@@ -49,6 +49,10 @@ const itemModel: IDBModel<any> = {
 		}));
 	},
 
+	getAllByItem: async id => {},
+
+	getAllBySupplierStatus: async id => {},
+
 	deleteById: async id => {
 		return new Promise((resolve, reject) => {
 			Item.findByIdAndDelete(id).exec((err, res) => {

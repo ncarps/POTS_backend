@@ -44,6 +44,32 @@ const purchaseOrderModel: IDBModel<any> = {
 		};
 	},
 
+	getAllByItem: async id => {
+		const po: any = await PurchaseOrder.find({ items: id }).exec();
+
+		return po.map(u => ({
+			id: u._id.toString(),
+			externalID: u.externalID,
+			status: u.status,
+			supplierStatus: u.supplierStatus.toString(),
+			supplier: u.supplier.toString(),
+			items: u.toString(),
+		}));
+	},
+
+	getAllBySupplierStatus: async id => {
+		const po: any = await PurchaseOrder.find({ supplierStatus: id }).exec();
+
+		return po.map(u => ({
+			id: u._id.toString(),
+			externalID: u.externalID,
+			status: u.status,
+			supplierStatus: u.supplierStatus.toString(),
+			supplier: u.supplier.toString(),
+			items: u.toString(),
+		}));
+	},
+
 	deleteById: async id => {
 		return new Promise((resolve, reject) => {
 			PurchaseOrder.findByIdAndDelete(id).exec((err, res) => {

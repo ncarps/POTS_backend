@@ -1,17 +1,17 @@
 const purchaseOrderResolvers = {
 	PurchaseOrder: {
 		supplierStatus: async (parent, args, context, info) => {
-			const { getAllSupplierStatus } = context;
-			return await getAllSupplierStatus(parent.supplierStatus.id);
+			const { getAllSupplierStatusByPurchaseOrder } = context;
+			return await getAllSupplierStatusByPurchaseOrder(parent.supplierStatus.id);
 		},
 		supplier: async (parent, args, context, info) => {
 			const { getSupplierById } = context;
 			return await getSupplierById(parent.supplier);
 		},
 		items: async (parent, args, context, info) => {
-			const { getAllItems } = context;
+			const { getAllItemsByPurchaseOrder } = context;
 
-			return await getAllItems(parent.items.id);
+			return await getAllItemsByPurchaseOrder(parent.items.id);
 		},
 	},
 	Query: {

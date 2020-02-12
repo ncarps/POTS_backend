@@ -116,7 +116,7 @@ const supplierMock = {
 	}),
 };
 
-//SupplierStatus
+//Item Mock
 
 const itemMock = {
 	insert: jest.fn(async input => {
@@ -149,7 +149,7 @@ const itemMock = {
 	},
 };
 
-//Item
+//Supplier Status Mock
 
 const supplierStatusMock = {
 	insert: jest.fn(async input => {
@@ -182,6 +182,8 @@ const supplierStatusMock = {
 	},
 };
 
+//PurchaseOrder Mock
+
 const purchaseOrderMock = {
 	insert: jest.fn(async input => {
 		return { id: '1', ...input };
@@ -197,7 +199,7 @@ const purchaseOrderMock = {
 		return res[0] || null;
 	}),
 	getAll: jest.fn(async () => {
-		return mockData.users;
+		return mockData.purchaseOrders;
 	}),
 	updateById: jest.fn(async input => {
 		return { ...input };
@@ -586,6 +588,72 @@ describe('Queries', () => {
 		expect(res).toMatchSnapshot();
 	});
 
+	it('should fetch one purchase order', async () => {
+		const SINGLE_PURCHASEORDER = gql`
+			query po($id: ID!) {
+				purchaseOrder(id: $id) {
+					id
+					externalID
+					status
+					supplierStatus {
+						id
+					}
+					supplier {
+						id
+						name
+						address {
+							id
+						}
+					}
+					items {
+						id
+					}
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({
+			query: SINGLE_PURCHASEORDER,
+			variables: { id: '1' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	it('should error when no purchase order', async () => {
+		const SINGLE_PURCHASEORDER = gql`
+			query po($id: ID!) {
+				purchaseOrder(id: $id) {
+					id
+					externalID
+					status
+					supplierStatus {
+						id
+					}
+					supplier {
+						id
+						name
+						address {
+							id
+						}
+					}
+					items {
+						id
+					}
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({
+			query: SINGLE_PURCHASEORDER,
+			variables: { id: '' },
+		});
+
+		expect(res).toMatchSnapshot();
+	});
+
 	//Mutations
 
 	//User Mutations
@@ -925,6 +993,109 @@ describe('Queries', () => {
 			variables: { id: '1' },
 		});
 
+		expect(res).toMatchSnapshot();
+	});
+
+	//Purchase Order Mutation
+	it('create a purchase order', async () => {
+		const CREATE_PURCHASEORDER = gql`
+			mutation createPO($purchaseOrder: PurchaseOrderInput) {
+				createPurchaseOrder(purchaseOrder: $purchaseOrder) {
+					id
+					externalID
+					status
+					supplierStatus {
+						id
+					}
+					supplier {
+						id
+						name
+						address {
+							id
+						}
+					}
+					items {
+						id
+					}
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: CREATE_PURCHASEORDER,
+			variables: {
+				purchaseOrder: {
+					externalID: '001',
+					status: 'Pending',
+					supplierStatus: [
+						{
+							status: 'Dispatched',
+							dateCreated: 'February 14, 2020',
+						},
+					],
+					supplier: {
+						name: 'Supplier Name-1',
+						address: {
+							building_name: 'building 1',
+							city: 'city 1',
+							street: 'street 1',
+							state: 'ph',
+							zip_code: '123',
+						},
+					},
+					items: [
+						{
+							itemNo: '1',
+							description: 'Corned Beef',
+							quantity: 5,
+							uom: 'kg',
+							price: 2000,
+							currency: 'PHP',
+						},
+					],
+				},
+			},
+		});
+
+		expect(res.errors).toBeUndefined();
+		expect(purchaseOrderMock.insert.mock.calls.length).toBe(1);
+		expect(res.data).toMatchObject({
+			createPurchaseOrder: {
+				id: '1',
+				externalID: '001',
+				status: 'Pending',
+				supplierStatus: [
+					{
+						_id: '1',
+						status: 'Dispatched',
+						dateCreated: 'February 14, 2020',
+					},
+				],
+				supplier: {
+					_id: '1',
+					name: 'Supplier Name-1',
+					address: {
+						building_name: 'building 1',
+						city: 'city 1',
+						street: 'street 1',
+						state: 'ph',
+						zip_code: '123',
+					},
+				},
+				items: [
+					{
+						id: '1',
+						itemNo: '1',
+						description: 'Corned Beef',
+						quantity: 5,
+						uom: 'kg',
+						price: 2000,
+						currency: 'PHP',
+					},
+				],
+			},
+		});
 		expect(res).toMatchSnapshot();
 	});
 });

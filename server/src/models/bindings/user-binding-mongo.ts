@@ -30,6 +30,9 @@ const userModel: IDBModel<any> = {
 		}));
 	},
 
+	getAllByItem: async id => {},
+	getAllBySupplierStatus: async id => {},
+
 	updateById: async data => {
 		const user: any = await User.findByIdAndUpdate(
 			{
