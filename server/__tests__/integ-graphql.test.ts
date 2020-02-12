@@ -21,6 +21,9 @@ const {
 	//Item
 	createCreateItemDB,
 	updateItemByIDDB,
+	//Purchase Order
+	createCreatePurchaseOrderDB,
+	updatePurchaseOrderByIDDB,
 } = controllers;
 
 //User
@@ -179,6 +182,37 @@ const supplierStatusMock = {
 	},
 };
 
+const purchaseOrderMock = {
+	insert: jest.fn(async input => {
+		return { id: '1', ...input };
+	}),
+	getById: jest.fn(async id => {
+		const filterData = data => {
+			if (data.id === id) {
+				return data;
+			}
+		};
+		const res = mockData.purchaseOrders.filter(filterData);
+
+		return res[0] || null;
+	}),
+	getAll: jest.fn(async () => {
+		return mockData.users;
+	}),
+	updateById: jest.fn(async input => {
+		return { ...input };
+	}),
+	deleteById: async id => {
+		const filterData = data => {
+			if (data.id === id) {
+				return data;
+			}
+		};
+		const res = mockData.purchaseOrders.filter(filterData);
+		return res[0] || null;
+	},
+};
+
 const { server }: any = constructTestServer({
 	context: {
 		//User
@@ -208,6 +242,12 @@ const { server }: any = constructTestServer({
 		getAllItems: getAllDataDB(itemMock),
 		deleteItemById: DeleteRecordByIDDB(itemMock),
 		updateItemById: updateItemByIDDB(itemMock),
+		//Purchase Order
+		createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderMock),
+		getPurchaseOrderById: getByIDDB(purchaseOrderMock),
+		getAllPurchaseOrderById: getAllDataDB(purchaseOrderMock),
+		deletePurchaseOrderById: DeleteRecordByIDDB(purchaseOrderMock),
+		updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderMock),
 	},
 });
 
@@ -510,6 +550,38 @@ describe('Queries', () => {
 			query: SINGLE_ITEM,
 			variables: { id: '' },
 		});
+
+		expect(res).toMatchSnapshot();
+	});
+
+	//Purchase Order Queries
+
+	it('should fetch all purchase orders', async () => {
+		const PURCHASEORDER_ALL = gql`
+			query {
+				allPurchaseOrders {
+					id
+					externalID
+					status
+					supplierStatus {
+						id
+					}
+					supplier {
+						id
+						name
+						address {
+							id
+						}
+					}
+					items {
+						id
+					}
+				}
+			}
+		`;
+
+		const { query } = createTestClient(server);
+		const res = await query({ query: PURCHASEORDER_ALL });
 
 		expect(res).toMatchSnapshot();
 	});
