@@ -20,8 +20,8 @@ const purchaseOrderResolvers = {
 			return getAllPurchaseOrders();
 		},
 		purchaseOrder: async (parent, { driver }, context, info) => {
-			const { getDeliveryByDriver } = context;
-			return getDeliveryByDriver(driver);
+			const { getPurchaseOrderById } = context;
+			return getPurchaseOrderById(driver);
 		},
 	},
 	Mutation: {
