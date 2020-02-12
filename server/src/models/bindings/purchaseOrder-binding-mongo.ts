@@ -38,9 +38,9 @@ const purchaseOrderModel: IDBModel<any> = {
 			id: u._id.toString(),
 			externalID: u.externalID,
 			status: u.status,
-			supplierStatus: u.supplierStatus.toString(),
-			supplier: u.supplier.toString(),
-			items: u.items.toString(),
+			supplierStatus: u.supplierStatus,
+			supplier: u.supplier,
+			items: u.items,
 		};
 	},
 
