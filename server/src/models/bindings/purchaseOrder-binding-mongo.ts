@@ -25,9 +25,9 @@ const purchaseOrderModel: IDBModel<any> = {
 			id: u._id.toString(),
 			externalID: u.externalID,
 			status: u.status,
-			supplierStatus: u.supplierStatus.toString(),
-			supplier: u.supplier.toString(),
-			items: u.toString(),
+			supplierStatus: u.supplierStatus,
+			supplier: u.supplier,
+			items: u.items,
 		}));
 	},
 
@@ -44,30 +44,39 @@ const purchaseOrderModel: IDBModel<any> = {
 		};
 	},
 
-	getAllByItem: async id => {
-		const po: any = await PurchaseOrder.find({ items: id }).exec();
+	getAllByItem: async data => {
+		const item: any = await Item.find({ _id: { $in: data } }).exec();
 
-		return po.map(u => ({
-			id: u._id.toString(),
-			externalID: u.externalID,
-			status: u.status,
-			supplierStatus: u.supplierStatus.toString(),
-			supplier: u.supplier.toString(),
-			items: u.items.toString(),
+		return item.map(i => ({
+			id: i._id.toString(),
+			itemNo: i.itemNo,
+			description: i.description,
+			quantity: i.quantity,
+			uom: i.uom,
+			price: i.price,
+			currency: i.currency,
 		}));
 	},
 
-	getAllBySupplierStatus: async id => {
-		const po: any = await PurchaseOrder.find({ supplierStatus: id }).exec();
+	getAllBySupplierStatus: async data => {
+		const supplierStatus: any = await SupplierStatus.find({ _id: { $in: data } }).exec();
 
-		return po.map(u => ({
-			id: u._id.toString(),
-			externalID: u.externalID,
-			status: u.status,
-			supplierStatus: u.supplierStatus.toString(),
-			supplier: u.supplier.toString(),
-			items: u.items.toString(),
+		return supplierStatus.map(ss => ({
+			id: ss._id.toString(),
+			status: ss.status,
+			dateCreated: ss.dateCreated,
 		}));
+
+		// const po: any = await PurchaseOrder.find({}).exec();
+
+		// return po.map(u => ({
+		// 	id: u._id.toString(),
+		// 	externalID: u.externalID,
+		// 	status: u.status,
+		// 	supplierStatus: u.supplierStatus.toString(),
+		// 	supplier: u.supplier.toString(),
+		// 	items: u.toString(),
+		// }));
 	},
 
 	deleteById: async id => {
