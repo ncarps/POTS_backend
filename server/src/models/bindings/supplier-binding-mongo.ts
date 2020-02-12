@@ -70,7 +70,7 @@ const supplierModel: IDBModel<any> = {
 			},
 			{
 				name: data.name,
-				address: data.address,
+				// address: data.address,
 			},
 			{
 				new: true,
@@ -79,7 +79,7 @@ const supplierModel: IDBModel<any> = {
 		return {
 			id: supplier._id,
 			name: supplier.name,
-			address: supplier.address,
+			// address: supplier.address,
 		};
 	},
 };

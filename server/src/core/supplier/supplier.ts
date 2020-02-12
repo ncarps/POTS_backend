@@ -8,9 +8,9 @@ const createMakeSupplier = () => (supplier): TSupplier => {
 	if (!name) {
 		throw new Error('Supplier name is required.');
 	}
-	if (!address) {
-		throw new Error('Address is required');
-	}
+	// if (!address) {
+	// 	throw new Error('Address is required');
+	// }
 
 	return {
 		name: name,

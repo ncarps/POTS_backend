@@ -59,8 +59,35 @@ const purchaseOrderResolvers = {
 			return await deletePurchaseOrderbyId(id);
 		},
 		updatePurchaseOrder: async (parent, { purchaseOrder }, context, info) => {
-			const { updatePurchaseOrderByID } = context;
-			return await updatePurchaseOrderByID(purchaseOrder);
+			const { updatePurchaseOrderById, updateItemById, updateSupplierStatusById, updateSupplierById } = context;
+
+			const supplier = await updateSupplierById(purchaseOrder.supplier);
+			const supplierStatus = await updateSupplierStatusById(purchaseOrder.supplierStatus);
+			const items = await updateItemById(purchaseOrder.items);
+
+			// const supplierStatus: Array<any> = await Promise.all(
+			// 	purchaseOrder.supplierStatus.map(async ss => {
+			// 		const poss = await updateSupplierStatusById(ss);
+			// 		return poss.id.toString();
+			// 	})
+			// );
+
+			// const items: Array<any> = await Promise.all(
+			// 	purchaseOrder.items.map(async item => {
+			// 		const poitem = await updateItemById(item);
+			// 		return poitem.id.toString();
+			// 	})
+			// );
+
+			const po = {
+				id: purchaseOrder.id,
+				externalID: purchaseOrder.externalID,
+				status: purchaseOrder.status,
+				supplierStatus: supplierStatus.toString(),
+				supplier: supplier.id.toString(),
+				items: items.toString(),
+			};
+			return await updatePurchaseOrderById(po);
 		},
 	},
 };

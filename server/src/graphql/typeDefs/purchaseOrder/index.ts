@@ -30,11 +30,12 @@ const typeDefs = gql`
 	}
 
 	input UpdatePurchaseOrderInput {
+		id: ID!
 		externalID: String!
 		status: String!
-		supplierStatus: [UpdateSupplierStatusInput]
+		supplierStatus: UpdateSupplierStatusInput
 		supplier: UpdateSupplierInput!
-		items: [UpdateItemInput!]!
+		items: UpdateItemInput!
 	}
 `;
 
