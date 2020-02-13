@@ -17,6 +17,7 @@ const supplierModel: IDBModel<any> = {
 			});
 		});
 		const newSupp = await new Supplier({
+			externalID: supplier.externalID,
 			name: supplier.name,
 			address: newAdd._id.toString(),
 		});
@@ -28,6 +29,7 @@ const supplierModel: IDBModel<any> = {
 		});
 
 		return {
+			externalID: newSupplier.externalID,
 			id: newSupplier._id,
 			name: newSupplier.name,
 			address: newSupplier.address,
@@ -41,6 +43,7 @@ const supplierModel: IDBModel<any> = {
 		}
 		return {
 			id: supp._id.toString(),
+			externalID: supp.externalID,
 			name: supp.name,
 			address: supp.address,
 		};
@@ -50,6 +53,7 @@ const supplierModel: IDBModel<any> = {
 		const supp: any = await Supplier.find({}).exec();
 		return supp.map(u => ({
 			id: u._id.toString(),
+			externalID: u.externalID,
 			name: u.name,
 			address: u.address,
 		}));
@@ -72,6 +76,7 @@ const supplierModel: IDBModel<any> = {
 				_id: data.id,
 			},
 			{
+				externalID: data.externalID,
 				name: data.name,
 				// address: data.address,
 			},
@@ -81,6 +86,7 @@ const supplierModel: IDBModel<any> = {
 		).exec();
 		return {
 			id: supplier._id,
+			externalID: supplier.externalID,
 			name: supplier.name,
 			// address: supplier.address,
 		};

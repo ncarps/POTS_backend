@@ -1,7 +1,6 @@
 const purchaseOrderResolvers = {
 	PurchaseOrder: {
 		supplierStatus: async (parent, args, context, info) => {
-			console.log(parent);
 			const { getAllSupplierStatusByPurchaseOrder } = context;
 			return await getAllSupplierStatusByPurchaseOrder(parent.supplierStatus);
 		},

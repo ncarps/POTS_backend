@@ -31,6 +31,7 @@ export default {
 
 	suppliers: [
 		{
+			externalID: '001',
 			_id: '1',
 			name: 'Supplier Name-1',
 			address: {
@@ -41,6 +42,7 @@ export default {
 			},
 		},
 		{
+			externalID: '002',
 			_id: '2',
 			name: 'Supplier Name-2',
 			address: {

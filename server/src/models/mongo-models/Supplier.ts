@@ -8,6 +8,10 @@ ObjectID.prototype.valueOf = function() {
 };
 
 const Supplierchema = new Schema({
+	externalID: {
+		type: String,
+		required: true,
+	},
 	name: {
 		type: String,
 		required: true,

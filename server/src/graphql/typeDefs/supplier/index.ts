@@ -3,6 +3,7 @@ import { gql } from 'apollo-server';
 const suppliertypeDefs = gql`
 	type Supplier {
 		id: ID!
+		externalID: String!
 		name: String!
 		address: Address!
 	}
@@ -19,12 +20,14 @@ const suppliertypeDefs = gql`
 	}
 
 	input SupplierInput {
+		externalID: String!
 		name: String!
 		address: AddressInput!
 	}
 
 	input UpdateSupplierInput {
 		id: ID!
+		externalID: String
 		name: String!
 		# address: String!
 	}

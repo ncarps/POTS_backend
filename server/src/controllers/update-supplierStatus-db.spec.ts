@@ -3,11 +3,13 @@ import { updateSupplierStatusByIDDB } from './update-supplierStatus-db';
 const mockSupplierStatus = [
 	{
 		_id: '1',
+		externalID: '001',
 		status: 'Dispatched',
 		dateCreated: 'February 14, 2020',
 	},
 	{
 		_id: '2',
+		externalID: '002',
 		status: 'Delivered',
 		dateCreated: 'February 14, 2020',
 	},
@@ -33,6 +35,7 @@ describe('Update Supplier Status', () => {
 	it('should be able to update a supplier status in the DB', async () => {
 		const given = {
 			_id: '1',
+			externalID: '001',
 			status: 'Dispatched!',
 			dateCreated: 'February 14, 2020',
 		};

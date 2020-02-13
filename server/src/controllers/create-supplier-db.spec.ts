@@ -10,6 +10,7 @@ describe('Create Supplier', () => {
 		const createSupplier = createCreateSupplierDB(mockDB);
 
 		const supplierInput = {
+			externalID: '001',
 			name: 'Supplier Name',
 			address: {
 				building_name: 'building',
