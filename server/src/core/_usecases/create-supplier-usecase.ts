@@ -2,7 +2,7 @@ import { makeSupplier } from '../supplier';
 
 const createUCCreateSupplier = () => suppplierInput => {
 	const supplier = makeSupplier({
-		externalID: suppplierInput.externalID,
+		supplierNo: suppplierInput.supplierNo,
 		name: suppplierInput.name,
 		address: suppplierInput.address,
 	});
