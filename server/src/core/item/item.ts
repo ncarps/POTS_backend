@@ -1,3 +1,5 @@
+import { TSupplierStatus } from './../supplierStatus';
+
 export type TItem = {
 	itemNo: string;
 	productId: string;
@@ -5,11 +7,27 @@ export type TItem = {
 	quantity: string;
 	uom: string;
 	unitPrice: string;
+	totalAmount: string;
+	deliveryAddress: string;
+	deliveryDate: string;
+	supplierStatus: [TSupplierStatus] | undefined;
 	currency: string;
 };
 
 const createMakeItem = () => (item): TItem => {
-	const { itemNo, description, productId, quantity, uom, unitPrice, currency } = item;
+	const {
+		itemNo,
+		description,
+		productId,
+		quantity,
+		uom,
+		unitPrice,
+		totalAmount,
+		deliveryAddress,
+		deliveryDate,
+		supplierStatus,
+		currency,
+	} = item;
 
 	if (!itemNo) {
 		throw new Error('Item Number is required.');
@@ -35,6 +53,18 @@ const createMakeItem = () => (item): TItem => {
 		throw new Error('Unit Price is required.');
 	}
 
+	if (!totalAmount) {
+		throw new Error('Total Amount is required.');
+	}
+
+	if (!deliveryAddress) {
+		throw new Error('Delivery Address is required.');
+	}
+
+	if (!deliveryDate) {
+		throw new Error('Delivery Date is required.');
+	}
+
 	if (!currency) {
 		throw new Error('Currency is required.');
 	}
@@ -44,8 +74,12 @@ const createMakeItem = () => (item): TItem => {
 		productId: productId,
 		description: description,
 		quantity: quantity,
+		totalAmount: totalAmount,
 		uom: uom,
 		unitPrice: unitPrice,
+		deliveryAddress: deliveryAddress,
+		deliveryDate: deliveryDate,
+		supplierStatus: supplierStatus,
 		currency: currency,
 	};
 };

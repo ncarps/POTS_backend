@@ -4,10 +4,15 @@ const typeDefs = gql`
 	type Item {
 		id: ID!
 		itemNo: String!
+		productId: String!
 		description: String!
 		quantity: Float!
 		uom: String!
-		price: Float!
+		unitPrice: Float!
+		totalAmount: Float!
+		deliveryAddress: Address!
+		deliveryDate: String!
+		supplierStatus: [SupplierStatus!]!
 		currency: String!
 	}
 
@@ -24,20 +29,29 @@ const typeDefs = gql`
 
 	input ItemInput {
 		itemNo: String!
+		productId: String!
 		description: String!
 		quantity: Float!
 		uom: String!
-		price: Float!
+		unitPrice: Float!
+		totalAmount: Float!
+		deliveryAddress: AddressInput!
+		deliveryDate: String!
+		supplierStatus: [SupplierStatusInput!]!
 		currency: String!
 	}
 
 	input UpdateItemInput {
-		id: ID!
 		itemNo: String!
+		productId: String!
 		description: String!
 		quantity: Float!
+		# deliveryAddress: AddressInput!
 		uom: String!
-		price: Float!
+		unitPrice: Float!
+		totalAmount: Float!
+		deliveryDate: String!
+		supplierStatus: [UpdateSupplierStatusInput!]!
 		currency: String!
 	}
 `;

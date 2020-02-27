@@ -66,17 +66,6 @@ const purchaseOrderModel: IDBModel<any> = {
 			status: ss.status,
 			dateCreated: ss.dateCreated,
 		}));
-
-		// const po: any = await PurchaseOrder.find({}).exec();
-
-		// return po.map(u => ({
-		// 	id: u._id.toString(),
-		// 	externalID: u.externalID,
-		// 	status: u.status,
-		// 	supplierStatus: u.supplierStatus.toString(),
-		// 	supplier: u.supplier.toString(),
-		// 	items: u.toString(),
-		// }));
 	},
 
 	deleteById: async id => {
@@ -88,13 +77,11 @@ const purchaseOrderModel: IDBModel<any> = {
 	},
 	updateById: async purchaseOrder => {
 		return new Promise((resolve, reject) => {
-			PurchaseOrder.findByIdAndUpdate(
-				{ _id: purchaseOrder.id },
-				{ $set: { ...purchaseOrder } },
-				{ new: true }
-			).exec((err, res) => {
-				err ? reject(err) : resolve(res);
-			});
+			PurchaseOrder.findByIdAndUpdate({ _id: purchaseOrder.id }, { $set: { ...purchaseOrder } }, { new: true }).exec(
+				(err, res) => {
+					err ? reject(err) : resolve(res);
+				}
+			);
 		});
 	},
 };

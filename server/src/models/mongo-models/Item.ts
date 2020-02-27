@@ -12,6 +12,10 @@ const ItemSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	productId: {
+		type: String,
+		required: true,
+	},
 	description: {
 		type: String,
 		required: true,
@@ -24,8 +28,24 @@ const ItemSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	price: {
+	unitPrice: {
 		type: String,
+		required: true,
+	},
+	totalAmount: {
+		type: String,
+		required: true,
+	},
+	deliveryAddress: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+	},
+	deliveryDate: {
+		type: String,
+		required: true,
+	},
+	supplierStatus: {
+		type: [String],
 		required: true,
 	},
 	currency: {
