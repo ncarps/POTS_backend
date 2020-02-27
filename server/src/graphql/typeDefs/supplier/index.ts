@@ -27,8 +27,8 @@ const suppliertypeDefs = gql`
 
 	input UpdateSupplierInput {
 		id: ID!
-		supplierNo: String
-		name: String
+		supplierNo: String!
+		name: String!
 		# address: String!
 	}
 `;
