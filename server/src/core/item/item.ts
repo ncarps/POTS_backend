@@ -1,14 +1,15 @@
 export type TItem = {
 	itemNo: string;
+	productId: string;
 	description: string;
 	quantity: string;
 	uom: string;
-	price: string;
+	unitPrice: string;
 	currency: string;
 };
 
 const createMakeItem = () => (item): TItem => {
-	const { itemNo, description, quantity, uom, price, currency } = item;
+	const { itemNo, description, productId, quantity, uom, unitPrice, currency } = item;
 
 	if (!itemNo) {
 		throw new Error('Item Number is required.');
@@ -16,6 +17,10 @@ const createMakeItem = () => (item): TItem => {
 
 	if (!description) {
 		throw new Error('Description is required.');
+	}
+
+	if (!productId) {
+		throw new Error('Product ID is required.');
 	}
 
 	if (!quantity) {
@@ -26,8 +31,8 @@ const createMakeItem = () => (item): TItem => {
 		throw new Error('Unit of Measure is required.');
 	}
 
-	if (!price) {
-		throw new Error('Price is required.');
+	if (!unitPrice) {
+		throw new Error('Unit Price is required.');
 	}
 
 	if (!currency) {
@@ -36,10 +41,11 @@ const createMakeItem = () => (item): TItem => {
 
 	return {
 		itemNo: itemNo,
+		productId: productId,
 		description: description,
 		quantity: quantity,
 		uom: uom,
-		price: price,
+		unitPrice: unitPrice,
 		currency: currency,
 	};
 };
