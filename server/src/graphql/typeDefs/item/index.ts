@@ -51,7 +51,7 @@ const typeDefs = gql`
 		unitPrice: Float
 		totalAmount: Float
 		deliveryDate: String
-		supplierStatus: [UpdateSupplierStatusInput]
+		supplierStatus: [SupplierStatusInput]
 		currency: String
 	}
 `;

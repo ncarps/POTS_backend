@@ -25,8 +25,29 @@ const itemResolvers = {
 			return await createItem(item);
 		},
 
-		updateItem: async (parent, { item }, { updateItemById }, info) => {
-			return updateItemById(item);
+		updateItem: async (parent, { item }, { updateItemById, createSupplierStatus }, info) => {
+			const supplierStatus: Array<any> = await Promise.all(
+				item.supplierStatus.map(async ss => {
+					const poss = await createSupplierStatus(ss);
+					return poss.id.toString();
+				})
+			);
+
+			const i = {
+				itemNo: item.itemNo,
+				productId: item.productId,
+				description: item.description,
+				quantity: item.quantity,
+				uom: item.uom,
+				unitPrice: item.unitPrice,
+				totalAmount: item.totalAmount,
+				deliveryAddress: item.deliveryAddress,
+				deliveryDate: item.deliveryDate,
+				supplierStatus: supplierStatus,
+				currency: item.currency,
+			};
+
+			return await updateItemById(i);
 		},
 
 		deleteItem: async (parent, { id }, context, info) => {

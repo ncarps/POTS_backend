@@ -145,7 +145,7 @@ const itemModel: IDBModel<any> = {
 			}
 		).exec();
 		return {
-			id: item._id.toString(),
+			id: item._id,
 			productId: item.productId,
 			itemNo: item.itemNo,
 			description: item.description,
@@ -155,7 +155,7 @@ const itemModel: IDBModel<any> = {
 			unitPrice: item.unitPrice,
 			deliveryAddress: item.deliveryAddress,
 			deliveryDate: item.deliveryDate,
-			supplierStatus: item.supplierStatus,
+			supplierStatus: item.supplierStatus.toString(),
 			currency: item.currency,
 			dateUpdated: item.dateUpdated,
 			timeUpdated: item.timeUpdated,
