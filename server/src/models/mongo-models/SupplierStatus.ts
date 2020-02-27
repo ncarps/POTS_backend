@@ -16,6 +16,10 @@ const SupplierStatusSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	timeCreated: {
+		type: String,
+		required: true,
+	},
 });
 
 export default mongoose.model('SupplierStatus', SupplierStatusSchema);

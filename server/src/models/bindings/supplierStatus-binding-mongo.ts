@@ -6,6 +6,7 @@ const supplierStatusModel: IDBModel<any> = {
 		const newSupplierStatus = await new SupplierStatus({
 			status: supplierStatus.status,
 			dateCreated: supplierStatus.dateCreated,
+			timeCreated: supplierStatus.timeCreated,
 		});
 
 		return new Promise((resolve, reject) => {
@@ -24,6 +25,7 @@ const supplierStatusModel: IDBModel<any> = {
 			id: supplierStatus._id.toString(),
 			status: supplierStatus.status,
 			dateCreated: supplierStatus.dateCreated,
+			timeCreated: supplierStatus.timeCreated,
 		};
 	},
 
@@ -34,6 +36,7 @@ const supplierStatusModel: IDBModel<any> = {
 			id: ss._id.toString(),
 			status: ss.status,
 			dateCreated: ss.dateCreated,
+			timeCreated: ss.timeCreated,
 		}));
 	},
 
@@ -56,6 +59,7 @@ const supplierStatusModel: IDBModel<any> = {
 			{
 				status: data.status,
 				dateCreated: data.dateCreated,
+				timeCreated: data.timeCreated,
 			},
 			{
 				new: true,
@@ -65,6 +69,7 @@ const supplierStatusModel: IDBModel<any> = {
 			id: supplierStatus._id,
 			status: supplierStatus.status,
 			dateCreated: supplierStatus.dateCreated,
+			timeCreated: supplierStatus.timeCreated,
 		};
 	},
 };

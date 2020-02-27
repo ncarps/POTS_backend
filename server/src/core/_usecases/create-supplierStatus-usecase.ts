@@ -4,6 +4,7 @@ const createUCCreateSupplierStatus = () => suppplierStatusInput => {
 	const supplier = makeSupplierStatus({
 		status: suppplierStatusInput.status,
 		dateCreated: suppplierStatusInput.dateCreated,
+		timeCreated: suppplierStatusInput.timeCreated,
 	});
 
 	return supplier;
