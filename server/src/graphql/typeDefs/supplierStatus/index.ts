@@ -21,15 +21,11 @@ const typeDefs = gql`
 
 	input SupplierStatusInput {
 		status: String!
-		dateCreated: String!
-		timeCreated: String!
 	}
 
 	input UpdateSupplierStatusInput {
 		id: ID!
 		status: String!
-		dateCreated: String!
-		timeCreated: String!
 	}
 `;
 

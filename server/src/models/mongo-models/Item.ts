@@ -46,11 +46,16 @@ const ItemSchema = new Schema({
 	},
 	supplierStatus: {
 		type: [String],
-		required: true,
 	},
 	currency: {
 		type: String,
 		required: true,
+	},
+	dateUpdated: {
+		type: String,
+	},
+	timeUpdated: {
+		type: String,
 	},
 });
 

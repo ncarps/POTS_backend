@@ -1,12 +1,13 @@
 import { IDBModel } from '../../commons/types';
+import moment from 'moment';
 import { SupplierStatus } from '../mongo-models';
 
 const supplierStatusModel: IDBModel<any> = {
 	insert: async supplierStatus => {
 		const newSupplierStatus = await new SupplierStatus({
 			status: supplierStatus.status,
-			dateCreated: supplierStatus.dateCreated,
-			timeCreated: supplierStatus.timeCreated,
+			dateCreated: moment().format('YYYY-MM-DD'),
+			timeCreated: moment().format('LTS'),
 		});
 
 		return new Promise((resolve, reject) => {
@@ -58,8 +59,8 @@ const supplierStatusModel: IDBModel<any> = {
 			},
 			{
 				status: data.status,
-				dateCreated: data.dateCreated,
-				timeCreated: data.timeCreated,
+				dateCreated: moment().format('YYYY-MM-DD'),
+				timeCreated: moment().format('LTS'),
 			},
 			{
 				new: true,

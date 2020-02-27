@@ -12,6 +12,8 @@ export type TItem = {
 	deliveryDate: string;
 	supplierStatus: [TSupplierStatus] | undefined;
 	currency: string;
+	dateUpdated: string;
+	timeUpdated: string;
 };
 
 const createMakeItem = () => (item): TItem => {
@@ -27,6 +29,8 @@ const createMakeItem = () => (item): TItem => {
 		deliveryDate,
 		supplierStatus,
 		currency,
+		dateUpdated,
+		timeUpdated,
 	} = item;
 
 	if (!itemNo) {
@@ -81,6 +85,8 @@ const createMakeItem = () => (item): TItem => {
 		deliveryDate: deliveryDate,
 		supplierStatus: supplierStatus,
 		currency: currency,
+		dateUpdated: dateUpdated,
+		timeUpdated: timeUpdated,
 	};
 };
 

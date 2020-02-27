@@ -14,11 +14,9 @@ const SupplierStatusSchema = new Schema({
 	},
 	dateCreated: {
 		type: String,
-		required: true,
 	},
 	timeCreated: {
 		type: String,
-		required: true,
 	},
 });
 

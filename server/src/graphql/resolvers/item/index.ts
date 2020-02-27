@@ -20,30 +20,9 @@ const itemResolvers = {
 	},
 	Mutation: {
 		createItem: async (parent, { item }, context, info) => {
-			const { createItem, createSupplierStatus } = context;
+			const { createItem } = context;
 
-			const supplierStatus: Array<any> = await Promise.all(
-				item.supplierStatus.map(async ss => {
-					const poss = await createSupplierStatus(ss);
-					return poss.id.toString();
-				})
-			);
-
-			const i = {
-				itemNo: item.itemNo,
-				productId: item.productId,
-				description: item.description,
-				quantity: item.quantity,
-				uom: item.uom,
-				unitPrice: item.unitPrice,
-				totalAmount: item.totalAmount,
-				deliveryAddress: item.deliveryAddress,
-				deliveryDate: item.deliveryDate,
-				supplierStatus: supplierStatus,
-				currency: item.currency,
-			};
-
-			return await createItem(i);
+			return await createItem(item);
 		},
 
 		updateItem: async (parent, { item }, { updateItemById }, info) => {

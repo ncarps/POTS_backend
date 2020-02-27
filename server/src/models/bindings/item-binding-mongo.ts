@@ -1,4 +1,5 @@
 import { IDBModel } from '../../commons/types';
+import moment from 'moment';
 import { Item, Address, SupplierStatus } from '../mongo-models';
 import { networkInterfaces } from 'os';
 
@@ -30,6 +31,8 @@ const itemModel: IDBModel<any> = {
 			deliveryDate: item.deliveryDate,
 			supplierStatus: item.supplierStatus,
 			currency: item.currency,
+			dateUpdated: item.dateUpdated,
+			timeUpdated: item.timeUpdated,
 		});
 
 		const newI: any = await new Promise((resolve, reject) => {
@@ -37,6 +40,7 @@ const itemModel: IDBModel<any> = {
 				err ? reject(err) : resolve(res);
 			});
 		});
+		console.log(newI.supplierStatus.timeCreated);
 
 		return {
 			id: newI._id,
@@ -51,6 +55,8 @@ const itemModel: IDBModel<any> = {
 			deliveryDate: newI.deliveryDate,
 			supplierStatus: newI.supplierStatus,
 			currency: newI.currency,
+			dateUpdated: newI.dateUpdated,
+			timeUpdated: newI.timeUpdated,
 		};
 	},
 
@@ -72,12 +78,13 @@ const itemModel: IDBModel<any> = {
 			deliveryDate: item.deliveryDate,
 			supplierStatus: item.supplierStatus,
 			currency: item.currency,
+			dateUpdated: item.dateUpdated,
+			timeUpdated: item.timeUpdated,
 		};
 	},
 
 	getAll: async () => {
 		const item: any = await Item.find({}).exec();
-
 		return item.map(i => ({
 			id: item._id.toString(),
 			itemNo: item.itemNo,
@@ -91,6 +98,8 @@ const itemModel: IDBModel<any> = {
 			deliveryDate: item.deliveryDate,
 			supplierStatus: item.supplierStatus,
 			currency: item.currency,
+			dateUpdated: item.dateUpdated,
+			timeUpdated: item.timeUpdated,
 		}));
 	},
 
@@ -115,12 +124,42 @@ const itemModel: IDBModel<any> = {
 		});
 	},
 
-	updateById: async item => {
-		return new Promise((resolve, reject) => {
-			Item.findByIdAndUpdate({ _id: item.id }, { $set: { ...item } }, { new: true }).exec((err, res) => {
-				err ? reject(err) : resolve(res);
-			});
-		});
+	updateById: async data => {
+		let setFields = {
+			...data,
+			dateUpdated: moment().format('YYYY-MM-DD'),
+			timeUpdated: moment().format('LTS'),
+		};
+		for (let prop in setFields) {
+			if (setFields[prop] == undefined) {
+				delete setFields[prop];
+			}
+		}
+		const item: any = await Item.findByIdAndUpdate(
+			{
+				_id: data.id,
+			},
+			setFields,
+			{
+				new: true,
+			}
+		).exec();
+		return {
+			id: item._id.toString(),
+			productId: item.productId,
+			itemNo: item.itemNo,
+			description: item.description,
+			quantity: item.quantity,
+			totalAmount: item.totalAmount,
+			uom: item.uom,
+			unitPrice: item.unitPrice,
+			deliveryAddress: item.deliveryAddress,
+			deliveryDate: item.deliveryDate,
+			supplierStatus: item.supplierStatus,
+			currency: item.currency,
+			dateUpdated: item.dateUpdated,
+			timeUpdated: item.timeUpdated,
+		};
 	},
 };
 

@@ -12,7 +12,7 @@ const typeDefs = gql`
 		totalAmount: Float!
 		deliveryAddress: Address!
 		deliveryDate: String!
-		supplierStatus: [SupplierStatus!]!
+		supplierStatus: [SupplierStatus]
 		currency: String!
 	}
 
@@ -37,22 +37,22 @@ const typeDefs = gql`
 		totalAmount: Float!
 		deliveryAddress: AddressInput!
 		deliveryDate: String!
-		supplierStatus: [SupplierStatusInput!]!
 		currency: String!
 	}
 
 	input UpdateItemInput {
-		itemNo: String!
-		productId: String!
-		description: String!
-		quantity: Float!
+		id: ID!
+		itemNo: String
+		productId: String
+		description: String
+		quantity: Float
 		# deliveryAddress: AddressInput!
-		uom: String!
-		unitPrice: Float!
-		totalAmount: Float!
-		deliveryDate: String!
-		supplierStatus: [UpdateSupplierStatusInput!]!
-		currency: String!
+		uom: String
+		unitPrice: Float
+		totalAmount: Float
+		deliveryDate: String
+		supplierStatus: [UpdateSupplierStatusInput]
+		currency: String
 	}
 `;
 
