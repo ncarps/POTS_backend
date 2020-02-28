@@ -15,7 +15,7 @@ const typeDefs = gql`
 		supplierStatus: [SupplierStatus]
 		currency: String!
 		dateUpdated: String
-		timepUpdated: String
+		timeUpdated: String
 	}
 
 	type Query {
