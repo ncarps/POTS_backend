@@ -17,8 +17,8 @@ const supplierStatusModel: IDBModel<any> = {
 		});
 	},
 
-	getById: async id => {
-		const supplierStatus: any = await SupplierStatus.findOne({ _id: id }).exec();
+	getById: async data => {
+		const supplierStatus: any = await SupplierStatus.findOne({ _id: data }).exec();
 		if (!supplierStatus._id) {
 			throw new Error('No supplierStatus found');
 		}
@@ -41,12 +41,12 @@ const supplierStatusModel: IDBModel<any> = {
 		}));
 	},
 
-	getAllByItem: async id => {},
-	getAllBySupplierStatus: async id => {},
+	getAllByItem: async data => {},
+	getAllBySupplierStatus: async data => {},
 
-	deleteById: async id => {
+	deleteById: async data => {
 		return new Promise((resolve, reject) => {
-			SupplierStatus.findByIdAndDelete(id).exec((err, res) => {
+			SupplierStatus.findByIdAndDelete(data).exec((err, res) => {
 				err ? reject(err) : resolve(res);
 			});
 		});

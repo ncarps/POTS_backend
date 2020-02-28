@@ -40,7 +40,6 @@ const itemModel: IDBModel<any> = {
 				err ? reject(err) : resolve(res);
 			});
 		});
-		console.log(newI.supplierStatus.timeCreated);
 
 		return {
 			id: newI._id,
@@ -85,7 +84,7 @@ const itemModel: IDBModel<any> = {
 
 	getAll: async () => {
 		const item: any = await Item.find({}).exec();
-		return item.map(i => ({
+		return item.map(item => ({
 			id: item._id.toString(),
 			itemNo: item.itemNo,
 			productId: item.productId,
@@ -106,7 +105,9 @@ const itemModel: IDBModel<any> = {
 	getAllByItem: async data => {},
 
 	getAllBySupplierStatus: async data => {
-		const supplierStatus: any = await SupplierStatus.find({ _id: { $in: data } }).exec();
+		const supplierStatus: any = await SupplierStatus.find({
+			_id: { $in: data },
+		}).exec();
 
 		return supplierStatus.map(ss => ({
 			id: ss._id.toString(),
@@ -135,17 +136,34 @@ const itemModel: IDBModel<any> = {
 				delete setFields[prop];
 			}
 		}
-		const item: any = await Item.findByIdAndUpdate(
-			{
-				_id: data.id,
-			},
-			setFields,
-			{
-				new: true,
-			}
-		).exec();
+		delete setFields.supplierStatus;
+		const supplierStatus = data.supplierStatus;
+
+		let item;
+		if (supplierStatus) {
+			item = await Item.findByIdAndUpdate(
+				{
+					_id: data.id,
+				},
+				{ $set: { ...setFields }, $push: { supplierStatus: supplierStatus } },
+				{
+					new: true,
+				}
+			).exec();
+		} else {
+			item = await Item.findByIdAndUpdate(
+				{
+					_id: data.id,
+				},
+				setFields,
+				{
+					new: true,
+				}
+			).exec();
+		}
+		console.log(item);
 		return {
-			id: item._id,
+			id: item._id.toString(),
 			productId: item.productId,
 			itemNo: item.itemNo,
 			description: item.description,
@@ -155,7 +173,7 @@ const itemModel: IDBModel<any> = {
 			unitPrice: item.unitPrice,
 			deliveryAddress: item.deliveryAddress,
 			deliveryDate: item.deliveryDate,
-			supplierStatus: item.supplierStatus.toString(),
+			supplierStatus: item.supplierStatus,
 			currency: item.currency,
 			dateUpdated: item.dateUpdated,
 			timeUpdated: item.timeUpdated,

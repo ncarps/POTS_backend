@@ -14,6 +14,8 @@ const typeDefs = gql`
 		deliveryDate: String!
 		supplierStatus: [SupplierStatus]
 		currency: String!
+		dateUpdated: String
+		timepUpdated: String
 	}
 
 	type Query {
@@ -38,6 +40,8 @@ const typeDefs = gql`
 		deliveryAddress: AddressInput!
 		deliveryDate: String!
 		currency: String!
+		dateUpdated: String
+		timeUpdated: String
 	}
 
 	input UpdateItemInput {
@@ -46,13 +50,14 @@ const typeDefs = gql`
 		productId: String
 		description: String
 		quantity: Float
-		# deliveryAddress: AddressInput!
 		uom: String
 		unitPrice: Float
 		totalAmount: Float
 		deliveryDate: String
-		supplierStatus: [SupplierStatusInput]
+		supplierStatus: SupplierStatusInput
 		currency: String
+		dateUpdated: String
+		timeUpdated: String
 	}
 `;
 

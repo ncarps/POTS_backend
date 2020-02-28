@@ -5,8 +5,8 @@ const itemResolvers = {
 			return await getAddressById(parent.deliveryAddress);
 		},
 		supplierStatus: async (parent, args, context, info) => {
-			const { getAllSupplierStatusByPurchaseOrder } = context;
-			return await getAllSupplierStatusByPurchaseOrder(parent.supplierStatus);
+			const { getAllSupplierStatusByItem } = context;
+			return (await getAllSupplierStatusByItem(parent.supplierStatus)) || null;
 		},
 	},
 	Query: {
@@ -21,19 +21,26 @@ const itemResolvers = {
 	Mutation: {
 		createItem: async (parent, { item }, context, info) => {
 			const { createItem } = context;
-
 			return await createItem(item);
 		},
 
-		updateItem: async (parent, { item }, { updateItemById, createSupplierStatus }, info) => {
-			const supplierStatus: Array<any> = await Promise.all(
-				item.supplierStatus.map(async ss => {
-					const poss = await createSupplierStatus(ss);
-					return poss.id.toString();
-				})
-			);
+		updateItem: async (parent, { item }, context, info) => {
+			const { updateItemById, createSupplierStatus } = context;
+			console.log({ ...item.supplierStatus });
+			let supplierStatus;
+			if (item.supplierStatus) {
+				supplierStatus = await createSupplierStatus(item.supplierStatus);
+			}
 
+			// const supplierStatus: Array<any> = await Promise.all(
+			// 	item.supplierStatus.map(async ss => {
+			// 		const poss = await createSupplierStatus(ss);
+			// 		return poss.id.toString();
+			// 	})
+			// );
+			console.log('SupplierStatus', supplierStatus);
 			const i = {
+				id: item.id,
 				itemNo: item.itemNo,
 				productId: item.productId,
 				description: item.description,
@@ -43,10 +50,12 @@ const itemResolvers = {
 				totalAmount: item.totalAmount,
 				deliveryAddress: item.deliveryAddress,
 				deliveryDate: item.deliveryDate,
-				supplierStatus: supplierStatus,
+				supplierStatus: supplierStatus ? supplierStatus.id.toString() : null,
 				currency: item.currency,
+				dateUpdated: item.dateUpdated,
+				timeUpdated: item.timeUpdated,
 			};
-
+			console.log('Item', i);
 			return await updateItemById(i);
 		},
 
