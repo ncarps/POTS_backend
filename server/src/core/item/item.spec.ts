@@ -1,7 +1,7 @@
 import { createMakeItem } from './item';
 const makeItem = createMakeItem();
 
-describe('Supplier', () => {
+describe('Item', () => {
 	it('must have an itemNo', () => {
 		const item = {
 			itemNo: '',
@@ -74,7 +74,7 @@ describe('Supplier', () => {
 		expect(() => makeItem(item)).toThrow('Currency is required.');
 	});
 
-	it("will return the item", () => {
+	it('will return the item', () => {
 		//givens
 		const itemInput = {
 			itemNo: 'itemNo',
@@ -86,5 +86,5 @@ describe('Supplier', () => {
 		};
 		const a = makeItem(itemInput);
 		expect(a).toMatchObject(itemInput);
-	  });
+	});
 });

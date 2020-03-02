@@ -2,7 +2,7 @@ const purchaseOrderResolvers = {
 	PurchaseOrder: {
 		supplierStatus: async (parent, args, context, info) => {
 			const { getAllSupplierStatusByPurchaseOrder } = context;
-			return await getAllSupplierStatusByPurchaseOrder(parent.supplierStatus);
+			return (await getAllSupplierStatusByPurchaseOrder(parent.supplierStatus)) || null;
 		},
 		supplier: async (parent, args, context, info) => {
 			const { getSupplierById } = context;
@@ -29,12 +29,11 @@ const purchaseOrderResolvers = {
 
 			const supplier = await createSupplier(purchaseOrder.supplier);
 
-			const supplierStatus: Array<any> = await Promise.all(
-				purchaseOrder.supplierStatus.map(async ss => {
-					const poss = await createSupplierStatus(ss);
-					return poss.id.toString();
-				})
-			);
+			console.log({ ...purchaseOrder.supplierStatus });
+			let supplierStatus;
+			if (purchaseOrder.supplierStatus) {
+				supplierStatus = await createSupplierStatus(purchaseOrder.supplierStatus);
+			}
 
 			const items: Array<any> = await Promise.all(
 				purchaseOrder.items.map(async item => {
@@ -44,9 +43,10 @@ const purchaseOrderResolvers = {
 			);
 
 			const po = {
-				externalID: purchaseOrder.externalID,
+				purchaseOrderNo: purchaseOrder.purchaseOrderNo,
+				shipmentNo: purchaseOrder.shipmentNo,
 				status: purchaseOrder.status,
-				supplierStatus: supplierStatus,
+				supplierStatus: supplierStatus ? supplierStatus.id.toString() : null,
 				supplier: supplier.id,
 				items: items,
 			};

@@ -26,19 +26,14 @@ const itemResolvers = {
 
 		updateItem: async (parent, { item }, context, info) => {
 			const { updateItemById, createSupplierStatus } = context;
+
 			console.log({ ...item.supplierStatus });
 			let supplierStatus;
 			if (item.supplierStatus) {
 				supplierStatus = await createSupplierStatus(item.supplierStatus);
 			}
-
-			// const supplierStatus: Array<any> = await Promise.all(
-			// 	item.supplierStatus.map(async ss => {
-			// 		const poss = await createSupplierStatus(ss);
-			// 		return poss.id.toString();
-			// 	})
-			// );
 			console.log('SupplierStatus', supplierStatus);
+
 			const i = {
 				id: item.id,
 				itemNo: item.itemNo,

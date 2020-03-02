@@ -24,7 +24,8 @@ const purchaseOrderModel: IDBModel<any> = {
 
 		return po.map(u => ({
 			id: u._id.toString(),
-			externalID: u.externalID,
+			purchaseOrderNo: u.purchaseOrderNo,
+			shipmentNo: u.shipmentNo,
 			status: u.status,
 			supplierStatus: u.supplierStatus,
 			supplier: u.supplier,
@@ -37,7 +38,8 @@ const purchaseOrderModel: IDBModel<any> = {
 
 		return {
 			id: u._id.toString(),
-			externalID: u.externalID,
+			purchaseOrderNo: u.purchaseOrderNo,
+			shipmentNo: u.shipmentNo,
 			status: u.status,
 			supplierStatus: u.supplierStatus,
 			supplier: u.supplier,

@@ -1,37 +1,14 @@
 import { TSupplierStatus } from './../supplierStatus';
 
-export type TItem = {
-	itemNo: string;
-	productId: string;
-	description: string;
+export type TScheduleLine = {
 	quantity: string;
 	uom: string;
-	unitPrice: string;
-	totalAmount: string;
-	deliveryAddress: string;
-	// deliveryDate: string;
+	deliveryDate: string;
 	supplierStatus: [TSupplierStatus] | undefined;
-	currency: string;
-	dateUpdated: string;
-	timeUpdated: string;
 };
 
-const createMakeItem = () => (item): TItem => {
-	const {
-		itemNo,
-		description,
-		productId,
-		quantity,
-		uom,
-		unitPrice,
-		totalAmount,
-		deliveryAddress,
-		deliveryDate,
-		supplierStatus,
-		currency,
-		dateUpdated,
-		timeUpdated,
-	} = item;
+const createMakeScheduleLine = () => (scheduleLine): TScheduleLine => {
+	const { quantity, uom, deliveryDate, supplierStatus } = scheduleLine;
 
 	// if (!itemNo) {
 	// 	throw new Error('Item Number is required.');
@@ -74,20 +51,11 @@ const createMakeItem = () => (item): TItem => {
 	// }
 
 	return {
-		itemNo: itemNo,
-		productId: productId,
-		description: description,
 		quantity: quantity,
-		totalAmount: totalAmount,
 		uom: uom,
-		unitPrice: unitPrice,
-		deliveryAddress: deliveryAddress,
-		// deliveryDate: deliveryDate,
+		deliveryDate: deliveryDate,
 		supplierStatus: supplierStatus,
-		currency: currency,
-		dateUpdated: dateUpdated,
-		timeUpdated: timeUpdated,
 	};
 };
 
-export { createMakeItem };
+export { createMakeScheduleLine };

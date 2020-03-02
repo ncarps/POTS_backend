@@ -10,7 +10,7 @@ const createUCCreateItem = () => itemInput => {
 		uom: itemInput.uom,
 		unitPrice: itemInput.unitPrice,
 		deliveryAddress: itemInput.deliveryAddress,
-		deliveryDate: itemInput.deliveryDate,
+		// deliveryDate: itemInput.deliveryDate,
 		supplierStatus: itemInput.supplierStatus,
 		currency: itemInput.currency,
 		dateUpdated: itemInput.dateUpdated,
