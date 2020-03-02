@@ -6,6 +6,7 @@ const itemResolvers = {
 		},
 		scheduleLine: async (parent, args, context, info) => {
 			const { getAllScheduleLinesByItem } = context;
+
 			return (await getAllScheduleLinesByItem(parent.scheduleLine)) || null;
 		},
 	},
@@ -25,13 +26,12 @@ const itemResolvers = {
 		},
 
 		updateItem: async (parent, { item }, context, info) => {
-			const { updateItemById, createScheduleLine } = context;
+			const { updateItemById, createScheduleLine, updateScheduleLine } = context;
 
 			let scheduleLine;
-			if (item.supplierStatus) {
+			if (item.scheduleLine) {
 				scheduleLine = await createScheduleLine(item.scheduleLine);
 			}
-			console.log('SupplierStatus', scheduleLine);
 
 			const i = {
 				id: item.id,

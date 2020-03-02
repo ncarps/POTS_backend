@@ -1,4 +1,4 @@
-import { TSupplierStatus } from './../supplierStatus';
+import { TScheduleLine } from './../scheduleLine';
 
 export type TItem = {
 	itemNo: string;
@@ -9,8 +9,8 @@ export type TItem = {
 	unitPrice: string;
 	totalAmount: string;
 	deliveryAddress: string;
-	// deliveryDate: string;
-	supplierStatus: [TSupplierStatus] | undefined;
+	supplierStatus: string;
+	scheduleLine: [TScheduleLine];
 	currency: string;
 	dateUpdated: string;
 	timeUpdated: string;
@@ -26,7 +26,7 @@ const createMakeItem = () => (item): TItem => {
 		unitPrice,
 		totalAmount,
 		deliveryAddress,
-		deliveryDate,
+		scheduleLine,
 		supplierStatus,
 		currency,
 		dateUpdated,
@@ -82,8 +82,8 @@ const createMakeItem = () => (item): TItem => {
 		uom: uom,
 		unitPrice: unitPrice,
 		deliveryAddress: deliveryAddress,
-		// deliveryDate: deliveryDate,
 		supplierStatus: supplierStatus,
+		scheduleLine: scheduleLine,
 		currency: currency,
 		dateUpdated: dateUpdated,
 		timeUpdated: timeUpdated,

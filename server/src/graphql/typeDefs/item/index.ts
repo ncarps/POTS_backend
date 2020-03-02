@@ -12,7 +12,7 @@ const typeDefs = gql`
 		totalAmount: Float!
 		deliveryAddress: Address!
 		supplierStatus: String
-		scheduleLine: ScheduleLine
+		scheduleLine: [ScheduleLine]
 		currency: String!
 		dateUpdated: String
 		timeUpdated: String
