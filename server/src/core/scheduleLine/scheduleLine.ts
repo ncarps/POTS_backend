@@ -4,7 +4,8 @@ export type TScheduleLine = {
 	quantity: string;
 	uom: string;
 	deliveryDate: string;
-	supplierStatus: [TSupplierStatus] | undefined;
+	deliveryAddress: string;
+	supplierStatus?: [TSupplierStatus] | undefined;
 };
 
 const createMakeScheduleLine = () => (scheduleLine): TScheduleLine => {
