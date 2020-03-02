@@ -9,7 +9,15 @@ import { resolvers, typeDefs } from './graphql';
 import bodyParser from 'body-parser';
 import serveIndex from 'serve-index';
 
-import { userModel, addressModel, supplierModel, supplierStatusModel, itemModel, purchaseOrderModel } from './models';
+import {
+	userModel,
+	addressModel,
+	supplierModel,
+	supplierStatusModel,
+	itemModel,
+	purchaseOrderModel,
+	scheduleLineModel,
+} from './models';
 
 import * as controllers from './controllers';
 
@@ -50,6 +58,9 @@ const {
 	//Purchase Order
 	createCreatePurchaseOrderDB,
 	updatePurchaseOrderByIDDB,
+	//Schedule Line
+	createCreateScheduleLineDB,
+	updateScheduleLineByIDDB,
 } = controllers;
 
 const context = async session => {
@@ -90,6 +101,13 @@ const context = async session => {
 		getAllPurchaseOrders: getAllDataDB(purchaseOrderModel),
 		getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(purchaseOrderModel),
 		getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderModel),
+		//Schedule Line
+		createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
+		updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),
+		deleteScheduleLineById: DeleteRecordByIDDB(scheduleLineModel),
+		getScheduleLineById: getByIDDB(scheduleLineModel),
+		getAllScheduleLines: getAllByItemDB(scheduleLineModel),
+		getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(scheduleLineModel),
 	};
 };
 
