@@ -4,9 +4,9 @@ const itemResolvers = {
 			const { getAddressById } = context;
 			return await getAddressById(parent.deliveryAddress);
 		},
-		supplierStatus: async (parent, args, context, info) => {
-			const { getAllSupplierStatusByItem } = context;
-			return (await getAllSupplierStatusByItem(parent.supplierStatus)) || null;
+		scheduleLine: async (parent, args, context, info) => {
+			const { getAllScheduleLinesByItem } = context;
+			return (await getAllScheduleLinesByItem(parent.scheduleLine)) || null;
 		},
 	},
 	Query: {
@@ -25,14 +25,13 @@ const itemResolvers = {
 		},
 
 		updateItem: async (parent, { item }, context, info) => {
-			const { updateItemById, createSupplierStatus } = context;
+			const { updateItemById, createScheduleLine } = context;
 
-			console.log({ ...item.supplierStatus });
-			let supplierStatus;
+			let scheduleLine;
 			if (item.supplierStatus) {
-				supplierStatus = await createSupplierStatus(item.supplierStatus);
+				scheduleLine = await createScheduleLine(item.scheduleLine);
 			}
-			console.log('SupplierStatus', supplierStatus);
+			console.log('SupplierStatus', scheduleLine);
 
 			const i = {
 				id: item.id,
@@ -44,13 +43,12 @@ const itemResolvers = {
 				unitPrice: item.unitPrice,
 				totalAmount: item.totalAmount,
 				deliveryAddress: item.deliveryAddress,
-				deliveryDate: item.deliveryDate,
-				supplierStatus: supplierStatus ? supplierStatus.id.toString() : null,
+				supplierStatus: item.supplierStatus,
+				scheduleLine: scheduleLine ? scheduleLine.id.toString() : null,
 				currency: item.currency,
 				dateUpdated: item.dateUpdated,
 				timeUpdated: item.timeUpdated,
 			};
-			console.log('Item', i);
 			return await updateItemById(i);
 		},
 

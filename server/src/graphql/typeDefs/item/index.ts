@@ -11,8 +11,8 @@ const typeDefs = gql`
 		unitPrice: Float!
 		totalAmount: Float!
 		deliveryAddress: Address!
-		deliveryDate: String!
-		supplierStatus: [SupplierStatus]
+		supplierStatus: String
+		scheduleLine: ScheduleLine
 		currency: String!
 		dateUpdated: String
 		timeUpdated: String
@@ -38,7 +38,6 @@ const typeDefs = gql`
 		unitPrice: Float!
 		totalAmount: Float!
 		deliveryAddress: AddressInput!
-		deliveryDate: String!
 		currency: String!
 		dateUpdated: String
 		timeUpdated: String
@@ -53,8 +52,8 @@ const typeDefs = gql`
 		uom: String
 		unitPrice: Float
 		totalAmount: Float
-		deliveryDate: String
-		supplierStatus: SupplierStatusInput
+		supplierStatus: String
+		scheduleLine: ScheduleLineInput
 		currency: String
 		dateUpdated: String
 		timeUpdated: String

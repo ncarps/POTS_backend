@@ -1,6 +1,6 @@
 import { IDBModel } from '../../commons/types';
 import moment from 'moment';
-import { Item, Address, SupplierStatus } from '../mongo-models';
+import { Item, Address, SupplierStatus, ScheduleLine } from '../mongo-models';
 import { networkInterfaces } from 'os';
 
 const itemModel: IDBModel<any> = {
@@ -28,8 +28,8 @@ const itemModel: IDBModel<any> = {
 			uom: item.uom,
 			unitPrice: item.unitPrice,
 			deliveryAddress: newAdd._id.toString(),
-			deliveryDate: item.deliveryDate,
 			supplierStatus: item.supplierStatus,
+			scheduleLine: item.scheduleLine,
 			currency: item.currency,
 			dateUpdated: item.dateUpdated,
 			timeUpdated: item.timeUpdated,
@@ -51,8 +51,8 @@ const itemModel: IDBModel<any> = {
 			uom: newI.uom,
 			unitPrice: newI.unitPrice,
 			deliveryAddress: newI.deliveryAddress,
-			deliveryDate: newI.deliveryDate,
 			supplierStatus: newI.supplierStatus,
+			scheduleLine: newI.scheduleLine,
 			currency: newI.currency,
 			dateUpdated: newI.dateUpdated,
 			timeUpdated: newI.timeUpdated,
@@ -74,8 +74,8 @@ const itemModel: IDBModel<any> = {
 			uom: item.uom,
 			unitPrice: item.unitPrice,
 			deliveryAddress: item.deliveryAddress,
-			deliveryDate: item.deliveryDate,
 			supplierStatus: item.supplierStatus,
+			scheduleLine: item.scheduleLine,
 			currency: item.currency,
 			dateUpdated: item.dateUpdated,
 			timeUpdated: item.timeUpdated,
@@ -94,8 +94,8 @@ const itemModel: IDBModel<any> = {
 			uom: item.uom,
 			unitPrice: item.unitPrice,
 			deliveryAddress: item.deliveryAddress,
-			deliveryDate: item.deliveryDate,
 			supplierStatus: item.supplierStatus,
+			scheduleLine: item.scheduleLine,
 			currency: item.currency,
 			dateUpdated: item.dateUpdated,
 			timeUpdated: item.timeUpdated,
@@ -103,19 +103,30 @@ const itemModel: IDBModel<any> = {
 	},
 
 	getAllByItem: async data => {},
-	getAllByScheduleLine: async data => {},
 
-	getAllBySupplierStatus: async data => {
-		const supplierStatus: any = await SupplierStatus.find({
+	getAllByScheduleLine: async data => {
+		const scheduleLine: any = await ScheduleLine.find({
 			_id: { $in: data },
 		}).exec();
 
-		return supplierStatus.map(ss => ({
-			id: ss._id.toString(),
-			status: ss.status,
-			dateCreated: ss.dateCreated,
-			timeCreated: ss.timeCreated,
+		return scheduleLine.map(sl => ({
+			id: sl._id.toString(),
+			quantity: sl.quantity,
+			deliveryDate: sl.deliveryDate,
+			supplierStatus: sl.supplierStatus,
 		}));
+	},
+
+	getAllBySupplierStatus: async data => {
+		// const supplierStatus: any = await SupplierStatus.find({
+		// 	_id: { $in: data },
+		// }).exec();
+		// return supplierStatus.map(ss => ({
+		// 	id: ss._id.toString(),
+		// 	status: ss.status,
+		// 	dateCreated: ss.dateCreated,
+		// 	timeCreated: ss.timeCreated,
+		// }));
 	},
 
 	deleteById: async id => {
@@ -137,16 +148,16 @@ const itemModel: IDBModel<any> = {
 				delete setFields[prop];
 			}
 		}
-		delete setFields.supplierStatus;
-		const supplierStatus = data.supplierStatus;
+		delete setFields.scheduleLine;
+		const scheduleLine = data.scheduleLine;
 
 		let item;
-		if (supplierStatus) {
+		if (scheduleLine) {
 			item = await Item.findByIdAndUpdate(
 				{
 					_id: data.id,
 				},
-				{ $set: { ...setFields }, $push: { supplierStatus: supplierStatus } },
+				{ $set: { ...setFields }, $push: { scheduleLine: scheduleLine } },
 				{
 					new: true,
 				}
@@ -173,8 +184,8 @@ const itemModel: IDBModel<any> = {
 			uom: item.uom,
 			unitPrice: item.unitPrice,
 			deliveryAddress: item.deliveryAddress,
-			deliveryDate: item.deliveryDate,
 			supplierStatus: item.supplierStatus,
+			scheduleLine: item.scheduleLine,
 			currency: item.currency,
 			dateUpdated: item.dateUpdated,
 			timeUpdated: item.timeUpdated,

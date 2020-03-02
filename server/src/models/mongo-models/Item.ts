@@ -40,12 +40,11 @@ const ItemSchema = new Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,
 	},
-	deliveryDate: {
-		type: String,
-		required: true,
-	},
 	supplierStatus: {
 		type: String,
+	},
+	scheduleLine: {
+		type: [String],
 	},
 	currency: {
 		type: String,

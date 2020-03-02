@@ -3,7 +3,7 @@ import {
 	getByIDDB,
 	getAllByItemDB,
 	getAllBySupplierStatusDB,
-	// getAllByScheduleLineDB,
+	getAllByScheduleLineDB,
 } from './retrieve-data-db';
 import { DeleteRecordByIDDB } from './delete-data-db';
 
@@ -37,7 +37,7 @@ export {
 	DeleteRecordByIDDB,
 	getAllByItemDB,
 	getAllBySupplierStatusDB,
-	// getAllByScheduleLineDB,
+	getAllByScheduleLineDB,
 	//User exports
 	createCreateUserDB,
 	updateUserByIDDB,

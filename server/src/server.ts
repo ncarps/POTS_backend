@@ -43,6 +43,7 @@ const {
 	DeleteRecordByIDDB,
 	getAllByItemDB,
 	getAllBySupplierStatusDB,
+	getAllByScheduleLineDB,
 	//User controllers
 	createCreateUserDB,
 	updateUserByIDDB,
@@ -93,6 +94,7 @@ const context = async session => {
 		getItemById: getByIDDB(itemModel),
 		getAllItems: getAllDataDB(itemModel),
 		getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemModel),
+		getAllScheduleLinesByItem: getAllByScheduleLineDB(itemModel),
 		//Purchase Order
 		createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderModel),
 		updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderModel),
