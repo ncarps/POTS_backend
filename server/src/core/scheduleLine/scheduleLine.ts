@@ -4,7 +4,6 @@ export type TScheduleLine = {
 	quantity: string;
 	uom: string;
 	deliveryDate: string;
-	deliveryAddress: string;
 	supplierStatus?: [TSupplierStatus] | undefined;
 };
 
