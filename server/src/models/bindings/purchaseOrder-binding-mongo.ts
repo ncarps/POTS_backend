@@ -4,7 +4,8 @@ import { PurchaseOrder, SupplierStatus, Supplier, Item } from '../mongo-models';
 const purchaseOrderModel: IDBModel<any> = {
 	insert: async purchaseOrder => {
 		const newPO = await new PurchaseOrder({
-			externalID: purchaseOrder.externalID,
+			purchaseOrderNo: purchaseOrder.purchaseOrderNo,
+			shipmentNo: purchaseOrder.shipmentNo,
 			status: purchaseOrder.status,
 			supplierStatus: purchaseOrder.supplierStatus,
 			supplier: purchaseOrder.supplier,
@@ -50,11 +51,18 @@ const purchaseOrderModel: IDBModel<any> = {
 		return item.map(i => ({
 			id: i._id.toString(),
 			itemNo: i.itemNo,
+			productId: i.productId,
 			description: i.description,
 			quantity: i.quantity,
+			totalAmount: i.totalAmount,
 			uom: i.uom,
-			price: i.price,
+			unitPrice: i.unitPrice,
+			deliveryAddress: i.deliveryAddress,
+			deliveryDate: i.deliveryDate,
+			supplierStatus: i.supplierStatus,
 			currency: i.currency,
+			dateUpdated: i.dateUpdated,
+			timeUpdated: i.timeUpdated,
 		}));
 	},
 
@@ -65,6 +73,7 @@ const purchaseOrderModel: IDBModel<any> = {
 			id: ss._id.toString(),
 			status: ss.status,
 			dateCreated: ss.dateCreated,
+			timeCreated: supplierStatus.timeCreated,
 		}));
 	},
 

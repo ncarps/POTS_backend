@@ -8,7 +8,11 @@ ObjectID.prototype.valueOf = function() {
 };
 
 const PurchaseOrderSchema = new Schema({
-	externalID: {
+	purchaseOrderNo: {
+		type: String,
+		required: true,
+	},
+	shipmentNo: {
 		type: String,
 		required: true,
 	},

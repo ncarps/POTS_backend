@@ -3,16 +3,24 @@ import { TSupplierStatus } from './../supplierStatus';
 
 export type TPurchaseOrder = {
 	id?: string;
-	externalID: string;
+	purchaseOrderNo: string;
+	shipmentNo: string;
 	status: string;
-	supplierStatus: [TSupplierStatus] | undefined;
+	supplierStatus?: [TSupplierStatus] | undefined;
 	supplier: string;
 	items: [TItem] | undefined;
 };
 
-const createMakePurchaseOrder = () => ({ externalID, status, supplierStatus, supplier, items }): TPurchaseOrder => {
-	if (!externalID) {
-		throw new Error('External ID is required');
+const createMakePurchaseOrder = () => ({
+	purchaseOrderNo,
+	shipmentNo,
+	status,
+	supplierStatus,
+	supplier,
+	items,
+}): TPurchaseOrder => {
+	if (!purchaseOrderNo) {
+		throw new Error('Purchase Order Number is required');
 	}
 	if (!status) {
 		throw new Error('Status is required');
@@ -27,7 +35,8 @@ const createMakePurchaseOrder = () => ({ externalID, status, supplierStatus, sup
 	// const _items = items.map(item => makeItem(item));
 
 	return {
-		externalID: externalID,
+		purchaseOrderNo: purchaseOrderNo,
+		shipmentNo: shipmentNo,
 		status: status,
 		supplierStatus: supplierStatus,
 		supplier: supplier,

@@ -3,7 +3,8 @@ import { gql } from 'apollo-server';
 const typeDefs = gql`
 	type PurchaseOrder {
 		id: ID!
-		externalID: String!
+		purchaseOrderNo: String!
+		shipmentNo: String!
 		status: String!
 		supplierStatus: [SupplierStatus]
 		supplier: Supplier!
@@ -22,7 +23,8 @@ const typeDefs = gql`
 	}
 
 	input PurchaseOrderInput {
-		externalID: String!
+		purchaseOrderNo: String!
+		shipmentNo: String!
 		status: String!
 		supplierStatus: [SupplierStatusInput]
 		supplier: SupplierInput!
@@ -31,11 +33,12 @@ const typeDefs = gql`
 
 	input UpdatePurchaseOrderInput {
 		id: ID!
-		externalID: String!
-		status: String!
+		purchaseOrderNo: String
+		shipmentNo: String
+		status: String
 		supplierStatus: [UpdateSupplierStatusInput]
-		supplier: UpdateSupplierInput!
-		items: [UpdateItemInput]!
+		supplier: UpdateSupplierInput
+		items: [UpdateItemInput]
 	}
 `;
 
