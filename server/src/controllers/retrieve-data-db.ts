@@ -15,8 +15,8 @@ const getAllByItemDB = (db: IDBModel<any>) => async id => {
 	return db.getAllByItem(id);
 };
 
-// const getAllByScheduleLineDB = (db: IDBModel<any>) => async id => {
-// 	return db.getAllByScheduleLine(id);
-// };
+const getAllByScheduleLineDB = (db: IDBModel<any>) => async id => {
+	return db.getAllByScheduleLine(id);
+};
 
-export { getAllDataDB, getByIDDB, getAllByItemDB, getAllBySupplierStatusDB };
+export { getAllDataDB, getByIDDB, getAllByItemDB, getAllBySupplierStatusDB, getAllByScheduleLineDB };

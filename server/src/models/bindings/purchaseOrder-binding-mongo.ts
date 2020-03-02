@@ -79,6 +79,8 @@ const purchaseOrderModel: IDBModel<any> = {
 		}));
 	},
 
+	getAllByScheduleLine: async data => {},
+
 	deleteById: async id => {
 		return new Promise((resolve, reject) => {
 			PurchaseOrder.findByIdAndDelete(id).exec((err, res) => {

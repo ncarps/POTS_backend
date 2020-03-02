@@ -25,6 +25,7 @@ const addressModel: IDBModel<any> = {
 
 	getAllByItem: async id => {},
 	getAllBySupplierStatus: async id => {},
+	getAllByScheduleLine: async data => {},
 
 	deleteById: async id => {},
 	updateById: async id => {},

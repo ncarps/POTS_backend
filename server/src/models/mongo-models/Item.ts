@@ -45,7 +45,7 @@ const ItemSchema = new Schema({
 		required: true,
 	},
 	supplierStatus: {
-		type: [String],
+		type: String,
 	},
 	currency: {
 		type: String,

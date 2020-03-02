@@ -103,6 +103,7 @@ const itemModel: IDBModel<any> = {
 	},
 
 	getAllByItem: async data => {},
+	getAllByScheduleLine: async data => {},
 
 	getAllBySupplierStatus: async data => {
 		const supplierStatus: any = await SupplierStatus.find({

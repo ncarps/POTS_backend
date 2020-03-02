@@ -38,6 +38,7 @@ const scheduleLineModel: IDBModel<any> = {
 			quantity: sl.quantity,
 			uom: sl.uom,
 			deliveryDate: sl.deliveryDate,
+			supplierStatus: sl.supplierStatus,
 		}));
 	},
 

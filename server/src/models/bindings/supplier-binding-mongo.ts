@@ -61,6 +61,7 @@ const supplierModel: IDBModel<any> = {
 
 	getAllByItem: async id => {},
 	getAllBySupplierStatus: async id => {},
+	getAllByScheduleLine: async data => {},
 
 	deleteById: async id => {
 		return new Promise((resolve, reject) => {

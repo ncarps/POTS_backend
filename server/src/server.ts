@@ -106,7 +106,7 @@ const context = async session => {
 		updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),
 		deleteScheduleLineById: DeleteRecordByIDDB(scheduleLineModel),
 		getScheduleLineById: getByIDDB(scheduleLineModel),
-		getAllScheduleLines: getAllByItemDB(scheduleLineModel),
+		getAllScheduleLines: getAllDataDB(scheduleLineModel),
 		getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(scheduleLineModel),
 	};
 };
