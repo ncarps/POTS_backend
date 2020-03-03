@@ -8,7 +8,7 @@ export type TPurchaseOrder = {
 	supplierStatusHeader?: string;
 	supplier: string;
 	vendorAddress: string;
-	documentDate: string;
+	documentDate?: string;
 	items: [TItem] | undefined;
 };
 

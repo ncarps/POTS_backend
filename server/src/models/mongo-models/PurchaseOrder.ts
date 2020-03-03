@@ -20,7 +20,14 @@ const PurchaseOrderSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	supplierStatus: {
+	supplierStatusHeader: {
+		type: String,
+	},
+	vendorAddress: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+	},
+	documentDate: {
 		type: String,
 	},
 	supplier: {
