@@ -5,9 +5,11 @@ const typeDefs = gql`
 		id: ID!
 		purchaseOrderNo: String!
 		shipmentNo: String!
-		status: String!
-		supplierStatus: String
+		adminStatus: String
+		supplierStatusHeader: String
+		vendorAddress: Address!
 		supplier: Supplier!
+		documentDate: String
 		items: [Item!]
 	}
 
@@ -25,8 +27,10 @@ const typeDefs = gql`
 	input PurchaseOrderInput {
 		purchaseOrderNo: String!
 		shipmentNo: String!
-		status: String!
-		supplierStatus: String
+		adminStatus: String
+		supplierStatusHeader: String
+		vendorAddress: AddressInput!
+		documentDate: String
 		supplier: SupplierInput!
 		items: [ItemInput!]!
 	}
@@ -35,8 +39,9 @@ const typeDefs = gql`
 		id: ID!
 		purchaseOrderNo: String
 		shipmentNo: String
-		status: String
-		supplierStatus: [UpdateSupplierStatusInput]
+		adminStatus: String
+		supplierStatusHeader: String
+		documentDate: String
 		supplier: UpdateSupplierInput
 		items: [UpdateItemInput]
 	}

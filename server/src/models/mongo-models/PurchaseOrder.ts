@@ -18,7 +18,6 @@ const PurchaseOrderSchema = new Schema({
 	},
 	adminStatus: {
 		type: String,
-		required: true,
 	},
 	supplierStatusHeader: {
 		type: String,

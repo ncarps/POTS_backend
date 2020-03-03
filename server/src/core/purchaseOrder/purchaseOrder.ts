@@ -25,9 +25,6 @@ const createMakePurchaseOrder = () => ({
 	if (!purchaseOrderNo) {
 		throw new Error('Purchase Order Number is required');
 	}
-	if (!status) {
-		throw new Error('Status is required');
-	}
 	if (!supplier) {
 		throw new Error('Supplier is required');
 	}

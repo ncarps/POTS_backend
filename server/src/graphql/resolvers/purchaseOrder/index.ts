@@ -35,9 +35,11 @@ const purchaseOrderResolvers = {
 			const po = {
 				purchaseOrderNo: purchaseOrder.purchaseOrderNo,
 				shipmentNo: purchaseOrder.shipmentNo,
-				status: purchaseOrder.status,
-				supplierStatus: purchaseOrder.supplierStatus,
+				adminStatus: purchaseOrder.adminStatus,
+				supplierStatusHeader: purchaseOrder.supplierStatusHeader,
+				vendorAddress: purchaseOrder.vendorAddress,
 				supplier: supplier.id,
+				documentDate: purchaseOrder.documentDate,
 				items: items,
 			};
 
@@ -60,11 +62,13 @@ const purchaseOrderResolvers = {
 			);
 
 			const po = {
-				id: purchaseOrder.id,
-				externalID: purchaseOrder.externalID,
-				status: purchaseOrder.status,
-				supplierStatus: purchaseOrder.supplierStatus,
+				purchaseOrderNo: purchaseOrder.purchaseOrderNo,
+				shipmentNo: purchaseOrder.shipmentNo,
+				adminStatus: purchaseOrder.adminStatus,
+				supplierStatusHeader: purchaseOrder.supplierStatusHeader,
+				vendorAddress: purchaseOrder.vendorAddress,
 				supplier: supplier.id,
+				documentDate: purchaseOrder.documentDate,
 				items: items,
 			};
 			return await updatePurchaseOrderById(po);
