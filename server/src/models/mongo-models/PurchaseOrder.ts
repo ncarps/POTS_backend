@@ -16,7 +16,7 @@ const PurchaseOrderSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	status: {
+	adminStatus: {
 		type: String,
 		required: true,
 	},

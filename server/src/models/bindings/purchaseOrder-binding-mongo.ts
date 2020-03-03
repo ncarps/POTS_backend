@@ -1,24 +1,51 @@
 import { IDBModel } from '../../commons/types';
-import { PurchaseOrder, SupplierStatus, Supplier, Item } from '../mongo-models';
+import { PurchaseOrder, Address, Item } from '../mongo-models';
 
 const purchaseOrderModel: IDBModel<any> = {
 	insert: async purchaseOrder => {
-		const newPO = await new PurchaseOrder({
+		const newAddress = await new Address({
+			building_name: purchaseOrder.vendorAddress.building_name,
+			street: purchaseOrder.vendorAddress.street,
+			city: purchaseOrder.vendorAddress.city,
+			state: purchaseOrder.vendorAddress.state,
+			zip_code: purchaseOrder.vendorAddress.zip_code,
+		});
+
+		const newAdd: any = await new Promise((resolve, reject) => {
+			newAddress.save((err, res) => {
+				err ? reject(err) : resolve(res);
+			});
+		});
+
+		const newPo = await new PurchaseOrder({
 			purchaseOrderNo: purchaseOrder.purchaseOrderNo,
 			shipmentNo: purchaseOrder.shipmentNo,
-			status: purchaseOrder.status,
-			supplierStatus: purchaseOrder.supplierStatus,
+			adminStatus: purchaseOrder.adminStatus,
+			supplierStatusHeader: purchaseOrder.supplierStatusHeader,
+			vendorAddress: newAdd._id.toString(),
+			documentDate: purchaseOrder.documentDate,
 			supplier: purchaseOrder.supplier,
 			items: purchaseOrder.items,
 		});
 
-		return new Promise((resolve, reject) => {
-			newPO.save((err, res) => {
+		const newPurchaseOrder: any = await new Promise((resolve, reject) => {
+			newPo.save((err, res) => {
 				err ? reject(err) : resolve(res);
 			});
 		});
-	},
 
+		return {
+			id: newPurchaseOrder._id,
+			purchaseOrderNo: newPurchaseOrder.purchaseOrderNo,
+			shipmentNo: newPurchaseOrder.shipmentNo,
+			adminStatus: newPurchaseOrder.adminStatus,
+			supplierStatusHeader: newPurchaseOrder.supplierStatusHeader,
+			vendorAddress: newPurchaseOrder.vendorAddress,
+			documentDate: newPurchaseOrder.documentDate,
+			supplier: newPurchaseOrder.supplier,
+			items: newPurchaseOrder.items,
+		};
+	},
 	getAll: async () => {
 		const po: any = await PurchaseOrder.find({}).exec();
 
@@ -26,8 +53,10 @@ const purchaseOrderModel: IDBModel<any> = {
 			id: u._id.toString(),
 			purchaseOrderNo: u.purchaseOrderNo,
 			shipmentNo: u.shipmentNo,
-			status: u.status,
-			supplierStatus: u.supplierStatus,
+			adminStatus: u.adminStatus,
+			supplierStatusHeader: u.supplierStatusHeader,
+			vendorAddress: u.vendorAddress,
+			documentDate: u.documentDate,
 			supplier: u.supplier,
 			items: u.items,
 		}));
@@ -40,8 +69,10 @@ const purchaseOrderModel: IDBModel<any> = {
 			id: u._id.toString(),
 			purchaseOrderNo: u.purchaseOrderNo,
 			shipmentNo: u.shipmentNo,
-			status: u.status,
-			supplierStatus: u.supplierStatus,
+			adminStatus: u.adminStatus,
+			supplierStatusHeader: u.supplierStatusHeader,
+			vendorAddress: u.vendorAddress,
+			documentDate: u.documentDate,
 			supplier: u.supplier,
 			items: u.items,
 		};
@@ -59,9 +90,10 @@ const purchaseOrderModel: IDBModel<any> = {
 			totalAmount: i.totalAmount,
 			uom: i.uom,
 			unitPrice: i.unitPrice,
+			discount: i.discount,
 			deliveryAddress: i.deliveryAddress,
-			deliveryDate: i.deliveryDate,
-			supplierStatus: i.supplierStatus,
+			supplierStatusItem: i.supplierStatusItem,
+			scheduleLine: i.scheduleLine,
 			currency: i.currency,
 			dateUpdated: i.dateUpdated,
 			timeUpdated: i.timeUpdated,
