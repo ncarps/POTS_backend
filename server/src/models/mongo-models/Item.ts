@@ -36,11 +36,14 @@ const ItemSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	discount: {
+		type: String,
+	},
 	deliveryAddress: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,
 	},
-	supplierStatus: {
+	supplierStatusItem: {
 		type: String,
 	},
 	scheduleLine: {
