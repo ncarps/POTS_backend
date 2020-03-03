@@ -3,7 +3,9 @@ import { gql } from 'apollo-server';
 const typeDefs = gql`
 	type User {
 		id: ID!
-		name: String
+		userName: String!
+		password: String!
+		userLevel: String!
 	}
 
 	type Query {
@@ -12,9 +14,22 @@ const typeDefs = gql`
 	}
 
 	type Mutation {
-		createUser(name: String): User
-		updateUser(id: String, name: String): User
-		deleteUser(id: String): User
+		createUser(user: UserInput!): User
+		updateUser(user: UpdateUserInput): User
+		deleteUser(id: ID): User
+	}
+
+	input UserInput {
+		userName: String!
+		password: String!
+		userLevel: String!
+	}
+
+	input UpdateUserInput {
+		id: ID!
+		userName: String!
+		password: String!
+		userLevel: String!
 	}
 `;
 
