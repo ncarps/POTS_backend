@@ -5,8 +5,10 @@ const typeDefs = gql`
 		id: ID!
 		quantity: Float!
 		uom: String!
-		deliveryDate: String!
-		supplierStatus: [SupplierStatus]
+		unitPrice: Float!
+		totalAmount: Float!
+		deliveryDateAndTime: String!
+		deliveryStatus: [SupplierStatus]
 	}
 
 	type Query {
@@ -23,15 +25,19 @@ const typeDefs = gql`
 	input ScheduleLineInput {
 		quantity: Float!
 		uom: String!
-		deliveryDate: String!
+		unitPrice: Float!
+		totalAmount: Float!
+		deliveryDateAndTime: String!
 	}
 
 	input UpdateScheduleLineInput {
 		id: ID!
 		quantity: Float
 		uom: String
-		deliveryDate: String
-		supplierStatus: SupplierStatusInput
+		unitPrice: Float
+		totalAmount: Float
+		deliveryDateAndTime: String
+		deliveryStatus: SupplierStatusInput
 	}
 `;
 

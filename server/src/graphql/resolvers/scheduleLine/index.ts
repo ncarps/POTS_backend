@@ -1,8 +1,8 @@
 const scheduleLineResolvers = {
 	ScheduleLine: {
-		supplierStatus: async (parent, args, context, info) => {
+		deliveryStatus: async (parent, args, context, info) => {
 			const { getAllSupplierStatusByScheduleLine } = context;
-			return (await getAllSupplierStatusByScheduleLine(parent.supplierStatus)) || null;
+			return (await getAllSupplierStatusByScheduleLine(parent.deliveryStatus)) || null;
 		},
 	},
 	Query: {
@@ -24,17 +24,19 @@ const scheduleLineResolvers = {
 			const { updateScheduleLine, createSupplierStatus } = context;
 
 			console.log({ ...scheduleLine.supplierStatus });
-			let supplierStatus;
-			if (scheduleLine.supplierStatus) {
-				supplierStatus = await createSupplierStatus(scheduleLine.supplierStatus);
+			let deliveryStatus;
+			if (scheduleLine.deliveryStatus) {
+				deliveryStatus = await createSupplierStatus(scheduleLine.deliveryStatus);
 			}
 
 			const sl = {
 				id: scheduleLine.id,
 				quantity: scheduleLine.quantity,
 				uom: scheduleLine.uom,
-				deliveryDate: scheduleLine.deliveryDate,
-				supplierStatus: supplierStatus ? supplierStatus.id.toString() : null,
+				unitPrice: scheduleLine.unitPrice,
+				totalAmount: scheduleLine.totalAmount,
+				deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
+				deliveryStatus: deliveryStatus ? deliveryStatus.id.toString() : null,
 			};
 
 			return await updateScheduleLine(sl);

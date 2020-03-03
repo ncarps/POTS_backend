@@ -6,8 +6,10 @@ const scheduleLineModel: IDBModel<any> = {
 		const newScheduleLine = await new ScheduleLine({
 			quantity: scheduleLine.quantity,
 			uom: scheduleLine.uom,
-			deliveryDate: scheduleLine.deliveryDate,
-			supplierStatus: scheduleLine.supplierStatus,
+			unitPrice: scheduleLine.unitPrice,
+			totalAmount: scheduleLine.totalAmount,
+			deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
+			deliveryStatus: scheduleLine.deliveryStatus,
 		});
 
 		return new Promise((resolve, reject) => {
@@ -26,8 +28,10 @@ const scheduleLineModel: IDBModel<any> = {
 			id: scheduleLine._id.toString(),
 			quantity: scheduleLine.quantity,
 			uom: scheduleLine.uom,
-			deliveryDate: scheduleLine.deliveryDate,
-			supplierStatus: scheduleLine.supplierStatus,
+			unitPrice: scheduleLine.unitPrice,
+			totalAmount: scheduleLine.totalAmount,
+			deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
+			deliveryStatus: scheduleLine.deliveryStatus,
 		};
 	},
 
@@ -37,8 +41,10 @@ const scheduleLineModel: IDBModel<any> = {
 			id: sl._id.toString(),
 			quantity: sl.quantity,
 			uom: sl.uom,
-			deliveryDate: sl.deliveryDate,
-			supplierStatus: sl.supplierStatus,
+			unitPrice: sl.unitPrice,
+			totalAmount: sl.totalAmount,
+			deliveryDateAndTime: sl.deliveryDateAndTime,
+			deliveryStatus: sl.deliveryStatus,
 		}));
 	},
 
@@ -75,16 +81,16 @@ const scheduleLineModel: IDBModel<any> = {
 				delete setFields[prop];
 			}
 		}
-		delete setFields.supplierStatus;
-		const supplierStatus = data.supplierStatus;
+		delete setFields.deliveryStatus;
+		const deliveryStatus = data.deliveryStatus;
 
 		let scheduleLine;
-		if (supplierStatus) {
+		if (deliveryStatus) {
 			scheduleLine = await ScheduleLine.findByIdAndUpdate(
 				{
 					_id: data.id,
 				},
-				{ $set: { ...setFields }, $push: { supplierStatus: supplierStatus } },
+				{ $set: { ...setFields }, $push: { deliveryStatus: deliveryStatus } },
 				{
 					new: true,
 				}
@@ -105,8 +111,10 @@ const scheduleLineModel: IDBModel<any> = {
 			id: scheduleLine._id.toString(),
 			quantity: scheduleLine.quantity,
 			uom: scheduleLine.uom,
-			deliveryDate: scheduleLine.deliveryDate,
-			supplierStatus: scheduleLine.supplierStatus,
+			unitPrice: scheduleLine.unitPrice,
+			totalAmount: scheduleLine.totalAmount,
+			deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
+			deliveryStatus: scheduleLine.deliveryStatus,
 		};
 	},
 };
