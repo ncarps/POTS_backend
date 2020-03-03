@@ -16,11 +16,15 @@ const ScheduleLineSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	deliveryDate: {
+	totalAmount: {
 		type: String,
 		required: true,
 	},
-	supplierStatus: {
+	deliveryDateAndTime: {
+		type: String,
+		required: true,
+	},
+	deliveryStatus: {
 		type: [String],
 	},
 });
