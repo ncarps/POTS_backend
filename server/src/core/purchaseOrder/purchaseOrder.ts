@@ -22,15 +22,15 @@ const createMakePurchaseOrder = () => ({
 	documentDate,
 	items,
 }): TPurchaseOrder => {
-	if (!purchaseOrderNo) {
-		throw new Error('Purchase Order Number is required');
-	}
-	if (!supplier) {
-		throw new Error('Supplier is required');
-	}
-	if (!items) {
-		throw new Error('Item/s is/are required');
-	}
+	// if (!purchaseOrderNo) {
+	// 	throw new Error('Purchase Order Number is required');
+	// }
+	// if (!supplier) {
+	// 	throw new Error('Supplier is required');
+	// }
+	// if (!items) {
+	// 	throw new Error('Item/s is/are required');
+	// }
 
 	return {
 		purchaseOrderNo: purchaseOrderNo,

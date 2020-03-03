@@ -53,30 +53,33 @@ const purchaseOrderResolvers = {
 			const { deletePurchaseOrderbyId } = context;
 			return await deletePurchaseOrderbyId(id);
 		},
-		updatePurchaseOrder: async (parent, { purchaseOrder }, context, info) => {
-			const { updatePurchaseOrderById, updateItemById, updateSupplierById } = context;
-
-			const supplier = await updateSupplierById(purchaseOrder.supplier);
-
-			const items: Array<any> = await Promise.all(
-				purchaseOrder.items.map(async item => {
-					const poitem = await updateItemById(item);
-					return poitem.id.toString();
-				})
-			);
-
-			const po = {
-				purchaseOrderNo: purchaseOrder.purchaseOrderNo,
-				shipmentNo: purchaseOrder.shipmentNo,
-				adminStatus: purchaseOrder.adminStatus,
-				supplierStatusHeader: purchaseOrder.supplierStatusHeader,
-				vendorAddress: purchaseOrder.vendorAddress,
-				supplier: supplier.id,
-				documentDate: purchaseOrder.documentDate,
-				items: items,
-			};
-			return await updatePurchaseOrderById(po);
+		updatePurchaseOrder: async (parent, { purchaseOrder }, { updatePurchaseOrderById }, info) => {
+			return updatePurchaseOrderById(purchaseOrder);
 		},
+		// updatePurchaseOrder: async (parent, { purchaseOrder }, context, info) => {
+		// 	const { updatePurchaseOrderById, updateItemById, updateSupplierById } = context;
+
+		// 	const supplier = await updateSupplierById(purchaseOrder.supplier);
+
+		// 	const items: Array<any> = await Promise.all(
+		// 		purchaseOrder.items.map(async item => {
+		// 			const poitem = await updateItemById(item);
+		// 			return poitem.id.toString();
+		// 		})
+		// 	);
+
+		// 	const po = {
+		// 		purchaseOrderNo: purchaseOrder.purchaseOrderNo,
+		// 		shipmentNo: purchaseOrder.shipmentNo,
+		// 		adminStatus: purchaseOrder.adminStatus,
+		// 		supplierStatusHeader: purchaseOrder.supplierStatusHeader,
+		// 		vendorAddress: purchaseOrder.vendorAddress,
+		// 		supplier: supplier.id,
+		// 		documentDate: purchaseOrder.documentDate,
+		// 		items: items,
+		// 	};
+		// 	return await updatePurchaseOrderById(po);
+		// },
 	},
 };
 
