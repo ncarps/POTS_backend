@@ -7,9 +7,10 @@ export type TItem = {
 	quantity: string;
 	uom: string;
 	unitPrice: string;
+	discount: string;
 	totalAmount: string;
 	deliveryAddress: string;
-	supplierStatus: string;
+	supplierStatusItem: string;
 	scheduleLine: [TScheduleLine];
 	currency: string;
 	dateUpdated: string;
@@ -25,9 +26,10 @@ const createMakeItem = () => (item): TItem => {
 		uom,
 		unitPrice,
 		totalAmount,
+		discount,
 		deliveryAddress,
 		scheduleLine,
-		supplierStatus,
+		supplierStatusItem,
 		currency,
 		dateUpdated,
 		timeUpdated,
@@ -79,10 +81,11 @@ const createMakeItem = () => (item): TItem => {
 		description: description,
 		quantity: quantity,
 		totalAmount: totalAmount,
+		discount: discount,
 		uom: uom,
 		unitPrice: unitPrice,
 		deliveryAddress: deliveryAddress,
-		supplierStatus: supplierStatus,
+		supplierStatusItem: supplierStatusItem,
 		scheduleLine: scheduleLine,
 		currency: currency,
 		dateUpdated: dateUpdated,

@@ -4,8 +4,10 @@ const createUCPurchaseOrder = () => purchaseOrderInput => {
 	const purchaseOrder = makePurchaseOrder({
 		purchaseOrderNo: purchaseOrderInput.purchaseOrderNo,
 		shipmentNo: purchaseOrderInput.shipmentNo,
-		status: purchaseOrderInput.status,
-		supplierStatus: purchaseOrderInput.supplierStatus,
+		adminStatus: purchaseOrderInput.adminStatus,
+		supplierStatusHeader: purchaseOrderInput.supplierStatusHeader,
+		vendorAddress: purchaseOrderInput.vendorAddress,
+		documentDate: purchaseOrderInput.documentDate,
 		supplier: purchaseOrderInput.supplier,
 		items: purchaseOrderInput.items,
 	});

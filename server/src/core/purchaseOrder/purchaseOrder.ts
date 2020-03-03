@@ -1,22 +1,25 @@
 import { TItem } from './../item';
-import { TSupplierStatus } from './../supplierStatus';
 
 export type TPurchaseOrder = {
 	id?: string;
 	purchaseOrderNo: string;
 	shipmentNo: string;
-	status: string;
-	supplierStatus?: string;
+	adminStatus: string;
+	supplierStatusHeader?: string;
 	supplier: string;
+	vendorAddress: string;
+	documentDate: string;
 	items: [TItem] | undefined;
 };
 
 const createMakePurchaseOrder = () => ({
 	purchaseOrderNo,
 	shipmentNo,
-	status,
-	supplierStatus,
+	adminStatus,
+	supplierStatusHeader,
 	supplier,
+	vendorAddress,
+	documentDate,
 	items,
 }): TPurchaseOrder => {
 	if (!purchaseOrderNo) {
@@ -32,13 +35,13 @@ const createMakePurchaseOrder = () => ({
 		throw new Error('Item/s is/are required');
 	}
 
-	// const _items = items.map(item => makeItem(item));
-
 	return {
 		purchaseOrderNo: purchaseOrderNo,
 		shipmentNo: shipmentNo,
-		status: status,
-		supplierStatus: supplierStatus,
+		adminStatus: adminStatus,
+		supplierStatusHeader: supplierStatusHeader,
+		vendorAddress: vendorAddress,
+		documentDate: documentDate,
 		supplier: supplier,
 		items: items,
 	};
