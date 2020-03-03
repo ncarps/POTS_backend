@@ -2,19 +2,23 @@ import { TSupplierStatus } from './../supplierStatus';
 
 export type TScheduleLine = {
 	quantity: string;
+	unitPrice: string;
+	totalAmount: string;
 	uom: string;
-	deliveryDate: string;
-	supplierStatus?: [TSupplierStatus] | undefined;
+	deliveryDateAndTime: string;
+	deliveryStatus?: [TSupplierStatus] | undefined;
 };
 
 const createMakeScheduleLine = () => (scheduleLine): TScheduleLine => {
-	const { quantity, uom, deliveryDate, supplierStatus } = scheduleLine;
+	const { quantity, uom, deliveryDateAndTime, deliveryStatus, unitPrice, totalAmount } = scheduleLine;
 
 	return {
 		quantity: quantity,
 		uom: uom,
-		deliveryDate: deliveryDate,
-		supplierStatus: supplierStatus,
+		deliveryDateAndTime: deliveryDateAndTime,
+		deliveryStatus: deliveryStatus,
+		unitPrice: unitPrice,
+		totalAmount: totalAmount,
 	};
 };
 
