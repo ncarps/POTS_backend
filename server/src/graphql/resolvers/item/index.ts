@@ -26,7 +26,7 @@ const itemResolvers = {
 		},
 
 		updateItem: async (parent, { item }, context, info) => {
-			const { updateItemById, createScheduleLine, updateScheduleLine } = context;
+			const { updateItemById, createScheduleLine } = context;
 
 			let scheduleLine;
 			if (item.scheduleLine) {
@@ -42,8 +42,9 @@ const itemResolvers = {
 				uom: item.uom,
 				unitPrice: item.unitPrice,
 				totalAmount: item.totalAmount,
+				discount: item.discount,
 				deliveryAddress: item.deliveryAddress,
-				supplierStatus: item.supplierStatus,
+				supplierStatusItem: item.supplierStatusItem,
 				scheduleLine: scheduleLine ? scheduleLine.id.toString() : null,
 				currency: item.currency,
 				dateUpdated: item.dateUpdated,

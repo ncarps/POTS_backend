@@ -10,8 +10,9 @@ const typeDefs = gql`
 		uom: String!
 		unitPrice: Float!
 		totalAmount: Float!
+		discount: Float
 		deliveryAddress: Address!
-		supplierStatus: String
+		supplierStatusItem: String
 		scheduleLine: [ScheduleLine]
 		currency: String!
 		dateUpdated: String
@@ -37,6 +38,7 @@ const typeDefs = gql`
 		uom: String!
 		unitPrice: Float!
 		totalAmount: Float!
+		discount: Float
 		deliveryAddress: AddressInput!
 		currency: String!
 		dateUpdated: String
@@ -52,7 +54,8 @@ const typeDefs = gql`
 		uom: String
 		unitPrice: Float
 		totalAmount: Float
-		supplierStatus: String
+		discount: Float
+		supplierStatusItem: String
 		scheduleLine: ScheduleLineInput
 		currency: String
 		dateUpdated: String

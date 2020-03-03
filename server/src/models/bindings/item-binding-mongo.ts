@@ -116,8 +116,11 @@ const itemModel: IDBModel<any> = {
 		return scheduleLine.map(sl => ({
 			id: sl._id.toString(),
 			quantity: sl.quantity,
-			deliveryDate: sl.deliveryDate,
-			supplierStatus: sl.supplierStatus,
+			uom: sl.uom,
+			deliveryDateAndTime: sl.deliveryDateAndTime,
+			totalAmount: sl.totalAmount,
+			unitPrice: sl.unitPrice,
+			deliveryStatus: sl.deliveryStatus,
 		}));
 	},
 
