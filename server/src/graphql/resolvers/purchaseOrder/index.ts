@@ -8,6 +8,10 @@ const purchaseOrderResolvers = {
 			const { getAllItemsByPurchaseOrder } = context;
 			return await getAllItemsByPurchaseOrder(parent.items);
 		},
+		vendorAddress: async (parent, args, context, info) => {
+			const { getAddressById } = context;
+			return await getAddressById(parent.vendorAddress);
+		},
 	},
 	Query: {
 		allPurchaseOrders: async (parent, args, context, info) => {
