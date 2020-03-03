@@ -48,6 +48,7 @@ const ItemSchema = new Schema({
 	},
 	scheduleLine: {
 		type: [String],
+		required: true,
 	},
 	currency: {
 		type: String,

@@ -21,8 +21,29 @@ const itemResolvers = {
 	},
 	Mutation: {
 		createItem: async (parent, { item }, context, info) => {
-			const { createItem } = context;
-			return await createItem(item);
+			const { createItem, createScheduleLine } = context;
+
+			const scheduleLine = await createScheduleLine(item.scheduleLine);
+
+			const i = {
+				id: item.id,
+				itemNo: item.itemNo,
+				productId: item.productId,
+				description: item.description,
+				quantity: item.quantity,
+				uom: item.uom,
+				unitPrice: item.unitPrice,
+				totalAmount: item.totalAmount,
+				discount: item.discount,
+				deliveryAddress: item.deliveryAddress,
+				supplierStatusItem: item.supplierStatusItem,
+				scheduleLine: scheduleLine.id.toString(),
+				currency: item.currency,
+				dateUpdated: item.dateUpdated,
+				timeUpdated: item.timeUpdated,
+			};
+
+			return await createItem(i);
 		},
 
 		updateItem: async (parent, { item }, context, info) => {
