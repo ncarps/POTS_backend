@@ -6,7 +6,7 @@ export type TPurchaseOrder = {
 	purchaseOrderNo: string;
 	shipmentNo: string;
 	status: string;
-	supplierStatus?: [TSupplierStatus] | undefined;
+	supplierStatus?: string;
 	supplier: string;
 	items: [TItem] | undefined;
 };

@@ -69,14 +69,13 @@ const purchaseOrderModel: IDBModel<any> = {
 	},
 
 	getAllBySupplierStatus: async data => {
-		const supplierStatus: any = await SupplierStatus.find({ _id: { $in: data } }).exec();
-
-		return supplierStatus.map(ss => ({
-			id: ss._id.toString(),
-			status: ss.status,
-			dateCreated: ss.dateCreated,
-			timeCreated: supplierStatus.timeCreated,
-		}));
+		// const supplierStatus: any = await SupplierStatus.find({ _id: { $in: data } }).exec();
+		// return supplierStatus.map(ss => ({
+		// 	id: ss._id.toString(),
+		// 	status: ss.status,
+		// 	dateCreated: ss.dateCreated,
+		// 	timeCreated: supplierStatus.timeCreated,
+		// }));
 	},
 
 	getAllByScheduleLine: async data => {},

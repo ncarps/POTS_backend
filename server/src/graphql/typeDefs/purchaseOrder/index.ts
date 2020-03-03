@@ -6,7 +6,7 @@ const typeDefs = gql`
 		purchaseOrderNo: String!
 		shipmentNo: String!
 		status: String!
-		supplierStatus: [SupplierStatus]
+		supplierStatus: String
 		supplier: Supplier!
 		items: [Item!]
 	}
@@ -26,7 +26,7 @@ const typeDefs = gql`
 		purchaseOrderNo: String!
 		shipmentNo: String!
 		status: String!
-		supplierStatus: [SupplierStatusInput]
+		supplierStatus: String
 		supplier: SupplierInput!
 		items: [ItemInput!]!
 	}

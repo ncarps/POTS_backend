@@ -21,7 +21,7 @@ const PurchaseOrderSchema = new Schema({
 		required: true,
 	},
 	supplierStatus: {
-		type: [String],
+		type: String,
 	},
 	supplier: {
 		type: mongoose.Schema.Types.ObjectId,

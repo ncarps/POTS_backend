@@ -1,9 +1,5 @@
 const purchaseOrderResolvers = {
 	PurchaseOrder: {
-		supplierStatus: async (parent, args, context, info) => {
-			const { getAllSupplierStatusByPurchaseOrder } = context;
-			return (await getAllSupplierStatusByPurchaseOrder(parent.supplierStatus)) || null;
-		},
 		supplier: async (parent, args, context, info) => {
 			const { getSupplierById } = context;
 			return await getSupplierById(parent.supplier);
@@ -25,15 +21,9 @@ const purchaseOrderResolvers = {
 	},
 	Mutation: {
 		createPurchaseOrder: async (parent, { purchaseOrder }, context, info) => {
-			const { createPurchaseOrder, createSupplier, createSupplierStatus, createItem } = context;
+			const { createPurchaseOrder, createSupplier, createItem } = context;
 
 			const supplier = await createSupplier(purchaseOrder.supplier);
-
-			console.log({ ...purchaseOrder.supplierStatus });
-			let supplierStatus;
-			if (purchaseOrder.supplierStatus) {
-				supplierStatus = await createSupplierStatus(purchaseOrder.supplierStatus);
-			}
 
 			const items: Array<any> = await Promise.all(
 				purchaseOrder.items.map(async item => {
@@ -46,7 +36,7 @@ const purchaseOrderResolvers = {
 				purchaseOrderNo: purchaseOrder.purchaseOrderNo,
 				shipmentNo: purchaseOrder.shipmentNo,
 				status: purchaseOrder.status,
-				supplierStatus: supplierStatus ? supplierStatus.id.toString() : null,
+				supplierStatus: purchaseOrder.supplierStatus,
 				supplier: supplier.id,
 				items: items,
 			};
@@ -58,16 +48,9 @@ const purchaseOrderResolvers = {
 			return await deletePurchaseOrderbyId(id);
 		},
 		updatePurchaseOrder: async (parent, { purchaseOrder }, context, info) => {
-			const { updatePurchaseOrderById, updateItemById, updateSupplierStatusById, updateSupplierById } = context;
+			const { updatePurchaseOrderById, updateItemById, updateSupplierById } = context;
 
 			const supplier = await updateSupplierById(purchaseOrder.supplier);
-
-			const supplierStatus: Array<any> = await Promise.all(
-				purchaseOrder.supplierStatus.map(async ss => {
-					const poss = await updateSupplierStatusById(ss);
-					return poss.id.toString();
-				})
-			);
 
 			const items: Array<any> = await Promise.all(
 				purchaseOrder.items.map(async item => {
@@ -80,7 +63,7 @@ const purchaseOrderResolvers = {
 				id: purchaseOrder.id,
 				externalID: purchaseOrder.externalID,
 				status: purchaseOrder.status,
-				supplierStatus: supplierStatus,
+				supplierStatus: purchaseOrder.supplierStatus,
 				supplier: supplier.id,
 				items: items,
 			};
