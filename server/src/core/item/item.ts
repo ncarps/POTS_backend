@@ -7,7 +7,7 @@ export type TItem = {
 	quantity: string;
 	uom: string;
 	unitPrice: string;
-	discount: string;
+	discount?: string;
 	totalAmount: string;
 	deliveryAddress: string;
 	supplierStatusItem: string;
