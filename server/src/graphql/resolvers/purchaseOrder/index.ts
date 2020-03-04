@@ -29,22 +29,35 @@ const purchaseOrderResolvers = {
         createPurchaseOrder,
         createSupplier,
         createItem,
-        createScheduleLine
+        createScheduleLine,
+        createSupplierStatus
       } = context;
 
       const supplier = await createSupplier(purchaseOrder.supplier);
 
       const items: Array<any> = await Promise.all(
         purchaseOrder.items.map(async item => {
-          let scheduleLine = [];
-          if (item.scheduleLine) {
-            scheduleLine = await Promise.all(
-              item.scheduleLine.map(async sl => {
-                const itemSl = await createScheduleLine(sl);
-                return itemSl.id.toString();
-              })
-            );
-          }
+          const scheduleLine: Array<any> = await Promise.all(
+            item.scheduleLine.map(async sl => {
+              let deliveryStatus;
+              if (sl.deliveryStatus) {
+                deliveryStatus = await createSupplierStatus(sl.deliveryStatus);
+              }
+
+              const scheduleLine = {
+                quantity: sl.quantity,
+                uom: sl.uom,
+                unitPrice: sl.unitPrice,
+                totalAmount: sl.totalAmount,
+                deliveryDateAndTime: sl.deliveryDateAndTime,
+                deliveryStatus: deliveryStatus
+                  ? deliveryStatus.id.toString()
+                  : null
+              };
+              const itemSl = await createScheduleLine(scheduleLine);
+              return itemSl.id.toString();
+            })
+          );
 
           const i = {
             itemNo: item.itemNo,
