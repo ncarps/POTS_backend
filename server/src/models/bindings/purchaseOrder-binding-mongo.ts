@@ -135,14 +135,27 @@ const purchaseOrderModel: IDBModel<any> = {
 			});
 		});
 	},
-	updateById: async purchaseOrder => {
-		return new Promise((resolve, reject) => {
-			PurchaseOrder.findByIdAndUpdate({ _id: purchaseOrder.id }, { $set: { ...purchaseOrder } }, { new: true }).exec(
-				(err, res) => {
-					err ? reject(err) : resolve(res);
-				}
-			);
-		});
+
+	updateById: async data => {
+		let setFields = {
+			...data,
+		};
+		for (let prop in setFields) {
+			if (setFields[prop] == undefined) {
+				delete setFields[prop];
+			}
+		}
+		const purchaseOrder = await PurchaseOrder.findByIdAndUpdate(
+			{
+				_id: data.id,
+			},
+			setFields,
+			{
+				new: true,
+			}
+		).exec();
+
+		return purchaseOrder;
 	},
 };
 

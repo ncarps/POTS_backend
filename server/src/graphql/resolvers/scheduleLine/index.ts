@@ -17,8 +17,10 @@ const scheduleLineResolvers = {
 	Mutation: {
 		createScheduleLine: async (parent, { scheduleLine }, context, info) => {
 			const { createScheduleLine, createSupplierStatus } = context;
-
-			const deliveryStatus = await createSupplierStatus(scheduleLine.deliveryStatus);
+			let deliveryStatus;
+			if (scheduleLine.deliveryStatus) {
+				deliveryStatus = await createSupplierStatus(scheduleLine.deliveryStatus);
+			}
 
 			const sl = {
 				quantity: scheduleLine.quantity,
@@ -26,7 +28,7 @@ const scheduleLineResolvers = {
 				unitPrice: scheduleLine.unitPrice,
 				totalAmount: scheduleLine.totalAmount,
 				deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
-				deliveryStatus: deliveryStatus.id,
+				deliveryStatus: deliveryStatus ? deliveryStatus.id.toString() : null,
 			};
 
 			return await createScheduleLine(sl);
