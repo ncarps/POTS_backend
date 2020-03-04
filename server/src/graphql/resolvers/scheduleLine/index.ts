@@ -20,6 +20,11 @@ const scheduleLineResolvers = {
 
 			const deliveryStatus: Array<any> = await Promise.all(
 				scheduleLine.deliveryStatus.map(async sl => {
+					let deliveryStatus;
+
+					if (scheduleLine.deliveryStatus) {
+						deliveryStatus = await createSupplierStatus(scheduleLine.deliveryStatus);
+					}
 					const scheduleLinestatus = await createSupplierStatus(sl);
 					return scheduleLinestatus.id.toString();
 				})
@@ -31,7 +36,7 @@ const scheduleLineResolvers = {
 				unitPrice: scheduleLine.unitPrice,
 				totalAmount: scheduleLine.totalAmount,
 				deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
-				deliveryStatus: deliveryStatus,
+				deliveryStatus: deliveryStatus ? deliveryStatus.id.toString() : null,
 			};
 
 			return await createScheduleLine(sl);
