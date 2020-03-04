@@ -34,6 +34,7 @@ const purchaseOrderResolvers = {
 					const scheduleLine: Array<any> = await Promise.all(
 						item.scheduleLine.map(async sl => {
 							let deliveryStatus;
+
 							if (sl.deliveryStatus) {
 								deliveryStatus = await createSupplierStatus(sl.deliveryStatus);
 							}
