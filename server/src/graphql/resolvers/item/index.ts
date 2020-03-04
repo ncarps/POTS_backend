@@ -23,7 +23,12 @@ const itemResolvers = {
 		createItem: async (parent, { item }, context, info) => {
 			const { createItem, createScheduleLine } = context;
 
-			const scheduleLine = await createScheduleLine(item.scheduleLine);
+			const scheduleLine: Array<any> = await Promise.all(
+				item.scheduleLine.map(async sl => {
+					const itemSl = await createScheduleLine(sl);
+					return itemSl.id.toString();
+				})
+			);
 
 			const i = {
 				id: item.id,
@@ -37,7 +42,7 @@ const itemResolvers = {
 				discount: item.discount,
 				deliveryAddress: item.deliveryAddress,
 				supplierStatusItem: item.supplierStatusItem,
-				scheduleLine: scheduleLine.id.toString(),
+				scheduleLine: scheduleLine,
 				currency: item.currency,
 				dateUpdated: item.dateUpdated,
 				timeUpdated: item.timeUpdated,
