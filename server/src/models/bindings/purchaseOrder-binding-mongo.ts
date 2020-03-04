@@ -1,5 +1,5 @@
 import { IDBModel } from '../../commons/types';
-import { PurchaseOrder, Address, Item } from '../mongo-models';
+import { PurchaseOrder, Address, Item, ScheduleLine, SupplierStatus } from '../mongo-models';
 
 const purchaseOrderModel: IDBModel<any> = {
 	insert: async purchaseOrder => {
@@ -83,25 +83,39 @@ const purchaseOrderModel: IDBModel<any> = {
 	},
 
 	getAllByItem: async data => {
-		const item: any = await Item.find({ _id: { $in: data } }).exec();
+		// const item: any = await Item.find({ _id: { $in: data } }).exec();
+		// return item.map(i => ({
+		// 	id: i._id.toString(),
+		// 	itemNo: i.itemNo,
+		// 	productId: i.productId,
+		// 	description: i.description,
+		// 	quantity: i.quantity,
+		// 	totalAmount: i.totalAmount,
+		// 	uom: i.uom,
+		// 	unitPrice: i.unitPrice,
+		// 	discount: i.discount,
+		// 	deliveryAddress: i.deliveryAddress,
+		// 	supplierStatusItem: i.supplierStatusItem,
+		// 	scheduleLine: i.scheduleLine,
+		// 	currency: i.currency,
+		// 	dateUpdated: i.dateUpdated,
+		// 	timeUpdated: i.timeUpdated,
+		// }));
+	},
 
-		return item.map(i => ({
-			id: i._id.toString(),
-			itemNo: i.itemNo,
-			productId: i.productId,
-			description: i.description,
-			quantity: i.quantity,
-			totalAmount: i.totalAmount,
-			uom: i.uom,
-			unitPrice: i.unitPrice,
-			discount: i.discount,
-			deliveryAddress: i.deliveryAddress,
-			supplierStatusItem: i.supplierStatusItem,
-			scheduleLine: i.scheduleLine,
-			currency: i.currency,
-			dateUpdated: i.dateUpdated,
-			timeUpdated: i.timeUpdated,
-		}));
+	getAllByScheduleLine: async data => {
+		// const scheduleLine: any = await ScheduleLine.find({
+		// 	_id: { $in: data },
+		// }).exec();
+		// return scheduleLine.map(sl => ({
+		// 	id: sl._id.toString(),
+		// 	quantity: sl.quantity,
+		// 	uom: sl.uom,
+		// 	deliveryDateAndTime: sl.deliveryDateAndTime,
+		// 	totalAmount: sl.totalAmount,
+		// 	unitPrice: sl.unitPrice,
+		// 	deliveryStatus: sl.deliveryStatus,
+		// }));
 	},
 
 	getAllBySupplierStatus: async data => {
@@ -113,8 +127,6 @@ const purchaseOrderModel: IDBModel<any> = {
 		// 	timeCreated: supplierStatus.timeCreated,
 		// }));
 	},
-
-	getAllByScheduleLine: async data => {},
 
 	deleteById: async id => {
 		return new Promise((resolve, reject) => {

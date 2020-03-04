@@ -81,42 +81,43 @@ const scheduleLineModel: IDBModel<any> = {
 				delete setFields[prop];
 			}
 		}
-		delete setFields.deliveryStatus;
-		const deliveryStatus = data.deliveryStatus;
+		const scheduleLine = await ScheduleLine.findByIdAndUpdate(
+			{
+				_id: data.id,
+			},
+			setFields,
+			{
+				new: true,
+			}
+		).exec();
 
-		let scheduleLine;
-		if (deliveryStatus) {
-			scheduleLine = await ScheduleLine.findByIdAndUpdate(
-				{
-					_id: data.id,
-				},
-				{ $set: { ...setFields }, $push: { deliveryStatus: deliveryStatus } },
-				{
-					new: true,
-				}
-			).exec();
-		} else {
-			scheduleLine = await ScheduleLine.findByIdAndUpdate(
-				{
-					_id: data.id,
-				},
-				setFields,
-				{
-					new: true,
-				}
-			).exec();
-		}
-
-		return {
-			id: scheduleLine._id.toString(),
-			quantity: scheduleLine.quantity,
-			uom: scheduleLine.uom,
-			unitPrice: scheduleLine.unitPrice,
-			totalAmount: scheduleLine.totalAmount,
-			deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
-			deliveryStatus: scheduleLine.deliveryStatus,
-		};
+		return scheduleLine;
+		// {
+		// 	id: scheduleLine._id.toString(),
+		// 	quantity: scheduleLine.quantity,
+		// 	uom: scheduleLine.uom,
+		// 	unitPrice: scheduleLine.unitPrice,
+		// 	totalAmount: scheduleLine.totalAmount,
+		// 	deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
+		// 	deliveryStatus: scheduleLine.deliveryStatus,
+		// };
 	},
+
+	// delete setFields.deliveryStatus;
+	// const deliveryStatus = data.deliveryStatus;
+
+	// let scheduleLine;
+	// if (deliveryStatus) {
+	// 	scheduleLine = await ScheduleLine.findByIdAndUpdate(
+	// 		{
+	// 			_id: data.id,
+	// 		},
+	// 		{ $set: { ...setFields }, $push: { deliveryStatus: deliveryStatus } },
+	// 		{
+	// 			new: true,
+	// 		}
+	// 	).exec();
+	// } else
 };
 
 export { scheduleLineModel };

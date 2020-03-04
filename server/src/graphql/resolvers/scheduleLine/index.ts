@@ -21,13 +21,12 @@ const scheduleLineResolvers = {
 			const deliveryStatus = await createSupplierStatus(scheduleLine.deliveryStatus);
 
 			const sl = {
-				id: scheduleLine.id,
 				quantity: scheduleLine.quantity,
 				uom: scheduleLine.uom,
 				unitPrice: scheduleLine.unitPrice,
 				totalAmount: scheduleLine.totalAmount,
 				deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
-				deliveryStatus: deliveryStatus.id.toString(),
+				deliveryStatus: deliveryStatus.id,
 			};
 
 			return await createScheduleLine(sl);
