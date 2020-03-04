@@ -36,6 +36,8 @@ const purchaseOrderResolvers = {
 				})
 			);
 
+			console.log('AGSDHT', items);
+
 			const po = {
 				purchaseOrderNo: purchaseOrder.purchaseOrderNo,
 				shipmentNo: purchaseOrder.shipmentNo,

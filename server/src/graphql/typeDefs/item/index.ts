@@ -39,6 +39,7 @@ const typeDefs = gql`
 		unitPrice: Float!
 		totalAmount: Float!
 		discount: Float
+		supplierStatusItem: String
 		deliveryAddress: AddressInput!
 		scheduleLine: [ScheduleLineInput!]
 		currency: String!
