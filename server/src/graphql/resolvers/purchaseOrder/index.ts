@@ -29,7 +29,8 @@ const purchaseOrderResolvers = {
         createPurchaseOrder,
         createSupplier,
         createItem,
-        createScheduleLine
+        createScheduleLine,
+        createSupplierStatus
       } = context;
 
       const supplier = await createSupplier(purchaseOrder.supplier);
@@ -38,7 +39,22 @@ const purchaseOrderResolvers = {
         purchaseOrder.items.map(async item => {
           const scheduleLine: Array<any> = await Promise.all(
             item.scheduleLine.map(async sl => {
-              const itemSl = await createScheduleLine(sl);
+              let deliveryStatus;
+              if (sl.deliveryStatus) {
+                deliveryStatus = await createSupplierStatus(sl.deliveryStatus);
+              }
+
+              const scheduleLine = {
+                quantity: sl.quantity,
+                uom: sl.uom,
+                unitPrice: sl.unitPrice,
+                totalAmount: sl.totalAmount,
+                deliveryDateAndTime: sl.deliveryDateAndTime,
+                deliveryStatus: deliveryStatus
+                  ? deliveryStatus.id.toString()
+                  : null
+              };
+              const itemSl = await createScheduleLine(scheduleLine);
               return itemSl.id.toString();
             })
           );
