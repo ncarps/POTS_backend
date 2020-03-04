@@ -36,12 +36,15 @@ const purchaseOrderResolvers = {
 
       const items: Array<any> = await Promise.all(
         purchaseOrder.items.map(async item => {
-          const scheduleLine: Array<any> = await Promise.all(
-            item.scheduleLine.map(async sl => {
-              const itemSl = await createScheduleLine(sl);
-              return itemSl.id.toString();
-            })
-          );
+          let scheduleLine = [];
+          if (item.scheduleLine) {
+            scheduleLine = await Promise.all(
+              item.scheduleLine.map(async sl => {
+                const itemSl = await createScheduleLine(sl);
+                return itemSl.id.toString();
+              })
+            );
+          }
 
           const i = {
             itemNo: item.itemNo,
