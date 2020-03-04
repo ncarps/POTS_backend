@@ -9,7 +9,7 @@ const scheduleLineModel: IDBModel<any> = {
 			unitPrice: scheduleLine.unitPrice,
 			totalAmount: scheduleLine.totalAmount,
 			deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
-			deliveryStatus: scheduleLine.deliveryStatus,
+			deliveryStatus: scheduleLine.deliveryStatus || [],
 		});
 
 		return new Promise((resolve, reject) => {
