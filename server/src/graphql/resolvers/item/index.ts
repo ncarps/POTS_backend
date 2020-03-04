@@ -21,11 +21,29 @@ const itemResolvers = {
 	},
 	Mutation: {
 		createItem: async (parent, { item }, context, info) => {
-			const { createItem, createScheduleLine } = context;
+			const { createItem, createScheduleLine, createSupplierStatus } = context;
 
 			const scheduleLine: Array<any> = await Promise.all(
 				item.scheduleLine.map(async sl => {
-					const itemSl = await createScheduleLine(sl);
+					let deliveryStatus;
+					if (sl.deliveryStatus) {
+						deliveryStatus = await Promise.all(
+							sl.deliveryStatus.map(async ds => {
+								const deliveryStatus = await createSupplierStatus(ds);
+								console.log(deliveryStatus);
+								return deliveryStatus.id.toString();
+							})
+						);
+					}
+					const scheduleLine = {
+						quantity: sl.quantity,
+						uom: sl.uom,
+						unitPrice: sl.unitPrice,
+						totalAmount: sl.totalAmount,
+						deliveryDateAndTime: sl.deliveryDateAndTime,
+						deliveryStatus: deliveryStatus ? deliveryStatus : null,
+					};
+					const itemSl = await createScheduleLine(scheduleLine);
 					return itemSl.id.toString();
 				})
 			);

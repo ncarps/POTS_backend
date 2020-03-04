@@ -17,18 +17,16 @@ const scheduleLineResolvers = {
 	Mutation: {
 		createScheduleLine: async (parent, { scheduleLine }, context, info) => {
 			const { createScheduleLine, createSupplierStatus } = context;
-
-			const deliveryStatus: Array<any> = await Promise.all(
-				scheduleLine.deliveryStatus.map(async sl => {
-					let deliveryStatus;
-
-					if (scheduleLine.deliveryStatus) {
-						deliveryStatus = await createSupplierStatus(scheduleLine.deliveryStatus);
-					}
-					const scheduleLinestatus = await createSupplierStatus(sl);
-					return scheduleLinestatus.id.toString();
-				})
-			);
+			let deliveryStatus;
+			if (scheduleLine.deliveryStatus) {
+				deliveryStatus = await Promise.all(
+					scheduleLine.deliveryStatus.map(async ds => {
+						const deliveryStatus = await createSupplierStatus(ds);
+						console.log(deliveryStatus);
+						return deliveryStatus.id.toString();
+					})
+				);
+			}
 
 			const sl = {
 				quantity: scheduleLine.quantity,
@@ -36,7 +34,7 @@ const scheduleLineResolvers = {
 				unitPrice: scheduleLine.unitPrice,
 				totalAmount: scheduleLine.totalAmount,
 				deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
-				deliveryStatus: deliveryStatus ? deliveryStatus.id.toString() : null,
+				deliveryStatus: deliveryStatus ? deliveryStatus : null,
 			};
 
 			return await createScheduleLine(sl);
