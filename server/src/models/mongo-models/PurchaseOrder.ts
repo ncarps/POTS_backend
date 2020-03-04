@@ -29,6 +29,9 @@ const PurchaseOrderSchema = new Schema({
 	documentDate: {
 		type: String,
 	},
+	postingDate: {
+		type: String,
+	},
 	supplier: {
 		type: mongoose.Schema.Types.ObjectId,
 		required: true,

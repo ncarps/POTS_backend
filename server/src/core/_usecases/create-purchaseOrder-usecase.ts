@@ -8,6 +8,7 @@ const createUCPurchaseOrder = () => purchaseOrderInput => {
 		supplierStatusHeader: purchaseOrderInput.supplierStatusHeader,
 		vendorAddress: purchaseOrderInput.vendorAddress,
 		documentDate: purchaseOrderInput.documentDate,
+		postingDate: purchaseOrderInput.postingDate,
 		supplier: purchaseOrderInput.supplier,
 		items: purchaseOrderInput.items,
 	});

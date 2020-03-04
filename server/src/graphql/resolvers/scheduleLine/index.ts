@@ -16,8 +16,21 @@ const scheduleLineResolvers = {
 	},
 	Mutation: {
 		createScheduleLine: async (parent, { scheduleLine }, context, info) => {
-			const { createScheduleLine } = context;
-			return await createScheduleLine(scheduleLine);
+			const { createScheduleLine, createSupplierStatus } = context;
+
+			const deliveryStatus = await createSupplierStatus(scheduleLine.deliveryStatus);
+
+			const sl = {
+				id: scheduleLine.id,
+				quantity: scheduleLine.quantity,
+				uom: scheduleLine.uom,
+				unitPrice: scheduleLine.unitPrice,
+				totalAmount: scheduleLine.totalAmount,
+				deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
+				deliveryStatus: deliveryStatus.id.toString(),
+			};
+
+			return await createScheduleLine(sl);
 		},
 
 		updateScheduleLine: async (parent, { scheduleLine }, context, info) => {

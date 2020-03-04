@@ -10,6 +10,7 @@ const typeDefs = gql`
 		vendorAddress: Address!
 		supplier: Supplier!
 		documentDate: String
+		postingDate: String
 		items: [Item!]
 	}
 
@@ -31,6 +32,7 @@ const typeDefs = gql`
 		supplierStatusHeader: String
 		vendorAddress: AddressInput!
 		documentDate: String
+		postingDate: String
 		supplier: SupplierInput!
 		items: [ItemInput!]!
 	}
@@ -42,6 +44,7 @@ const typeDefs = gql`
 		adminStatus: String
 		supplierStatusHeader: String
 		documentDate: String
+		postingDate: String
 		supplier: UpdateSupplierInput
 		items: [UpdateItemInput]
 	}

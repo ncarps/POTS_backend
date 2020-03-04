@@ -9,6 +9,7 @@ export type TPurchaseOrder = {
 	supplier: string;
 	vendorAddress: string;
 	documentDate?: string;
+	postingDate?: string;
 	items: [TItem] | undefined;
 };
 
@@ -21,6 +22,7 @@ const createMakePurchaseOrder = () => ({
 	vendorAddress,
 	documentDate,
 	items,
+	postingDate,
 }): TPurchaseOrder => {
 	// if (!purchaseOrderNo) {
 	// 	throw new Error('Purchase Order Number is required');
@@ -39,6 +41,7 @@ const createMakePurchaseOrder = () => ({
 		supplierStatusHeader: supplierStatusHeader,
 		vendorAddress: vendorAddress,
 		documentDate: documentDate,
+		postingDate: postingDate,
 		supplier: supplier,
 		items: items,
 	};

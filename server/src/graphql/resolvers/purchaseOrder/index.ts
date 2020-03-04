@@ -44,6 +44,7 @@ const purchaseOrderResolvers = {
 				vendorAddress: purchaseOrder.vendorAddress,
 				supplier: supplier.id,
 				documentDate: purchaseOrder.documentDate,
+				postingDate: purchaseOrder.postingDate,
 				items: items,
 			};
 
