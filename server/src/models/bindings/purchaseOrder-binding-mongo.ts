@@ -83,24 +83,24 @@ const purchaseOrderModel: IDBModel<any> = {
 	},
 
 	getAllByItem: async data => {
-		// const item: any = await Item.find({ _id: { $in: data } }).exec();
-		// return item.map(i => ({
-		// 	id: i._id.toString(),
-		// 	itemNo: i.itemNo,
-		// 	productId: i.productId,
-		// 	description: i.description,
-		// 	quantity: i.quantity,
-		// 	totalAmount: i.totalAmount,
-		// 	uom: i.uom,
-		// 	unitPrice: i.unitPrice,
-		// 	discount: i.discount,
-		// 	deliveryAddress: i.deliveryAddress,
-		// 	supplierStatusItem: i.supplierStatusItem,
-		// 	scheduleLine: i.scheduleLine,
-		// 	currency: i.currency,
-		// 	dateUpdated: i.dateUpdated,
-		// 	timeUpdated: i.timeUpdated,
-		// }));
+		const item: any = await Item.find({ _id: { $in: data } }).exec();
+		return item.map(i => ({
+			id: i._id.toString(),
+			itemNo: i.itemNo,
+			productId: i.productId,
+			description: i.description,
+			quantity: i.quantity,
+			totalAmount: i.totalAmount,
+			uom: i.uom,
+			unitPrice: i.unitPrice,
+			discount: i.discount,
+			deliveryAddress: i.deliveryAddress,
+			supplierStatusItem: i.supplierStatusItem,
+			scheduleLine: i.scheduleLine,
+			currency: i.currency,
+			dateUpdated: i.dateUpdated,
+			timeUpdated: i.timeUpdated,
+		}));
 	},
 
 	getAllByScheduleLine: async data => {
@@ -119,13 +119,13 @@ const purchaseOrderModel: IDBModel<any> = {
 	},
 
 	getAllBySupplierStatus: async data => {
-		// const supplierStatus: any = await SupplierStatus.find({ _id: { $in: data } }).exec();
-		// return supplierStatus.map(ss => ({
-		// 	id: ss._id.toString(),
-		// 	status: ss.status,
-		// 	dateCreated: ss.dateCreated,
-		// 	timeCreated: supplierStatus.timeCreated,
-		// }));
+		const supplierStatus: any = await SupplierStatus.find({ _id: { $in: data } }).exec();
+		return supplierStatus.map(ss => ({
+			id: ss._id.toString(),
+			status: ss.status,
+			dateCreated: ss.dateCreated,
+			timeCreated: supplierStatus.timeCreated,
+		}));
 	},
 
 	deleteById: async id => {
