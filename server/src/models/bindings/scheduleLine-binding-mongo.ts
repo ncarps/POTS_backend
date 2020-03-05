@@ -108,7 +108,7 @@ const scheduleLineModel: IDBModel<any> = {
 		}
 		console.log(scheduleLine);
 		return {
-			id: scheduleLine._id.toString,
+			id: scheduleLine._id.toString(),
 			quantity: scheduleLine.quantity,
 			uom: scheduleLine.uom,
 			unitPrice: scheduleLine.unitPrice,
