@@ -1,11 +1,14 @@
 export type TSupplier = {
 	supplierNo: string;
-	name: string;
+	supplierName: string;
 	address: string;
+	contactPerson: string;
+	contactNumber: string;
+	tin: string;
 };
 
 const createMakeSupplier = () => (supplier): TSupplier => {
-	const { name, address, supplierNo } = supplier;
+	const { supplierName, address, supplierNo, tin, contactNumber, contactPerson } = supplier;
 	if (!name) {
 		throw new Error('Supplier name is required.');
 	}
@@ -15,8 +18,11 @@ const createMakeSupplier = () => (supplier): TSupplier => {
 
 	return {
 		supplierNo: supplierNo,
-		name: name,
+		supplierName: supplierName,
 		address: address,
+		tin: tin,
+		contactNumber: contactNumber,
+		contactPerson: contactPerson,
 	};
 };
 

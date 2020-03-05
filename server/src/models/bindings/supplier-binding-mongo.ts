@@ -18,8 +18,11 @@ const supplierModel: IDBModel<any> = {
 		});
 		const newSupp = await new Supplier({
 			supplierNo: supplier.supplierNo,
-			name: supplier.name,
+			supplierName: supplier.supplierName,
 			address: newAdd._id.toString(),
+			tin: supplier.tin,
+			contactNumber: supplier.contactNumber,
+			contactPerson: supplier.contactPerson,
 		});
 
 		const newSupplier: any = await new Promise((resolve, reject) => {
@@ -31,8 +34,11 @@ const supplierModel: IDBModel<any> = {
 		return {
 			supplierNo: newSupplier.supplierNo,
 			id: newSupplier._id,
-			name: newSupplier.name,
+			supplierName: newSupplier.supplierName,
 			address: newSupplier.address,
+			tin: newSupplier.tin,
+			contactNumber: newSupplier.contactNumber,
+			contactPerson: newSupplier.contactPerson,
 		};
 	},
 
@@ -44,8 +50,11 @@ const supplierModel: IDBModel<any> = {
 		return {
 			id: supp._id.toString(),
 			supplierNo: supp.supplierNo,
-			name: supp.name,
+			supplierName: supp.supplierName,
 			address: supp.address,
+			tin: supp.tin,
+			contactNumber: supp.contactNumber,
+			contactPerson: supp.contactPerson,
 		};
 	},
 
@@ -54,8 +63,11 @@ const supplierModel: IDBModel<any> = {
 		return supp.map(u => ({
 			id: u._id.toString(),
 			supplierNo: u.supplierNo,
-			name: u.name,
+			supplierName: u.supplierName,
 			address: u.address,
+			tin: u.tin,
+			contactNumber: u.contactNumber,
+			contactPerson: u.contactPerson,
 		}));
 	},
 

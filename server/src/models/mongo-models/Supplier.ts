@@ -12,7 +12,19 @@ const Supplierchema = new Schema({
 		type: String,
 		required: true,
 	},
-	name: {
+	supplierName: {
+		type: String,
+		required: true,
+	},
+	tin: {
+		type: String,
+		required: true,
+	},
+	contactNumber: {
+		type: String,
+		required: true,
+	},
+	contactPerson: {
 		type: String,
 		required: true,
 	},
