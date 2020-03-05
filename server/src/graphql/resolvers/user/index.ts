@@ -10,7 +10,6 @@ const userResolvers = {
 	},
 	Mutation: {
 		createUser: async (_, { user }, { createUser }) => {
-			console.log('USER', user);
 			return createUser(user);
 		},
 

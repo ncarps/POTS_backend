@@ -9,7 +9,7 @@ export type TSupplier = {
 
 const createMakeSupplier = () => (supplier): TSupplier => {
 	const { supplierName, address, supplierNo, tin, contactNumber, contactPerson } = supplier;
-	if (!name) {
+	if (!supplierName) {
 		throw new Error('Supplier name is required.');
 	}
 	// if (!address) {

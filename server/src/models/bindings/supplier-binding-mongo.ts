@@ -84,25 +84,26 @@ const supplierModel: IDBModel<any> = {
 	},
 
 	updateById: async data => {
-		const supplier: any = await Supplier.findByIdAndUpdate(
+		let setFields = {
+			...data,
+		};
+		for (let prop in setFields) {
+			if (setFields[prop] == undefined) {
+				delete setFields[prop];
+			}
+		}
+
+		const supplier = await Supplier.findByIdAndUpdate(
 			{
 				_id: data.id,
 			},
-			{
-				supplierNo: data.supplierNo,
-				name: data.name,
-				// address: data.address,
-			},
+			setFields,
 			{
 				new: true,
 			}
 		).exec();
-		return {
-			id: supplier._id,
-			supplierNo: supplier.supplierNo,
-			name: supplier.name,
-			// address: supplier.address,
-		};
+
+		return supplier;
 	},
 };
 
