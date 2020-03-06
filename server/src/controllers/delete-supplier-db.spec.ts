@@ -1,46 +1,43 @@
-// import { DeleteRecordByIDDB } from './delete-data-db';
+import { DeleteRecordByIDDB } from './delete-data-db';
 
-// const mockSupplier = [
-// 	{
-// 		_id: '1',
-// 		name: 'Supplier Name-1',
-// 		address: {
-// 			building_name: 'building 1',
-// 			city: 'city 1',
-// 			street: 'street 1',
-// 			zip_code: '123',
-// 		},
-// 	},
-// 	{
-// 		_id: '2',
-// 		name: 'Supplier Name-2',
-// 		address: {
-// 			building_name: 'building 2',
-// 			city: 'city 2',
-// 			street: 'street 2',
-// 			zip_code: '123',
-// 		},
-// 	},
-// ];
+const mockSupplier = [
+	{
+		_id: '1',
+		supplierNo: '001',
+		supplierName: 'Juan Dela Cruz',
+		address: { building_name: '002', street: 'Elmer', city: 'Celadon', state: 'Johto', zip_code: '123' },
+		contactPerson: 'Basil Valdez',
+		contactNumber: '1234567',
+		tin: '12345',
+	},
+	{
+		supplierNo: '002',
+		supplierName: 'Juan Dela Cruz',
+		address: { building_name: '002', street: 'Elmer', city: 'Celadon', state: 'Johto', zip_code: '123' },
+		contactPerson: 'Basil Valdez',
+		contactNumber: '1234567',
+		tin: '12345',
+	},
+];
 
-// describe('Delete Supplier', () => {
-// 	it('Should be able to delete a supplier by ID in DB', async () => {
-// 		const oneData = [mockSupplier[0]];
-// 		const mockDB: any = {
-// 			deleteById: jest.fn(async id => {
-// 				const filterMock = data => {
-// 					if (data._id === id) {
-// 						return data;
-// 					}
-// 				};
+describe('Delete Supplier', () => {
+	it('Should be able to delete a supplier by ID in DB', async () => {
+		const oneData = [mockSupplier[0]];
+		const mockDB: any = {
+			deleteById: jest.fn(async id => {
+				const filterMock = data => {
+					if (data._id === id) {
+						return data;
+					}
+				};
 
-// 				return mockSupplier.filter(filterMock);
-// 			}),
-// 		};
-// 		const getOneData = DeleteRecordByIDDB(mockDB);
-// 		const data = await getOneData('1');
-// 		expect(mockDB.deleteById.mock.calls.length).toBe(1);
+				return mockSupplier.filter(filterMock);
+			}),
+		};
+		const getOneData = DeleteRecordByIDDB(mockDB);
+		const data = await getOneData('1');
+		expect(mockDB.deleteById.mock.calls.length).toBe(1);
 
-// 		expect(data).toMatchObject(oneData);
-// 	});
-// });
+		expect(data).toMatchObject(oneData);
+	});
+});
