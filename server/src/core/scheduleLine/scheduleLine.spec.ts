@@ -7,8 +7,10 @@ describe('Schedule Line', () => {
 		const scheduleLine = {
 			quantity: '',
 			uom: 'uom',
-			deliveryDate: 'deliveryDate',
-			supplerStatus: 'supplerStatus',
+			deliveryDateAndTime: 'deliveryDate',
+			unitPrice: 'unitPrice',
+			totalAmount: 'totalAmount',
+			deliveryStatus: 'supplerStatus',
 		};
 		expect(() => makeScheduleLine(scheduleLine)).toThrow('Quantity is required.');
 	});
@@ -17,31 +19,59 @@ describe('Schedule Line', () => {
 		const scheduleLine = {
 			quantity: 'quantity',
 			uom: '',
-			deliveryDate: 'deliveryDate',
-			supplerStatus: 'supplerStatus',
+			deliveryDateAndTime: 'deliveryDate',
+			unitPrice: 'unitPrice',
+			totalAmount: 'totalAmount',
+			deliveryStatus: 'supplerStatus',
 		};
-		expect(() => makeScheduleLine(scheduleLine)).toThrow('UoM is required.');
+		expect(() => makeScheduleLine(scheduleLine)).toThrow('UOM is required.');
 	});
 
 	it('must have deliveryDate', () => {
 		const scheduleLine = {
 			quantity: 'quantity',
 			uom: 'uom',
-			deliveryDate: '',
-			supplerStatus: 'supplerStatus',
+			deliveryDateAndTime: '',
+			unitPrice: 'unitPrice',
+			totalAmount: 'totalAmount',
+			deliveryStatus: 'supplerStatus',
 		};
-		expect(() => makeScheduleLine(scheduleLine)).toThrow('Delivery Date is required.');
+		expect(() => makeScheduleLine(scheduleLine)).toThrow('Delivery Date and Time is required.');
 	});
 
-	it('will return the item', () => {
-		//givens
-		const scheduleLineInput = {
+	it('must have unitPice', () => {
+		const scheduleLine = {
 			quantity: 'quantity',
 			uom: 'uom',
-			deliveryDate: '',
-			supplerStatus: 'supplerStatus',
+			deliveryDateAndTime: 'dateandtime',
+			unitPrice: '',
+			totalAmount: 'totalAmount',
+			deliveryStatus: 'supplerStatus',
 		};
-		const a = makeScheduleLine(scheduleLineInput);
-		expect(a).toMatchObject(scheduleLineInput);
+		expect(() => makeScheduleLine(scheduleLine)).toThrow('Unit Price is required.');
 	});
+
+	it('must have totalAmount', () => {
+		const scheduleLine = {
+			quantity: 'quantity',
+			uom: 'uom',
+			deliveryDateAndTime: 'dateandtime',
+			unitPrice: 'unitPrice',
+			totalAmount: '',
+			deliveryStatus: 'supplerStatus',
+		};
+		expect(() => makeScheduleLine(scheduleLine)).toThrow('Total Amount is required.');
+	});
+
+	// it('will return the item', () => {
+	// 	//givens
+	// 	const scheduleLineInput = {
+	// 		quantity: 'quantity',
+	// 		uom: 'uom',
+	// 		deliveryDate: '',
+	// 		supplerStatus: 'supplerStatus',
+	// 	};
+	// 	const a = makeScheduleLine(scheduleLineInput);
+	// 	expect(a).toMatchObject(scheduleLineInput);
+	// });
 });
