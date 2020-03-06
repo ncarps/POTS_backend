@@ -54,7 +54,6 @@ const scheduleLineResolvers = {
 				);
 			}
 
-			console.log('waaark', scheduleLine);
 			const sl = {
 				id: scheduleLine.id,
 				quantity: scheduleLine.quantity,

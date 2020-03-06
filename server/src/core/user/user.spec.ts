@@ -1,10 +1,12 @@
 import { makeUser } from '.';
 
 describe('User', () => {
-	it('must have a name', () => {
+	it('must have a username', () => {
 		const user = {
-			name: '',
+			userName: '',
+			password: '1234',
+			userLevel: 'Admin',
 		};
-		expect(() => makeUser(user)).toThrow('Name is required.');
+		expect(() => makeUser(user)).toThrow('Username is required.');
 	});
 });
