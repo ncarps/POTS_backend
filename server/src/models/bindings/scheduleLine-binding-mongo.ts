@@ -9,7 +9,7 @@ const scheduleLineModel: IDBModel<any> = {
 			unitPrice: scheduleLine.unitPrice,
 			totalAmount: scheduleLine.totalAmount,
 			deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
-			deliveryStatus: scheduleLine.deliveryStatus,
+			deliveryStatus: scheduleLine.deliveryStatus || [],
 		});
 
 		return new Promise((resolve, reject) => {
@@ -81,43 +81,42 @@ const scheduleLineModel: IDBModel<any> = {
 				delete setFields[prop];
 			}
 		}
-		const scheduleLine = await ScheduleLine.findByIdAndUpdate(
-			{
-				_id: data.id,
-			},
-			setFields,
-			{
-				new: true,
-			}
-		).exec();
+		delete setFields.deliveryStatus;
+		const deliveryStatus = data.deliveryStatus;
 
-		return scheduleLine;
-		// {
-		// 	id: scheduleLine._id.toString(),
-		// 	quantity: scheduleLine.quantity,
-		// 	uom: scheduleLine.uom,
-		// 	unitPrice: scheduleLine.unitPrice,
-		// 	totalAmount: scheduleLine.totalAmount,
-		// 	deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
-		// 	deliveryStatus: scheduleLine.deliveryStatus,
-		// };
+		let scheduleLine;
+		if (deliveryStatus) {
+			scheduleLine = await ScheduleLine.findByIdAndUpdate(
+				{
+					_id: data.id,
+				},
+				{ $set: { ...setFields }, $push: { deliveryStatus: deliveryStatus } },
+				{
+					new: true,
+				}
+			).exec();
+		} else {
+			scheduleLine = await ScheduleLine.findByIdAndUpdate(
+				{
+					_id: data.id,
+				},
+				setFields,
+				{
+					new: true,
+				}
+			).exec();
+		}
+		console.log(scheduleLine);
+		return {
+			id: scheduleLine._id.toString(),
+			quantity: scheduleLine.quantity,
+			uom: scheduleLine.uom,
+			unitPrice: scheduleLine.unitPrice,
+			totalAmount: scheduleLine.totalAmount,
+			deliveryDateAndTime: scheduleLine.deliveryDateAndTime,
+			deliveryStatus: scheduleLine.deliveryStatus,
+		};
 	},
-
-	// delete setFields.deliveryStatus;
-	// const deliveryStatus = data.deliveryStatus;
-
-	// let scheduleLine;
-	// if (deliveryStatus) {
-	// 	scheduleLine = await ScheduleLine.findByIdAndUpdate(
-	// 		{
-	// 			_id: data.id,
-	// 		},
-	// 		{ $set: { ...setFields }, $push: { deliveryStatus: deliveryStatus } },
-	// 		{
-	// 			new: true,
-	// 		}
-	// 	).exec();
-	// } else
 };
 
 export { scheduleLineModel };

@@ -27,9 +27,8 @@ const typeDefs = gql`
 
 	input UpdateUserInput {
 		id: ID!
-		userName: String!
-		password: String!
-		userLevel: String!
+		userName: String
+		password: String
 	}
 `;
 

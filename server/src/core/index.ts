@@ -1,38 +1,39 @@
 import {
-	//User
-	createUCCreateUser,
+  //User
+  createUCCreateUser,
+  updateUCUser,
+  //Supplier
+  createUCCreateSupplier,
+  updateUCSupplier,
 
-	//Supplier
-	createUCCreateSupplier,
-	updateUCSupplier,
+  //SupplierStatus
+  createUCCreateSupplierStatus,
+  updateUCSupplierStatus,
 
-	//SupplierStatus
-	createUCCreateSupplierStatus,
-	updateUCSupplierStatus,
+  //Item
+  createUCCreateItem,
+  updateUCItem,
 
-	//Item
-	createUCCreateItem,
-	updateUCItem,
+  //PurchaseOrder
+  createUCPurchaseOrder,
+  updateUCPurchaseOrder,
 
-	//PurchaseOrder
-	createUCPurchaseOrder,
-	updateUCPurchaseOrder,
-
-	//Schedule Line
-	createUCCreateScheduleLine,
-	updateUCScheduleLine,
-} from './_usecases';
+  //Schedule Line
+  createUCCreateScheduleLine,
+  updateUCScheduleLine
+} from "./_usecases";
 
 export {
-	createUCCreateSupplier,
-	createUCCreateUser,
-	updateUCSupplier,
-	createUCCreateSupplierStatus,
-	updateUCSupplierStatus,
-	createUCCreateItem,
-	updateUCItem,
-	createUCPurchaseOrder,
-	updateUCPurchaseOrder,
-	createUCCreateScheduleLine,
-	updateUCScheduleLine,
+  createUCCreateSupplier,
+  createUCCreateUser,
+  updateUCSupplier,
+  createUCCreateSupplierStatus,
+  updateUCSupplierStatus,
+  createUCCreateItem,
+  updateUCItem,
+  createUCPurchaseOrder,
+  updateUCPurchaseOrder,
+  createUCCreateScheduleLine,
+  updateUCScheduleLine,
+  updateUCUser
 };

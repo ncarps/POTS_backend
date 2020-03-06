@@ -3,8 +3,11 @@ import { makeSupplier } from '../supplier';
 const createUCCreateSupplier = () => suppplierInput => {
 	const supplier = makeSupplier({
 		supplierNo: suppplierInput.supplierNo,
-		name: suppplierInput.name,
+		supplierName: suppplierInput.supplierName,
 		address: suppplierInput.address,
+		tin: suppplierInput.tin,
+		contactNumber: suppplierInput.contactNumber,
+		contactPerson: suppplierInput.contactPerson,
 	});
 
 	return supplier;

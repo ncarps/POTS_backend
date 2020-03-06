@@ -4,7 +4,7 @@ export type TPurchaseOrder = {
 	id?: string;
 	purchaseOrderNo: string;
 	shipmentNo: string;
-	adminStatus: string;
+	adminStatus?: string;
 	supplierStatusHeader?: string;
 	supplier: string;
 	vendorAddress: string;
@@ -24,15 +24,21 @@ const createMakePurchaseOrder = () => ({
 	items,
 	postingDate,
 }): TPurchaseOrder => {
-	// if (!purchaseOrderNo) {
-	// 	throw new Error('Purchase Order Number is required');
-	// }
-	// if (!supplier) {
-	// 	throw new Error('Supplier is required');
-	// }
-	// if (!items) {
-	// 	throw new Error('Item/s is/are required');
-	// }
+	if (!purchaseOrderNo) {
+		throw new Error('Purchase Order Number is required');
+	}
+	if (!shipmentNo) {
+		throw new Error('Shipment Number is required');
+	}
+	if (!supplier) {
+		throw new Error('Supplier is required');
+	}
+	if (!items) {
+		throw new Error('Item/s is/are required');
+	}
+	if (!vendorAddress) {
+		throw new Error('Vendor Address is required');
+	}
 
 	return {
 		purchaseOrderNo: purchaseOrderNo,

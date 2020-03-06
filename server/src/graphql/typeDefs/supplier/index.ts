@@ -4,8 +4,11 @@ const suppliertypeDefs = gql`
 	type Supplier {
 		id: ID!
 		supplierNo: String!
-		name: String!
+		supplierName: String!
 		address: Address!
+		tin: String!
+		contactNumber: String!
+		contactPerson: String!
 	}
 
 	type Query {
@@ -21,15 +24,20 @@ const suppliertypeDefs = gql`
 
 	input SupplierInput {
 		supplierNo: String!
-		name: String!
+		supplierName: String!
 		address: AddressInput!
+		tin: String!
+		contactNumber: String!
+		contactPerson: String!
 	}
 
 	input UpdateSupplierInput {
 		id: ID!
-		supplierNo: String!
-		name: String!
-		# address: String!
+		supplierNo: String
+		supplierName: String
+		tin: String
+		contactNumber: String
+		contactPerson: String
 	}
 `;
 

@@ -55,33 +55,14 @@ const purchaseOrderResolvers = {
                 unitPrice: sl.unitPrice,
                 totalAmount: sl.totalAmount,
                 deliveryDateAndTime: sl.deliveryDateAndTime,
-                deliveryStatus: deliveryStatus
-                  ? deliveryStatus.id.toString()
-                  : null
+                deliveryStatus: deliveryStatus ? deliveryStatus : null
               };
               const itemSl = await createScheduleLine(scheduleLine);
               return itemSl.id.toString();
             })
           );
 
-          const i = {
-            itemNo: item.itemNo,
-            productId: item.productId,
-            description: item.description,
-            quantity: item.quantity,
-            uom: item.uom,
-            unitPrice: item.unitPrice,
-            totalAmount: item.totalAmount,
-            discount: item.discount,
-            deliveryAddress: item.deliveryAddress,
-            supplierStatusItem: item.supplierStatusItem,
-            scheduleLine: scheduleLine,
-            currency: item.currency,
-            dateUpdated: item.dateUpdated,
-            timeUpdated: item.timeUpdated
-          };
-
-          const poitem = await createItem(i);
+          const poitem = await createItem(items);
           console.log("PO item", poitem);
           return poitem.id.toString();
         })

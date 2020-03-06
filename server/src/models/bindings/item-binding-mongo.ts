@@ -1,7 +1,6 @@
 import { IDBModel } from '../../commons/types';
 import moment from 'moment';
 import { Item, Address, SupplierStatus, ScheduleLine } from '../mongo-models';
-import { networkInterfaces } from 'os';
 
 const itemModel: IDBModel<any> = {
 	insert: async item => {
@@ -30,7 +29,7 @@ const itemModel: IDBModel<any> = {
 			discount: item.discount,
 			deliveryAddress: newAdd._id.toString(),
 			supplierStatusItem: item.supplierStatusItem,
-			scheduleLine: item.scheduleLine,
+			scheduleLine: item.scheduleLine || [],
 			currency: item.currency,
 			dateUpdated: item.dateUpdated,
 			timeUpdated: item.timeUpdated,
@@ -124,17 +123,7 @@ const itemModel: IDBModel<any> = {
 		}));
 	},
 
-	getAllBySupplierStatus: async data => {
-		// const supplierStatus: any = await SupplierStatus.find({
-		// 	_id: { $in: data },
-		// }).exec();
-		// return supplierStatus.map(ss => ({
-		// 	id: ss._id.toString(),
-		// 	status: ss.status,
-		// 	dateCreated: ss.dateCreated,
-		// 	timeCreated: ss.timeCreated,
-		// }));
-	},
+	getAllBySupplierStatus: async data => {},
 
 	deleteById: async id => {
 		return new Promise((resolve, reject) => {

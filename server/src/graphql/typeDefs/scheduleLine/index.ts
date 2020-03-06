@@ -38,7 +38,7 @@ const typeDefs = gql`
     unitPrice: Float
     totalAmount: Float
     deliveryDateAndTime: String
-    deliveryStatus: SupplierStatusInput
+    deliveryStatus: [SupplierStatusInput]
   }
 `;
 
