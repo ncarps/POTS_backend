@@ -29,7 +29,6 @@ const typeDefs = gql`
 		id: ID!
 		userName: String
 		password: String
-		userLevel: String
 	}
 `;
 

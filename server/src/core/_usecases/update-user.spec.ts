@@ -1,16 +1,18 @@
-// import { updateUCUser } from './update-user.usecase';
-// const updateUser = updateUCUser();
+import { updateUCUser } from './update-user.usecase';
+const updateUser = updateUCUser();
 
-// describe('UseCase: Update a User ', () => {
-// 	it('should be able to update a User', () => {
-// 		const userInput = {
-// 			name: 'User Name',
-// 		};
+describe('UseCase: Update a User ', () => {
+	it('should be able to update a User', () => {
+		const userInput = {
+			userName: 'User Name1',
+			password: '1234',
+		};
 
-// 		const oldUserInput = {
-// 			name: 'User Names',
-// 		};
-// 		const newUser = updateUser(userInput, oldUserInput);
-// 		expect(newUser).toMatchObject(userInput);
-// 	});
-// });
+		const oldUserInput = {
+			userName: 'User Name12',
+			password: '12345',
+		};
+		const newUser = updateUser(userInput, oldUserInput);
+		expect(newUser).toMatchObject(userInput);
+	});
+});

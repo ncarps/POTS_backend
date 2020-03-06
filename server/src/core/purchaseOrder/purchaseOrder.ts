@@ -28,7 +28,7 @@ const createMakePurchaseOrder = () => ({
 		throw new Error('Purchase Order Number is required');
 	}
 	if (!shipmentNo) {
-		throw new Error('Purchase Order Number is required');
+		throw new Error('Shipment Number is required');
 	}
 	if (!supplier) {
 		throw new Error('Supplier is required');
@@ -37,7 +37,7 @@ const createMakePurchaseOrder = () => ({
 		throw new Error('Item/s is/are required');
 	}
 	if (!vendorAddress) {
-		throw new Error('Vender Address is/are required');
+		throw new Error('Vendor Address is required');
 	}
 
 	return {
