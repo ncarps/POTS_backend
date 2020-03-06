@@ -46,6 +46,7 @@ const {
 	getAllByScheduleLineDB,
 	//User controllers
 	createCreateUserDB,
+	updateUserByIDDB,
 	//Supplier controllers
 	createCreateSupplierDB,
 	updateSupplierByIDDB,
@@ -70,6 +71,7 @@ const context = async session => {
 		getAllUsers: getAllDataDB(userModel),
 		getUserById: getByIDDB(userModel),
 		deleteUserById: DeleteRecordByIDDB(userModel),
+		updateUserById: updateUserByIDDB(userModel),
 		//Adress
 		getAddressById: getByIDDB(addressModel),
 		getAllAddress: getAllDataDB(addressModel),
