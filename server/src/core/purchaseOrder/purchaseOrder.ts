@@ -1,15 +1,15 @@
 import { TItem } from './../item';
 
 export type TPurchaseOrder = {
-	id?: string;
+	// id?: string;
 	purchaseOrderNo: string;
 	shipmentNo: string;
-	adminStatus?: string;
-	supplierStatusHeader?: string;
+	adminStatus: string | undefined;
+	supplierStatusHeader: string | undefined;
 	supplier: string;
 	vendorAddress: string;
-	documentDate?: string;
-	postingDate?: string;
+	documentDate: string | undefined;
+	postingDate: string | undefined;
 	items: [TItem] | undefined;
 };
 

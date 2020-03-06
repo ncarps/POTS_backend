@@ -46,7 +46,7 @@ describe('UseCase: Update a Purchase Order ', () => {
 			adminStatus: 'status',
 			supplierStatusHeader: '',
 			supplier: {
-				supplierNo: '',
+				supplierNo: '001',
 				supplierName: 'Juan Dela Cruz',
 				address: { building_name: '002', street: 'Elmer', city: 'Celadon', state: 'Johto', zip_code: '123' },
 				contactPerson: 'Basil Valdez',

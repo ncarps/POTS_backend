@@ -2,7 +2,7 @@ import { makePurchaseOrder, TPurchaseOrder } from '../purchaseOrder';
 
 const updateUCPurchaseOrder = () => (purchaseOrderInput, oldValue) => {
 	let newPurchaseOrder: TPurchaseOrder = {
-		purchaseOrderNo: oldValue.purchaseOrder,
+		purchaseOrderNo: oldValue.purchaseOrderNo,
 		shipmentNo: oldValue.shipmentNo,
 		adminStatus: oldValue.adminStatus,
 		supplierStatusHeader: oldValue.supplierStatusHeader,
