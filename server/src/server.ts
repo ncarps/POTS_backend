@@ -70,8 +70,8 @@ const context = async session => {
 		createUser: createCreateUserDB(userModel),
 		getAllUsers: getAllDataDB(userModel),
 		getUserById: getByIDDB(userModel),
-		deleteUserById: DeleteRecordByIDDB(userModel),
 		updateUserById: updateUserByIDDB(userModel),
+		deleteUserById: DeleteRecordByIDDB(userModel),
 		//Adress
 		getAddressById: getByIDDB(addressModel),
 		getAllAddress: getAllDataDB(addressModel),
