@@ -1,63 +1,63 @@
-import { updateSupplierByIDDB } from './update-supplier-db';
+// import { updateSupplierByIDDB } from './update-supplier-db';
 
-const mockSupplier = [
-	{
-		_id: '1',
-		name: 'Supplier Name-1',
-		address: {
-			building_name: 'building 1',
-			street: 'street 1',
-			city: 'city 1',
-			state: 'state 1',
-			zip_code: '123',
-		},
-	},
-	{
-		_id: '2',
-		name: 'Supplier Name-2',
-		address: {
-			building_name: 'building 2',
-			street: 'street 2',
-			city: 'city 2',
-			state: 'state 2',
-			zip_code: '123',
-		},
-	},
-];
+// const mockSupplier = [
+// 	{
+// 		_id: '1',
+// 		name: 'Supplier Name-1',
+// 		address: {
+// 			building_name: 'building 1',
+// 			street: 'street 1',
+// 			city: 'city 1',
+// 			state: 'state 1',
+// 			zip_code: '123',
+// 		},
+// 	},
+// 	{
+// 		_id: '2',
+// 		name: 'Supplier Name-2',
+// 		address: {
+// 			building_name: 'building 2',
+// 			street: 'street 2',
+// 			city: 'city 2',
+// 			state: 'state 2',
+// 			zip_code: '123',
+// 		},
+// 	},
+// ];
 
-describe('Update Supplier', () => {
-	const mockDb: any = {
-		updateById: jest.fn(async input => {
-			return { ...input };
-		}),
-		getById: jest.fn(async id => {
-			const filterMock = data => {
-				if (data._id === id) {
-					return data;
-				}
-			};
+// describe('Update Supplier', () => {
+// 	const mockDb: any = {
+// 		updateById: jest.fn(async input => {
+// 			return { ...input };
+// 		}),
+// 		getById: jest.fn(async id => {
+// 			const filterMock = data => {
+// 				if (data._id === id) {
+// 					return data;
+// 				}
+// 			};
 
-			return mockSupplier.filter(filterMock);
-		}),
-	};
-	const updateSupplier = updateSupplierByIDDB(mockDb);
+// 			return mockSupplier.filter(filterMock);
+// 		}),
+// 	};
+// 	const updateSupplier = updateSupplierByIDDB(mockDb);
 
-	it('should be able to update a supplier in the DB', async () => {
-		const given = {
-			name: 'Supplier Name-1.0',
-			address: {
-				building_name: 'building 1',
-				street: 'street 1',
-				city: 'city 1',
-				state: 'state 1',
-				zip_code: '123',
-			},
-		};
+// 	it('should be able to update a supplier in the DB', async () => {
+// 		const given = {
+// 			name: 'Supplier Name-1.0',
+// 			address: {
+// 				building_name: 'building 1',
+// 				street: 'street 1',
+// 				city: 'city 1',
+// 				state: 'state 1',
+// 				zip_code: '123',
+// 			},
+// 		};
 
-		const newData = await updateSupplier(given);
+// 		const newData = await updateSupplier(given);
 
-		expect(mockDb.getById.mock.calls.length).toBe(1);
-		expect(mockDb.updateById.mock.calls.length).toBe(1);
-		expect(newData).toMatchObject(given);
-	});
-});
+// 		expect(mockDb.getById.mock.calls.length).toBe(1);
+// 		expect(mockDb.updateById.mock.calls.length).toBe(1);
+// 		expect(newData).toMatchObject(given);
+// 	});
+// });

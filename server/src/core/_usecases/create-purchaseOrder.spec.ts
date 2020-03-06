@@ -1,27 +1,27 @@
-import { createUCPurchaseOrder } from './create-purchaseOrder-usecase';
+// import { createUCPurchaseOrder } from './create-purchaseOrder-usecase';
 
-const addPurchaseOrder = createUCPurchaseOrder();
+// const addPurchaseOrder = createUCPurchaseOrder();
 
-describe('Purchase Order Create', () => {
-	it('should create a purchase order', () => {
-		const purchaseOrderInput = {
-			externalID: '001',
-			status: 'Pending',
-			supplierStatus: ['Dispatched'],
-			supplier: 'Jollibee',
-			items: [
-				{
-					itemNo: '1',
-					description: 'Corned Beef',
-					quantity: '5',
-					uom: 'kg',
-					price: '2000',
-					currency: 'PHP',
-				},
-			],
-		};
+// describe('Purchase Order Create', () => {
+// 	it('should create a purchase order', () => {
+// 		const purchaseOrderInput = {
+// 			externalID: '001',
+// 			status: 'Pending',
+// 			supplierStatus: ['Dispatched'],
+// 			supplier: 'Jollibee',
+// 			items: [
+// 				{
+// 					itemNo: '1',
+// 					description: 'Corned Beef',
+// 					quantity: '5',
+// 					uom: 'kg',
+// 					price: '2000',
+// 					currency: 'PHP',
+// 				},
+// 			],
+// 		};
 
-		const newPurchaseItem = addPurchaseOrder(purchaseOrderInput);
-		expect(newPurchaseItem).toMatchObject(purchaseOrderInput);
-	});
-});
+// 		const newPurchaseItem = addPurchaseOrder(purchaseOrderInput);
+// 		expect(newPurchaseItem).toMatchObject(purchaseOrderInput);
+// 	});
+// });
