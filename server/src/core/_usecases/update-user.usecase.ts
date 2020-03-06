@@ -6,7 +6,6 @@ const updateUCUser = () => (userInput, oldValue) => {
 		userLevel: oldValue.userLevel,
 		userName: oldValue.userName,
 	};
-	// console.log('Old User', oldValue);
 
 	for (let prop in userInput) {
 		if (userInput[prop]) {
@@ -15,7 +14,6 @@ const updateUCUser = () => (userInput, oldValue) => {
 			newUser[prop] = oldValue[prop];
 		}
 	}
-	// console.log('New User', newUser);
 	const user = makeUser(newUser);
 	return { ...user, id: oldValue.id };
 };
