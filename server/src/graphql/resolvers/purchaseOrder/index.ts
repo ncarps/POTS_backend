@@ -31,14 +31,14 @@ const purchaseOrderResolvers = {
 
 			const items: Array<any> = await Promise.all(
 				purchaseOrder.items.map(async item => {
-					let scheduleLine: Array<any> = await Promise.all(
+					const scheduleLine: Array<any> = await Promise.all(
 						item.scheduleLine.map(async sl => {
 							let deliveryStatus;
 							if (sl.deliveryStatus) {
 								deliveryStatus = await Promise.all(
 									sl.deliveryStatus.map(async ds => {
 										const deliveryStatus = await createSupplierStatus(ds);
-										// console.log(deliveryStatus);
+										console.log(deliveryStatus);
 										return deliveryStatus.id.toString();
 									})
 								);
@@ -56,7 +56,24 @@ const purchaseOrderResolvers = {
 						})
 					);
 
-					const poitem = await createItem(items);
+					const i = {
+						itemNo: item.itemNo,
+						productId: item.productId,
+						description: item.description,
+						quantity: item.quantity,
+						uom: item.uom,
+						unitPrice: item.unitPrice,
+						totalAmount: item.totalAmount,
+						discount: item.discount,
+						deliveryAddress: item.deliveryAddress,
+						supplierStatusItem: item.supplierStatusItem,
+						scheduleLine: scheduleLine,
+						currency: item.currency,
+						dateUpdated: item.dateUpdated,
+						timeUpdated: item.timeUpdated,
+					};
+
+					const poitem = await createItem(i);
 					console.log('PO item', poitem);
 					return poitem.id.toString();
 				})
