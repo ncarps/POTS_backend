@@ -84,7 +84,7 @@ const itemResolvers = {
 						unitPrice: sl.unitPrice,
 						totalAmount: sl.totalAmount,
 						deliveryDateAndTime: sl.deliveryDateAndTime,
-						deliveryStatus: deliveryStatus ? deliveryStatus.id.toString() : null,
+						deliveryStatus: deliveryStatus ? deliveryStatus.id.toString(),
 					};
 					const itemSl = await createScheduleLine(scheduleLine);
 					return itemSl.id.toString();

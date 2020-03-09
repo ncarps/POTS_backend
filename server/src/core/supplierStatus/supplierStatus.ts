@@ -9,13 +9,13 @@ const createMakeSupplierStatus = () => ({ status, dateCreated, timeCreated }): T
 		throw new Error('Status is required.');
 	}
 
-	if (!dateCreated) {
-		throw new Error('Date Created is required.');
-	}
+	// if (!dateCreated) {
+	// 	throw new Error('Date Created is required.');
+	// }
 
-	if (!timeCreated) {
-		throw new Error('Time Created is required.');
-	}
+	// if (!timeCreated) {
+	// 	throw new Error('Time Created is required.');
+	// }
 
 	return { status: status, dateCreated: dateCreated, timeCreated: timeCreated };
 };
