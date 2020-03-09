@@ -205,7 +205,7 @@ const supplierStatusMock = {
 
 //Schedule Line Mock
 
-const sc = {
+const scheduleLinesMock = {
 	insert: jest.fn(async input => {
 		return { id: '1', ...input };
 	}),
@@ -234,7 +234,9 @@ const sc = {
 		const res = mockData.users.filter(filterData);
 		return res[0] || null;
 	},
-	getAllBySupplierStatus: async id => {},
+	getAllBySupplierStatus: jest.fn(async () => {
+		return mockData.scheduleLines;
+	}),
 	getAllByItem: async id => {},
 	getAllByScheduleLine: async id => {},
 };
@@ -284,37 +286,48 @@ const { server }: any = constructTestServer({
 	context: {
 		//User
 		createUser: createCreateUserDB(userMock),
+		getAllUsers: getAllDataDB(userMock),
 		getUserById: getByIDDB(userMock),
-		getAllUser: getAllDataDB(userMock),
-		deleteUserById: DeleteRecordByIDDB(userMock),
 		updateUserById: updateUserByIDDB(userMock),
-		//Address
-		getAllAddress: getAllDataDB(addressMock),
+		deleteUserById: DeleteRecordByIDDB(userMock),
+		//Adress
 		getAddressById: getByIDDB(addressMock),
+		getAllAddress: getAllDataDB(addressMock),
 		//Supplier
 		createSupplier: createCreateSupplierDB(supplierMock),
-		getSupplierById: getByIDDB(supplierMock),
 		getAllSuppliers: getAllDataDB(supplierMock),
+		getSupplierById: getByIDDB(supplierMock),
 		deleteSupplierById: DeleteRecordByIDDB(supplierMock),
 		updateSupplierById: updateSupplierByIDDB(supplierMock),
 		//SupplierStatus
 		createSupplierStatus: createCreateSupplierStatusDB(supplierStatusMock),
+		updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusMock),
+		deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusMock),
 		getSupplierStatusById: getByIDDB(supplierStatusMock),
 		getAllSupplierStatus: getAllDataDB(supplierStatusMock),
-		deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusMock),
-		updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusMock),
 		//Item
 		createItem: createCreateItemDB(itemMock),
+		updateItemById: updateItemByIDDB(itemMock),
+		deleteItemById: DeleteRecordByIDDB(itemMock),
 		getItemById: getByIDDB(itemMock),
 		getAllItems: getAllDataDB(itemMock),
-		deleteItemById: DeleteRecordByIDDB(itemMock),
-		updateItemById: updateItemByIDDB(itemMock),
+		getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemMock),
+		getAllScheduleLinesByItem: getAllByScheduleLineDB(itemMock),
 		//Purchase Order
 		createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderMock),
-		getPurchaseOrderById: getByIDDB(purchaseOrderMock),
-		getAllPurchaseOrderById: getAllDataDB(purchaseOrderMock),
-		deletePurchaseOrderById: DeleteRecordByIDDB(purchaseOrderMock),
 		updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderMock),
+		deletePurchaseOrderbyId: DeleteRecordByIDDB(purchaseOrderMock),
+		getPurchaseOrderById: getByIDDB(purchaseOrderMock),
+		getAllPurchaseOrders: getAllDataDB(purchaseOrderMock),
+		getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(purchaseOrderMock),
+		getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderMock),
+		//Schedule Line
+		createScheduleLine: createCreateScheduleLineDB(scheduleLinesMock),
+		updateScheduleLine: updateScheduleLineByIDDB(scheduleLinesMock),
+		deleteScheduleLineById: DeleteRecordByIDDB(scheduleLinesMock),
+		getScheduleLineById: getByIDDB(scheduleLinesMock),
+		getAllScheduleLines: getAllDataDB(scheduleLinesMock),
+		getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(scheduleLinesMock),
 	},
 });
 
