@@ -31,7 +31,7 @@ const purchaseOrderResolvers = {
 
 			const items: Array<any> = await Promise.all(
 				purchaseOrder.items.map(async item => {
-					const scheduleLine: Array<any> = await Promise.all(
+					let scheduleLine: Array<any> = await Promise.all(
 						item.scheduleLine.map(async sl => {
 							let deliveryStatus;
 							if (sl.deliveryStatus) {

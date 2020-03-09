@@ -14,7 +14,7 @@ const updateUCSupplier = () => (supplierInput, oldValue) => {
 		if (supplierInput[prop]) {
 			newSupplier[prop] = supplierInput[prop];
 		} else {
-			newSupplier = oldValue[prop];
+			newSupplier[prop] = oldValue[prop];
 		}
 	}
 	const supplier = makeSupplier(newSupplier);

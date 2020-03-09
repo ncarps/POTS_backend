@@ -2,7 +2,7 @@ const scheduleLineResolvers = {
 	ScheduleLine: {
 		deliveryStatus: async (parent, args, context, info) => {
 			const { getAllSupplierStatusByScheduleLine } = context;
-			return (await getAllSupplierStatusByScheduleLine(parent.scheduleLine)) || null;
+			return (await getAllSupplierStatusByScheduleLine(parent.deliveryStatus)) || null;
 		},
 	},
 	Query: {
@@ -54,6 +54,7 @@ const scheduleLineResolvers = {
 				);
 			}
 
+			console.log('waaark', scheduleLine);
 			const sl = {
 				id: scheduleLine.id,
 				quantity: scheduleLine.quantity,

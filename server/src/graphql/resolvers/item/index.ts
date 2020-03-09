@@ -30,7 +30,7 @@ const itemResolvers = {
 						deliveryStatus = await Promise.all(
 							sl.deliveryStatus.map(async ds => {
 								const deliveryStatus = await createSupplierStatus(ds);
-								console.log(deliveryStatus);
+								// console.log(deliveryStatus);
 								return deliveryStatus.id.toString();
 							})
 						);
@@ -48,6 +48,7 @@ const itemResolvers = {
 				})
 			);
 
+			console.log('ITEM UPDATE', item);
 			const i = {
 				itemNo: item.itemNo,
 				productId: item.productId,
@@ -71,25 +72,25 @@ const itemResolvers = {
 		updateItem: async (parent, { item }, context, info) => {
 			const { updateItemById, createScheduleLine, createSupplierStatus } = context;
 
-			const scheduleLine: Array<any> = await Promise.all(
-				item.scheduleLine.map(async sl => {
-					let deliveryStatus;
-					if (sl.deliveryStatus) {
-						deliveryStatus = await createSupplierStatus(sl.deliveryStatus);
-					}
+			// const scheduleLine: Array<any> = await Promise.all(
+			// 	item.scheduleLine.map(async sl => {
+			// 		let deliveryStatus;
+			// 		if (sl.deliveryStatus) {
+			// 			deliveryStatus = await createSupplierStatus(sl.deliveryStatus);
+			// 		}
 
-					const scheduleLine = {
-						quantity: sl.quantity,
-						uom: sl.uom,
-						unitPrice: sl.unitPrice,
-						totalAmount: sl.totalAmount,
-						deliveryDateAndTime: sl.deliveryDateAndTime,
-						deliveryStatus: deliveryStatus ? deliveryStatus.id.toString(),
-					};
-					const itemSl = await createScheduleLine(scheduleLine);
-					return itemSl.id.toString();
-				})
-			);
+			// 		const scheduleLine = {
+			// 			quantity: sl.quantity,
+			// 			uom: sl.uom,
+			// 			unitPrice: sl.unitPrice,
+			// 			totalAmount: sl.totalAmount,
+			// 			deliveryDateAndTime: sl.deliveryDateAndTime,
+			// 			deliveryStatus: deliveryStatus ? deliveryStatus : null,
+			// 		};
+			// 		const itemSl = await createScheduleLine(scheduleLine);
+			// 		return itemSl.id.toString();
+			// 	})
+			// );
 
 			const i = {
 				id: item.id,
@@ -103,7 +104,7 @@ const itemResolvers = {
 				discount: item.discount,
 				deliveryAddress: item.deliveryAddress,
 				supplierStatusItem: item.supplierStatusItem,
-				scheduleLine: scheduleLine,
+				scheduleLine: item.scheduleLine,
 				currency: item.currency,
 				dateUpdated: item.dateUpdated,
 				timeUpdated: item.timeUpdated,

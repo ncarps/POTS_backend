@@ -29,7 +29,7 @@ const itemModel: IDBModel<any> = {
 			discount: item.discount,
 			deliveryAddress: newAdd._id.toString(),
 			supplierStatusItem: item.supplierStatusItem,
-			scheduleLine: item.scheduleLine || [],
+			scheduleLine: item.scheduleLine,
 			currency: item.currency,
 			dateUpdated: item.dateUpdated,
 			timeUpdated: item.timeUpdated,
@@ -53,7 +53,7 @@ const itemModel: IDBModel<any> = {
 			discount: newI.discount,
 			deliveryAddress: newI.deliveryAddress,
 			supplierStatusItem: newI.supplierStatusItem,
-			scheduleLine: newI.scheduleLine,
+			scheduleLine: newI.scheduleLine || [],
 			currency: newI.currency,
 			dateUpdated: newI.dateUpdated,
 			timeUpdated: newI.timeUpdated,
@@ -144,31 +144,41 @@ const itemModel: IDBModel<any> = {
 				delete setFields[prop];
 			}
 		}
-		delete setFields.scheduleLine;
-		const scheduleLine = data.scheduleLine;
+		// delete setFields.scheduleLine;
+		// const scheduleLine = data.scheduleLine;
 
-		let item;
-		if (scheduleLine) {
-			item = await Item.findByIdAndUpdate(
-				{
-					_id: data.id,
-				},
-				{ $set: { ...setFields }, $push: { scheduleLine: scheduleLine } },
-				{
-					new: true,
-				}
-			).exec();
-		} else {
-			item = await Item.findByIdAndUpdate(
-				{
-					_id: data.id,
-				},
-				setFields,
-				{
-					new: true,
-				}
-			).exec();
-		}
+		// let item;
+		// if (scheduleLine) {
+		// 	item = await Item.findByIdAndUpdate(
+		// 		{
+		// 			_id: data.id,
+		// 		},
+		// 		{ $set: { ...setFields }, $push: { scheduleLine: scheduleLine } },
+		// 		{
+		// 			new: true,
+		// 		}
+		// 	).exec();
+		// } else {
+		// 	item = await Item.findByIdAndUpdate(
+		// 		{
+		// 			_id: data.id,
+		// 		},
+		// 		setFields,
+		// 		{
+		// 			new: true,
+		// 		}
+		// 	).exec();
+		// }
+
+		const item: any = await Item.findByIdAndUpdate(
+			{
+				_id: data.id,
+			},
+			setFields,
+			{
+				new: true,
+			}
+		).exec();
 		console.log(item);
 		return {
 			id: item._id.toString(),

@@ -41,7 +41,7 @@ const typeDefs = gql`
 		discount: Float
 		supplierStatusItem: String
 		deliveryAddress: AddressInput!
-		scheduleLine: [ScheduleLineInput!]
+		scheduleLine: [ScheduleLineInput!]!
 		currency: String!
 		dateUpdated: String
 		timeUpdated: String

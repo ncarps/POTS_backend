@@ -22,7 +22,7 @@ const updateUCItem = () => (itemInput, oldValue) => {
 		if (itemInput[prop]) {
 			newItem[prop] = itemInput[prop];
 		} else {
-			newItem;
+			newItem[prop] = oldValue[prop];
 		}
 	}
 	const item = makeItem(newItem);
