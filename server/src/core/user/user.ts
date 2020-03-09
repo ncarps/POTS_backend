@@ -1,10 +1,14 @@
 export type TUser = {
+	userId: string;
 	userName: string;
 	password: string;
 	userLevel: string;
 };
 
-const createMakeUser = () => ({ userName, password, userLevel }): TUser => {
+const createMakeUser = () => ({ userName, password, userLevel, userId }): TUser => {
+	if (!userId) {
+		throw new Error('Username is required.');
+	}
 	if (!userName) {
 		throw new Error('Username is required.');
 	}
@@ -16,6 +20,7 @@ const createMakeUser = () => ({ userName, password, userLevel }): TUser => {
 	}
 
 	return {
+		userId: userId,
 		userName: userName,
 		password: password,
 		userLevel: userLevel,
