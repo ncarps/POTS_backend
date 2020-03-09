@@ -1061,6 +1061,7 @@ describe('Queries', () => {
 			mutation createUser($user: UserInput!) {
 				createUser(user: $user) {
 					id
+					userId
 					userName
 					password
 					userLevel
@@ -1073,6 +1074,7 @@ describe('Queries', () => {
 			mutation: CREATE_USER,
 			variables: {
 				user: {
+					userId: '001',
 					userName: 'User Name1',
 					password: '12345',
 					userLevel: 'Admin',
@@ -1085,6 +1087,7 @@ describe('Queries', () => {
 		expect(res.data).toMatchObject({
 			createUser: {
 				id: '1',
+				userId: '001',
 				userName: 'User Name1',
 				password: '12345',
 				userLevel: 'Admin',
@@ -1234,86 +1237,169 @@ describe('Queries', () => {
 		expect(res).toMatchSnapshot();
 	});
 
-	// //SupplierStatus Mutations
+	//SupplierStatus Mutations
 
-	// it('create a supplier status', async () => {
-	// 	const CREATE_SUPPPLIERSTATUS = gql`
-	// 		mutation createSupplierStatus($supplierStatus: SupplierStatusInput!) {
-	// 			createSupplierStatus(supplierStatus: $supplierStatus) {
-	// 				id
-	// 				status
-	// 				dateCreated
-	// 			}
-	// 		}
-	// 	`;
+	it('create a supplier status', async () => {
+		const CREATE_SUPPPLIERSTATUS = gql`
+			mutation createSupplierStatus($supplierStatus: SupplierStatusInput!) {
+				createSupplierStatus(supplierStatus: $supplierStatus) {
+					id
+					status
+				}
+			}
+		`;
 
-	// 	const { mutate } = createTestClient(server);
-	// 	const res = await mutate({
-	// 		mutation: CREATE_SUPPPLIERSTATUS,
-	// 		variables: {
-	// 			supplierStatus: {
-	// 				status: 'yeeeeee',
-	// 				dateCreated: 'Feb 14',
-	// 			},
-	// 		},
-	// 	});
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: CREATE_SUPPPLIERSTATUS,
+			variables: {
+				supplierStatus: {
+					status: 'yeeeeee',
+				},
+			},
+		});
 
-	// 	expect(res.errors).toBeUndefined();
-	// 	expect(supplierStatusMock.insert.mock.calls.length).toBe(1);
-	// 	expect(res.data).toMatchObject({
-	// 		createSupplierStatus: {
-	// 			id: '1',
-	// 			status: 'yeeeeee',
-	// 			dateCreated: 'Feb 14',
-	// 		},
-	// 	});
-	// 	expect(res).toMatchSnapshot();
-	// });
+		expect(res.errors).toBeUndefined();
+		expect(supplierStatusMock.insert.mock.calls.length).toBe(1);
+		expect(res.data).toMatchObject({
+			createSupplierStatus: {
+				id: '1',
+				status: 'yeeeeee',
+			},
+		});
+		expect(res).toMatchSnapshot();
+	});
 
-	// it('delete a supplier status', async () => {
-	// 	const DELETE_SUPPLIERSTATUS = gql`
-	// 		mutation ss($id: ID!) {
-	// 			deleteSupplierStatus(id: $id) {
-	// 				status
-	// 				dateCreated
-	// 			}
-	// 		}
-	// 	`;
+	it('delete a supplier status', async () => {
+		const DELETE_SUPPLIERSTATUS = gql`
+			mutation ss($id: ID!) {
+				deleteSupplierStatus(id: $id) {
+					status
+					dateCreated
+					timeCreated
+				}
+			}
+		`;
 
-	// 	const { mutate } = createTestClient(server);
-	// 	const res = await mutate({
-	// 		mutation: DELETE_SUPPLIERSTATUS,
-	// 		variables: { id: '1' },
-	// 	});
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: DELETE_SUPPLIERSTATUS,
+			variables: { id: '1' },
+		});
 
-	// 	expect(res).toMatchSnapshot();
-	// });
+		expect(res).toMatchSnapshot();
+	});
 
-	// it('update a supplier status', async () => {
-	// 	const UPDATE_SUPPLIERSTATUS = gql`
-	// 		mutation ss($supplierStatus: UpdateSupplierStatusInput!) {
-	// 			updateSupplierStatus(supplierStatus: $supplierStatus) {
-	// 				id
-	// 				status
-	// 				dateCreated
-	// 			}
-	// 		}
-	// 	`;
+	it('update a supplier status', async () => {
+		const UPDATE_SUPPLIERSTATUS = gql`
+			mutation ss($supplierStatus: UpdateSupplierStatusInput!) {
+				updateSupplierStatus(supplierStatus: $supplierStatus) {
+					id
+					status
+					dateCreated
+					timeCreated
+				}
+			}
+		`;
 
-	// 	const { mutate } = createTestClient(server);
-	// 	const res = await mutate({
-	// 		mutation: UPDATE_SUPPLIERSTATUS,
-	// 		variables: {
-	// 			supplierStatus: {
-	// 				id: '1',
-	// 				status: 'Dispatched',
-	// 				dateCreated: 'February 14, 2020',
-	// 			},
-	// 		},
-	// 	});
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: UPDATE_SUPPLIERSTATUS,
+			variables: {
+				supplierStatus: {
+					id: '1',
+					status: 'Dispatched',
+				},
+			},
+		});
 
-	// 	expect(res).toMatchSnapshot();
-	// });
+		expect(res).toMatchSnapshot();
+	});
+
+	//Schedule Line Mutations
+	it('create a schedule line', async () => {
+		const CREATE_SCHEDULELINE = gql`
+			mutation createSupplierStatus($scheduleLine: ScheduleLineInput!) {
+				createScheduleLine(scheduleLine: $scheduleLine) {
+					id
+					quantity
+					uom
+					deliveryDateAndTime
+					unitPrice
+					totalAmount
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: CREATE_SCHEDULELINE,
+			variables: {
+				scheduleLine: {
+					quantity: 10,
+					uom: 'kilograms',
+					deliveryDateAndTime: 'February 25,2020 4:30PM',
+					unitPrice: 1000,
+					totalAmount: 10000,
+				},
+			},
+		});
+
+		expect(res.errors).toBeUndefined();
+		expect(scheduleLinesMock.insert.mock.calls.length).toBe(1);
+		expect(res.data).toMatchObject({
+			createScheduleLine: {
+				id: '1',
+				quantity: 10,
+				uom: 'kilograms',
+				deliveryDateAndTime: 'February 25,2020 4:30PM',
+				unitPrice: 1000,
+				totalAmount: 10000,
+			},
+		});
+		expect(res).toMatchSnapshot();
+	});
+
+	it('delete a schedule Line', async () => {
+		const DELETE_SCHEDULELINE = gql`
+			mutation sl($id: ID!) {
+				deleteScheduleLine(id: $id) {
+					id
+				}
+			}
+		`;
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: DELETE_SCHEDULELINE,
+			variables: { id: 'U1' },
+		});
+		expect(res.errors).toBeUndefined();
+		expect(res).toMatchSnapshot();
+	});
+
+	it('update a schedule line', async () => {
+		const UPDATE_SCHEDULELINE = gql`
+			mutation sl($scheduleLine: UpdateScheduleLineInput!) {
+				updateSupplierStatus(scheduleLine: $scheduleLine) {
+					id
+					deliveryStatus
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: UPDATE_SCHEDULELINE,
+			variables: {
+				scheduleLine: {
+					id: '1',
+					deliveryStatus: [{ status: 'Pending' }],
+				},
+			},
+		});
+
+		expect(res).toMatchSnapshot();
+	});
 
 	// //Item Mutation
 	// it('create an item', async () => {

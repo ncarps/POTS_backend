@@ -1,5 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Queries create a schedule line 1`] = `
+Object {
+  "data": Object {
+    "createScheduleLine": Object {
+      "deliveryDateAndTime": "February 25,2020 4:30PM",
+      "id": "1",
+      "quantity": 10,
+      "totalAmount": 10000,
+      "unitPrice": 1000,
+      "uom": "kilograms",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries create a supplier 1`] = `
 Object {
   "data": Object {
@@ -22,15 +44,49 @@ Object {
 }
 `;
 
+exports[`Queries create a supplier status 1`] = `
+Object {
+  "data": Object {
+    "createSupplierStatus": Object {
+      "id": "1",
+      "status": "yeeeeee",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries create a user 1`] = `
 Object {
   "data": Object {
     "createUser": Object {
       "id": "1",
       "password": "12345",
+      "userId": "001",
       "userLevel": "Admin",
       "userName": "User Name1",
     },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries delete a schedule Line 1`] = `
+Object {
+  "data": Object {
+    "deleteScheduleLine": null,
   },
   "errors": undefined,
   "extensions": undefined,
@@ -46,6 +102,21 @@ exports[`Queries delete a supplier 1`] = `
 Object {
   "data": Object {
     "deleteSupplier": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries delete a supplier status 1`] = `
+Object {
+  "data": Object {
+    "deleteSupplierStatus": null,
   },
   "errors": undefined,
   "extensions": undefined,
@@ -441,11 +512,45 @@ Object {
 }
 `;
 
+exports[`Queries update a schedule line 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Unknown argument "scheduleLine" on field "updateSupplierStatus" of type "Mutation".],
+    [ValidationError: Cannot query field "deliveryStatus" on type "SupplierStatus".],
+    [ValidationError: Field "updateSupplierStatus" argument "supplierStatus" of type "UpdateSupplierStatusInput!" is required, but it was not provided.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries update a supplier 1`] = `
 Object {
   "data": undefined,
   "errors": Array [
     [GraphQLError: Variable "$supplier" got invalid value { id: "1", supplierNo: "001", supplierName: "The Supplier", address: { building_name: "002", street: "Elmer", city: "Celadon", state: "Johto", zip_code: "123" }, contactPerson: "Basil Valdez", contactNumber: "1234567", tin: "12345" }; Field "address" is not defined by type UpdateSupplierInput.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries update a supplier status 1`] = `
+Object {
+  "data": Object {
+    "updateSupplierStatus": null,
+  },
+  "errors": Array [
+    [GraphQLError: Cannot read property 'status' of null],
   ],
   "extensions": undefined,
   "http": Object {
