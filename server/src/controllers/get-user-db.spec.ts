@@ -3,12 +3,14 @@ import { getAllDataDB, getByIDDB } from './retrieve-data-db';
 const mockUser = [
 	{
 		_id: '1',
+		userId: '001',
 		userName: 'User Name1',
 		password: '12345',
 		userLevel: 'Admin',
 	},
 	{
 		_id: '2',
+		userId: '002',
 		userName: 'User Name2',
 		password: '12345',
 		userLevel: 'Supplier',

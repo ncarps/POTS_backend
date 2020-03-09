@@ -11,6 +11,7 @@ describe('Create User', () => {
 
 	it('Should be able to save a user to a database', async () => {
 		const userInput = {
+			userId: '001',
 			userName: 'User Name1',
 			password: '12345',
 			userLevel: 'Admin',

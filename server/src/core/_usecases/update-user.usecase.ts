@@ -2,6 +2,7 @@ import { makeUser, TUser } from '../user';
 
 const updateUCUser = () => (userInput, oldValue) => {
 	let newUser: TUser = {
+		userId: oldValue.userId,
 		password: oldValue.password,
 		userLevel: oldValue.userLevel,
 		userName: oldValue.userName,

@@ -3,12 +3,14 @@ import { updateUserByIDDB } from './update-user-db';
 const mockUser = [
 	{
 		_id: '1',
+		userId: '001',
 		userName: 'User Name1',
 		password: '12345',
 		userLevel: 'Admin',
 	},
 	{
 		_id: '2',
+		userId: '002',
 		userName: 'User Name2',
 		password: '12345',
 		userLevel: 'Supplier',
@@ -34,6 +36,7 @@ describe('Update User', () => {
 
 	it('should be able to update a user in the DB', async () => {
 		const given = {
+			userId: '001',
 			userName: 'User Name1',
 			password: '123456',
 			userLevel: 'Admin',

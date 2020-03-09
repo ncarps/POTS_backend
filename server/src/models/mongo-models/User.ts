@@ -8,6 +8,10 @@ ObjectID.prototype.valueOf = function() {
 };
 
 const UserSchema = new Schema({
+	userId: {
+		type: String,
+		required: true,
+	},
 	userName: {
 		type: String,
 		required: true,

@@ -7,7 +7,7 @@ export type TUser = {
 
 const createMakeUser = () => ({ userName, password, userLevel, userId }): TUser => {
 	if (!userId) {
-		throw new Error('Username is required.');
+		throw new Error('User ID is required.');
 	}
 	if (!userName) {
 		throw new Error('Username is required.');
