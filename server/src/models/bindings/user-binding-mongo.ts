@@ -35,7 +35,7 @@ const userModel: IDBModel<any> = {
 
 		return users.map(u => ({
 			id: u._id.toString(),
-			userId: user.userId,
+			userId: u.userId,
 			userName: u.userName,
 			password: u.password,
 			userLevel: u.userLevel,
