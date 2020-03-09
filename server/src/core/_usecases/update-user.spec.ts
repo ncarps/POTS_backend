@@ -9,8 +9,10 @@ describe('UseCase: Update a User ', () => {
 		};
 
 		const oldUserInput = {
+			userId: '001',
 			userName: 'User Name12',
 			password: '12345',
+			userLevel: 'Admin',
 		};
 		const newUser = updateUser(userInput, oldUserInput);
 		expect(newUser).toMatchObject(userInput);

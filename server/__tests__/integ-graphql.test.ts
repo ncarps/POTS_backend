@@ -135,6 +135,7 @@ const supplierMock = {
 
 const itemMock = {
 	insert: jest.fn(async input => {
+		console.log('inserttt', { id: '1', ...input });
 		return { id: '1', ...input };
 	}),
 	getById: jest.fn(async id => {
@@ -1319,7 +1320,7 @@ describe('Queries', () => {
 	//Schedule Line Mutations
 	it('create a schedule line', async () => {
 		const CREATE_SCHEDULELINE = gql`
-			mutation createSupplierStatus($scheduleLine: ScheduleLineInput!) {
+			mutation createSl($scheduleLine: ScheduleLineInput!) {
 				createScheduleLine(scheduleLine: $scheduleLine) {
 					id
 					quantity
@@ -1401,52 +1402,96 @@ describe('Queries', () => {
 		expect(res).toMatchSnapshot();
 	});
 
-	// //Item Mutation
-	// it('create an item', async () => {
-	// 	const CREATE_ITEM = gql`
-	// 		mutation createItem($item: ItemInput!) {
-	// 			createItem(item: $item) {
-	// 				id
-	// 				itemNo
-	// 				description
-	// 				quantity
-	// 				uom
-	// 				price
-	// 				currency
-	// 			}
-	// 		}
-	// 	`;
+	//Item Mutation
+	it('create an item', async () => {
+		const CREATE_ITEM = gql`
+			mutation createI($item: ItemInput!) {
+				createItem(item: $item) {
+					itemNo
+					productId
+					description
+					quantity
+					uom
+					unitPrice
+					discount
+					totalAmount
+					deliveryAddress {
+						building_name
+						zip_code
+						state
+						street
+						city
+					}
+					scheduleLine {
+						quantity
+						uom
+						unitPrice
+						totalAmount
+					}
+					currency
+				}
+			}
+		`;
 
-	// 	const { mutate } = createTestClient(server);
-	// 	const res = await mutate({
-	// 		mutation: CREATE_ITEM,
-	// 		variables: {
-	// 			item: {
-	// 				itemNo: '1',
-	// 				description: 'Corned Beef',
-	// 				quantity: 5,
-	// 				uom: 'kg',
-	// 				price: 2000,
-	// 				currency: 'PHP',
-	// 			},
-	// 		},
-	// 	});
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: CREATE_ITEM,
+			variables: {
+				item: {
+					itemNo: '001',
+					description: 'Beef',
+					productId: '0001',
+					quantity: 10,
+					uom: 'kilograms',
+					unitPrice: 1000,
+					discount: 0.05,
+					totalAmount: 10000,
+					deliveryAddress: { building_name: '002', street: 'Elmer', city: 'Celadon', state: 'Johto', zip_code: '123' },
+					scheduleLine: [
+						{
+							quantity: 10,
+							uom: 'kilograms',
+							deliveryDateAndTime: 'February 25,2020 4:30PM',
+							unitPrice: 1000,
+							totalAmount: 10000,
+						},
+					],
+					currency: 'PHP',
+				},
+			},
+		});
 
-	// 	expect(res.errors).toBeUndefined();
-	// 	expect(itemMock.insert.mock.calls.length).toBe(1);
-	// 	expect(res.data).toMatchObject({
-	// 		createItem: {
-	// 			id: '1',
-	// 			itemNo: '1',
-	// 			description: 'Corned Beef',
-	// 			quantity: 5,
-	// 			uom: 'kg',
-	// 			price: 2000,
-	// 			currency: 'PHP',
-	// 		},
-	// 	});
-	// 	expect(res).toMatchSnapshot();
-	// });
+		console.log('testtt', res.errors);
+		expect(res.errors).toBeUndefined();
+		expect(itemMock.insert.mock.calls.length).toBe(1);
+
+		expect(res.data).toMatchObject({
+			createItem: {
+				id: '1',
+				itemNo: '001',
+				description: 'Beef',
+				productId: '0001',
+				quantity: 10,
+				uom: 'kilograms',
+				unitPrice: 1000,
+				discount: 0.05,
+				totalAmount: 10000,
+				deliveryAddress: { building_name: '002', street: 'Elmer', city: 'Celadon', state: 'Johto', zip_code: '123' },
+				scheduleLine: [
+					{
+						id: '1',
+						quantity: 10,
+						uom: 'kilograms',
+						deliveryDateAndTime: 'February 25,2020 4:30PM',
+						unitPrice: 1000,
+						totalAmount: 10000,
+					},
+				],
+				currency: 'PHP',
+			},
+		});
+		expect(res).toMatchSnapshot();
+	});
 
 	// it('update an item', async () => {
 	// 	const UPDATE_ITEM = gql`
@@ -1482,29 +1527,23 @@ describe('Queries', () => {
 	// 	expect(res).toMatchSnapshot();
 	// });
 
-	// it('delete an item', async () => {
-	// 	const DELETE_ITEM = gql`
-	// 		mutation i($id: ID!) {
-	// 			deleteItem(id: $id) {
-	// 				id
-	// 				itemNo
-	// 				description
-	// 				quantity
-	// 				uom
-	// 				price
-	// 				currency
-	// 			}
-	// 		}
-	// 	`;
+	it('delete an item', async () => {
+		const DELETE_ITEM = gql`
+			mutation i($id: ID!) {
+				deleteItem(id: $id) {
+					id
+				}
+			}
+		`;
 
-	// 	const { mutate } = createTestClient(server);
-	// 	const res = await mutate({
-	// 		mutation: DELETE_ITEM,
-	// 		variables: { id: '1' },
-	// 	});
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: DELETE_ITEM,
+			variables: { id: '1' },
+		});
 
-	// 	expect(res).toMatchSnapshot();
-	// });
+		expect(res).toMatchSnapshot();
+	});
 
 	// //Purchase Order Mutation
 	// it('create a purchase order', async () => {

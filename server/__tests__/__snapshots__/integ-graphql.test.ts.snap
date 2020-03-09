@@ -143,6 +143,21 @@ Object {
 }
 `;
 
+exports[`Queries delete an item 1`] = `
+Object {
+  "data": Object {
+    "deleteItem": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries should error when no address 1`] = `
 Object {
   "data": Object {
