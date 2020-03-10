@@ -83,6 +83,21 @@ Object {
 }
 `;
 
+exports[`Queries delete a puchase order 1`] = `
+Object {
+  "data": Object {
+    "deletePurchaseOrder": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries delete a schedule Line 1`] = `
 Object {
   "data": Object {
@@ -527,6 +542,22 @@ Object {
 }
 `;
 
+exports[`Queries update a purchase order 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Cannot query field "adminStatus" on type "Item".],
+    [ValidationError: Cannot query field "supplierStatusHeader" on type "Item". Did you mean "supplierStatusItem"?],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Queries update a schedule line 1`] = `
 Object {
   "data": undefined,
@@ -581,6 +612,23 @@ Object {
   "data": undefined,
   "errors": Array [
     [ValidationError: Variable "$user" of type "UpdateSupplierInput!" used in position expecting type "UpdateUserInput".],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Queries update an item 1`] = `
+Object {
+  "data": Object {
+    "updateItem": null,
+  },
+  "errors": Array [
+    [GraphQLError: Cannot read property 'itemNo' of null],
   ],
   "extensions": undefined,
   "http": Object {
