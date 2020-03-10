@@ -1,29 +1,17 @@
 import { createTestClient } from 'apollo-server-testing';
 import gql from 'graphql-tag';
-import mockData from './mocks/mock-data';
-import * as controllers from '../src/controllers';
-import { constructTestServer } from './__utils';
+import mockData from '../mocks/mock-data';
+import * as controllers from '../../src/controllers';
+import { constructTestServer } from '../__utils';
 
 const {
-	//Generic
 	getAllDataDB,
 	getByIDDB,
 	DeleteRecordByIDDB,
 	getAllByItemDB,
-	getAllByScheduleLineDB,
-	getAllBySupplierStatusDB,
-	//Item
-	createCreateItemDB,
-	updateItemByIDDB,
-	//Purchase Order
 	createCreatePurchaseOrderDB,
 	updatePurchaseOrderByIDDB,
-	//Schedule Line
-	createCreateScheduleLineDB,
-	updateScheduleLineByIDDB,
 } = controllers;
-
-//PurchaseOrder Mock
 
 const purchaseOrderMock = {
 	insert: jest.fn(async input => {
@@ -64,20 +52,17 @@ const purchaseOrderMock = {
 
 const { server }: any = constructTestServer({
 	context: {
-		//Purchase Order
 		createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderMock),
 		updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderMock),
 		deletePurchaseOrderbyId: DeleteRecordByIDDB(purchaseOrderMock),
 		getPurchaseOrderById: getByIDDB(purchaseOrderMock),
 		getAllPurchaseOrders: getAllDataDB(purchaseOrderMock),
-		getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(purchaseOrderMock),
 		getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderMock),
 	},
 });
 
 describe('Tests', () => {
-	//Purchase Order Queries
-
+	//Queries
 	it('should fetch all purchase orders', async () => {
 		const PURCHASEORDER_ALL = gql`
 			query {
@@ -301,8 +286,6 @@ describe('Tests', () => {
 	});
 
 	//Mutations
-
-	// //Purchase Order Mutations
 
 	// it('create a purchase order', async () => {
 	// 	const CREATE_PURCHASEORDER = gql`
