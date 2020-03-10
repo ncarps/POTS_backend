@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tests delete a puchase order 1`] = `
+exports[`Tests delete an item 1`] = `
 Object {
   "data": Object {
-    "deletePurchaseOrder": null,
+    "deleteItem": null,
   },
   "errors": undefined,
   "extensions": undefined,
@@ -15,10 +15,10 @@ Object {
 }
 `;
 
-exports[`Tests should error when no purchase order 1`] = `
+exports[`Tests should error when no item 1`] = `
 Object {
   "data": Object {
-    "purchaseOrder": null,
+    "item": null,
   },
   "errors": undefined,
   "extensions": undefined,
@@ -30,17 +30,17 @@ Object {
 }
 `;
 
-exports[`Tests should fetch all purchase orders 1`] = `
+exports[`Tests should fetch all items 1`] = `
 Object {
   "data": Object {
-    "allPurchaseOrders": Array [
+    "allItems": Array [
       null,
       null,
     ],
   },
   "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field PurchaseOrder.id.],
-    [GraphQLError: Cannot return null for non-nullable field PurchaseOrder.id.],
+    [GraphQLError: Cannot return null for non-nullable field Item.id.],
+    [GraphQLError: Cannot return null for non-nullable field Item.id.],
   ],
   "extensions": undefined,
   "http": Object {
@@ -51,10 +51,10 @@ Object {
 }
 `;
 
-exports[`Tests should fetch one purchase order 1`] = `
+exports[`Tests should fetch one item  1`] = `
 Object {
   "data": Object {
-    "purchaseOrder": null,
+    "item": null,
   },
   "errors": undefined,
   "extensions": undefined,
@@ -66,12 +66,13 @@ Object {
 }
 `;
 
-exports[`Tests update a purchase order 1`] = `
+exports[`Tests update an item 1`] = `
 Object {
-  "data": undefined,
+  "data": Object {
+    "updateItem": null,
+  },
   "errors": Array [
-    [ValidationError: Cannot query field "adminStatus" on type "Item".],
-    [ValidationError: Cannot query field "supplierStatusHeader" on type "Item". Did you mean "supplierStatusItem"?],
+    [GraphQLError: Cannot read property 'itemNo' of null],
   ],
   "extensions": undefined,
   "http": Object {
