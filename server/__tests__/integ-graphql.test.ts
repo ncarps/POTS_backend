@@ -332,7 +332,7 @@ const { server }: any = constructTestServer({
 	},
 });
 
-describe('Queries', () => {
+describe('Tests', () => {
 	//User Queries
 	it('should fetch all user', async () => {
 		const USER_ALL = gql`

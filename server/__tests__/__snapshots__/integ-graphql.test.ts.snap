@@ -638,3 +638,642 @@ Object {
   },
 }
 `;
+
+exports[`Tests create a schedule line 1`] = `
+Object {
+  "data": Object {
+    "createScheduleLine": Object {
+      "deliveryDateAndTime": "February 25,2020 4:30PM",
+      "id": "1",
+      "quantity": 10,
+      "totalAmount": 10000,
+      "unitPrice": 1000,
+      "uom": "kilograms",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests create a supplier 1`] = `
+Object {
+  "data": Object {
+    "createSupplier": Object {
+      "contactNumber": "1234567",
+      "contactPerson": "Basil Valdez",
+      "id": "1",
+      "supplierName": "The Supplier",
+      "supplierNo": "001",
+      "tin": "12345",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests create a supplier status 1`] = `
+Object {
+  "data": Object {
+    "createSupplierStatus": Object {
+      "id": "1",
+      "status": "yeeeeee",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests create a user 1`] = `
+Object {
+  "data": Object {
+    "createUser": Object {
+      "id": "1",
+      "password": "12345",
+      "userId": "001",
+      "userLevel": "Admin",
+      "userName": "User Name1",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests delete a puchase order 1`] = `
+Object {
+  "data": Object {
+    "deletePurchaseOrder": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests delete a schedule Line 1`] = `
+Object {
+  "data": Object {
+    "deleteScheduleLine": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests delete a supplier 1`] = `
+Object {
+  "data": Object {
+    "deleteSupplier": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests delete a supplier status 1`] = `
+Object {
+  "data": Object {
+    "deleteSupplierStatus": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests delete a user 1`] = `
+Object {
+  "data": Object {
+    "deleteUser": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests delete an item 1`] = `
+Object {
+  "data": Object {
+    "deleteItem": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should error when no address 1`] = `
+Object {
+  "data": Object {
+    "address": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should error when no item 1`] = `
+Object {
+  "data": Object {
+    "item": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should error when no purchase order 1`] = `
+Object {
+  "data": Object {
+    "purchaseOrder": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should error when no schedule line 1`] = `
+Object {
+  "data": Object {
+    "scheduleLine": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should error when no supplier 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Cannot query field "supplier" on type "Supplier". Did you mean "supplierNo" or "supplierName"?],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should error when no user 1`] = `
+Object {
+  "data": Object {
+    "user": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should error when no user 2`] = `
+Object {
+  "data": Object {
+    "supplierStatus": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all address 1`] = `
+Object {
+  "data": Object {
+    "allAddresss": Array [
+      Object {
+        "building_name": "building name",
+        "city": "city",
+        "id": "A1",
+        "state": "state",
+        "street": "street",
+        "zip_code": "zip_code",
+      },
+      Object {
+        "building_name": "building name 2",
+        "city": "city 2",
+        "id": "A2",
+        "state": "state 2",
+        "street": "street 2",
+        "zip_code": "zip_code 2",
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all items 1`] = `
+Object {
+  "data": Object {
+    "allItems": Array [
+      null,
+      null,
+    ],
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Item.id.],
+    [GraphQLError: Cannot return null for non-nullable field Item.id.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all purchase orders 1`] = `
+Object {
+  "data": Object {
+    "allPurchaseOrders": Array [
+      null,
+      null,
+    ],
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field PurchaseOrder.id.],
+    [GraphQLError: Cannot return null for non-nullable field PurchaseOrder.id.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all schedule lines 1`] = `
+Object {
+  "data": Object {
+    "allScheduleLines": Array [
+      null,
+      null,
+    ],
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field ScheduleLine.id.],
+    [GraphQLError: Cannot return null for non-nullable field ScheduleLine.id.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all supplier status 1`] = `
+Object {
+  "data": Object {
+    "allSupplierStatus": Array [
+      null,
+      null,
+    ],
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field SupplierStatus.id.],
+    [GraphQLError: Cannot return null for non-nullable field SupplierStatus.id.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all suppliers 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Supplier.id.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all user 1`] = `
+Object {
+  "data": Object {
+    "allUsers": Array [
+      null,
+      null,
+    ],
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field User.id.],
+    [GraphQLError: Cannot return null for non-nullable field User.id.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one address 1`] = `
+Object {
+  "data": Object {
+    "address": Object {
+      "building_name": "building name",
+      "city": "city",
+      "id": "A1",
+      "state": "state",
+      "street": "street",
+      "zip_code": "zip_code",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one item  1`] = `
+Object {
+  "data": Object {
+    "item": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one purchase order 1`] = `
+Object {
+  "data": Object {
+    "purchaseOrder": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one schedule line 1`] = `
+Object {
+  "data": Object {
+    "scheduleLine": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one supplier 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Query.supplier.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one supplier status 1`] = `
+Object {
+  "data": Object {
+    "supplierStatus": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one user 1`] = `
+Object {
+  "data": Object {
+    "user": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests update a purchase order 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Cannot query field "adminStatus" on type "Item".],
+    [ValidationError: Cannot query field "supplierStatusHeader" on type "Item". Did you mean "supplierStatusItem"?],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests update a schedule line 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Unknown argument "scheduleLine" on field "updateSupplierStatus" of type "Mutation".],
+    [ValidationError: Cannot query field "deliveryStatus" on type "SupplierStatus".],
+    [ValidationError: Field "updateSupplierStatus" argument "supplierStatus" of type "UpdateSupplierStatusInput!" is required, but it was not provided.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests update a supplier 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [GraphQLError: Variable "$supplier" got invalid value { id: "1", supplierNo: "001", supplierName: "The Supplier", address: { building_name: "002", street: "Elmer", city: "Celadon", state: "Johto", zip_code: "123" }, contactPerson: "Basil Valdez", contactNumber: "1234567", tin: "12345" }; Field "address" is not defined by type UpdateSupplierInput.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests update a supplier status 1`] = `
+Object {
+  "data": Object {
+    "updateSupplierStatus": null,
+  },
+  "errors": Array [
+    [GraphQLError: Cannot read property 'status' of null],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests update a user 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Variable "$user" of type "UpdateSupplierInput!" used in position expecting type "UpdateUserInput".],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests update an item 1`] = `
+Object {
+  "data": Object {
+    "updateItem": null,
+  },
+  "errors": Array [
+    [GraphQLError: Cannot read property 'itemNo' of null],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;

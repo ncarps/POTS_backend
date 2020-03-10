@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests should error when no user 1`] = `
+Object {
+  "data": Object {
+    "user": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all user 1`] = `
+Object {
+  "data": Object {
+    "allUsers": Array [
+      null,
+      null,
+    ],
+  },
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field User.id.],
+    [GraphQLError: Cannot return null for non-nullable field User.id.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one user 1`] = `
+Object {
+  "data": Object {
+    "user": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
