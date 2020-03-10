@@ -596,7 +596,7 @@ describe('Tests', () => {
 		expect(res).toMatchSnapshot();
 	});
 
-	it('should error when no user', async () => {
+	it('should error when no supplier status', async () => {
 		const SINGLE_SUPPLIERSTATUS = gql`
 			query ss($id: String!) {
 				supplierStatus(id: $id) {
@@ -1057,7 +1057,7 @@ describe('Tests', () => {
 	//Mutations
 
 	//User Mutations
-	it('create a user', async () => {
+	it('should create a user', async () => {
 		const CREATE_USER = gql`
 			mutation createUser($user: UserInput!) {
 				createUser(user: $user) {
@@ -1097,7 +1097,7 @@ describe('Tests', () => {
 		expect(res).toMatchSnapshot();
 	});
 
-	it('delete a user', async () => {
+	it('should delete a user', async () => {
 		const DELETE_USER = gql`
 			mutation u($id: ID!) {
 				deleteUser(id: $id) {
@@ -1114,7 +1114,7 @@ describe('Tests', () => {
 		expect(res).toMatchSnapshot();
 	});
 
-	it('update a user', async () => {
+	it('should update a user', async () => {
 		const UPDATE_USER = gql`
 			mutation u($user: UpdateSupplierInput!) {
 				updateUser(user: $user) {

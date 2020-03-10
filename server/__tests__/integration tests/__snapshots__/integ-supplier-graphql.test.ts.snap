@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests create a supplier 1`] = `
+Object {
+  "data": Object {
+    "createSupplier": Object {
+      "contactNumber": "1234567",
+      "contactPerson": "Basil Valdez",
+      "id": "1",
+      "supplierName": "The Supplier",
+      "supplierNo": "001",
+      "tin": "12345",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests delete a supplier 1`] = `
+Object {
+  "data": Object {
+    "deleteSupplier": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should error when no supplier 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Cannot query field "supplier" on type "Supplier". Did you mean "supplierNo" or "supplierName"?],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all suppliers 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Supplier.id.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one supplier 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Query.supplier.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests update a supplier 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [GraphQLError: Variable "$supplier" got invalid value { id: "1", supplierNo: "001", supplierName: "The Supplier", address: { building_name: "002", street: "Elmer", city: "Celadon", state: "Johto", zip_code: "123" }, contactPerson: "Basil Valdez", contactNumber: "1234567", tin: "12345" }; Field "address" is not defined by type UpdateSupplierInput.],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;

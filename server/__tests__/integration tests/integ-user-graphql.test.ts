@@ -9,9 +9,6 @@ const {
 	getAllDataDB,
 	getByIDDB,
 	DeleteRecordByIDDB,
-	getAllByItemDB,
-	getAllByScheduleLineDB,
-	getAllBySupplierStatusDB,
 	//User
 	createCreateUserDB,
 	updateUserByIDDB,
@@ -124,4 +121,88 @@ describe('Tests', () => {
 	});
 
 	//Mutations
+
+	it('should create a user', async () => {
+		const CREATE_USER = gql`
+			mutation createUser($user: UserInput!) {
+				createUser(user: $user) {
+					id
+					userId
+					userName
+					password
+					userLevel
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: CREATE_USER,
+			variables: {
+				user: {
+					userId: '001',
+					userName: 'User Name1',
+					password: '12345',
+					userLevel: 'Admin',
+				},
+			},
+		});
+
+		expect(res.errors).toBeUndefined();
+		expect(userMock.insert.mock.calls.length).toBe(1);
+		expect(res.data).toMatchObject({
+			createUser: {
+				id: '1',
+				userId: '001',
+				userName: 'User Name1',
+				password: '12345',
+				userLevel: 'Admin',
+			},
+		});
+		expect(res).toMatchSnapshot();
+	});
+
+	it('should delete a user', async () => {
+		const DELETE_USER = gql`
+			mutation u($id: ID!) {
+				deleteUser(id: $id) {
+					id
+				}
+			}
+		`;
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: DELETE_USER,
+			variables: { id: 'U1' },
+		});
+		expect(res.errors).toBeUndefined();
+		expect(res).toMatchSnapshot();
+	});
+
+	it('should update a user', async () => {
+		const UPDATE_USER = gql`
+			mutation u($user: UpdateSupplierInput!) {
+				updateUser(user: $user) {
+					id
+					userName
+					password
+				}
+			}
+		`;
+
+		const { mutate } = createTestClient(server);
+		const res = await mutate({
+			mutation: UPDATE_USER,
+			variables: {
+				user: {
+					id: '1',
+					userName: 'User Name1',
+					password: '12345',
+					userLevel: 'Admin',
+				},
+			},
+		});
+
+		expect(res).toMatchSnapshot();
+	});
 });

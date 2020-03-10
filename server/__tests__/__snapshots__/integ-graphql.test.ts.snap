@@ -812,6 +812,42 @@ Object {
 }
 `;
 
+exports[`Tests should create a user 1`] = `
+Object {
+  "data": Object {
+    "createUser": Object {
+      "id": "1",
+      "password": "12345",
+      "userId": "001",
+      "userLevel": "Admin",
+      "userName": "User Name1",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should delete a user 1`] = `
+Object {
+  "data": Object {
+    "deleteUser": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Tests should error when no address 1`] = `
 Object {
   "data": Object {
@@ -878,6 +914,21 @@ Object {
   "errors": Array [
     [ValidationError: Cannot query field "supplier" on type "Supplier". Did you mean "supplierNo" or "supplierName"?],
   ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should error when no supplier status 1`] = `
+Object {
+  "data": Object {
+    "supplierStatus": null,
+  },
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -1172,6 +1223,21 @@ Object {
     "user": null,
   },
   "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should update a user 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Variable "$user" of type "UpdateSupplierInput!" used in position expecting type "UpdateUserInput".],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
