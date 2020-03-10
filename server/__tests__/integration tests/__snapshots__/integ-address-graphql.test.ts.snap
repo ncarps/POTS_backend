@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests should error when no address 1`] = `
+Object {
+  "data": Object {
+    "address": null,
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch all address 1`] = `
+Object {
+  "data": Object {
+    "allAddresss": Array [
+      Object {
+        "building_name": "building name",
+        "city": "city",
+        "id": "A1",
+        "state": "state",
+        "street": "street",
+        "zip_code": "zip_code",
+      },
+      Object {
+        "building_name": "building name 2",
+        "city": "city 2",
+        "id": "A2",
+        "state": "state 2",
+        "street": "street 2",
+        "zip_code": "zip_code 2",
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests should fetch one address 1`] = `
+Object {
+  "data": Object {
+    "address": Object {
+      "building_name": "building name",
+      "city": "city",
+      "id": "A1",
+      "state": "state",
+      "street": "street",
+      "zip_code": "zip_code",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
