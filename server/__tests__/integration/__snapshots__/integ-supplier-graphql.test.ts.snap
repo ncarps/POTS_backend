@@ -56,7 +56,7 @@ exports[`Tests should fetch all suppliers 1`] = `
 Object {
   "data": null,
   "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field Supplier.id.],
+    [GraphQLError: getAddressById is not a function],
   ],
   "extensions": undefined,
   "http": Object {
@@ -71,7 +71,7 @@ exports[`Tests should fetch one supplier 1`] = `
 Object {
   "data": null,
   "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field Query.supplier.],
+    [GraphQLError: getAddressById is not a function],
   ],
   "extensions": undefined,
   "http": Object {

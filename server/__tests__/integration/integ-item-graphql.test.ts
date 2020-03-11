@@ -34,7 +34,7 @@ const itemMock = {
     return res[0] || null;
   }),
   getAll: jest.fn(async () => {
-    return mockData.users;
+    return mockData.items;
   }),
   updateById: jest.fn(async input => {
     return { ...input };

@@ -78,11 +78,9 @@ Object {
   "data": Object {
     "allItems": Array [
       null,
-      null,
     ],
   },
   "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field Item.id.],
     [GraphQLError: Cannot return null for non-nullable field Item.id.],
   ],
   "extensions": undefined,
