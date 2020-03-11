@@ -1,9 +1,9 @@
 import {
-	getAllDataDB,
-	getByIDDB,
-	getAllByItemDB,
-	getAllBySupplierStatusDB,
-	getAllByScheduleLineDB,
+  getAllDataDB,
+  getByIDDB,
+  getAllByItemDB,
+  getAllBySupplierStatusDB,
+  getAllByScheduleLineDB,
 } from './retrieve-data-db';
 import { DeleteRecordByIDDB } from './delete-data-db';
 
@@ -32,28 +32,28 @@ import { createCreateScheduleLineDB } from './create-scheduleLine-db';
 import { updateScheduleLineByIDDB } from './update-scheduleLine-db';
 
 export {
-	getAllDataDB,
-	getByIDDB,
-	DeleteRecordByIDDB,
-	getAllByItemDB,
-	getAllBySupplierStatusDB,
-	getAllByScheduleLineDB,
-	//User exports
-	createCreateUserDB,
-	updateUserByIDDB,
-	//Supplier exports
-	createCreateSupplierDB,
-	updateSupplierByIDDB,
-	//SupplierStatus exports
-	createCreateSupplierStatusDB,
-	updateSupplierStatusByIDDB,
-	//Item
-	createCreateItemDB,
-	updateItemByIDDB,
-	//Purchase Order
-	createCreatePurchaseOrderDB,
-	updatePurchaseOrderByIDDB,
-	//Schedule Line
-	createCreateScheduleLineDB,
-	updateScheduleLineByIDDB,
+  getAllDataDB,
+  getByIDDB,
+  DeleteRecordByIDDB,
+  getAllByItemDB,
+  getAllBySupplierStatusDB,
+  getAllByScheduleLineDB,
+  //User exports
+  createCreateUserDB,
+  updateUserByIDDB,
+  //Supplier exports
+  createCreateSupplierDB,
+  updateSupplierByIDDB,
+  //SupplierStatus exports
+  createCreateSupplierStatusDB,
+  updateSupplierStatusByIDDB,
+  //Item
+  createCreateItemDB,
+  updateItemByIDDB,
+  //Purchase Order
+  createCreatePurchaseOrderDB,
+  updatePurchaseOrderByIDDB,
+  //Schedule Line
+  createCreateScheduleLineDB,
+  updateScheduleLineByIDDB,
 };
