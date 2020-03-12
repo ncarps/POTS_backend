@@ -18,7 +18,7 @@ const {
 
 const purchaseOrderMock = {
   insert: jest.fn(async input => {
-    return { id: '1', ...input, vendorAddress: 'A1', supplier: '1' };
+    return { id: '1', ...input, vendorAddress: 'A1' };
   }),
   getById: jest.fn(async id => {
     const filterData = data => {
@@ -58,7 +58,6 @@ const itemMock = {
     return {
       id: '1',
       ...input,
-      deliveryAddress: 'A1',
     };
   }),
   getById: jest.fn(async id => {
@@ -72,7 +71,7 @@ const itemMock = {
     return res[0] || null;
   }),
   getAll: jest.fn(async () => {
-    return mockData.users;
+    return mockData.items;
   }),
   updateById: jest.fn(async input => {
     return { ...input };
@@ -103,7 +102,7 @@ const itemMock = {
 
 const supplierMock = {
   insert: jest.fn(async input => {
-    return { id: '1', ...input, address: 'A1' };
+    return { id: '1', ...input, address: 'A2' };
   }),
   getAll: jest.fn(async () => {
     return mockData.suppliers;
@@ -205,7 +204,6 @@ const { server }: any = constructTestServer({
     getPurchaseOrderById: getByIDDB(purchaseOrderMock),
     getAllPurchaseOrders: getAllDataDB(purchaseOrderMock),
     getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderMock),
-    getItemById: getByIDDB(itemMock),
     createScheduleLine: createCreateScheduleLineDB(scheduleLinesMock),
     getAddressById: getByIDDB(addressMock),
     createItem: createCreateItemDB(itemMock),
@@ -260,6 +258,11 @@ describe('Tests', () => {
             currency
             deliveryAddress {
               id
+              building_name
+              street
+              city
+              state
+              zip_code
             }
             totalAmount
             supplierStatusItem
@@ -444,6 +447,7 @@ describe('Tests', () => {
     const CREATE_PURCHASEORDER = gql`
       mutation createPO($purchaseOrder: PurchaseOrderInput) {
         createPurchaseOrder(purchaseOrder: $purchaseOrder) {
+          id
           purchaseOrderNo
           shipmentNo
           vendorAddress {
@@ -575,7 +579,7 @@ describe('Tests', () => {
     expect(purchaseOrderMock.insert.mock.calls.length).toBe(1);
     expect(res.data).toMatchObject({
       createPurchaseOrder: {
-        _id: '1',
+        id: '1',
         purchaseOrderNo: '001',
         shipmentNo: '123',
         supplier: {
@@ -583,6 +587,7 @@ describe('Tests', () => {
           supplierNo: '001',
           supplierName: 'Juan Dela Cruz',
           address: {
+            id: 'A2',
             building_name: '002',
             street: 'Elmer',
             city: 'Celadon',
@@ -596,6 +601,7 @@ describe('Tests', () => {
         postingDate: '03/03/20200',
         documentDate: '03/03/20200',
         vendorAddress: {
+          id: 'A1',
           building_name: '002',
           street: 'Elmer',
           city: 'Celadon',

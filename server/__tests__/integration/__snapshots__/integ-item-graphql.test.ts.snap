@@ -3,7 +3,9 @@
 exports[`Tests delete an item 1`] = `
 Object {
   "data": Object {
-    "deleteItem": null,
+    "deleteItem": Object {
+      "id": "1",
+    },
   },
   "errors": undefined,
   "extensions": undefined,
@@ -21,11 +23,11 @@ Object {
     "createItem": Object {
       "currency": "PHP",
       "deliveryAddress": Object {
-        "building_name": "building name",
-        "city": "city",
-        "state": "state",
-        "street": "street",
-        "zip_code": "zip_code",
+        "building_name": "002",
+        "city": "Celadon",
+        "state": "Johto",
+        "street": "Elmer",
+        "zip_code": "123",
       },
       "description": "Beef",
       "discount": 0.05,
@@ -81,7 +83,7 @@ Object {
     ],
   },
   "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field Item.id.],
+    [GraphQLError: Cannot return null for non-nullable field Item.deliveryAddress.],
   ],
   "extensions": undefined,
   "http": Object {
@@ -97,7 +99,9 @@ Object {
   "data": Object {
     "item": null,
   },
-  "errors": undefined,
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field Item.deliveryAddress.],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -110,11 +114,12 @@ Object {
 exports[`Tests update an item 1`] = `
 Object {
   "data": Object {
-    "updateItem": null,
+    "updateItem": Object {
+      "id": "1",
+      "supplierStatusItem": "Dispatched",
+    },
   },
-  "errors": Array [
-    [GraphQLError: Cannot read property 'itemNo' of null],
-  ],
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

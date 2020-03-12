@@ -19,19 +19,19 @@ export default {
   address: [
     {
       id: 'A1',
-      building_name: 'building name',
-      street: 'street',
-      city: 'city',
-      state: 'state',
-      zip_code: 'zip_code',
+      building_name: '002',
+      street: 'Elmer',
+      city: 'Celadon',
+      state: 'Johto',
+      zip_code: '123',
     },
     {
       id: 'A2',
-      building_name: 'building name 2',
-      street: 'street 2',
-      city: 'city 2',
-      state: 'state 2',
-      zip_code: 'zip_code 2',
+      building_name: '002',
+      street: 'Elmer',
+      city: 'Celadon',
+      state: 'Johto',
+      zip_code: '123',
     },
   ],
 
@@ -41,6 +41,7 @@ export default {
       supplierNo: '001',
       supplierName: 'Juan Dela Cruz',
       address: {
+        id: 'A1',
         building_name: '002',
         street: 'Elmer',
         city: 'Celadon',
@@ -56,6 +57,7 @@ export default {
       supplierNo: '002',
       supplierName: 'Juan Dela Cruz',
       address: {
+        id: 'A1',
         building_name: '002',
         street: 'Elmer',
         city: 'Celadon',
@@ -113,7 +115,7 @@ export default {
 
   items: [
     {
-      _id: '1',
+      id: '1',
       itemNo: '001',
       description: 'Beef',
       productId: '0001',
@@ -176,7 +178,7 @@ export default {
       },
       items: [
         {
-          _id: '1',
+          id: '1',
           itemNo: '001',
           description: 'Beef',
           productId: '0001',
@@ -195,45 +197,6 @@ export default {
           },
           scheduleLine: [
             {
-              quantity: 10,
-              uom: 'kilograms',
-              deliveryDateAndTime: 'February 25,2020 4:30PM',
-              unitPrice: 1000,
-              totalAmount: 10000,
-            },
-            {
-              _id: '2',
-              quantity: 10,
-              uom: 'uom',
-              deliveryDateAndTime: 'dateandtime',
-              unitPrice: 1000,
-              totalAmount: 10000,
-            },
-          ],
-          currency: 'PHP',
-          dateUpdated: '',
-          timeUpdated: '',
-        },
-        {
-          itemNo: '002',
-          description: 'Beef',
-          productId: '0001',
-          quantity: 10,
-          uom: 'kg',
-          unitPrice: 1000,
-          discount: 0.05,
-          totalAmount: 9000,
-          supplierStatusItem: 'Distpatched',
-          deliveryAddress: {
-            building_name: '002',
-            street: 'Elmer',
-            city: 'Celadon',
-            state: 'Johto',
-            zip_code: '123',
-          },
-          scheduleLine: [
-            {
-              _id: '1',
               quantity: 10,
               uom: 'kilograms',
               deliveryDateAndTime: 'February 25,2020 4:30PM',

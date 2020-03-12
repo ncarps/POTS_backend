@@ -313,11 +313,11 @@ describe('Tests', () => {
           discount: 0.05,
           totalAmount: 10000,
           deliveryAddress: {
-            building_name: 'building name',
-            street: 'street',
-            city: 'city',
-            state: 'state',
-            zip_code: 'zip_code',
+            building_name: '002',
+            street: 'Elmer',
+            city: 'Celadon',
+            state: 'Johto',
+            zip_code: '123',
           },
           scheduleLine: [
             {
@@ -348,11 +348,11 @@ describe('Tests', () => {
         discount: 0.05,
         totalAmount: 10000,
         deliveryAddress: {
-          building_name: 'building name',
-          street: 'street',
-          city: 'city',
-          state: 'state',
-          zip_code: 'zip_code',
+          building_name: '002',
+          street: 'Elmer',
+          city: 'Celadon',
+          state: 'Johto',
+          zip_code: '123',
         },
         scheduleLine: [
           {

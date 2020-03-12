@@ -20,20 +20,20 @@ Object {
   "data": Object {
     "allAddresss": Array [
       Object {
-        "building_name": "building name",
-        "city": "city",
+        "building_name": "002",
+        "city": "Celadon",
         "id": "A1",
-        "state": "state",
-        "street": "street",
-        "zip_code": "zip_code",
+        "state": "Johto",
+        "street": "Elmer",
+        "zip_code": "123",
       },
       Object {
-        "building_name": "building name 2",
-        "city": "city 2",
+        "building_name": "002",
+        "city": "Celadon",
         "id": "A2",
-        "state": "state 2",
-        "street": "street 2",
-        "zip_code": "zip_code 2",
+        "state": "Johto",
+        "street": "Elmer",
+        "zip_code": "123",
       },
     ],
   },
@@ -51,12 +51,12 @@ exports[`Tests should fetch one address 1`] = `
 Object {
   "data": Object {
     "address": Object {
-      "building_name": "building name",
-      "city": "city",
+      "building_name": "002",
+      "city": "Celadon",
       "id": "A1",
-      "state": "state",
-      "street": "street",
-      "zip_code": "zip_code",
+      "state": "Johto",
+      "street": "Elmer",
+      "zip_code": "123",
     },
   },
   "errors": undefined,
