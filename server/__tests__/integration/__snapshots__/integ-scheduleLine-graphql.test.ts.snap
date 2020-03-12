@@ -57,11 +57,9 @@ Object {
   "data": Object {
     "allScheduleLines": Array [
       null,
-      null,
     ],
   },
   "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field ScheduleLine.id.],
     [GraphQLError: Cannot return null for non-nullable field ScheduleLine.id.],
   ],
   "extensions": undefined,

@@ -15,6 +15,7 @@ const {
   createCreateScheduleLineDB,
   updatePurchaseOrderByIDDB,
   getAllByScheduleLineDB,
+  getAllBySupplierStatusDB,
 } = controllers;
 
 const purchaseOrderMock = {
@@ -62,6 +63,7 @@ const itemMock = {
     return {
       id: '1',
       ...input,
+      deliveryAddress: 'A1',
     };
   }),
   getById: jest.fn(async id => {
@@ -170,8 +172,16 @@ const scheduleLinesMock = {
     const res = mockData.scheduleLines.filter(filterData);
     return res[0] || null;
   },
-  getAllBySupplierStatus: jest.fn(async () => {
-    return mockData.scheduleLines;
+  getAllBySupplierStatus: jest.fn(async id => {
+    const filterData = data => {
+      if (id.includes(data._id)) {
+        return data;
+      }
+    };
+    const res = mockData.supplierStatus
+      .filter(filterData)
+      .map(data => ({ ...data, id: data._id }));
+    return res;
   }),
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
@@ -214,6 +224,9 @@ const { server }: any = constructTestServer({
     createSupplier: createCreateSupplierDB(supplierMock),
     getSupplierById: getByIDDB(supplierMock),
     getAllScheduleLinesByItem: getAllByScheduleLineDB(itemMock),
+    getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
+      scheduleLinesMock,
+    ),
   },
 });
 
@@ -453,6 +466,7 @@ describe('Tests', () => {
       mutation createPO($purchaseOrder: PurchaseOrderInput) {
         createPurchaseOrder(purchaseOrder: $purchaseOrder) {
           id
+          postingDate
           purchaseOrderNo
           shipmentNo
           vendorAddress {
@@ -483,6 +497,8 @@ describe('Tests', () => {
           items {
             id
             itemNo
+            productId
+            discount
             description
             quantity
             uom
@@ -558,11 +574,11 @@ describe('Tests', () => {
               discount: 0.05,
               totalAmount: 10000,
               deliveryAddress: {
-                building_name: 'building name',
-                street: 'street',
-                city: 'city',
-                state: 'state',
-                zip_code: 'zip_code',
+                building_name: '002',
+                street: 'Elmer',
+                city: 'Celadon',
+                state: 'Johto',
+                zip_code: '123',
               },
               scheduleLine: [
                 {
@@ -625,11 +641,12 @@ describe('Tests', () => {
             discount: 0.05,
             totalAmount: 10000,
             deliveryAddress: {
-              building_name: 'building name',
-              street: 'street',
-              city: 'city',
-              state: 'state',
-              zip_code: 'zip_code',
+              id: 'A1',
+              building_name: '002',
+              street: 'Elmer',
+              city: 'Celadon',
+              state: 'Johto',
+              zip_code: '123',
             },
             scheduleLine: [
               {

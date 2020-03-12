@@ -79,11 +79,35 @@ exports[`Tests should fetch all items 1`] = `
 Object {
   "data": Object {
     "allItems": Array [
-      null,
+      Object {
+        "currency": "PHP",
+        "deliveryAddress": Object {
+          "id": "A1",
+        },
+        "description": "Beef",
+        "id": "1",
+        "itemNo": "001",
+        "quantity": 10,
+        "scheduleLine": Array [
+          Object {
+            "deliveryDateAndTime": "February 25,2020 4:30PM",
+            "deliveryStatus": null,
+            "id": "1",
+            "quantity": 10,
+            "totalAmount": 10000,
+            "unitPrice": 1000,
+            "uom": "kilograms",
+          },
+        ],
+        "supplierStatusItem": null,
+        "totalAmount": 10000,
+        "unitPrice": 1000,
+        "uom": "kilograms",
+      },
     ],
   },
   "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field Item.deliveryAddress.],
+    [GraphQLError: getAllSupplierStatusByScheduleLine is not a function],
   ],
   "extensions": undefined,
   "http": Object {
@@ -97,10 +121,34 @@ Object {
 exports[`Tests should fetch one item  1`] = `
 Object {
   "data": Object {
-    "item": null,
+    "item": Object {
+      "currency": "PHP",
+      "deliveryAddress": Object {
+        "id": "A1",
+      },
+      "description": "Beef",
+      "id": "1",
+      "itemNo": "001",
+      "quantity": 10,
+      "scheduleLine": Array [
+        Object {
+          "deliveryDateAndTime": "February 25,2020 4:30PM",
+          "deliveryStatus": null,
+          "id": "1",
+          "quantity": 10,
+          "totalAmount": 10000,
+          "unitPrice": 1000,
+          "uom": "kilograms",
+        },
+      ],
+      "supplierStatusItem": null,
+      "totalAmount": 10000,
+      "unitPrice": 1000,
+      "uom": "kilograms",
+    },
   },
   "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field Item.deliveryAddress.],
+    [GraphQLError: getAllSupplierStatusByScheduleLine is not a function],
   ],
   "extensions": undefined,
   "http": Object {

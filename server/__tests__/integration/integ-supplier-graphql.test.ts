@@ -15,7 +15,7 @@ const {
 
 const supplierMock = {
   insert: jest.fn(async input => {
-    return { id: '1', ...input, address: 'A1' };
+    return { id: '1', ...input, address: 'A2' };
   }),
   getAll: jest.fn(async () => {
     return mockData.suppliers;
@@ -52,7 +52,7 @@ const supplierMock = {
 
 const addressMock = {
   insert: jest.fn(async input => {
-    return { id: 'A1', ...input };
+    return { id: 'A2', ...input };
   }),
   getAll: jest.fn(async () => {
     return mockData.address;
@@ -187,6 +187,14 @@ describe('Tests', () => {
           id
           supplierNo
           supplierName
+          address {
+            id
+            building_name
+            street
+            city
+            state
+            zip_code
+          }
           contactPerson
           contactNumber
           tin
@@ -224,6 +232,7 @@ describe('Tests', () => {
         supplierNo: '001',
         supplierName: 'Juan Dela Cruz',
         address: {
+          id: 'A2',
           building_name: '002',
           street: 'Elmer',
           city: 'Celadon',
@@ -259,7 +268,7 @@ describe('Tests', () => {
         supplier: {
           id: '1',
           supplierNo: '001',
-          supplierName: 'The Supplier',
+          supplierName: 'Juan Dela Cruz',
           address: {
             building_name: '002',
             street: 'Elmer',

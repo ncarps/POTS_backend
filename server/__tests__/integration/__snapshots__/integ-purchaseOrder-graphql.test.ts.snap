@@ -1,9 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Tests create a purchase order 1`] = `
+Object {
+  "data": Object {
+    "createPurchaseOrder": Object {
+      "documentDate": "03/03/20200",
+      "id": "1",
+      "items": Array [
+        Object {
+          "currency": "PHP",
+          "deliveryAddress": Object {
+            "building_name": "002",
+            "city": "Celadon",
+            "id": "A1",
+            "state": "Johto",
+            "street": "Elmer",
+            "zip_code": "123",
+          },
+          "description": "Beef",
+          "discount": 0.05,
+          "id": "1",
+          "itemNo": "001",
+          "productId": "0001",
+          "quantity": 10,
+          "scheduleLine": Array [
+            Object {
+              "deliveryDateAndTime": "February 25,2020 4:30PM",
+              "deliveryStatus": Array [],
+              "id": "1",
+              "quantity": 10,
+              "totalAmount": 10000,
+              "unitPrice": 1000,
+              "uom": "kilograms",
+            },
+          ],
+          "supplierStatusItem": null,
+          "totalAmount": 10000,
+          "unitPrice": 1000,
+          "uom": "kilograms",
+        },
+      ],
+      "postingDate": "03/03/20200",
+      "purchaseOrderNo": "001",
+      "shipmentNo": "123",
+      "supplier": Object {
+        "address": Object {
+          "building_name": "002",
+          "city": "Celadon",
+          "id": "A2",
+          "state": "Johto",
+          "street": "Elmer",
+          "zip_code": "123",
+        },
+        "contactNumber": "1234567",
+        "contactPerson": "Basil Valdez",
+        "id": "1",
+        "supplierName": "Juan Dela Cruz",
+        "supplierNo": "001",
+        "tin": "12345",
+      },
+      "vendorAddress": Object {
+        "building_name": "002",
+        "city": "Celadon",
+        "id": "A1",
+        "state": "Johto",
+        "street": "Elmer",
+        "zip_code": "123",
+      },
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Tests delete a puchase order 1`] = `
 Object {
   "data": Object {
-    "deletePurchaseOrder": null,
+    "deletePurchaseOrder": Object {
+      "id": "1",
+    },
   },
   "errors": undefined,
   "extensions": undefined,
@@ -35,12 +116,10 @@ Object {
   "data": Object {
     "allPurchaseOrders": Array [
       null,
-      null,
     ],
   },
   "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field PurchaseOrder.id.],
-    [GraphQLError: Cannot return null for non-nullable field PurchaseOrder.id.],
+    [GraphQLError: Cannot return null for non-nullable field PurchaseOrder.supplier.],
   ],
   "extensions": undefined,
   "http": Object {
@@ -56,7 +135,9 @@ Object {
   "data": Object {
     "purchaseOrder": null,
   },
-  "errors": undefined,
+  "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field PurchaseOrder.supplier.],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

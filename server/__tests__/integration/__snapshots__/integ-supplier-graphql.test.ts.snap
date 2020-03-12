@@ -4,10 +4,18 @@ exports[`Tests create a supplier 1`] = `
 Object {
   "data": Object {
     "createSupplier": Object {
+      "address": Object {
+        "building_name": "002",
+        "city": "Celadon",
+        "id": "A2",
+        "state": "Johto",
+        "street": "Elmer",
+        "zip_code": "123",
+      },
       "contactNumber": "1234567",
       "contactPerson": "Basil Valdez",
       "id": "1",
-      "supplierName": "The Supplier",
+      "supplierName": "Juan Dela Cruz",
       "supplierNo": "001",
       "tin": "12345",
     },
@@ -54,10 +62,43 @@ Object {
 
 exports[`Tests should fetch all suppliers 1`] = `
 Object {
-  "data": null,
-  "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field Supplier.address.],
-  ],
+  "data": Object {
+    "allSuppliers": Array [
+      Object {
+        "address": Object {
+          "building_name": "002",
+          "city": "Celadon",
+          "id": "A2",
+          "state": "Johto",
+          "street": "Elmer",
+          "zip_code": "123",
+        },
+        "contactNumber": "1234567",
+        "contactPerson": "Basil Valdez",
+        "id": "1",
+        "supplierName": "Juan Dela Cruz",
+        "supplierNo": "001",
+        "tin": "12345",
+      },
+      Object {
+        "address": Object {
+          "building_name": "002",
+          "city": "Celadon",
+          "id": "A1",
+          "state": "Johto",
+          "street": "Elmer",
+          "zip_code": "123",
+        },
+        "contactNumber": "1234567",
+        "contactPerson": "Basil Valdez",
+        "id": "2",
+        "supplierName": "Juan Dela Cruz",
+        "supplierNo": "002",
+        "tin": "12345",
+      },
+    ],
+  },
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -69,10 +110,25 @@ Object {
 
 exports[`Tests should fetch one supplier 1`] = `
 Object {
-  "data": null,
-  "errors": Array [
-    [GraphQLError: Cannot return null for non-nullable field Supplier.address.],
-  ],
+  "data": Object {
+    "supplier": Object {
+      "address": Object {
+        "building_name": "002",
+        "city": "Celadon",
+        "id": "A2",
+        "state": "Johto",
+        "street": "Elmer",
+        "zip_code": "123",
+      },
+      "contactNumber": "1234567",
+      "contactPerson": "Basil Valdez",
+      "id": "1",
+      "supplierName": "Juan Dela Cruz",
+      "supplierNo": "001",
+      "tin": "12345",
+    },
+  },
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -86,7 +142,7 @@ exports[`Tests update a supplier 1`] = `
 Object {
   "data": undefined,
   "errors": Array [
-    [GraphQLError: Variable "$supplier" got invalid value { id: "1", supplierNo: "001", supplierName: "The Supplier", address: { building_name: "002", street: "Elmer", city: "Celadon", state: "Johto", zip_code: "123" }, contactPerson: "Basil Valdez", contactNumber: "1234567", tin: "12345" }; Field "address" is not defined by type UpdateSupplierInput.],
+    [GraphQLError: Variable "$supplier" got invalid value { id: "1", supplierNo: "001", supplierName: "Juan Dela Cruz", address: { building_name: "002", street: "Elmer", city: "Celadon", state: "Johto", zip_code: "123" }, contactPerson: "Basil Valdez", contactNumber: "1234567", tin: "12345" }; Field "address" is not defined by type UpdateSupplierInput.],
   ],
   "extensions": undefined,
   "http": Object {
