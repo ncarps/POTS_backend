@@ -14,11 +14,12 @@ const {
   createCreateSupplierDB,
   createCreateScheduleLineDB,
   updatePurchaseOrderByIDDB,
+  getAllByScheduleLineDB,
 } = controllers;
 
 const purchaseOrderMock = {
   insert: jest.fn(async input => {
-    return { id: '1', ...input, vendorAddress: 'A1' };
+    return { id: '1', ...input, vendorAddress: 'A1', supplier: '1' };
   }),
   getById: jest.fn(async id => {
     const filterData = data => {
@@ -47,8 +48,11 @@ const purchaseOrderMock = {
   },
 
   getAllBySupplierStatus: async id => {},
-  getAllByItem: jest.fn(async () => {
-    return mockData.purchaseOrders;
+  getAllByItem: jest.fn(async ids => {
+    const filteredData = mockData.items.filter(item => {
+      return ids.includes(item.id);
+    });
+    return filteredData;
   }),
   getAllByScheduleLine: async id => {},
 };
@@ -209,6 +213,7 @@ const { server }: any = constructTestServer({
     createItem: createCreateItemDB(itemMock),
     createSupplier: createCreateSupplierDB(supplierMock),
     getSupplierById: getByIDDB(supplierMock),
+    getAllScheduleLinesByItem: getAllByScheduleLineDB(itemMock),
   },
 });
 
