@@ -40,20 +40,13 @@ export default {
       id: '1',
       supplierNo: '001',
       supplierName: 'Juan Dela Cruz',
-      address: {
-        id: 'A1',
-        building_name: '002',
-        street: 'Elmer',
-        city: 'Celadon',
-        state: 'Johto',
-        zip_code: '123',
-      },
+      address: 'A2',
       contactPerson: 'Basil Valdez',
       contactNumber: '1234567',
       tin: '12345',
     },
     {
-      id: '1',
+      id: '2',
       supplierNo: '002',
       supplierName: 'Juan Dela Cruz',
       address: {
@@ -124,13 +117,7 @@ export default {
       unitPrice: 1000,
       discount: 0.05,
       totalAmount: 10000,
-      deliveryAddress: {
-        building_name: '002',
-        street: 'Elmer',
-        city: 'Celadon',
-        state: 'Johto',
-        zip_code: '123',
-      },
+      deliveryAddress: 'A1',
       scheduleLine: [
         {
           _id: '1',
