@@ -2,7 +2,8 @@ const purchaseOrderResolvers = {
   PurchaseOrder: {
     supplier: async (parent, args, context, info) => {
       const { getSupplierById } = context;
-      return await getSupplierById(parent.supplier);
+      const supp = await getSupplierById(parent.supplier);
+      return supp;
     },
     items: async (parent, args, context, info) => {
       const { getAllItemsByPurchaseOrder } = context;
@@ -44,7 +45,6 @@ const purchaseOrderResolvers = {
                 deliveryStatus = await Promise.all(
                   sl.deliveryStatus.map(async ds => {
                     const deliveryStatus = await createSupplierStatus(ds);
-                    console.log(deliveryStatus);
                     return deliveryStatus.id.toString();
                   }),
                 );
@@ -80,7 +80,6 @@ const purchaseOrderResolvers = {
           };
 
           const poitem = await createItem(i);
-          console.log('PO item', poitem);
           return poitem.id.toString();
         }),
       );
