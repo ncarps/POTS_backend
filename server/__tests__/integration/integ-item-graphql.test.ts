@@ -258,7 +258,9 @@ describe('Tests', () => {
     const { query } = createTestClient(server);
     const res = await query({
       query: SINGLE_ITEM,
-      variables: { id: '' },
+      variables: {
+        id: '',
+      },
     });
 
     expect(res).toMatchSnapshot();

@@ -8,7 +8,16 @@ import supplierStatus from './supplierStatus';
 import item from './item';
 import purchaseOrder from './purchaseOrder';
 import scheduleLine from './scheduleLine';
-
-const resolvers: IResolvers[] = [user, address, supplier, supplierStatus, item, purchaseOrder, scheduleLine];
+import message from './message';
+const resolvers: IResolvers[] = [
+  user,
+  address,
+  supplier,
+  supplierStatus,
+  item,
+  purchaseOrder,
+  scheduleLine,
+  message,
+];
 
 export default mergeResolvers(resolvers);
