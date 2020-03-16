@@ -9,6 +9,7 @@ import { updateUCSupplier } from './update-supplier-usecase';
 //Supplier Status
 import { createUCCreateSupplierStatus } from './create-supplierStatus-usecase';
 import { updateUCSupplierStatus } from './update-supplierStatus-usecase';
+import { updateUCSupplierStatusItem } from './update-item-supplierStatusItem-usecase';
 
 //Item
 import { createUCCreateItem } from './create-item-usecase';
@@ -23,22 +24,23 @@ import { createUCCreateScheduleLine } from './create-scheduleLine-usecase';
 import { updateUCScheduleLine } from './update-scheduleLine-usecase';
 
 export {
-	//User
-	createUCCreateUser,
-	updateUCUser,
-	//Supplier
-	createUCCreateSupplier,
-	updateUCSupplier,
-	//Supplier Status
-	updateUCSupplierStatus,
-	createUCCreateSupplierStatus,
-	//Item
-	createUCCreateItem,
-	updateUCItem,
-	//Purchase Order
-	createUCPurchaseOrder,
-	updateUCPurchaseOrder,
-	//Schedule Line
-	createUCCreateScheduleLine,
-	updateUCScheduleLine,
+  //User
+  createUCCreateUser,
+  updateUCUser,
+  //Supplier
+  createUCCreateSupplier,
+  updateUCSupplier,
+  //Supplier Status
+  updateUCSupplierStatus,
+  createUCCreateSupplierStatus,
+  updateUCSupplierStatusItem,
+  //Item
+  createUCCreateItem,
+  updateUCItem,
+  //Purchase Order
+  createUCPurchaseOrder,
+  updateUCPurchaseOrder,
+  //Schedule Line
+  createUCCreateScheduleLine,
+  updateUCScheduleLine,
 };

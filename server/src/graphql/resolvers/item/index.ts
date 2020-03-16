@@ -114,6 +114,28 @@ const itemResolvers = {
       };
       return await updateItemById(i);
     },
+    updateSupplierStatusItem: async (parent, { item }, context, info) => {
+      const { updateSupplierStatusItemById } = context;
+
+      const i = {
+        id: item.id,
+        itemNo: item.itemNo,
+        productId: item.productId,
+        description: item.description,
+        quantity: item.quantity,
+        uom: item.uom,
+        unitPrice: item.unitPrice,
+        totalAmount: item.totalAmount,
+        discount: item.discount,
+        deliveryAddress: item.deliveryAddress,
+        supplierStatusItem: item.supplierStatusItem,
+        scheduleLine: item.scheduleLine,
+        currency: item.currency,
+        dateUpdated: item.dateUpdated,
+        timeUpdated: item.timeUpdated,
+      };
+      return await updateSupplierStatusItemById(i);
+    },
 
     deleteItem: async (parent, { id }, context, info) => {
       const { deleteItemById } = context;
