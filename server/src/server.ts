@@ -91,6 +91,7 @@ const context = async session => {
     //Item
     createItem: createCreateItemDB(itemModel),
     updateItemById: updateItemByIDDB(itemModel),
+    updateSupplierStatusItemById: updateSupplierStatusItemByIDDB(itemModel),
     deleteItemById: DeleteRecordByIDDB(itemModel),
     getItemById: getByIDDB(itemModel),
     getAllItems: getAllDataDB(itemModel),
