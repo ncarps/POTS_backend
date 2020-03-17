@@ -146,7 +146,7 @@ const supplierMock = {
 
 const scheduleLinesMock = {
   insert: jest.fn(async input => {
-    return { id: '1', ...input };
+    return { id: '2', ...input };
   }),
   getById: jest.fn(async id => {
     const filterData = data => {
@@ -213,7 +213,7 @@ const addressMock = {
 
 const supplierStatusMock = {
   insert: jest.fn(async input => {
-    return { id: '1', ...input };
+    return { id: '2', ...input };
   }),
   getById: jest.fn(async id => {
     const filterData = data => {
