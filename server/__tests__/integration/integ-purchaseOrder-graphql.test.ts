@@ -667,8 +667,8 @@ describe('Tests', () => {
 
   it('update a purchase order', async () => {
     const UPDATE_PURCHASEORDER = gql`
-      mutation i($item: UpdateItemInput!) {
-        updateItem(item: $item) {
+      mutation i($purchaseOrder: UpdatePurchaseOrderInput!) {
+        updatePurchaseOrder(purchaseOrder: $purchaseOrder) {
           id
           adminStatus
           supplierStatusHeader
