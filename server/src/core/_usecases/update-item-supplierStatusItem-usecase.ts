@@ -21,9 +21,10 @@ const updateUCSupplierStatusItem = () => (itemInput, oldValue) => {
   for (let prop in itemInput) {
     if (itemInput[prop]) {
       newItem[prop] = itemInput[prop];
-    } else {
-      newItem[prop] = oldValue[prop];
     }
+    // else {
+    //   newItem[prop] = oldValue[prop];
+    // }
   }
   const item = makeItem(newItem);
   return { ...item, id: oldValue.id };
