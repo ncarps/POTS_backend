@@ -12,7 +12,9 @@ const {
   DeleteRecordByIDDB,
   createCreateItemDB,
   updateItemByIDDB,
+  updateSupplierStatusItemByIDDB,
   createCreateScheduleLineDB,
+  createCreateSupplierStatusDB,
 } = controllers;
 
 const itemMock = {
@@ -63,9 +65,35 @@ const itemMock = {
   }),
 };
 
-const scheduleLinesMock = {
+const supplierStatusMock = {
   insert: jest.fn(async input => {
     return { id: '1', ...input };
+  }),
+  getById: jest.fn(async id => {
+    const filterData = data => {
+      if (data.id === id) {
+        return data;
+      }
+    };
+    const res = mockData.supplierStatus.filter(filterData);
+
+    return res[0] || null;
+  }),
+  getAll: jest.fn(async () => {
+    return mockData.supplierStatus;
+  }),
+  updateById: jest.fn(async input => {
+    return { ...input };
+  }),
+  deleteById: async id => {},
+  getAllBySupplierStatus: async id => {},
+  getAllByItem: async id => {},
+  getAllByScheduleLine: async id => {},
+};
+
+const scheduleLinesMock = {
+  insert: jest.fn(async input => {
+    return { id: '2', ...input };
   }),
   getById: jest.fn(async id => {
     const filterData = data => {
@@ -92,8 +120,16 @@ const scheduleLinesMock = {
     const res = mockData.scheduleLines.filter(filterData);
     return res[0] || null;
   },
-  getAllBySupplierStatus: jest.fn(async () => {
-    return mockData.scheduleLines;
+  getAllBySupplierStatus: jest.fn(async id => {
+    const filterData = data => {
+      if (id.includes(data._id)) {
+        return data;
+      }
+    };
+    const res = mockData.supplierStatus
+      .filter(filterData)
+      .map(data => ({ ...data, id: data._id }));
+    return res;
   }),
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
@@ -126,13 +162,17 @@ const { server }: any = constructTestServer({
   context: {
     createItem: createCreateItemDB(itemMock),
     updateItemById: updateItemByIDDB(itemMock),
+    updateItemSupplierStatusById: updateSupplierStatusItemByIDDB(itemMock),
     deleteItemById: DeleteRecordByIDDB(itemMock),
     getItemById: getByIDDB(itemMock),
     getAllItems: getAllDataDB(itemMock),
-    getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemMock),
+    getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
+      scheduleLinesMock,
+    ),
     getAllScheduleLinesByItem: getAllByScheduleLineDB(itemMock),
     createScheduleLine: createCreateScheduleLineDB(scheduleLinesMock),
     getAddressById: getByIDDB(addressMock),
+    createSupplierStatus: createCreateSupplierStatusDB(supplierStatusMock),
   },
 });
 
@@ -295,6 +335,12 @@ describe('Tests', () => {
             uom
             unitPrice
             totalAmount
+            deliveryStatus {
+              id
+              status
+              dateCreated
+              timeCreated
+            }
           }
           currency
         }
@@ -328,6 +374,11 @@ describe('Tests', () => {
               deliveryDateAndTime: 'February 25,2020 4:30PM',
               unitPrice: 1000,
               totalAmount: 10000,
+              deliveryStatus: [
+                {
+                  status: 'Delivered',
+                },
+              ],
             },
           ],
           currency: 'PHP',
@@ -358,12 +409,20 @@ describe('Tests', () => {
         },
         scheduleLine: [
           {
-            id: '1',
+            id: '2',
             quantity: 10,
             uom: 'kilograms',
             deliveryDateAndTime: 'February 25,2020 4:30PM',
             unitPrice: 1000,
             totalAmount: 10000,
+            deliveryStatus: [
+              {
+                id: '2',
+                status: 'Delivered',
+                dateCreated: 'February 14, 2020',
+                timeCreated: '4:30 PM',
+              },
+            ],
           },
         ],
         currency: 'PHP',
@@ -376,6 +435,30 @@ describe('Tests', () => {
     const UPDATE_ITEM = gql`
       mutation i($item: UpdateItemInput!) {
         updateItem(item: $item) {
+          id
+          supplierStatusItem
+        }
+      }
+    `;
+
+    const { mutate } = createTestClient(server);
+    const res = await mutate({
+      mutation: UPDATE_ITEM,
+      variables: {
+        item: {
+          id: '1',
+          supplierStatusItem: 'Dispatched',
+        },
+      },
+    });
+
+    expect(res).toMatchSnapshot();
+  });
+
+  it('update an item supplierStatus', async () => {
+    const UPDATE_ITEM = gql`
+      mutation i($item: UpdateSupplierStatusItemInput!) {
+        updateSupplierStatusItem(item: $item) {
           id
           supplierStatusItem
         }

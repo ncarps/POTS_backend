@@ -38,7 +38,15 @@ Object {
       "scheduleLine": Array [
         Object {
           "deliveryDateAndTime": "February 25,2020 4:30PM",
-          "id": "1",
+          "deliveryStatus": Array [
+            Object {
+              "dateCreated": "February 14, 2020",
+              "id": "2",
+              "status": "Delivered",
+              "timeCreated": "4:30 PM",
+            },
+          ],
+          "id": "2",
           "quantity": 10,
           "totalAmount": 10000,
           "unitPrice": 1000,
@@ -91,8 +99,40 @@ Object {
         "scheduleLine": Array [
           Object {
             "deliveryDateAndTime": "February 25,2020 4:30PM",
-            "deliveryStatus": null,
+            "deliveryStatus": Array [],
             "id": "1",
+            "quantity": 10,
+            "totalAmount": 10000,
+            "unitPrice": 1000,
+            "uom": "kilograms",
+          },
+        ],
+        "supplierStatusItem": null,
+        "totalAmount": 10000,
+        "unitPrice": 1000,
+        "uom": "kilograms",
+      },
+      Object {
+        "currency": "PHP",
+        "deliveryAddress": Object {
+          "id": "A1",
+        },
+        "description": "Beef",
+        "id": "2",
+        "itemNo": "001",
+        "quantity": 10,
+        "scheduleLine": Array [
+          Object {
+            "deliveryDateAndTime": "February 25,2020 4:30PM",
+            "deliveryStatus": Array [
+              Object {
+                "dateCreated": "February 14, 2020",
+                "id": "2",
+                "status": "Delivered",
+                "timeCreated": "4:30 PM",
+              },
+            ],
+            "id": "2",
             "quantity": 10,
             "totalAmount": 10000,
             "unitPrice": 1000,
@@ -106,9 +146,7 @@ Object {
       },
     ],
   },
-  "errors": Array [
-    [GraphQLError: getAllSupplierStatusByScheduleLine is not a function],
-  ],
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -133,7 +171,7 @@ Object {
       "scheduleLine": Array [
         Object {
           "deliveryDateAndTime": "February 25,2020 4:30PM",
-          "deliveryStatus": null,
+          "deliveryStatus": Array [],
           "id": "1",
           "quantity": 10,
           "totalAmount": 10000,
@@ -147,9 +185,7 @@ Object {
       "uom": "kilograms",
     },
   },
-  "errors": Array [
-    [GraphQLError: getAllSupplierStatusByScheduleLine is not a function],
-  ],
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -168,6 +204,23 @@ Object {
     },
   },
   "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`Tests update an item supplierStatus 1`] = `
+Object {
+  "data": Object {
+    "updateSupplierStatusItem": null,
+  },
+  "errors": Array [
+    [GraphQLError: updateSupplierStatusItemById is not a function],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

@@ -5,6 +5,14 @@ Object {
   "data": Object {
     "createScheduleLine": Object {
       "deliveryDateAndTime": "February 25,2020 4:30PM",
+      "deliveryStatus": Array [
+        Object {
+          "dateCreated": "February 14, 2020",
+          "id": "1",
+          "status": "Dispatched",
+          "timeCreated": "4:30 PM",
+        },
+      ],
       "id": "1",
       "quantity": 10,
       "totalAmount": 10000,
@@ -57,9 +65,11 @@ Object {
   "data": Object {
     "allScheduleLines": Array [
       null,
+      null,
     ],
   },
   "errors": Array [
+    [GraphQLError: Cannot return null for non-nullable field ScheduleLine.id.],
     [GraphQLError: Cannot return null for non-nullable field ScheduleLine.id.],
   ],
   "extensions": undefined,
@@ -88,11 +98,11 @@ Object {
 
 exports[`Tests update a schedule line 1`] = `
 Object {
-  "data": undefined,
+  "data": Object {
+    "updateScheduleLine": null,
+  },
   "errors": Array [
-    [ValidationError: Unknown argument "scheduleLine" on field "updateSupplierStatus" of type "Mutation".],
-    [ValidationError: Cannot query field "deliveryStatus" on type "SupplierStatus".],
-    [ValidationError: Field "updateSupplierStatus" argument "supplierStatus" of type "UpdateSupplierStatusInput!" is required, but it was not provided.],
+    [GraphQLError: Cannot read property 'quantity' of null],
   ],
   "extensions": undefined,
   "http": Object {

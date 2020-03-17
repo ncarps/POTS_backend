@@ -81,22 +81,15 @@ export default {
       totalAmount: 10000,
       deliveryStatus: [''],
     },
-    // {
-    //   _id: '2',
-    //   quantity: 10,
-    //   uom: 'kilograms',
-    //   deliveryDateAndTime: 'February 25,2020 4:30PM',
-    //   unitPrice: 1000,
-    //   totalAmount: 10000,
-    //   deliveryStatus: [
-    //     {
-    //       _id: '1',
-    //       status: 'Pending',
-    //       dateCreated: '03/03/2020',
-    //       timeCreated: '4:30P M',
-    //     },
-    //   ],
-    // },
+    {
+      _id: '2',
+      quantity: 10,
+      uom: 'kilograms',
+      deliveryDateAndTime: 'February 25,2020 4:30PM',
+      unitPrice: 1000,
+      totalAmount: 10000,
+      deliveryStatus: '2',
+    },
   ],
 
   items: [
@@ -115,6 +108,20 @@ export default {
       currency: 'PHP',
       dateUpdated: '',
       timeUpdated: '',
+    },
+    {
+      id: '2',
+      itemNo: '001',
+      description: 'Beef',
+      productId: '0001',
+      quantity: 10,
+      uom: 'kilograms',
+      unitPrice: 1000,
+      discount: 0.05,
+      totalAmount: 10000,
+      deliveryAddress: 'A1',
+      scheduleLine: '2',
+      currency: 'PHP',
     },
   ],
 
