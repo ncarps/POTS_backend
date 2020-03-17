@@ -16,6 +16,7 @@ const {
   updatePurchaseOrderByIDDB,
   getAllByScheduleLineDB,
   getAllBySupplierStatusDB,
+  createCreateSupplierStatusDB,
 } = controllers;
 
 const purchaseOrderMock = {
@@ -210,6 +211,31 @@ const addressMock = {
   getAllByScheduleLine: async id => {},
 };
 
+const supplierStatusMock = {
+  insert: jest.fn(async input => {
+    return { id: '1', ...input };
+  }),
+  getById: jest.fn(async id => {
+    const filterData = data => {
+      if (data.id === id) {
+        return data;
+      }
+    };
+    const res = mockData.supplierStatus.filter(filterData);
+
+    return res[0] || null;
+  }),
+  getAll: jest.fn(async () => {
+    return mockData.supplierStatus;
+  }),
+  updateById: jest.fn(async input => {
+    return { ...input };
+  }),
+  deleteById: async id => {},
+  getAllBySupplierStatus: async id => {},
+  getAllByItem: async id => {},
+  getAllByScheduleLine: async id => {},
+};
 const { server }: any = constructTestServer({
   context: {
     createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderMock),
@@ -227,6 +253,7 @@ const { server }: any = constructTestServer({
     getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
       scheduleLinesMock,
     ),
+    createSupplierStatus: createCreateSupplierStatusDB(supplierStatusMock),
   },
 });
 
@@ -468,6 +495,8 @@ describe('Tests', () => {
           id
           postingDate
           purchaseOrderNo
+          adminStatus
+          supplierStatusHeader
           shipmentNo
           vendorAddress {
             id
@@ -539,6 +568,8 @@ describe('Tests', () => {
       variables: {
         purchaseOrder: {
           purchaseOrderNo: '001',
+          adminStatus: 'Pending',
+          supplierStatusHeader: 'Pending',
           shipmentNo: '123',
           supplier: {
             supplierNo: '001',
@@ -587,6 +618,11 @@ describe('Tests', () => {
                   deliveryDateAndTime: 'February 25,2020 4:30PM',
                   unitPrice: 1000,
                   totalAmount: 10000,
+                  deliveryStatus: [
+                    {
+                      status: 'Delivered',
+                    },
+                  ],
                 },
               ],
               currency: 'PHP',
@@ -602,6 +638,8 @@ describe('Tests', () => {
       createPurchaseOrder: {
         id: '1',
         purchaseOrderNo: '001',
+        adminStatus: 'Pending',
+        supplierStatusHeader: 'Pending',
         shipmentNo: '123',
         supplier: {
           id: '1',
@@ -641,7 +679,6 @@ describe('Tests', () => {
             discount: 0.05,
             totalAmount: 10000,
             deliveryAddress: {
-              id: 'A1',
               building_name: '002',
               street: 'Elmer',
               city: 'Celadon',
@@ -650,11 +687,20 @@ describe('Tests', () => {
             },
             scheduleLine: [
               {
+                id: '2',
                 quantity: 10,
                 uom: 'kilograms',
                 deliveryDateAndTime: 'February 25,2020 4:30PM',
                 unitPrice: 1000,
                 totalAmount: 10000,
+                deliveryStatus: [
+                  {
+                    id: '2',
+                    status: 'Delivered',
+                    dateCreated: 'February 14, 2020',
+                    timeCreated: '4:30 PM',
+                  },
+                ],
               },
             ],
             currency: 'PHP',
