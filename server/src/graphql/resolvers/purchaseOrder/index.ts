@@ -17,11 +17,36 @@ const purchaseOrderResolvers = {
   Query: {
     allPurchaseOrders: async (parent, args, context, info) => {
       const { getAllPurchaseOrders } = context;
+      console.log(getAllPurchaseOrders());
       return getAllPurchaseOrders();
     },
     purchaseOrder: async (parent, { id }, context, info) => {
       const { getPurchaseOrderById } = context;
       return getPurchaseOrderById(id);
+    },
+    purchaseOrdersStatus: async (parent, { status }, context, info) => {
+      const { getAllItemsByPurchaseOrder, getAllPurchaseOrders } = context;
+      const poList = await getAllPurchaseOrders();
+      const po: Array<any> = await Promise.all(
+        await poList.map(async po => {
+          const poItems = await getAllItemsByPurchaseOrder(po.items);
+
+          const filterItems = i => {
+            if (i.supplierStatusItem === status) {
+              console.log('ID', i.id);
+              return i.id;
+            }
+          };
+          let items;
+          items = poItems.filter(filterItems);
+
+          const itemsId: Array<String> = items.map(item => item.id);
+          console.log(items);
+          return { ...po, items: itemsId };
+        }),
+      );
+
+      return po;
     },
   },
   Mutation: {
