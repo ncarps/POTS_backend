@@ -27,6 +27,7 @@ import { updateItemByIDDB } from './update-item-db';
 //Purchase Order
 import { createCreatePurchaseOrderDB } from './create-purchaseOrder-db';
 import { updatePurchaseOrderByIDDB } from './update-purchaseOrder-db';
+import { updateAdminStatusByIDDB } from './update-adminStatus-db';
 
 //Schedule Line
 import { createCreateScheduleLineDB } from './create-scheduleLine-db';
@@ -55,6 +56,7 @@ export {
   //Purchase Order
   createCreatePurchaseOrderDB,
   updatePurchaseOrderByIDDB,
+  updateAdminStatusByIDDB,
   //Schedule Line
   createCreateScheduleLineDB,
   updateScheduleLineByIDDB,
