@@ -26,7 +26,6 @@ const scheduleLineResolvers = {
         deliveryStatus = await Promise.all(
           scheduleLine.deliveryStatus.map(async ds => {
             const deliveryStatus = await createSupplierStatus(ds);
-            console.log(deliveryStatus);
             return deliveryStatus.id.toString();
           }),
         );

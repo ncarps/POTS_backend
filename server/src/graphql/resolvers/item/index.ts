@@ -30,7 +30,6 @@ const itemResolvers = {
             deliveryStatus = await Promise.all(
               sl.deliveryStatus.map(async ds => {
                 const deliveryStatus = await createSupplierStatus(ds);
-                // console.log(deliveryStatus);
                 return deliveryStatus.id.toString();
               }),
             );

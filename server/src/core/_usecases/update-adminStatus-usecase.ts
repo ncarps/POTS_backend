@@ -16,9 +16,10 @@ const updateUCAdminStatus = () => (purchaseOrderInput, oldValue) => {
   for (let prop in purchaseOrderInput) {
     if (purchaseOrderInput[prop]) {
       newPurchaseOrder[prop] = purchaseOrderInput[prop];
-    } else {
-      newPurchaseOrder[prop] = oldValue[prop];
     }
+    // else {
+    //   newPurchaseOrder[prop] = oldValue[prop];
+    // }
   }
   const po = makePurchaseOrder(newPurchaseOrder);
   return { ...po, id: oldValue.id };
