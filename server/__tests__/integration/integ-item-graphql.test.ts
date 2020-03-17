@@ -268,114 +268,34 @@ describe('Tests', () => {
 
   //Mutations
 
-  // it('should create an item', async () => {
-  //   const CREATE_ITEM = gql`
-  //     mutation createI($item: ItemInput!) {
-  //       createItem(item: $item) {
-  //         id
-  //         itemNo
-  //         productId
-  //         description
-  //         quantity
-  //         uom
-  //         unitPrice
-  //         discount
-  //         totalAmount
-  //         deliveryAddress {
-  //           building_name
-  //           zip_code
-  //           state
-  //           street
-  //           city
-  //         }
-  //         scheduleLine {
-  //           id
-  //           deliveryDateAndTime
-  //           quantity
-  //           uom
-  //           unitPrice
-  //           totalAmount
-  //         }
-  //         currency
-  //       }
-  //     }
-  //   `;
-
-  //   const { mutate } = createTestClient(server);
-  //   const res = await mutate({
-  //     mutation: CREATE_ITEM,
-  //     variables: {
-  //       item: {
-  //         itemNo: '001',
-  //         description: 'Beef',
-  //         productId: '0001',
-  //         quantity: 10,
-  //         uom: 'kilograms',
-  //         unitPrice: 1000,
-  //         discount: 0.05,
-  //         totalAmount: 10000,
-  //         deliveryAddress: {
-  //           building_name: '002',
-  //           street: 'Elmer',
-  //           city: 'Celadon',
-  //           state: 'Johto',
-  //           zip_code: '123',
-  //         },
-  //         scheduleLine: [
-  //           {
-  //             quantity: 10,
-  //             uom: 'kilograms',
-  //             deliveryDateAndTime: 'February 25,2020 4:30PM',
-  //             unitPrice: 1000,
-  //             totalAmount: 10000,
-  //           },
-  //         ],
-  //         currency: 'PHP',
-  //       },
-  //     },
-  //   });
-
-  //   expect(res.errors).toBeUndefined();
-  //   expect(itemMock.insert.mock.calls.length).toBe(1);
-
-  //   expect(res.data).toMatchObject({
-  //     createItem: {
-  //       id: '1',
-  //       itemNo: '001',
-  //       description: 'Beef',
-  //       productId: '0001',
-  //       quantity: 10,
-  //       uom: 'kilograms',
-  //       unitPrice: 1000,
-  //       discount: 0.05,
-  //       totalAmount: 10000,
-  //       deliveryAddress: {
-  //         building_name: '002',
-  //         street: 'Elmer',
-  //         city: 'Celadon',
-  //         state: 'Johto',
-  //         zip_code: '123',
-  //       },
-  //       scheduleLine: [
-  //         {
-  //           id: '1',
-  //           quantity: 10,
-  //           uom: 'kilograms',
-  //           deliveryDateAndTime: 'February 25,2020 4:30PM',
-  //           unitPrice: 1000,
-  //           totalAmount: 10000,
-  //         },
-  //       ],
-  //       currency: 'PHP',
-  //     },
-  //   });
-  //   expect(res).toMatchSnapshot();
-  // });
-
   it('update an item', async () => {
     const UPDATE_ITEM = gql`
       mutation i($item: UpdateItemInput!) {
         updateItem(item: $item) {
+          id
+          supplierStatusItem
+        }
+      }
+    `;
+
+    const { mutate } = createTestClient(server);
+    const res = await mutate({
+      mutation: UPDATE_ITEM,
+      variables: {
+        item: {
+          id: '1',
+          supplierStatusItem: 'Dispatched',
+        },
+      },
+    });
+
+    expect(res).toMatchSnapshot();
+  });
+
+  it('update an item supplierStatus', async () => {
+    const UPDATE_ITEM = gql`
+      mutation i($item: UpdateItemSupplierStatusInput!) {
+        updateSupplierItemSupplierStatus(item: $item) {
           id
           supplierStatusItem
         }

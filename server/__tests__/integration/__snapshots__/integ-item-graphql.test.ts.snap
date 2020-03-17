@@ -159,3 +159,19 @@ Object {
   },
 }
 `;
+
+exports[`Tests update an item supplierStatus 1`] = `
+Object {
+  "data": undefined,
+  "errors": Array [
+    [ValidationError: Unknown type "UpdateItemSupplierStatusInput". Did you mean "UpdateSupplierStatusInput", "UpdateSupplierStatusItemInput", "UpdateSupplierInput", "SupplierStatusInput", or "UpdateItemInput"?],
+    [ValidationError: Cannot query field "updateSupplierItemSupplierStatus" on type "Mutation". Did you mean "updateSupplierStatus", "deleteSupplierStatus", "updateSupplierStatusItem", or "createSupplierStatus"?],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
