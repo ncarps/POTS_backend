@@ -60,6 +60,7 @@ const {
   //Purchase Order
   createCreatePurchaseOrderDB,
   updatePurchaseOrderByIDDB,
+  updateAdminStatusByIDDB,
   //Schedule Line
   createCreateScheduleLineDB,
   updateScheduleLineByIDDB,
@@ -106,6 +107,7 @@ const context = async session => {
     getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(
       purchaseOrderModel,
     ),
+    updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderModel),
     getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderModel),
     //Schedule Line
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),

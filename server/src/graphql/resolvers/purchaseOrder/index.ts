@@ -110,6 +110,11 @@ const purchaseOrderResolvers = {
     ) => {
       return updatePurchaseOrderById(purchaseOrder);
     },
+    updateAdminStatus: async (parent, { purchaseOrder }, context, info) => {
+      const { updateAdminStatusById } = context;
+
+      return await updateAdminStatusById(purchaseOrder);
+    },
   },
 };
 
