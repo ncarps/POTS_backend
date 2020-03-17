@@ -17,6 +17,57 @@ Object {
 }
 `;
 
+exports[`Tests should create an item 1`] = `
+Object {
+  "data": Object {
+    "createItem": Object {
+      "currency": "PHP",
+      "deliveryAddress": Object {
+        "building_name": "002",
+        "city": "Celadon",
+        "state": "Johto",
+        "street": "Elmer",
+        "zip_code": "123",
+      },
+      "description": "Beef",
+      "discount": 0.05,
+      "id": "1",
+      "itemNo": "001",
+      "productId": "0001",
+      "quantity": 10,
+      "scheduleLine": Array [
+        Object {
+          "deliveryDateAndTime": "February 25,2020 4:30PM",
+          "deliveryStatus": Array [
+            Object {
+              "dateCreated": "February 14, 2020",
+              "id": "2",
+              "status": "Delivered",
+              "timeCreated": "4:30 PM",
+            },
+          ],
+          "id": "2",
+          "quantity": 10,
+          "totalAmount": 10000,
+          "unitPrice": 1000,
+          "uom": "kilograms",
+        },
+      ],
+      "totalAmount": 10000,
+      "unitPrice": 1000,
+      "uom": "kilograms",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`Tests should error when no item 1`] = `
 Object {
   "data": Object {
@@ -48,7 +99,7 @@ Object {
         "scheduleLine": Array [
           Object {
             "deliveryDateAndTime": "February 25,2020 4:30PM",
-            "deliveryStatus": null,
+            "deliveryStatus": Array [],
             "id": "1",
             "quantity": 10,
             "totalAmount": 10000,
@@ -73,7 +124,14 @@ Object {
         "scheduleLine": Array [
           Object {
             "deliveryDateAndTime": "February 25,2020 4:30PM",
-            "deliveryStatus": null,
+            "deliveryStatus": Array [
+              Object {
+                "dateCreated": "February 14, 2020",
+                "id": "2",
+                "status": "Delivered",
+                "timeCreated": "4:30 PM",
+              },
+            ],
             "id": "2",
             "quantity": 10,
             "totalAmount": 10000,
@@ -88,10 +146,7 @@ Object {
       },
     ],
   },
-  "errors": Array [
-    [GraphQLError: getAllSupplierStatusByScheduleLine is not a function],
-    [GraphQLError: getAllSupplierStatusByScheduleLine is not a function],
-  ],
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -116,7 +171,7 @@ Object {
       "scheduleLine": Array [
         Object {
           "deliveryDateAndTime": "February 25,2020 4:30PM",
-          "deliveryStatus": null,
+          "deliveryStatus": Array [],
           "id": "1",
           "quantity": 10,
           "totalAmount": 10000,
@@ -130,9 +185,7 @@ Object {
       "uom": "kilograms",
     },
   },
-  "errors": Array [
-    [GraphQLError: getAllSupplierStatusByScheduleLine is not a function],
-  ],
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {
@@ -162,10 +215,11 @@ Object {
 
 exports[`Tests update an item supplierStatus 1`] = `
 Object {
-  "data": undefined,
+  "data": Object {
+    "updateSupplierStatusItem": null,
+  },
   "errors": Array [
-    [ValidationError: Unknown type "UpdateItemSupplierStatusInput". Did you mean "UpdateSupplierStatusInput", "UpdateSupplierStatusItemInput", "UpdateSupplierInput", "SupplierStatusInput", or "UpdateItemInput"?],
-    [ValidationError: Cannot query field "updateSupplierItemSupplierStatus" on type "Mutation". Did you mean "updateSupplierStatus", "deleteSupplierStatus", "updateSupplierStatusItem", or "createSupplierStatus"?],
+    [GraphQLError: updateSupplierStatusItemById is not a function],
   ],
   "extensions": undefined,
   "http": Object {
