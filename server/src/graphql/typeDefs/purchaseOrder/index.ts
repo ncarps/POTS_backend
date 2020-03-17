@@ -18,12 +18,19 @@ const typeDefs = gql`
     purchaseOrder(id: ID!): PurchaseOrder
     allPurchaseOrders: [PurchaseOrder]
     purchaseOrdersStatus(status: String): [PurchaseOrder]
+
   }
 
   type Mutation {
     createPurchaseOrder(purchaseOrder: PurchaseOrderInput): PurchaseOrder
     deletePurchaseOrder(id: ID!): PurchaseOrder
     updatePurchaseOrder(purchaseOrder: UpdatePurchaseOrderInput): PurchaseOrder
+    updateAdminStatus(purchaseOrder: UpdateAdminStatusInput): PurchaseOrder
+  }
+
+  input UpdateAdminStatusInput {
+    id: ID!
+    adminStatus: String!
   }
 
   input PurchaseOrderInput {

@@ -18,6 +18,7 @@ import { updateUCItem } from './update-item-usecase';
 //Purchase Order
 import { createUCPurchaseOrder } from './create-purchaseOrder-usecase';
 import { updateUCPurchaseOrder } from './update-purchaseOrder-usecase';
+import { updateUCAdminStatus } from './update-adminStatus-usecase';
 
 //Schedule Line
 import { createUCCreateScheduleLine } from './create-scheduleLine-usecase';
@@ -40,6 +41,7 @@ export {
   //Purchase Order
   createUCPurchaseOrder,
   updateUCPurchaseOrder,
+  updateUCAdminStatus,
   //Schedule Line
   createUCCreateScheduleLine,
   updateUCScheduleLine,

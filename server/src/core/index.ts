@@ -17,11 +17,12 @@ import {
   //PurchaseOrder
   createUCPurchaseOrder,
   updateUCPurchaseOrder,
+  // updateUCAdminStatus,
 
   //Schedule Line
   createUCCreateScheduleLine,
-  updateUCScheduleLine
-} from "./_usecases";
+  updateUCScheduleLine,
+} from './_usecases';
 
 export {
   createUCCreateSupplier,
@@ -29,11 +30,12 @@ export {
   updateUCSupplier,
   createUCCreateSupplierStatus,
   updateUCSupplierStatus,
+  // updateUCAdminStatus,
   createUCCreateItem,
   updateUCItem,
   createUCPurchaseOrder,
   updateUCPurchaseOrder,
   createUCCreateScheduleLine,
   updateUCScheduleLine,
-  updateUCUser
+  updateUCUser,
 };
