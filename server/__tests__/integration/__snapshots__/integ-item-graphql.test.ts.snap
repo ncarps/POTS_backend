@@ -17,49 +17,6 @@ Object {
 }
 `;
 
-exports[`Tests should create an item 1`] = `
-Object {
-  "data": Object {
-    "createItem": Object {
-      "currency": "PHP",
-      "deliveryAddress": Object {
-        "building_name": "002",
-        "city": "Celadon",
-        "state": "Johto",
-        "street": "Elmer",
-        "zip_code": "123",
-      },
-      "description": "Beef",
-      "discount": 0.05,
-      "id": "1",
-      "itemNo": "001",
-      "productId": "0001",
-      "quantity": 10,
-      "scheduleLine": Array [
-        Object {
-          "deliveryDateAndTime": "February 25,2020 4:30PM",
-          "id": "1",
-          "quantity": 10,
-          "totalAmount": 10000,
-          "unitPrice": 1000,
-          "uom": "kilograms",
-        },
-      ],
-      "totalAmount": 10000,
-      "unitPrice": 1000,
-      "uom": "kilograms",
-    },
-  },
-  "errors": undefined,
-  "extensions": undefined,
-  "http": Object {
-    "headers": Headers {
-      Symbol(map): Object {},
-    },
-  },
-}
-`;
-
 exports[`Tests should error when no item 1`] = `
 Object {
   "data": Object {
@@ -104,9 +61,35 @@ Object {
         "unitPrice": 1000,
         "uom": "kilograms",
       },
+      Object {
+        "currency": "PHP",
+        "deliveryAddress": Object {
+          "id": "A1",
+        },
+        "description": "Beef",
+        "id": "2",
+        "itemNo": "001",
+        "quantity": 10,
+        "scheduleLine": Array [
+          Object {
+            "deliveryDateAndTime": "February 25,2020 4:30PM",
+            "deliveryStatus": null,
+            "id": "2",
+            "quantity": 10,
+            "totalAmount": 10000,
+            "unitPrice": 1000,
+            "uom": "kilograms",
+          },
+        ],
+        "supplierStatusItem": null,
+        "totalAmount": 10000,
+        "unitPrice": 1000,
+        "uom": "kilograms",
+      },
     ],
   },
   "errors": Array [
+    [GraphQLError: getAllSupplierStatusByScheduleLine is not a function],
     [GraphQLError: getAllSupplierStatusByScheduleLine is not a function],
   ],
   "extensions": undefined,
