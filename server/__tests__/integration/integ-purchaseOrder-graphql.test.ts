@@ -57,7 +57,9 @@ const purchaseOrderMock = {
     });
     return filteredData;
   }),
-  updateAdminStatusPurchaseOrderById: async input => {},
+  updateAdminStatusPurchaseOrderById: async input => {
+    return { ...input };
+  },
   getAllByScheduleLine: async id => {},
   updateSupplierStatusItemById: async id => {},
 };
@@ -829,29 +831,29 @@ describe('Tests', () => {
     expect(res).toMatchSnapshot();
   });
 
-  // it('update a purchase order admin status', async () => {
-  //   const UPDATE_PURCHASEORDER = gql`
-  //     mutation i($purchaseOrder: UpdateAdminStatusInput!) {
-  //       updateAdminStatus(purchaseOrder: $purchaseOrder) {
-  //         id
-  //         adminStatus
-  //       }
-  //     }
-  //   `;
+  it('update a purchase order admin status', async () => {
+    const UPDATE_PURCHASEORDER = gql`
+      mutation i($purchaseOrder: UpdateAdminStatusInput!) {
+        updateAdminStatus(purchaseOrder: $purchaseOrder) {
+          id
+          adminStatus
+        }
+      }
+    `;
 
-  //   const { mutate } = createTestClient(server);
-  //   const res = await mutate({
-  //     mutation: UPDATE_PURCHASEORDER,
-  //     variables: {
-  //       purchaseOrder: {
-  //         id: '1',
-  //         adminStatus: 'Recieved',
-  //       },
-  //     },
-  //   });
+    const { mutate } = createTestClient(server);
+    const res = await mutate({
+      mutation: UPDATE_PURCHASEORDER,
+      variables: {
+        purchaseOrder: {
+          id: '1',
+          adminStatus: 'Recieved',
+        },
+      },
+    });
 
-  //   expect(res).toMatchSnapshot();
-  // });
+    expect(res).toMatchSnapshot();
+  });
 
   it('delete a puchase order', async () => {
     const DELETE_PURCHASEORDER = gql`

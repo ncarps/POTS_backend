@@ -143,7 +143,27 @@ const purchaseOrderModel: IDBModel<any> = {
     return purchaseOrder;
   },
 
-  updateAdminStatusPurchaseOrderById: async data => {},
+  updateAdminStatusPurchaseOrderById: async data => {
+    let setFields = {
+      ...data,
+    };
+    for (let prop in setFields) {
+      if (setFields[prop] == undefined) {
+        delete setFields[prop];
+      }
+    }
+    const purchaseOrder = await PurchaseOrder.findByIdAndUpdate(
+      {
+        _id: data.id,
+      },
+      setFields,
+      {
+        new: true,
+      },
+    ).exec();
+
+    return purchaseOrder;
+  },
 
   updateSupplierStatusItemById: async id => {},
 };
