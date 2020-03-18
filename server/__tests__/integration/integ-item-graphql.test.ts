@@ -66,6 +66,7 @@ const itemMock = {
   updateSupplierStatusItemById: async input => {
     return { ...input };
   },
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const supplierStatusMock = {
@@ -93,6 +94,7 @@ const supplierStatusMock = {
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
   updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const scheduleLinesMock = {
@@ -138,6 +140,7 @@ const scheduleLinesMock = {
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
   updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const addressMock = {
@@ -162,6 +165,7 @@ const addressMock = {
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
   updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const { server }: any = constructTestServer({

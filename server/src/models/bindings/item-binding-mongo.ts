@@ -212,6 +212,8 @@ const itemModel: IDBModel<any> = {
       timeUpdated: item.timeUpdated,
     };
   },
+
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 export { itemModel };

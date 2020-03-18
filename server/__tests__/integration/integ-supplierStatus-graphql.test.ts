@@ -45,6 +45,7 @@ const supplierStatusMock = {
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
   updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 const { server }: any = constructTestServer({
   context: {

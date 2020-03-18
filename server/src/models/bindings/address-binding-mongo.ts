@@ -30,6 +30,7 @@ const addressModel: IDBModel<any> = {
   deleteById: async id => {},
   updateById: async id => {},
   updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 export { addressModel };

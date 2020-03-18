@@ -118,6 +118,7 @@ const scheduleLineModel: IDBModel<any> = {
   },
 
   updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 export { scheduleLineModel };

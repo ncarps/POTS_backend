@@ -143,6 +143,8 @@ const purchaseOrderModel: IDBModel<any> = {
     return purchaseOrder;
   },
 
+  updateAdminStatusPurchaseOrderById: async data => {},
+
   updateSupplierStatusItemById: async id => {},
 };
 

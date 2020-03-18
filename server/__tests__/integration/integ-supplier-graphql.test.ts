@@ -49,6 +49,7 @@ const supplierMock = {
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
   updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const addressMock = {
@@ -73,6 +74,7 @@ const addressMock = {
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
   updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const { server }: any = constructTestServer({

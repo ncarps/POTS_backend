@@ -11,4 +11,5 @@ export interface IDBModel<T> {
   updateById: (input: any) => PromiseLike<T>;
   //Non-Generic Update Functions
   updateSupplierStatusItemById: (input: any) => PromiseLike<T>;
+  updateAdminStatusPurchaseOrderById: (input: any) => PromiseLike<T>;
 }

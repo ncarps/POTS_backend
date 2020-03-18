@@ -107,6 +107,7 @@ const supplierModel: IDBModel<any> = {
   },
 
   updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 export { supplierModel };
