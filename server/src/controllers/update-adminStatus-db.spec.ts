@@ -157,7 +157,7 @@ const mockPurchaseOrder = [
 
 describe('Update admin status', () => {
   const mockDb: any = {
-    updateById: jest.fn(async input => {
+    updateAdminStatusPurchaseOrderById: jest.fn(async input => {
       return { ...input };
     }),
     getById: jest.fn(async id => {
@@ -251,7 +251,7 @@ describe('Update admin status', () => {
     const newData = await updateAdminStatus(given);
 
     expect(mockDb.getById.mock.calls.length).toBe(1);
-    expect(mockDb.updateById.mock.calls.length).toBe(1);
+    expect(mockDb.updateAdminStatusPurchaseOrderById.mock.calls.length).toBe(1);
     expect(newData).toMatchObject(given);
   });
 });

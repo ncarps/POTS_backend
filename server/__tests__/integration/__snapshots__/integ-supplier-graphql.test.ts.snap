@@ -140,10 +140,17 @@ Object {
 
 exports[`Tests update a supplier 1`] = `
 Object {
-  "data": undefined,
-  "errors": Array [
-    [GraphQLError: Variable "$supplier" got invalid value { id: "1", supplierNo: "001", supplierName: "Juan Dela Cruz", address: { building_name: "002", street: "Elmer", city: "Celadon", state: "Johto", zip_code: "123" }, contactPerson: "Basil Valdez", contactNumber: "1234567", tin: "12345" }; Field "address" is not defined by type UpdateSupplierInput.],
-  ],
+  "data": Object {
+    "updateSupplier": Object {
+      "contactNumber": "1234567",
+      "contactPerson": "Basil Valdez",
+      "id": "1",
+      "supplierName": "Juan Dela Cruz",
+      "supplierNo": "001",
+      "tin": "12345",
+    },
+  },
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

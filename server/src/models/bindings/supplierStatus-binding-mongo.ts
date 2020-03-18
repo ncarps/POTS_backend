@@ -1,15 +1,14 @@
-import { IDBModel } from "../../commons/types";
-import moment from "moment";
-import { SupplierStatus } from "../mongo-models";
+import { IDBModel } from '../../commons/types';
+import moment from 'moment';
+import { SupplierStatus } from '../mongo-models';
 
 const supplierStatusModel: IDBModel<any> = {
   insert: async supplierStatus => {
     const newSupplierStatus = await new SupplierStatus({
       status: supplierStatus.status,
-      dateCreated: moment().format("YYYY-MM-DD"),
-      timeCreated: moment().format("LTS")
+      dateCreated: moment().format('YYYY-MM-DD'),
+      timeCreated: moment().format('LTS'),
     });
-    console.log(newSupplierStatus);
     return new Promise((resolve, reject) => {
       newSupplierStatus.save((err, res) => {
         err ? reject(err) : resolve(res);
@@ -19,16 +18,16 @@ const supplierStatusModel: IDBModel<any> = {
 
   getById: async data => {
     const supplierStatus: any = await SupplierStatus.findOne({
-      _id: data
+      _id: data,
     }).exec();
     if (!supplierStatus._id) {
-      throw new Error("No supplierStatus found");
+      throw new Error('No supplierStatus found');
     }
     return {
       id: supplierStatus._id.toString(),
       status: supplierStatus.status,
       dateCreated: supplierStatus.dateCreated,
-      timeCreated: supplierStatus.timeCreated
+      timeCreated: supplierStatus.timeCreated,
     };
   },
 
@@ -39,7 +38,7 @@ const supplierStatusModel: IDBModel<any> = {
       id: ss._id.toString(),
       status: ss.status,
       dateCreated: ss.dateCreated,
-      timeCreated: ss.timeCreated
+      timeCreated: ss.timeCreated,
     }));
   },
 
@@ -58,24 +57,27 @@ const supplierStatusModel: IDBModel<any> = {
   updateById: async data => {
     const supplierStatus: any = await SupplierStatus.findByIdAndUpdate(
       {
-        _id: data.id
+        _id: data.id,
       },
       {
         status: data.status,
-        dateCreated: moment().format("YYYY-MM-DD"),
-        timeCreated: moment().format("LTS")
+        dateCreated: moment().format('YYYY-MM-DD'),
+        timeCreated: moment().format('LTS'),
       },
       {
-        new: true
-      }
+        new: true,
+      },
     ).exec();
     return {
       id: supplierStatus._id,
       status: supplierStatus.status,
       dateCreated: supplierStatus.dateCreated,
-      timeCreated: supplierStatus.timeCreated
+      timeCreated: supplierStatus.timeCreated,
     };
-  }
+  },
+
+  updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 export { supplierStatusModel };

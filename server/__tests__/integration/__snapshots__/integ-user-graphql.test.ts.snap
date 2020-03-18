@@ -89,9 +89,11 @@ Object {
 
 exports[`Tests should update a user 1`] = `
 Object {
-  "data": undefined,
+  "data": Object {
+    "updateUser": null,
+  },
   "errors": Array [
-    [ValidationError: Variable "$user" of type "UpdateSupplierInput!" used in position expecting type "UpdateUserInput".],
+    [GraphQLError: Cannot read property 'userId' of null],
   ],
   "extensions": undefined,
   "http": Object {

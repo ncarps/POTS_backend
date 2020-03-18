@@ -16,6 +16,8 @@ const {
   updatePurchaseOrderByIDDB,
   getAllByScheduleLineDB,
   getAllBySupplierStatusDB,
+  createCreateSupplierStatusDB,
+  updateAdminStatusByIDDB,
 } = controllers;
 
 const purchaseOrderMock = {
@@ -55,13 +57,17 @@ const purchaseOrderMock = {
     });
     return filteredData;
   }),
+  updateAdminStatusPurchaseOrderById: async input => {
+    return { ...input };
+  },
   getAllByScheduleLine: async id => {},
+  updateSupplierStatusItemById: async id => {},
 };
 
 const itemMock = {
   insert: jest.fn(async input => {
     return {
-      id: '1',
+      id: '2',
       ...input,
       deliveryAddress: 'A1',
     };
@@ -104,6 +110,8 @@ const itemMock = {
       .map(data => ({ ...data, id: data._id }));
     return res;
   }),
+  updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const supplierMock = {
@@ -141,11 +149,13 @@ const supplierMock = {
   getAllBySupplierStatus: async id => {},
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
+  updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const scheduleLinesMock = {
   insert: jest.fn(async input => {
-    return { id: '1', ...input };
+    return { id: '2', ...input };
   }),
   getById: jest.fn(async id => {
     const filterData = data => {
@@ -185,6 +195,8 @@ const scheduleLinesMock = {
   }),
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
+  updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const addressMock = {
@@ -208,6 +220,36 @@ const addressMock = {
   getAllBySupplierStatus: async id => {},
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
+  updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
+};
+
+const supplierStatusMock = {
+  insert: jest.fn(async input => {
+    return { id: '2', ...input };
+  }),
+  getById: jest.fn(async id => {
+    const filterData = data => {
+      if (data.id === id) {
+        return data;
+      }
+    };
+    const res = mockData.supplierStatus.filter(filterData);
+
+    return res[0] || null;
+  }),
+  getAll: jest.fn(async () => {
+    return mockData.supplierStatus;
+  }),
+  updateById: jest.fn(async input => {
+    return { ...input };
+  }),
+  deleteById: async id => {},
+  getAllBySupplierStatus: async id => {},
+  getAllByItem: async id => {},
+  getAllByScheduleLine: async id => {},
+  updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const { server }: any = constructTestServer({
@@ -227,6 +269,8 @@ const { server }: any = constructTestServer({
     getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
       scheduleLinesMock,
     ),
+    createSupplierStatus: createCreateSupplierStatusDB(supplierStatusMock),
+    updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderMock),
   },
 });
 
@@ -305,6 +349,83 @@ describe('Tests', () => {
 
     const { query } = createTestClient(server);
     const res = await query({ query: PURCHASEORDER_ALL });
+
+    expect(res).toMatchSnapshot();
+  });
+
+  it('should fetch all purchase orders filtered by status', async () => {
+    const PURCHASEORDER_ALL_STATUS = gql`
+      query po($status: String) {
+        purchaseOrdersStatus(status: $status) {
+          id
+          purchaseOrderNo
+          shipmentNo
+          adminStatus
+          supplierStatusHeader
+          vendorAddress {
+            id
+            building_name
+            street
+            city
+            state
+            zip_code
+          }
+          supplier {
+            id
+            supplierNo
+            supplierName
+            tin
+            contactNumber
+            contactPerson
+            address {
+              id
+              building_name
+              street
+              city
+              state
+              zip_code
+            }
+          }
+          documentDate
+          items {
+            id
+            itemNo
+            description
+            quantity
+            uom
+            unitPrice
+            currency
+            deliveryAddress {
+              id
+              building_name
+              street
+              city
+              state
+              zip_code
+            }
+            totalAmount
+            supplierStatusItem
+            scheduleLine {
+              id
+              quantity
+              uom
+              unitPrice
+              totalAmount
+              deliveryDateAndTime
+              deliveryStatus {
+                id
+                status
+                dateCreated
+                timeCreated
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const { query } = createTestClient(server);
+    const res = await query({ query: PURCHASEORDER_ALL_STATUS });
 
     expect(res).toMatchSnapshot();
   });
@@ -468,6 +589,8 @@ describe('Tests', () => {
           id
           postingDate
           purchaseOrderNo
+          adminStatus
+          supplierStatusHeader
           shipmentNo
           vendorAddress {
             id
@@ -539,6 +662,8 @@ describe('Tests', () => {
       variables: {
         purchaseOrder: {
           purchaseOrderNo: '001',
+          adminStatus: 'Pending',
+          supplierStatusHeader: 'Pending',
           shipmentNo: '123',
           supplier: {
             supplierNo: '001',
@@ -587,6 +712,11 @@ describe('Tests', () => {
                   deliveryDateAndTime: 'February 25,2020 4:30PM',
                   unitPrice: 1000,
                   totalAmount: 10000,
+                  deliveryStatus: [
+                    {
+                      status: 'Delivered',
+                    },
+                  ],
                 },
               ],
               currency: 'PHP',
@@ -602,6 +732,8 @@ describe('Tests', () => {
       createPurchaseOrder: {
         id: '1',
         purchaseOrderNo: '001',
+        adminStatus: 'Pending',
+        supplierStatusHeader: 'Pending',
         shipmentNo: '123',
         supplier: {
           id: '1',
@@ -631,7 +763,7 @@ describe('Tests', () => {
         },
         items: [
           {
-            id: '1',
+            id: '2',
             itemNo: '001',
             description: 'Beef',
             productId: '0001',
@@ -641,7 +773,6 @@ describe('Tests', () => {
             discount: 0.05,
             totalAmount: 10000,
             deliveryAddress: {
-              id: 'A1',
               building_name: '002',
               street: 'Elmer',
               city: 'Celadon',
@@ -650,11 +781,20 @@ describe('Tests', () => {
             },
             scheduleLine: [
               {
+                id: '2',
                 quantity: 10,
                 uom: 'kilograms',
                 deliveryDateAndTime: 'February 25,2020 4:30PM',
                 unitPrice: 1000,
                 totalAmount: 10000,
+                deliveryStatus: [
+                  {
+                    id: '2',
+                    status: 'Delivered',
+                    dateCreated: 'February 14, 2020',
+                    timeCreated: '4:30 PM',
+                  },
+                ],
               },
             ],
             currency: 'PHP',
@@ -667,8 +807,8 @@ describe('Tests', () => {
 
   it('update a purchase order', async () => {
     const UPDATE_PURCHASEORDER = gql`
-      mutation i($item: UpdateItemInput!) {
-        updateItem(item: $item) {
+      mutation i($purchaseOrder: UpdatePurchaseOrderInput!) {
+        updatePurchaseOrder(purchaseOrder: $purchaseOrder) {
           id
           adminStatus
           supplierStatusHeader
@@ -680,10 +820,34 @@ describe('Tests', () => {
     const res = await mutate({
       mutation: UPDATE_PURCHASEORDER,
       variables: {
-        item: {
+        purchaseOrder: {
           id: '1',
           adminStatus: 'Recieved',
           supplierStatusHeader: 'Delivered',
+        },
+      },
+    });
+
+    expect(res).toMatchSnapshot();
+  });
+
+  it('update a purchase order admin status', async () => {
+    const UPDATE_PURCHASEORDER = gql`
+      mutation i($purchaseOrder: UpdateAdminStatusInput!) {
+        updateAdminStatus(purchaseOrder: $purchaseOrder) {
+          id
+          adminStatus
+        }
+      }
+    `;
+
+    const { mutate } = createTestClient(server);
+    const res = await mutate({
+      mutation: UPDATE_PURCHASEORDER,
+      variables: {
+        purchaseOrder: {
+          id: '1',
+          adminStatus: 'Recieved',
         },
       },
     });

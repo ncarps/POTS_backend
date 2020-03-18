@@ -48,6 +48,8 @@ const supplierMock = {
   getAllBySupplierStatus: async id => {},
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
+  updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const addressMock = {
@@ -71,6 +73,8 @@ const addressMock = {
   getAllBySupplierStatus: async id => {},
   getAllByItem: async id => {},
   getAllByScheduleLine: async id => {},
+  updateSupplierStatusItemById: async id => {},
+  updateAdminStatusPurchaseOrderById: async id => {},
 };
 
 const { server }: any = constructTestServer({
@@ -269,13 +273,6 @@ describe('Tests', () => {
           id: '1',
           supplierNo: '001',
           supplierName: 'Juan Dela Cruz',
-          address: {
-            building_name: '002',
-            street: 'Elmer',
-            city: 'Celadon',
-            state: 'Johto',
-            zip_code: '123',
-          },
           contactPerson: 'Basil Valdez',
           contactNumber: '1234567',
           tin: '12345',

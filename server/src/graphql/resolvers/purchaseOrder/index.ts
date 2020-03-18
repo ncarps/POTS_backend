@@ -17,7 +17,6 @@ const purchaseOrderResolvers = {
   Query: {
     allPurchaseOrders: async (parent, args, context, info) => {
       const { getAllPurchaseOrders } = context;
-      console.log(getAllPurchaseOrders());
       return getAllPurchaseOrders();
     },
     purchaseOrder: async (parent, { id }, context, info) => {
@@ -33,7 +32,6 @@ const purchaseOrderResolvers = {
 
           const filterItems = i => {
             if (i.supplierStatusItem === status) {
-              console.log('ID', i.id);
               return i.id;
             }
           };
@@ -41,7 +39,6 @@ const purchaseOrderResolvers = {
           items = poItems.filter(filterItems);
 
           const itemsId: Array<String> = items.map(item => item.id);
-          console.log(items);
           return { ...po, items: itemsId };
         }),
       );
