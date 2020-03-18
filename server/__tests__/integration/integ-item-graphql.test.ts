@@ -63,7 +63,9 @@ const itemMock = {
       .map(data => ({ ...data, id: data._id }));
     return res;
   }),
-  updateSupplierStatusItemById: async id => {},
+  updateSupplierStatusItemById: async input => {
+    return { ...input };
+  },
 };
 
 const supplierStatusMock = {

@@ -144,31 +144,6 @@ const itemModel: IDBModel<any> = {
         delete setFields[prop];
       }
     }
-    // delete setFields.scheduleLine;
-    // const scheduleLine = data.scheduleLine;
-
-    // let item;
-    // if (scheduleLine) {
-    // 	item = await Item.findByIdAndUpdate(
-    // 		{
-    // 			_id: data.id,
-    // 		},
-    // 		{ $set: { ...setFields }, $push: { scheduleLine: scheduleLine } },
-    // 		{
-    // 			new: true,
-    // 		}
-    // 	).exec();
-    // } else {
-    // 	item = await Item.findByIdAndUpdate(
-    // 		{
-    // 			_id: data.id,
-    // 		},
-    // 		setFields,
-    // 		{
-    // 			new: true,
-    // 		}
-    // 	).exec();
-    // }
 
     const item: any = await Item.findByIdAndUpdate(
       {
@@ -198,7 +173,45 @@ const itemModel: IDBModel<any> = {
     };
   },
 
-  updateSupplierStatusItemById: async id => {},
+  updateSupplierStatusItemById: async data => {
+    let setFields = {
+      ...data,
+      dateUpdated: moment().format('YYYY-MM-DD'),
+      timeUpdated: moment().format('LTS'),
+    };
+    for (let prop in setFields) {
+      if (setFields[prop] == undefined) {
+        delete setFields[prop];
+      }
+    }
+
+    const item: any = await Item.findByIdAndUpdate(
+      {
+        _id: data.id,
+      },
+      setFields,
+      {
+        new: true,
+      },
+    ).exec();
+    return {
+      id: item._id.toString(),
+      productId: item.productId,
+      itemNo: item.itemNo,
+      description: item.description,
+      quantity: item.quantity,
+      totalAmount: item.totalAmount,
+      uom: item.uom,
+      unitPrice: item.unitPrice,
+      discount: item.discount,
+      deliveryAddress: item.deliveryAddress,
+      supplierStatusItem: item.supplierStatusItem,
+      scheduleLine: item.scheduleLine,
+      currency: item.currency,
+      dateUpdated: item.dateUpdated,
+      timeUpdated: item.timeUpdated,
+    };
+  },
 };
 
 export { itemModel };

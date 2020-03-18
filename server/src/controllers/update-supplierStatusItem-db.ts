@@ -5,7 +5,7 @@ const updateSupplierStatusItemByIDDB = (db: IDBModel<any>) => async data => {
   const a = await db.getById(data.id);
   const updateSupplierStatusItem = updateUCSupplierStatusItem();
   const newItem = updateSupplierStatusItem(data, a);
-  return db.updateById({ ...newItem, id: data.id });
+  return db.updateSupplierStatusItemById({ ...newItem, id: data.id });
 };
 
 export { updateSupplierStatusItemByIDDB };

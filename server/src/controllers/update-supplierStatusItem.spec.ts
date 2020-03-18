@@ -61,7 +61,7 @@ const mockItem = [
 
 describe('Update Item', () => {
   const mockDb: any = {
-    updateById: jest.fn(async input => {
+    updateSupplierStatusItemById: jest.fn(async input => {
       return { ...input };
     }),
     getById: jest.fn(async id => {
@@ -108,7 +108,7 @@ describe('Update Item', () => {
     const newData = await updatesupplierStatusItem(given);
 
     expect(mockDb.getById.mock.calls.length).toBe(1);
-    expect(mockDb.updateById.mock.calls.length).toBe(1);
+    expect(mockDb.updateSupplierStatusItemById.mock.calls.length).toBe(1);
     expect(newData).toMatchObject(given);
   });
 });
