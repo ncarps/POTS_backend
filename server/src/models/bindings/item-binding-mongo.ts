@@ -197,6 +197,8 @@ const itemModel: IDBModel<any> = {
       timeUpdated: item.timeUpdated,
     };
   },
+
+  updateSupplierStatusItemById: async id => {},
 };
 
 export { itemModel };

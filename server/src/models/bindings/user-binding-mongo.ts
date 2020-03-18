@@ -81,6 +81,7 @@ const userModel: IDBModel<any> = {
   getAllByItem: async id => {},
   getAllBySupplierStatus: async id => {},
   getAllByScheduleLine: async data => {},
+  updateSupplierStatusItemById: async id => {},
 };
 
 export { userModel };

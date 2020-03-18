@@ -142,6 +142,8 @@ const purchaseOrderModel: IDBModel<any> = {
 
     return purchaseOrder;
   },
+
+  updateSupplierStatusItemById: async id => {},
 };
 
 export { purchaseOrderModel };

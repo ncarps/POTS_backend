@@ -75,6 +75,8 @@ const supplierStatusModel: IDBModel<any> = {
       timeCreated: supplierStatus.timeCreated,
     };
   },
+
+  updateSupplierStatusItemById: async id => {},
 };
 
 export { supplierStatusModel };
