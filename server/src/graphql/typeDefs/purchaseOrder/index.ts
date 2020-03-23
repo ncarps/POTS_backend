@@ -53,8 +53,6 @@ const typeDefs = gql`
     supplierStatusHeader: String
     documentDate: String
     postingDate: String
-    supplier: UpdateSupplierInput
-    items: [UpdateItemInput]
   }
 `;
 
