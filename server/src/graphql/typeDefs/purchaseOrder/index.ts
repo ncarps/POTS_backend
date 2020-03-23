@@ -15,8 +15,10 @@ const typeDefs = gql`
   }
 
   type Query {
+    purchaseOrderSupplier(id: ID!): PurchaseOrder
     purchaseOrder(id: ID!): PurchaseOrder
     allPurchaseOrders: [PurchaseOrder]
+    supplierAllPurchaseOrders: [PurchaseOrder]
     supplierPurchaseOrdersByStatus(status: String): [PurchaseOrder]
     purchaseOrdersStatus(status: String): [PurchaseOrder]
   }

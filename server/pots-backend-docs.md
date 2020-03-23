@@ -70,7 +70,7 @@
 
 ## Admin
 
-### 1. The Admin should be able to Read, Update, and Delete Purchase Orders.
+### The Admin should be able to Read, Update, and Delete Purchase Orders.
 
 * Read
 
@@ -114,7 +114,7 @@ input UpdatePurchaseOrderInput {
     supplierStatusHeader: String
     documentDate: String
     postingDate: String
-}
+    }
 ```
 
 2. updateAdminStatus - used to update a the adminStatus field (Recieved/Pending) of a Purchase Order. The ID of the Purchase Order is used to query a single Purchase Order, and the mutation accepts adminStatus as a parameter. 
@@ -125,7 +125,7 @@ updateAdminStatus(purchaseOrder: UpdateAdminStatusInput): PurchaseOrder
 input UpdateAdminStatusInput {
     id: ID!
     adminStatus: String!
-}
+    }
 ```
 
 </br>
@@ -140,4 +140,54 @@ The Admin can Delete Purchase Orders using the following GQL mutation:
  deletePurchaseOrder(id: ID!): PurchaseOrder
 ```
 
+</br>
+
+## Supplier
+
+### 1. The Supplier should be able to view purchase orders.
+
+1. purchaseOrderSupplier - used to read a single Purchase Order as a supplier. This query takes the ID of the Purchase Order as a parameter.
+
+```
+purchaseOrderSupplier(id: ID!): PurchaseOrder
+```
+
+2. allPurchaseOrders - used to read all Purchase Orders as a supplier.
+
+```
+supplierAllPurchaseOrders: [PurchaseOrder]
+```
+
+### 2. The Supplier should be able to view a summary of purchase orders by status.
+
+1. purchaseOrdersStatus - used to read Purchase Orders by status as a supplier. This query takes status as a parameter in order to filter the Purchase Orders.
+
+```
+supplierPurchaseOrdersByStatus
+```
+
+### 3. The Supplier should be able to update an Item's status (shipped/delivered/pending/queued).
+
+1. updateSupplierStatusItem - used to update an item's status (supplierStatusItem) as a supplier. The mutation takes an item's ID to query a specific item. The mutation also accepts the supplierStatusItem field as a parameter.
+
+```
+supplierPurchaseOrdersByStatus(status: String): [PurchaseOrder]
+```
+
+### 4. The Supplier should be able to update their profile.
+
+1. updateSupplier - used to update a Supplier's details. The mutation queries a specific supplier using its ID as a filter.  
+
+```
+updateSupplier(supplier: UpdateSupplierInput): Supplier
+
+input UpdateSupplierInput {
+		id: ID!
+		supplierNo: String
+		supplierName: String
+		tin: String
+		contactNumber: String
+		contactPerson: String
+        }
+```
 

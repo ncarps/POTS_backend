@@ -19,7 +19,15 @@ const purchaseOrderResolvers = {
       const { getAllPurchaseOrders } = context;
       return getAllPurchaseOrders();
     },
+    supplierAllPurchaseOrders: async (parent, args, context, info) => {
+      const { getAllPurchaseOrders } = context;
+      return getAllPurchaseOrders();
+    },
     purchaseOrder: async (parent, { id }, context, info) => {
+      const { getPurchaseOrderById } = context;
+      return getPurchaseOrderById(id);
+    },
+    purchaseOrderSupplier: async (parent, { id }, context, info) => {
       const { getPurchaseOrderById } = context;
       return getPurchaseOrderById(id);
     },
