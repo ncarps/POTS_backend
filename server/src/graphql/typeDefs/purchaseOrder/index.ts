@@ -7,10 +7,10 @@ const typeDefs = gql`
     shipmentNo: String!
     adminStatus: String
     supplierStatusHeader: String
-    vendorAddress: Address!
-    supplier: Supplier!
     documentDate: String
     postingDate: String
+    vendorAddress: Address!
+    supplier: Supplier!
     items: [Item!]
   }
 
@@ -18,7 +18,6 @@ const typeDefs = gql`
     purchaseOrder(id: ID!): PurchaseOrder
     allPurchaseOrders: [PurchaseOrder]
     purchaseOrdersStatus(status: String): [PurchaseOrder]
-
   }
 
   type Mutation {
