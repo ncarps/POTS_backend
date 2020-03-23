@@ -45,6 +45,34 @@ const purchaseOrderResolvers = {
 
       return po;
     },
+
+    supplierPurchaseOrdersByStatus: async (
+      parent,
+      { status },
+      context,
+      info,
+    ) => {
+      const { getAllItemsByPurchaseOrder, getAllPurchaseOrders } = context;
+      const poList = await getAllPurchaseOrders();
+      const po: Array<any> = await Promise.all(
+        await poList.map(async po => {
+          const poItems = await getAllItemsByPurchaseOrder(po.items);
+
+          const filterItems = i => {
+            if (i.supplierStatusItem === status) {
+              return i.id;
+            }
+          };
+          let items;
+          items = poItems.filter(filterItems);
+
+          const itemsId: Array<String> = items.map(item => item.id);
+          return { ...po, items: itemsId };
+        }),
+      );
+
+      return po;
+    },
   },
   Mutation: {
     createPurchaseOrder: async (parent, { purchaseOrder }, context, info) => {

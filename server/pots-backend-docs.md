@@ -76,13 +76,15 @@
 
 The Admin can Read Purchase Orders using the following GQL queries: 
 
-</br>
-
 1. purchaseOrder
 
 The query purchaseOrder is used to read a single Purchase Order. It takes the ID of the Purchase Order as a parameter.
 
-```
+``` 
 purchaseOrder(id: ID!): PurchaseOrder
 ```
+
+2. allPurchaseOrders
+
+The query allPurchaseOrders is used to read all of the Purchase Orders. 
 
