@@ -276,7 +276,7 @@ const { server }: any = constructTestServer({
 
 describe('Tests', () => {
   //Queries
-  it('should fetch all purchase orders', async () => {
+  it('should fetch all purchase orders admin persona', async () => {
     const PURCHASEORDER_ALL = gql`
       query {
         allPurchaseOrders {
@@ -353,7 +353,84 @@ describe('Tests', () => {
     expect(res).toMatchSnapshot();
   });
 
-  it('should fetch all purchase orders filtered by status', async () => {
+  it('should fetch all purchase orders supplier persona', async () => {
+    const PURCHASEORDER_ALL = gql`
+      query {
+        supplierAllPurchaseOrders {
+          id
+          purchaseOrderNo
+          shipmentNo
+          adminStatus
+          supplierStatusHeader
+          vendorAddress {
+            id
+            building_name
+            street
+            city
+            state
+            zip_code
+          }
+          supplier {
+            id
+            supplierNo
+            supplierName
+            tin
+            contactNumber
+            contactPerson
+            address {
+              id
+              building_name
+              street
+              city
+              state
+              zip_code
+            }
+          }
+          documentDate
+          items {
+            id
+            itemNo
+            description
+            quantity
+            uom
+            unitPrice
+            currency
+            deliveryAddress {
+              id
+              building_name
+              street
+              city
+              state
+              zip_code
+            }
+            totalAmount
+            supplierStatusItem
+            scheduleLine {
+              id
+              quantity
+              uom
+              unitPrice
+              totalAmount
+              deliveryDateAndTime
+              deliveryStatus {
+                id
+                status
+                dateCreated
+                timeCreated
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const { query } = createTestClient(server);
+    const res = await query({ query: PURCHASEORDER_ALL });
+
+    expect(res).toMatchSnapshot();
+  });
+
+  it('should fetch all purchase orders filtered by status for admin persona', async () => {
     const PURCHASEORDER_ALL_STATUS = gql`
       query po($status: String) {
         purchaseOrdersStatus(status: $status) {
@@ -430,10 +507,162 @@ describe('Tests', () => {
     expect(res).toMatchSnapshot();
   });
 
-  it('should fetch one purchase order', async () => {
+  it('should fetch all purchase orders filtered by status for supplier persona', async () => {
+    const PURCHASEORDER_ALL_STATUS = gql`
+      query po($status: String) {
+        supplierPurchaseOrdersByStatus(status: $status) {
+          id
+          purchaseOrderNo
+          shipmentNo
+          adminStatus
+          supplierStatusHeader
+          vendorAddress {
+            id
+            building_name
+            street
+            city
+            state
+            zip_code
+          }
+          supplier {
+            id
+            supplierNo
+            supplierName
+            tin
+            contactNumber
+            contactPerson
+            address {
+              id
+              building_name
+              street
+              city
+              state
+              zip_code
+            }
+          }
+          documentDate
+          items {
+            id
+            itemNo
+            description
+            quantity
+            uom
+            unitPrice
+            currency
+            deliveryAddress {
+              id
+              building_name
+              street
+              city
+              state
+              zip_code
+            }
+            totalAmount
+            supplierStatusItem
+            scheduleLine {
+              id
+              quantity
+              uom
+              unitPrice
+              totalAmount
+              deliveryDateAndTime
+              deliveryStatus {
+                id
+                status
+                dateCreated
+                timeCreated
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const { query } = createTestClient(server);
+    const res = await query({ query: PURCHASEORDER_ALL_STATUS });
+
+    expect(res).toMatchSnapshot();
+  });
+
+  it('should fetch one purchase order admin persona', async () => {
     const SINGLE_PURCHASEORDER = gql`
       query po($id: ID!) {
         purchaseOrder(id: $id) {
+          id
+          purchaseOrderNo
+          shipmentNo
+          adminStatus
+          supplierStatusHeader
+          vendorAddress {
+            id
+            building_name
+            street
+            city
+            state
+            zip_code
+          }
+          supplier {
+            id
+            supplierNo
+            supplierName
+            tin
+            contactNumber
+            contactPerson
+            address {
+              id
+              building_name
+              street
+              city
+              state
+              zip_code
+            }
+          }
+          documentDate
+          items {
+            id
+            itemNo
+            description
+            quantity
+            uom
+            unitPrice
+            currency
+            deliveryAddress {
+              id
+            }
+            totalAmount
+            supplierStatusItem
+            scheduleLine {
+              id
+              quantity
+              uom
+              unitPrice
+              totalAmount
+              deliveryDateAndTime
+              deliveryStatus {
+                id
+                status
+                dateCreated
+                timeCreated
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const { query } = createTestClient(server);
+    const res = await query({
+      query: SINGLE_PURCHASEORDER,
+      variables: { id: '1' },
+    });
+
+    expect(res).toMatchSnapshot();
+  });
+
+  it('should fetch one purchase order supplier persona', async () => {
+    const SINGLE_PURCHASEORDER = gql`
+      query po($id: ID!) {
+        purchaseOrderSupplier(id: $id) {
           id
           purchaseOrderNo
           shipmentNo

@@ -19,11 +19,47 @@ const purchaseOrderResolvers = {
       const { getAllPurchaseOrders } = context;
       return getAllPurchaseOrders();
     },
+    supplierAllPurchaseOrders: async (parent, args, context, info) => {
+      const { getAllPurchaseOrders } = context;
+      return getAllPurchaseOrders();
+    },
     purchaseOrder: async (parent, { id }, context, info) => {
       const { getPurchaseOrderById } = context;
       return getPurchaseOrderById(id);
     },
+    purchaseOrderSupplier: async (parent, { id }, context, info) => {
+      const { getPurchaseOrderById } = context;
+      return getPurchaseOrderById(id);
+    },
     purchaseOrdersStatus: async (parent, { status }, context, info) => {
+      const { getAllItemsByPurchaseOrder, getAllPurchaseOrders } = context;
+      const poList = await getAllPurchaseOrders();
+      const po: Array<any> = await Promise.all(
+        await poList.map(async po => {
+          const poItems = await getAllItemsByPurchaseOrder(po.items);
+
+          const filterItems = i => {
+            if (i.supplierStatusItem === status) {
+              return i.id;
+            }
+          };
+          let items;
+          items = poItems.filter(filterItems);
+
+          const itemsId: Array<String> = items.map(item => item.id);
+          return { ...po, items: itemsId };
+        }),
+      );
+
+      return po;
+    },
+
+    supplierPurchaseOrdersByStatus: async (
+      parent,
+      { status },
+      context,
+      info,
+    ) => {
       const { getAllItemsByPurchaseOrder, getAllPurchaseOrders } = context;
       const poList = await getAllPurchaseOrders();
       const po: Array<any> = await Promise.all(
