@@ -18,10 +18,6 @@ const typeDefs = gql`
     purchaseOrder(id: ID!): PurchaseOrder
     allPurchaseOrders: [PurchaseOrder]
     purchaseOrdersStatus(status: String): [PurchaseOrder]
-<<<<<<< HEAD
-=======
-
->>>>>>> febd881eee56aa2327b4327eac580e8726d7cf9a
   }
 
   type Mutation {
