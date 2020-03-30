@@ -14,10 +14,7 @@ import { supplierStatusGs } from './bindings-gs/supplierStatus-binding-gs';
 import { supplierGs } from './bindings-gs/supplier-binding-gs';
 import { itemGs } from './bindings-gs/item-bindings-gs';
 import { scheduleLineGs } from './bindings-gs/scheduleLine-binding-gs';
-<<<<<<< HEAD
-=======
 
->>>>>>> fb28a4b0fc07fddd1d2c8a2d6992ef895f6eb811
 export {
   //Mongo
   userModel,
