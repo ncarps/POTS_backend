@@ -19,7 +19,7 @@ const userGs: IDBModel<any> = {
 
     const usersSheet = gshez.create({
       spreadsheetId: '1wwl1dVcgZsAl7WmZJdQtlkU563G2GrlvQr8KNCsIvQ0',
-      range: 'A:D',
+      range: 'A:E',
     });
 
     const grid = await usersSheet.grid({ headerLength: 1 });

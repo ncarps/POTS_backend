@@ -20,6 +20,8 @@ import {
   scheduleLineModel,
   //GSheet
   userGs,
+  addressGs,
+  supplierStatusGs,
 } from './models';
 
 import * as controllers from './controllers';
@@ -79,7 +81,7 @@ const context = async session => {
     deleteUserById: DeleteRecordByIDDB(userModel),
     //Adress
     getAddressById: getByIDDB(addressModel),
-    getAllAddress: getAllDataDB(addressModel),
+    getAllAddress: getAllDataDB(addressGs),
     //Supplier
     createSupplier: createCreateSupplierDB(supplierModel),
     getAllSuppliers: getAllDataDB(supplierModel),
@@ -91,7 +93,7 @@ const context = async session => {
     updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusModel),
     deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusModel),
     getSupplierStatusById: getByIDDB(supplierStatusModel),
-    getAllSupplierStatus: getAllDataDB(supplierStatusModel),
+    getAllSupplierStatus: getAllDataDB(supplierStatusGs),
     //Item
     createItem: createCreateItemDB(itemModel),
     updateItemById: updateItemByIDDB(itemModel),
