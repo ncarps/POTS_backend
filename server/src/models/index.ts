@@ -11,6 +11,8 @@ import { scheduleLineModel } from './bindings/scheduleLine-binding-mongo';
 import { userGs } from './bindings-gs/user-binding-gs';
 import { addressGs } from './bindings-gs/address-bindings-gs';
 import { supplierStatusGs } from './bindings-gs/supplierStatus-binding-gs';
+import { supplierGs } from './bindings-gs/supplier-binding-gs';
+import { itemGs } from './bindings-gs/item-bindings-gs';
 
 export {
   //Mongo
@@ -25,4 +27,6 @@ export {
   userGs,
   addressGs,
   supplierStatusGs,
+  supplierGs,
+  itemGs,
 };
