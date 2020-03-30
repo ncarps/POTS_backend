@@ -1,18 +1,8 @@
 import { createSchema, createModel } from 'gsheeez';
 
 const SupplierStatusSchema = new createSchema({
-  range: 'A:I',
-  header: [
-    'purchaseOrderNo',
-    'shipmentNo',
-    'adminStatus',
-    'supplierStatusHeader',
-    'documentDate',
-    'postingDate',
-    'vendorAddress',
-    'supplier',
-    'items',
-  ],
+  range: 'A:C',
+  header: ['status', 'dateCreated', 'timeCreated'],
 });
 
 export default createModel(SupplierStatusSchema);

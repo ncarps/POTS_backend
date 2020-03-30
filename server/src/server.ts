@@ -24,6 +24,7 @@ import {
   supplierStatusGs,
   supplierGs,
   itemGs,
+  scheduleLineGs,
 } from './models';
 
 import * as controllers from './controllers';
@@ -120,10 +121,10 @@ const context = async session => {
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
     updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),
     deleteScheduleLineById: DeleteRecordByIDDB(scheduleLineModel),
-    getScheduleLineById: getByIDDB(scheduleLineModel),
-    getAllScheduleLines: getAllDataDB(scheduleLineModel),
+    getScheduleLineById: getByIDDB(scheduleLineGs),
+    getAllScheduleLines: getAllDataDB(scheduleLineGs),
     getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
-      scheduleLineModel,
+      scheduleLineGs,
     ),
   };
 };

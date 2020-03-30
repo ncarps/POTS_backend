@@ -13,7 +13,7 @@ const gshez = sheeez({
 
 const supplierStatusesSheet = gshez.create({
   spreadsheetId: '1wwl1dVcgZsAl7WmZJdQtlkU563G2GrlvQr8KNCsIvQ0',
-  range: 'A:C',
+  range: 'SupplierStatus!A:C',
 });
 
 const supplierStatusGs: IDBModel<any> = {
