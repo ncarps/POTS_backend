@@ -21,7 +21,7 @@ import {
 
 import * as controllers from './controllers';
 
-// Database
+//Database
 mongoose.set('useFindAndModify', false);
 const { mongoURI: db } = process.env;
 const { PORT } = process.env;
