@@ -3,6 +3,7 @@ import { google } from 'googleapis';
 import { sheeez } from 'gsheeez';
 
 import scheduleLineSheet from '../gs-models/ScheduleLine-gs';
+import supplierStatusSheet from '../gs-models/SupplierStatus-gs';
 
 const gshez = sheeez({
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
@@ -14,6 +15,11 @@ const gshez = sheeez({
 const scheduleLinesSheet = gshez.create({
   spreadsheetId: '1wwl1dVcgZsAl7WmZJdQtlkU563G2GrlvQr8KNCsIvQ0',
   range: 'ScheduleLine!A:F',
+});
+
+const supplierStatusesSheet = gshez.create({
+  spreadsheetId: '1wwl1dVcgZsAl7WmZJdQtlkU563G2GrlvQr8KNCsIvQ0',
+  range: 'SupplierStatus!A:C',
 });
 
 const scheduleLineGs: IDBModel<any> = {
@@ -60,7 +66,20 @@ const scheduleLineGs: IDBModel<any> = {
   updateById: async data => {},
 
   getAllByItem: async id => {},
-  getAllBySupplierStatus: async id => {},
+
+  getAllBySupplierStatus: async () => {
+    const grid = await scheduleLinesSheet.grid({ headerLength: 1 });
+    supplierStatusSheet.setGrid(grid);
+    return supplierStatusSheet.getAll().map((ss, idx) => {
+      return {
+        id: idx,
+        status: ss.status,
+        timeCreated: ss.timeCreated,
+        dateCreated: ss.dateCreated,
+      };
+    });
+  },
+
   getAllByScheduleLine: async data => {},
   updateSupplierStatusItemById: async id => {},
   updateAdminStatusPurchaseOrderById: async id => {},
