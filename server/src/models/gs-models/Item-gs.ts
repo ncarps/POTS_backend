@@ -1,7 +1,7 @@
 import { createSchema, createModel } from 'gsheeez';
 
 const Itemschema = new createSchema({
-  range: 'AA:AO',
+  range: 'A:N',
   header: [
     'id',
     'itemNo',
