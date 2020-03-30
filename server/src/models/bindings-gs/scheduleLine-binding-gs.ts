@@ -67,19 +67,26 @@ const scheduleLineGs: IDBModel<any> = {
 
   getAllByItem: async id => {},
 
-  getAllBySupplierStatus: async () => {
-    const grid = await scheduleLinesSheet.grid({ headerLength: 1 });
+  getAllBySupplierStatus: async id => {
+    const res = id.split(',');
+    const grid = await supplierStatusesSheet.grid({ headerLength: 1 });
     supplierStatusSheet.setGrid(grid);
-    return supplierStatusSheet.getAll().map((ss, idx) => {
-      return {
-        id: idx,
-        status: ss.status,
-        timeCreated: ss.timeCreated,
-        dateCreated: ss.dateCreated,
-      };
+    const supplierStatus: Array<any> = supplierStatusSheet
+      .getAll()
+      .map((ss, idx) => {
+        return {
+          id: idx,
+          status: ss.status,
+          timeCreated: ss.timeCreated,
+          dateCreated: ss.dateCreated,
+        };
+      });
+
+    return res.map(i => {
+      const idx = parseInt(i);
+      return supplierStatus[idx];
     });
   },
-
   getAllByScheduleLine: async data => {},
   updateSupplierStatusItemById: async id => {},
   updateAdminStatusPurchaseOrderById: async id => {},
