@@ -76,11 +76,11 @@ const context = async session => {
     //User
     createUser: createCreateUserDB(userModel),
     getAllUsers: getAllDataDB(userGs),
-    getUserById: getByIDDB(userModel),
+    getUserById: getByIDDB(userGs),
     updateUserById: updateUserByIDDB(userModel),
     deleteUserById: DeleteRecordByIDDB(userModel),
     //Adress
-    getAddressById: getByIDDB(addressModel),
+    getAddressById: getByIDDB(addressGs),
     getAllAddress: getAllDataDB(addressGs),
     //Supplier
     createSupplier: createCreateSupplierDB(supplierModel),
@@ -92,7 +92,7 @@ const context = async session => {
     createSupplierStatus: createCreateSupplierStatusDB(supplierStatusModel),
     updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusModel),
     deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusModel),
-    getSupplierStatusById: getByIDDB(supplierStatusModel),
+    getSupplierStatusById: getByIDDB(supplierStatusGs),
     getAllSupplierStatus: getAllDataDB(supplierStatusGs),
     //Item
     createItem: createCreateItemDB(itemModel),
