@@ -121,10 +121,14 @@ const context = async session => {
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
     updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),
     deleteScheduleLineById: DeleteRecordByIDDB(scheduleLineModel),
+<<<<<<< HEAD
     getScheduleLineById: getByIDDB(scheduleLineModel),
+=======
+    getScheduleLineById: getByIDDB(scheduleLineGs),
+>>>>>>> fb28a4b0fc07fddd1d2c8a2d6992ef895f6eb811
     getAllScheduleLines: getAllDataDB(scheduleLineGs),
     getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
-      scheduleLineModel,
+      scheduleLineGs,
     ),
   };
 };

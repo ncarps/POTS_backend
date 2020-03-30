@@ -13,7 +13,7 @@ const gshez = sheeez({
 
 const scheduleLinesSheet = gshez.create({
   spreadsheetId: '1wwl1dVcgZsAl7WmZJdQtlkU563G2GrlvQr8KNCsIvQ0',
-  range: 'Supplier!A:F',
+  range: 'ScheduleLine!A:F',
 });
 
 const scheduleLineGs: IDBModel<any> = {
