@@ -3,6 +3,7 @@ import { google } from 'googleapis';
 import { sheeez } from 'gsheeez';
 
 import scheduleLineSheet from '../gs-models/ScheduleLine-gs';
+import supplierStatusSheet from '../gs-models/SupplierStatus-gs';
 
 const gshez = sheeez({
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
@@ -16,6 +17,11 @@ const scheduleLinesSheet = gshez.create({
   range: 'ScheduleLine!A:F',
 });
 
+const supplierStatusesSheet = gshez.create({
+  spreadsheetId: '1wwl1dVcgZsAl7WmZJdQtlkU563G2GrlvQr8KNCsIvQ0',
+  range: 'SupplierStatus!A:C',
+});
+
 const scheduleLineGs: IDBModel<any> = {
   insert: async user => {},
 
@@ -24,15 +30,15 @@ const scheduleLineGs: IDBModel<any> = {
     scheduleLineSheet.setGrid(grid);
     const scheduleLine: Array<any> = scheduleLineSheet
       .getAll()
-      .map((sched, idx) => {
+      .map((sl, idx) => {
         return {
           id: idx,
-          quantity: sched.quantity,
-          uom: sched.uom,
-          unitPrice: sched.unitPrice,
-          totalAmount: sched.totalAmount,
-          deliveryDateAndTime: sched.deliveryDateAndTime,
-          deliveryStatus: sched.deliveryStatus,
+          quantity: sl.quantity,
+          uom: sl.uom,
+          unitPrice: sl.unitPrice,
+          totalAmount: sl.totalAmount,
+          deliveryDateAndTime: sl.deliveryDateAndTime,
+          deliveryStatus: sl.deliveryStatus,
         };
       });
     return scheduleLine[data];
@@ -41,15 +47,16 @@ const scheduleLineGs: IDBModel<any> = {
   getAll: async () => {
     const grid = await scheduleLinesSheet.grid({ headerLength: 1 });
     scheduleLineSheet.setGrid(grid);
-    return scheduleLineSheet.getAll().map((sched, idx) => {
+    console.log(scheduleLineSheet.getAll());
+    return scheduleLineSheet.getAll().map((sl, idx) => {
       return {
         id: idx,
-        quantity: sched.quantity,
-        uom: sched.uom,
-        unitPrice: sched.unitPrice,
-        totalAmount: sched.totalAmount,
-        deliveryDateAndTime: sched.deliveryDateAndTime,
-        deliveryStatus: sched.deliveryStatus,
+        quantity: sl.quantity,
+        uom: sl.uom,
+        unitPrice: sl.unitPrice,
+        totalAmount: sl.totalAmount,
+        deliveryDateAndTime: sl.deliveryDateAndTime,
+        deliveryStatus: sl.deliveryStatus,
       };
     });
   },
@@ -59,7 +66,20 @@ const scheduleLineGs: IDBModel<any> = {
   updateById: async data => {},
 
   getAllByItem: async id => {},
-  getAllBySupplierStatus: async id => {},
+
+  getAllBySupplierStatus: async () => {
+    const grid = await scheduleLinesSheet.grid({ headerLength: 1 });
+    supplierStatusSheet.setGrid(grid);
+    return supplierStatusSheet.getAll().map((ss, idx) => {
+      return {
+        id: idx,
+        status: ss.status,
+        timeCreated: ss.timeCreated,
+        dateCreated: ss.dateCreated,
+      };
+    });
+  },
+
   getAllByScheduleLine: async data => {},
   updateSupplierStatusItemById: async id => {},
   updateAdminStatusPurchaseOrderById: async id => {},
