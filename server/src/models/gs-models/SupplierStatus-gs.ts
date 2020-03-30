@@ -1,8 +1,8 @@
 import { createSchema, createModel } from 'gsheeez';
 
 const SupplierStatusSchema = new createSchema({
-  range: 'N:Q',
-  header: ['id', 'status', 'dateCreated', 'timeCreated'],
+  range: 'A:C',
+  header: ['status', 'dateCreated', 'timeCreated'],
 });
 
 export default createModel(SupplierStatusSchema);
