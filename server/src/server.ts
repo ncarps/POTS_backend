@@ -141,10 +141,10 @@ const startServer = async () => {
 
   server.applyMiddleware({ app });
 
-  await mongoose.connect('mongodb://localhost:27017/test3', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  // await mongoose.connect('mongodb://localhost:27017/test3', {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  // });
 
   app.listen({ port: 4000 }, () =>
     console.log(
