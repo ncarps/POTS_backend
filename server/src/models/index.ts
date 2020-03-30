@@ -9,6 +9,8 @@ import { scheduleLineModel } from './bindings/scheduleLine-binding-mongo';
 
 //GSheet
 import { userGs } from './bindings-gs/user-binding-gs';
+import { addressGs } from './bindings-gs/address-bindings-gs';
+import { supplierStatusGs } from './bindings-gs/supplierStatus-binding-gs';
 
 export {
   //Mongo
@@ -21,4 +23,6 @@ export {
   scheduleLineModel,
   //Gsheet
   userGs,
+  addressGs,
+  supplierStatusGs,
 };
