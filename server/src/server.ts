@@ -10,6 +10,7 @@ import bodyParser from 'body-parser';
 import serveIndex from 'serve-index';
 
 import {
+  //Mongo
   userModel,
   addressModel,
   supplierModel,
@@ -17,22 +18,24 @@ import {
   itemModel,
   purchaseOrderModel,
   scheduleLineModel,
+  //GSheet
+  userGs,
 } from './models';
 
 import * as controllers from './controllers';
 
-// Database
-mongoose.set('useFindAndModify', false);
-const { mongoURI: db } = process.env;
-const { PORT } = process.env;
+// //Database
+// mongoose.set('useFindAndModify', false);
+// const { mongoURI: db } = process.env;
+// const { PORT } = process.env;
 
-mongoose
-  .connect(db || '', {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-  })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+// mongoose
+//   .connect(db || '', {
+//     useCreateIndex: true,
+//     useNewUrlParser: true,
+//   })
+//   .then(() => console.log('MongoDB connected'))
+//   .catch(err => console.log(err));
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
@@ -70,7 +73,7 @@ const context = async session => {
   return {
     //User
     createUser: createCreateUserDB(userModel),
-    getAllUsers: getAllDataDB(userModel),
+    getAllUsers: getAllDataDB(userGs),
     getUserById: getByIDDB(userModel),
     updateUserById: updateUserByIDDB(userModel),
     deleteUserById: DeleteRecordByIDDB(userModel),
@@ -121,24 +124,51 @@ const context = async session => {
   };
 };
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context,
-});
+//Gsheet Server
+const startServer = async () => {
+  const app = express();
 
-const app = express();
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context,
+  });
 
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
-app.use(
-  '/images',
-  express.static('./public/images'),
-  serveIndex('public/images', { icons: true }),
-);
-server.applyMiddleware({ app });
-// The `listen` method launches a web server.
-const _port = PORT || 4000;
-app.listen(_port, () => {
-  console.log(`🚀  Server ready at http:  //localhost:${_port}/`);
-});
+  server.applyMiddleware({ app });
+
+  await mongoose.connect('mongodb://localhost:27017/test3', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  app.listen({ port: 4000 }, () =>
+    console.log(
+      `🚀  Server ready at http://localhost:4000${server.graphqlPath}`,
+    ),
+  );
+};
+
+startServer();
+
+// // Mongo Server
+// const server = new ApolloServer({
+//   typeDefs,
+//   resolvers,
+//   context,
+// });
+
+// const app = express();
+
+// app.use(bodyParser.json({ limit: '10mb' }));
+// app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+// app.use(
+//   '/images',
+//   express.static('./public/images'),
+//   serveIndex('public/images', { icons: true }),
+// );
+// server.applyMiddleware({ app });
+// // The `listen` method launches a web server.
+// const _port = PORT || 4000;
+// app.listen(_port, () => {
+//   console.log(`🚀  Server ready at http:  //localhost:${_port}/`);
+// });
