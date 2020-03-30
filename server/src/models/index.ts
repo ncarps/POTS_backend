@@ -13,7 +13,7 @@ import { addressGs } from './bindings-gs/address-bindings-gs';
 import { supplierStatusGs } from './bindings-gs/supplierStatus-binding-gs';
 import { supplierGs } from './bindings-gs/supplier-binding-gs';
 import { itemGs } from './bindings-gs/item-bindings-gs';
-
+import { scheduleLineGs } from './bindings-gs/scheduleLine-binding-gs';
 export {
   //Mongo
   userModel,
@@ -29,4 +29,5 @@ export {
   supplierStatusGs,
   supplierGs,
   itemGs,
+  scheduleLineGs,
 };
