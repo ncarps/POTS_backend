@@ -25,6 +25,7 @@ import {
   supplierGs,
   itemGs,
   scheduleLineGs,
+  purchaseOrderGs
 } from './models';
 
 import * as controllers from './controllers';
@@ -110,13 +111,13 @@ const context = async session => {
     createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderModel),
     updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderModel),
     deletePurchaseOrderbyId: DeleteRecordByIDDB(purchaseOrderModel),
-    getPurchaseOrderById: getByIDDB(purchaseOrderModel),
-    getAllPurchaseOrders: getAllDataDB(purchaseOrderModel),
+    getPurchaseOrderById: getByIDDB(purchaseOrderGs),
+    getAllPurchaseOrders: getAllDataDB(purchaseOrderGs),
     getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(
-      purchaseOrderModel,
+      purchaseOrderGs,
     ),
     updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderModel),
-    getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderModel),
+    getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderGs),
     //Schedule Line
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
     updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),
