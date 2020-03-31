@@ -25,6 +25,7 @@ import {
   supplierGs,
   itemGs,
   scheduleLineGs,
+  purchaseOrderGs
 } from './models';
 
 import * as controllers from './controllers';
@@ -102,21 +103,21 @@ const context = async session => {
     updateItemById: updateItemByIDDB(itemModel),
     updateSupplierStatusItemById: updateSupplierStatusItemByIDDB(itemModel),
     deleteItemById: DeleteRecordByIDDB(itemModel),
-    getItemById: getByIDDB(itemModel),
+    getItemById: getByIDDB(itemGs),
     getAllItems: getAllDataDB(itemGs),
-    getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemModel),
-    getAllScheduleLinesByItem: getAllByScheduleLineDB(itemModel),
+    getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemGs),
+    getAllScheduleLinesByItem: getAllByScheduleLineDB(itemGs),
     //Purchase Order
     createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderModel),
     updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderModel),
     deletePurchaseOrderbyId: DeleteRecordByIDDB(purchaseOrderModel),
-    getPurchaseOrderById: getByIDDB(purchaseOrderModel),
-    getAllPurchaseOrders: getAllDataDB(purchaseOrderModel),
+    getPurchaseOrderById: getByIDDB(purchaseOrderGs),
+    getAllPurchaseOrders: getAllDataDB(purchaseOrderGs),
     getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(
-      purchaseOrderModel,
+      purchaseOrderGs,
     ),
     updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderModel),
-    getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderModel),
+    getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderGs),
     //Schedule Line
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
     updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),
@@ -141,12 +142,10 @@ const startServer = async () => {
 
   server.applyMiddleware({ app });
 
-
   // await mongoose.connect('mongodb://localhost:27017/test3', {
   //   useNewUrlParser: true,
   //   useUnifiedTopology: true,
   // });
-
 
   app.listen({ port: 4000 }, () =>
     console.log(
