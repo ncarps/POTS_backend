@@ -3,3 +3,5 @@ dist/
 public/images/
 coverage/
 .data/
+credentials.json
+token.json
