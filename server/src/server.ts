@@ -9,6 +9,9 @@ import { resolvers, typeDefs } from './graphql';
 import bodyParser from 'body-parser';
 import serveIndex from 'serve-index';
 
+import { sheep } from 'gsheeez';
+import { google } from 'googleapis';
+
 import {
   //Mongo
   userModel,
@@ -19,13 +22,13 @@ import {
   purchaseOrderModel,
   scheduleLineModel,
   //GSheet
-  userGs,
+  // userGs,
   addressGs,
-  supplierStatusGs,
-  supplierGs,
-  itemGs,
-  scheduleLineGs,
-  purchaseOrderGs
+  // supplierStatusGs,
+  // supplierGs,
+  // itemGs,
+  // scheduleLineGs,
+  // purchaseOrderGs,
 } from './models';
 
 import * as controllers from './controllers';
@@ -79,8 +82,8 @@ const context = async session => {
   return {
     //User
     createUser: createCreateUserDB(userModel),
-    getAllUsers: getAllDataDB(userGs),
-    getUserById: getByIDDB(userGs),
+    // getAllUsers: getAllDataDB(userGs),
+    // getUserById: getByIDDB(userGs),
     updateUserById: updateUserByIDDB(userModel),
     deleteUserById: DeleteRecordByIDDB(userModel),
     //Adress
@@ -88,47 +91,54 @@ const context = async session => {
     getAllAddress: getAllDataDB(addressGs),
     //Supplier
     createSupplier: createCreateSupplierDB(supplierModel),
-    getAllSuppliers: getAllDataDB(supplierGs),
-    getSupplierById: getByIDDB(supplierGs),
+    // getAllSuppliers: getAllDataDB(supplierGs),
+    // getSupplierById: getByIDDB(supplierGs),
     deleteSupplierById: DeleteRecordByIDDB(supplierModel),
     updateSupplierById: updateSupplierByIDDB(supplierModel),
     //SupplierStatus
     createSupplierStatus: createCreateSupplierStatusDB(supplierStatusModel),
     updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusModel),
     deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusModel),
-    getSupplierStatusById: getByIDDB(supplierStatusGs),
-    getAllSupplierStatus: getAllDataDB(supplierStatusGs),
+    // getSupplierStatusById: getByIDDB(supplierStatusGs),
+    // getAllSupplierStatus: getAllDataDB(supplierStatusGs),
     //Item
     createItem: createCreateItemDB(itemModel),
     updateItemById: updateItemByIDDB(itemModel),
     updateSupplierStatusItemById: updateSupplierStatusItemByIDDB(itemModel),
     deleteItemById: DeleteRecordByIDDB(itemModel),
-    getItemById: getByIDDB(itemGs),
-    getAllItems: getAllDataDB(itemGs),
-    getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemGs),
-    getAllScheduleLinesByItem: getAllByScheduleLineDB(itemGs),
+    // getItemById: getByIDDB(itemGs),
+    // getAllItems: getAllDataDB(itemGs),
+    // getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemGs),
+    // getAllScheduleLinesByItem: getAllByScheduleLineDB(itemGs),
     //Purchase Order
     createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderModel),
     updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderModel),
     deletePurchaseOrderbyId: DeleteRecordByIDDB(purchaseOrderModel),
-    getPurchaseOrderById: getByIDDB(purchaseOrderGs),
-    getAllPurchaseOrders: getAllDataDB(purchaseOrderGs),
-    getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(
-      purchaseOrderGs,
-    ),
+    // getPurchaseOrderById: getByIDDB(purchaseOrderGs),
+    // getAllPurchaseOrders: getAllDataDB(purchaseOrderGs),
+    // getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(
+    //   purchaseOrderGs,
+    // ),
     updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderModel),
-    getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderGs),
+    // getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderGs),
     //Schedule Line
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
     updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),
     deleteScheduleLineById: DeleteRecordByIDDB(scheduleLineModel),
-    getScheduleLineById: getByIDDB(scheduleLineGs),
-    getAllScheduleLines: getAllDataDB(scheduleLineGs),
-    getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
-      scheduleLineGs,
-    ),
+    // getScheduleLineById: getByIDDB(scheduleLineGs),
+    // getAllScheduleLines: getAllDataDB(scheduleLineGs),
+    // getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
+    //   scheduleLineGs,
+    // ),
   };
 };
+
+// sheep.configure({
+//   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+//   token_path: 'token.json',
+//   creds_path: 'credentials.json',
+//   google,
+// });
 
 //Gsheet Server
 const startServer = async () => {

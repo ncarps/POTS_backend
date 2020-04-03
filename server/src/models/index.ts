@@ -8,13 +8,13 @@ import { purchaseOrderModel } from './bindings/purchaseOrder-binding-mongo';
 import { scheduleLineModel } from './bindings/scheduleLine-binding-mongo';
 
 //GSheet
-import { userGs } from './bindings-gs/user-binding-gs';
+// import { userGs } from './bindings-gs/user-binding-gs';
 import { addressGs } from './bindings-gs/address-bindings-gs';
-import { supplierStatusGs } from './bindings-gs/supplierStatus-binding-gs';
-import { supplierGs } from './bindings-gs/supplier-binding-gs';
-import { itemGs } from './bindings-gs/item-bindings-gs';
-import { scheduleLineGs } from './bindings-gs/scheduleLine-binding-gs';
-import { purchaseOrderGs } from './bindings-gs/purchaseOrder-binding-gs';
+// import { supplierStatusGs } from './bindings-gs/supplierStatus-binding-gs';
+// import { supplierGs } from './bindings-gs/supplier-binding-gs';
+// import { itemGs } from './bindings-gs/item-bindings-gs';
+// import { scheduleLineGs } from './bindings-gs/scheduleLine-binding-gs';
+// import { purchaseOrderGs } from './bindings-gs/purchaseOrder-binding-gs';
 
 export {
   //Mongo
@@ -26,11 +26,11 @@ export {
   purchaseOrderModel,
   scheduleLineModel,
   //Gsheet
-  userGs,
+  // userGs,
   addressGs,
-  supplierStatusGs,
-  supplierGs,
-  itemGs,
-  scheduleLineGs,
-  purchaseOrderGs,
+  // supplierStatusGs,
+  // supplierGs,
+  // itemGs,
+  // scheduleLineGs,
+  // purchaseOrderGs,
 };
