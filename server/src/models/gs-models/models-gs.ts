@@ -138,6 +138,38 @@ export const gsModels = async () => {
       keys: ['itemNo', 'productId'],
     }),
 
+    //deliveryAddress
+    //Item
+    new createSchema({
+      range: 'A:R',
+      header: [
+        'purchaseOrderNo',
+        'shipmentNo',
+        'adminStatus',
+        'supplierStatusHeader',
+        'documentDate',
+        'postingDate',
+        'vendorAddress',
+        'supplier',
+        'items',
+        'itemNo',
+        'productId',
+        'description',
+        'quantity',
+        'uom',
+        'unitPrice',
+        'totalAmount',
+        'discount',
+        'deliveryAddress',
+        'supplierStatusItem',
+        'scheduleLine',
+        'currency',
+        'dateUpdated',
+        'timeUpdated',
+      ],
+      keys: ['deliveryAddress'],
+    }),
+
     //Schedule Line
     new createSchema({
       range: 'A:AC',
@@ -260,6 +292,48 @@ export const gsModels = async () => {
       ],
       keys: ['supplierNo', 'supplierName'],
     }),
+
+    new createSchema({
+      range: 'A:AI',
+      header: [
+        'purchaseOrderNo',
+        'shipmentNo',
+        'adminStatus',
+        'supplierStatusHeader',
+        'documentDate',
+        'postingDate',
+        'vendorAddress',
+        'supplier',
+        'items',
+        'itemNo',
+        'productId',
+        'description',
+        'quantity',
+        'uom',
+        'unitPrice',
+        'totalAmount',
+        'discount',
+        'deliveryAddress',
+        'supplierStatusItem',
+        'scheduleLine',
+        'currency',
+        'dateUpdated',
+        'timeUpdated',
+        'quantity',
+        'uom',
+        'unitPrice',
+        'totalAmount',
+        'deliveryDate',
+        'deliveryStatus',
+        'status',
+        'dateCreated',
+        'timeCreated',
+        'supplierNo',
+        'supplierName',
+        'address',
+      ],
+      keys: ['address'],
+    }),
   ];
 
   const models = createModelsFromBaseModel(schemas, baseModel);
@@ -268,17 +342,21 @@ export const gsModels = async () => {
     purchaseOrder,
     vendorAddress,
     item,
+    deliveryAddress,
     scheduleLine,
     supplierStatus,
     supplier,
+    address,
   ] = models;
 
   return {
     purchaseOrder,
     vendorAddress,
     item,
+    deliveryAddress,
     scheduleLine,
     supplierStatus,
     supplier,
+    address,
   };
 };
