@@ -71,7 +71,6 @@ export const gsModels = async () => {
 
   const baseModel = createModel(baseSchema);
   const grid = await gsheet.grid({ headerLength: 1 });
-  console.log('GURIDO', grid);
   baseModel.setGrid(grid);
 
   const schemas = [
