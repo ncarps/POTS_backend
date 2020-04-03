@@ -5,27 +5,27 @@ const addressGs: IDBModel<any> = {
   insert: async add => {},
   getById: async id => {
     const models = await gsModels();
-    const a = models.vendorAddress.getById(id);
+    const a = models.address.getById(id);
 
     return {
-      building_name: a.vendorAddress,
-      street: a.vendorAddress,
-      city: a.vendorAddress,
-      state: a.vendorAddress,
-      zip_code: a.vendorAddress,
+      building_name: a.address,
+      street: a.address,
+      city: a.address,
+      state: a.address,
+      zip_code: a.address,
       id: a.__metadata.uid,
     };
   },
   getAll: async () => {
     const models = await gsModels();
-    console.log('address', models.vendorAddress.getAll());
-    const add: Array<any> = models.vendorAddress.getAll().map((a, idx) => {
+    console.log('address', models.address.getAll());
+    const add: Array<any> = models.address.getAll().map((a, idx) => {
       return {
-        building_name: a.vendorAddress,
-        street: a.vendorAddress,
-        city: a.vendorAddress,
-        state: a.vendorAddress,
-        zip_code: a.vendorAddress,
+        building_name: a.address,
+        street: a.address,
+        city: a.address,
+        state: a.address,
+        zip_code: a.address,
         id: a.__metadata.uid,
       };
     });

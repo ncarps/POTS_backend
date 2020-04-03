@@ -192,6 +192,7 @@ export const gsModels = async () => {
         'totalAmount',
         'discount',
         'deliveryAddress',
+        'deliveryDateAndTime',
         'supplierStatusItem',
         'scheduleLine',
         'currency',
@@ -244,7 +245,7 @@ export const gsModels = async () => {
         'dateCreated',
         'timeCreated',
       ],
-      keys: ['status'],
+      keys: ['status', 'dateCreated', 'timeCreated'],
     }),
 
     //Supplier

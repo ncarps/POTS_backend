@@ -24,10 +24,10 @@ import {
   //GSheet
   // userGs,
   addressGs,
-  // supplierStatusGs,
-  // supplierGs,
+  supplierStatusGs,
+  supplierGs,
   // itemGs,
-  // scheduleLineGs,
+  scheduleLineGs,
   // purchaseOrderGs,
 } from './models';
 
@@ -91,16 +91,16 @@ const context = async session => {
     getAllAddress: getAllDataDB(addressGs),
     //Supplier
     createSupplier: createCreateSupplierDB(supplierModel),
-    // getAllSuppliers: getAllDataDB(supplierGs),
-    // getSupplierById: getByIDDB(supplierGs),
+    getAllSuppliers: getAllDataDB(supplierGs),
+    getSupplierById: getByIDDB(supplierGs),
     deleteSupplierById: DeleteRecordByIDDB(supplierModel),
     updateSupplierById: updateSupplierByIDDB(supplierModel),
     //SupplierStatus
     createSupplierStatus: createCreateSupplierStatusDB(supplierStatusModel),
     updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusModel),
     deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusModel),
-    // getSupplierStatusById: getByIDDB(supplierStatusGs),
-    // getAllSupplierStatus: getAllDataDB(supplierStatusGs),
+    getSupplierStatusById: getByIDDB(supplierStatusGs),
+    getAllSupplierStatus: getAllDataDB(supplierStatusGs),
     //Item
     createItem: createCreateItemDB(itemModel),
     updateItemById: updateItemByIDDB(itemModel),
@@ -125,20 +125,13 @@ const context = async session => {
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
     updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),
     deleteScheduleLineById: DeleteRecordByIDDB(scheduleLineModel),
-    // getScheduleLineById: getByIDDB(scheduleLineGs),
-    // getAllScheduleLines: getAllDataDB(scheduleLineGs),
+    getScheduleLineById: getByIDDB(scheduleLineGs),
+    getAllScheduleLines: getAllDataDB(scheduleLineGs),
     // getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
     //   scheduleLineGs,
     // ),
   };
 };
-
-// sheep.configure({
-//   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-//   token_path: 'token.json',
-//   creds_path: 'credentials.json',
-//   google,
-// });
 
 //Gsheet Server
 const startServer = async () => {
