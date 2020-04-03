@@ -55,7 +55,7 @@ export const gsModels = async () => {
       'uom',
       'unitPrice',
       'totalAmount',
-      'deliveryDate',
+      'deliveryDateAndTime',
       'deliveryStatus',
       'status',
       'dateCreated',
@@ -138,7 +138,6 @@ export const gsModels = async () => {
     }),
 
     //deliveryAddress
-    //Item
     new createSchema({
       range: 'A:R',
       header: [
@@ -191,7 +190,6 @@ export const gsModels = async () => {
         'totalAmount',
         'discount',
         'deliveryAddress',
-        'deliveryDateAndTime',
         'supplierStatusItem',
         'scheduleLine',
         'currency',
@@ -201,7 +199,7 @@ export const gsModels = async () => {
         'uom',
         'unitPrice',
         'totalAmount',
-        'deliveryDate',
+        'deliveryDateAndTime',
         'deliveryStatus',
       ],
       keys: ['totalAmount'],
@@ -238,8 +236,8 @@ export const gsModels = async () => {
         'uom',
         'unitPrice',
         'totalAmount',
-        'deliveryDate',
         'deliveryStatus',
+        'deliveryDateAndTime',
         'status',
         'dateCreated',
         'timeCreated',
@@ -278,8 +276,8 @@ export const gsModels = async () => {
         'uom',
         'unitPrice',
         'totalAmount',
-        'deliveryDate',
         'deliveryStatus',
+        'deliveryDateAndTime',
         'status',
         'dateCreated',
         'timeCreated',
@@ -323,7 +321,7 @@ export const gsModels = async () => {
         'uom',
         'unitPrice',
         'totalAmount',
-        'deliveryDate',
+        'deliveryDateAndTime',
         'deliveryStatus',
         'status',
         'dateCreated',
