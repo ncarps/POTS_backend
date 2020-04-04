@@ -26,9 +26,9 @@ import {
   addressGs,
   supplierStatusGs,
   supplierGs,
-  // itemGs,
+  itemGs,
   scheduleLineGs,
-  // purchaseOrderGs,
+  purchaseOrderGs,
 } from './models';
 
 import * as controllers from './controllers';
@@ -106,16 +106,16 @@ const context = async session => {
     updateItemById: updateItemByIDDB(itemModel),
     updateSupplierStatusItemById: updateSupplierStatusItemByIDDB(itemModel),
     deleteItemById: DeleteRecordByIDDB(itemModel),
-    // getItemById: getByIDDB(itemGs),
-    // getAllItems: getAllDataDB(itemGs),
+    getItemById: getByIDDB(itemGs),
+    getAllItems: getAllDataDB(itemGs),
     // getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemGs),
     // getAllScheduleLinesByItem: getAllByScheduleLineDB(itemGs),
     //Purchase Order
     createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderModel),
     updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderModel),
     deletePurchaseOrderbyId: DeleteRecordByIDDB(purchaseOrderModel),
-    // getPurchaseOrderById: getByIDDB(purchaseOrderGs),
-    // getAllPurchaseOrders: getAllDataDB(purchaseOrderGs),
+    getPurchaseOrderById: getByIDDB(purchaseOrderGs),
+    getAllPurchaseOrders: getAllDataDB(purchaseOrderGs),
     // getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(
     //   purchaseOrderGs,
     // ),

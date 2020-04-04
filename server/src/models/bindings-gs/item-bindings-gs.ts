@@ -5,49 +5,58 @@ const itemGs: IDBModel<any> = {
   insert: async add => {},
   getById: async id => {
     const models = await gsModels();
-    const i = models.item.getById(id);
-
+    const itemz = models.item.getById(id);
+    const sched = models.scheduleLine.getById(id);
+    const deliveryAddress = models.address.get({ address: itemz.address })
+      .__metadata.uid;
+    const scheduleline = models.scheduleLine.get({
+      scheduleLine: sched.scheduleLine,
+    }).__metadata.uid;
     return {
-      itemNo: i.item,
-      productId: i.item,
-      description: i.item,
-      quantity: i.item,
-      uom: i.item,
-      unitPrice: i.item,
-      totalAmount: i.item,
-      discount: i.item,
-      deliveryAddress: i.item,
-      supplierStatusItem: i.item,
-      scheduleLine: i.item,
-      currency: i.item,
-      dateUpdated: i.item,
-      timeUpdated: i.item,
-      id: i.__metadata.uid,
+      productId: itemz.productId,
+      description: itemz.description,
+      quantity: itemz.quantity,
+      uom: itemz.uom,
+      unitPrice: itemz.unitPrice,
+      totalAmount: itemz.totalAmount,
+      discount: itemz.discount,
+      deliveryAddress: deliveryAddress,
+      supplierStatusItem: itemz.supplierStatusItem,
+      scheduleLine: scheduleline,
+      currency: itemz.currency,
+      dateUpdated: itemz.dateUpdated,
+      timeUpdated: itemz.timeUpdated,
+      id: itemz.__metadata.uid,
     };
   },
   getAll: async () => {
     const models = await gsModels();
-    console.log('address', models.item.getAll());
-    const itemzxc: Array<any> = models.item.getAll().map((i, idx) => {
+    console.log('item', models.item.getAll());
+
+    const itemz: Array<any> = models.item.getAll().map((itemz, idx) => {
+      const deliveryAddress = models.address.get({ address: itemz.address })
+        .__metadata.uid;
+      const scheduleline = models.scheduleLine.get({
+        scheduleLine: itemz.scheduleLine,
+      }).__metadata.uid;
       return {
-        itemNo: i.item,
-        productId: i.item,
-        description: i.item,
-        quantity: i.item,
-        uom: i.item,
-        unitPrice: i.item,
-        totalAmount: i.item,
-        discount: i.item,
-        deliveryAddress: i.item,
-        supplierStatusItem: i.item,
-        scheduleLine: i.item,
-        currency: i.item,
-        dateUpdated: i.item,
-        timeUpdated: i.item,
-        id: i.__metadata.uid,
+        productId: itemz.productId,
+        description: itemz.description,
+        quantity: itemz.quantity,
+        uom: itemz.uom,
+        unitPrice: itemz.unitPrice,
+        totalAmount: itemz.totalAmount,
+        discount: itemz.discount,
+        deliveryAddress: deliveryAddress,
+        supplierStatusItem: itemz.supplierStatusItem,
+        scheduleLine: scheduleline,
+        currency: itemz.currency,
+        dateUpdated: itemz.dateUpdated,
+        timeUpdated: itemz.timeUpdated,
+        id: itemz.__metadata.uid,
       };
     });
-    return itemzxc;
+    return itemz;
   },
 
   getAllByItem: async id => {},
