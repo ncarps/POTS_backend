@@ -5,3 +5,4 @@ coverage/
 .data/
 credentials.json
 token.json
+.yarnrc

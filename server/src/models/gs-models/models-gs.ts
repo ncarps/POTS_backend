@@ -108,7 +108,7 @@ export const gsModels = async () => {
 
     //Item
     new createSchema({
-      range: 'A:V',
+      range: 'A:W',
       header: [
         'purchaseOrderNo',
         'shipmentNo',
@@ -139,7 +139,7 @@ export const gsModels = async () => {
 
     //deliveryAddress
     new createSchema({
-      range: 'A:R',
+      range: 'A:W',
       header: [
         'purchaseOrderNo',
         'shipmentNo',
