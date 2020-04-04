@@ -12,9 +12,9 @@ import { scheduleLineModel } from './bindings/scheduleLine-binding-mongo';
 import { addressGs } from './bindings-gs/address-bindings-gs';
 import { supplierStatusGs } from './bindings-gs/supplierStatus-binding-gs';
 import { supplierGs } from './bindings-gs/supplier-binding-gs';
-// import { itemGs } from './bindings-gs/item-bindings-gs';
+import { itemGs } from './bindings-gs/item-bindings-gs';
 import { scheduleLineGs } from './bindings-gs/scheduleLine-binding-gs';
-// import { purchaseOrderGs } from './bindings-gs/purchaseOrder-binding-gs';
+import { purchaseOrderGs } from './bindings-gs/purchaseOrder-binding-gs';
 
 export {
   //Mongo
@@ -30,7 +30,7 @@ export {
   addressGs,
   supplierStatusGs,
   supplierGs,
-  // itemGs,
+  itemGs,
   scheduleLineGs,
-  // purchaseOrderGs,
+  purchaseOrderGs,
 };
