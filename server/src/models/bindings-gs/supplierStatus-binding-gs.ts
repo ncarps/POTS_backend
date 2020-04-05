@@ -5,7 +5,7 @@ const supplierStatusGs: IDBModel<any> = {
   insert: async suppstat => {},
   getById: async id => {
     const models = await gsModels();
-    const ss = models.supplierStatus.getById(id);
+    const ss = models.deliveryStatus.getById(id);
 
     return {
       status: ss.status,
@@ -16,8 +16,8 @@ const supplierStatusGs: IDBModel<any> = {
   },
   getAll: async () => {
     const models = await gsModels();
-    console.log('supplierStatus', models.supplierStatus.getAll());
-    const suppstat: Array<any> = models.supplierStatus
+    console.log('supplierStatus', models.deliveryStatus.getAll());
+    const suppstat: Array<any> = models.deliveryStatus
       .getAll()
       .map((ss, idx) => {
         return {
