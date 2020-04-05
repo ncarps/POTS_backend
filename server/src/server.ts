@@ -108,8 +108,8 @@ const context = async session => {
     deleteItemById: DeleteRecordByIDDB(itemModel),
     getItemById: getByIDDB(itemGs),
     getAllItems: getAllDataDB(itemGs),
-    // getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemGs),
-    // getAllScheduleLinesByItem: getAllByScheduleLineDB(itemGs),
+    getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemGs),
+    getAllScheduleLinesByItem: getAllByScheduleLineDB(itemGs),
     //Purchase Order
     createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderModel),
     updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderModel),
@@ -120,7 +120,7 @@ const context = async session => {
     //   purchaseOrderGs,
     // ),
     updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderModel),
-    // getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderGs),
+    getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderGs),
     //Schedule Line
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
     updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),

@@ -6,8 +6,9 @@ const supplierGs: IDBModel<any> = {
   getById: async id => {
     const models = await gsModels();
     const supp = models.supplier.getById(id);
-    const address = models.address.get({ address: supp.address }).__metadata
-      .uid;
+    const address = models.vendorAddress.get({
+      vendorAddress: supp.vendorAddress,
+    }).__metadata.uid;
     return {
       id: supp.__metadata.uid,
       supplierNo: supp.supplierNo,

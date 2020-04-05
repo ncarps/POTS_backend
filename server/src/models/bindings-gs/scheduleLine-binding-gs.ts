@@ -26,7 +26,7 @@ const scheduleLineGs: IDBModel<any> = {
       // const supplierStatus = models.deliveryStatus.get({
       //   supplierStatus: sl.deliveryStatus,
       // }).__metadata.uid;
-      const supplierStatus = models.supplierStatus.get({
+      const supplierStatus = models.deliveryAddress.get({
         supplierStatus: sl.supplierStatus,
       }).__metadata.uid;
       return {

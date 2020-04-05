@@ -36,7 +36,7 @@ const itemGs: IDBModel<any> = {
 
     const itemz: Array<any> = models.item.getAll().map((itemz, idx) => {
       const deliveryAddress = models.vendorAddress.get({
-        address: itemz.address,
+        vendorAddress: itemz.vendorAddress,
       }).__metadata.uid;
       const scheduleline = models.scheduleLine.get({
         scheduleLine: itemz.scheduleLine,
@@ -64,7 +64,50 @@ const itemGs: IDBModel<any> = {
 
   getAllByItem: async id => {},
   getAllBySupplierStatus: async id => {},
-  getAllByScheduleLine: async data => {},
+  getAllByScheduleLine: async data => {
+    const models = await gsModels();
+
+    // return models.scheduleLine
+    //   .getAll()
+    //   .filter(x => data.map(i => i === x.id))
+    //   .map(sl => {
+    //     const supplierStatus = models.deliveryStatus.get({
+    //       purchaseOrderNo: sl.purchaseOrderNo,
+    //       itemNo: sl.itemNo,
+    //       productId: sl.productId,
+    //       scheduleLine: sl.scheduleLine,
+    //     });
+    //     return {
+    //       quantity: sl.quantity,
+    //       uom: sl.uom,
+    //       unitPrice: sl.unitPrice,
+    //       totalAmount: sl.totalAmount,
+    //       deliveryDateAndTime: sl.deliveryDateAndTime,
+    //       deliveryStatus: [supplierStatus],
+    //       id: sl.__metadata.uid,
+    //     };
+    //   });
+
+    const items: Array<any> = data.map(i => models.scheduleLine.getById(i));
+
+    return items.map(sl => {
+      const supplierStatus = models.deliveryStatus.get({
+        purchaseOrderNo: sl.purchaseOrderNo,
+        itemNo: sl.itemNo,
+        productId: sl.productId,
+        scheduleLine: sl.scheduleLine,
+      });
+      return {
+        quantity: sl.quantity,
+        uom: sl.uom,
+        unitPrice: sl.unitPrice,
+        totalAmount: sl.totalAmount,
+        deliveryDateAndTime: sl.deliveryDateAndTime,
+        deliveryStatus: [supplierStatus],
+        id: sl.__metadata.uid,
+      };
+    });
+  },
   updateSupplierStatusItemById: async id => {},
   updateAdminStatusPurchaseOrderById: async id => {},
   deleteById: async id => {},
