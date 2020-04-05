@@ -13,6 +13,7 @@ const itemGs: IDBModel<any> = {
       scheduleLine: sched.scheduleLine,
     }).__metadata.uid;
     return {
+      itemNo: itemz.itemNo,
       productId: itemz.productId,
       description: itemz.description,
       quantity: itemz.quantity,
@@ -40,6 +41,7 @@ const itemGs: IDBModel<any> = {
         scheduleLine: itemz.scheduleLine,
       }).__metadata.uid;
       return {
+        itemNo: itemz.itemNo,
         productId: itemz.productId,
         description: itemz.description,
         quantity: itemz.quantity,

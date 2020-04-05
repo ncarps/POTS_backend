@@ -40,7 +40,22 @@ const scheduleLineGs: IDBModel<any> = {
   },
 
   getAllByItem: async id => {},
-  getAllBySupplierStatus: async id => {},
+  getAllBySupplierStatus: async id => {
+    const models = await gsModels();
+    const SupplierStatus: Array<any> = models.supplierStatus
+      .getAll()
+      .filter(x => x.supplierStatusID === id)
+      .map((a, idx) => {
+        return {
+          status: a.status,
+          timeCreated: a.timeCreated,
+          dateCreated: a.dateCreated,
+
+          id: a.__metadata.uid,
+        };
+      });
+    return SupplierStatus;
+  },
   getAllByScheduleLine: async data => {},
   updateSupplierStatusItemById: async id => {},
   updateAdminStatusPurchaseOrderById: async id => {},
