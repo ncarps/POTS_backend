@@ -127,9 +127,9 @@ const context = async session => {
     deleteScheduleLineById: DeleteRecordByIDDB(scheduleLineModel),
     getScheduleLineById: getByIDDB(scheduleLineGs),
     getAllScheduleLines: getAllDataDB(scheduleLineGs),
-    // getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
-    //   scheduleLineGs,
-    // ),
+    getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
+      scheduleLineGs,
+    ),
   };
 };
 

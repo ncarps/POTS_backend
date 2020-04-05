@@ -139,7 +139,33 @@ export const gsModels = async () => {
 
     //deliveryAddress
     new createSchema({
-      range: 'A:W',
+      range: 'A:R',
+      header: [
+        'purchaseOrderNo',
+        'shipmentNo',
+        'adminStatus',
+        'supplierStatusHeader',
+        'documentDate',
+        'postingDate',
+        'vendorAddress',
+        'supplier',
+        'items',
+        'itemNo',
+        'productId',
+        'description',
+        'quantity',
+        'uom',
+        'unitPrice',
+        'totalAmount',
+        'discount',
+        'deliveryAddress',
+      ],
+      keys: ['deliveryAddress'],
+    }),
+
+    //Schedule Line Item
+    new createSchema({
+      range: 'A:T',
       header: [
         'purchaseOrderNo',
         'shipmentNo',
@@ -161,11 +187,8 @@ export const gsModels = async () => {
         'deliveryAddress',
         'supplierStatusItem',
         'scheduleLine',
-        'currency',
-        'dateUpdated',
-        'timeUpdated',
       ],
-      keys: ['deliveryAddress'],
+      keys: ['scheduleLine'],
     }),
 
     //Schedule Line
@@ -202,7 +225,44 @@ export const gsModels = async () => {
         'deliveryDateAndTime',
         'deliveryStatus',
       ],
-      keys: ['totalAmount'],
+      keys: ['deliveryDateAndTime'],
+    }),
+
+    //delvstatus
+    new createSchema({
+      range: 'A:AC',
+      header: [
+        'purchaseOrderNo',
+        'shipmentNo',
+        'adminStatus',
+        'supplierStatusHeader',
+        'documentDate',
+        'postingDate',
+        'vendorAddress',
+        'supplier',
+        'items',
+        'itemNo',
+        'productId',
+        'description',
+        'quantity',
+        'uom',
+        'unitPrice',
+        'totalAmount',
+        'discount',
+        'deliveryAddress',
+        'supplierStatusItem',
+        'scheduleLine',
+        'currency',
+        'dateUpdated',
+        'timeUpdated',
+        'quantity',
+        'uom',
+        'unitPrice',
+        'totalAmount',
+        'deliveryStatus',
+        'deliveryDateAndTime',
+      ],
+      keys: ['deliveryStatus'],
     }),
 
     //Supplier Status
@@ -242,7 +302,7 @@ export const gsModels = async () => {
         'dateCreated',
         'timeCreated',
       ],
-      keys: ['status', 'dateCreated', 'timeCreated'],
+      keys: ['status'],
     }),
 
     //Supplier
@@ -291,6 +351,7 @@ export const gsModels = async () => {
       keys: ['supplierNo', 'supplierName'],
     }),
 
+    //Address
     new createSchema({
       range: 'A:AI',
       header: [
@@ -341,7 +402,9 @@ export const gsModels = async () => {
     vendorAddress,
     item,
     deliveryAddress,
+    scheduleLineItem,
     scheduleLine,
+    deliveryStatus,
     supplierStatus,
     supplier,
     address,
@@ -352,7 +415,9 @@ export const gsModels = async () => {
     vendorAddress,
     item,
     deliveryAddress,
+    scheduleLineItem,
     scheduleLine,
+    deliveryStatus,
     supplierStatus,
     supplier,
     address,
