@@ -323,7 +323,7 @@ export const gsModels = async () => {
 
     //Address
     new createSchema({
-      range: 'A:N',
+      range: 'A:K',
       header: [
         'purchaseOrderNo',
         'shipmentNo',
@@ -336,9 +336,6 @@ export const gsModels = async () => {
         'supplierNo',
         'supplierName',
         'address',
-        'tin',
-        'contactNumber',
-        'contactPerson',
       ],
       keys: ['supplierNo', 'supplierName', 'address'],
     }),

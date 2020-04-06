@@ -6,16 +6,16 @@ const scheduleLineGs: IDBModel<any> = {
   getById: async id => {
     const models = await gsModels();
     const sl = models.scheduleLine.getById(id);
-    const supplierStatus = models.deliveryStatus.get({
-      deliveryStatus: sl.deliveryStatus,
-    }).__metadata.uid;
+    // const supplierStatus = models.deliveryStatus.get({
+    //   deliveryStatus: sl.deliveryStatus,
+    // }).__metadata.uid;
     return {
       quantity: sl.quantity,
       uom: sl.uom,
       unitPrice: sl.unitPrice,
       totalAmount: sl.totalAmount,
       deliveryDateAndTime: sl.deliveryDateAndTime,
-      deliveryStatus: supplierStatus,
+      // deliveryStatus: supplierStatus,
       id: sl.__metadata.uid,
     };
   },
@@ -40,11 +40,13 @@ const scheduleLineGs: IDBModel<any> = {
   },
 
   getAllByItem: async id => {},
-  getAllBySupplierStatus: async id => {
+  getAllBySupplierStatus: async data => {
     const models = await gsModels();
-    console.log('supplierStatus', models.deliveryStatus.getAll());
-    const suppstats: Array<any> = id.map(i => models.scheduleLine.getById(i));
-    return suppstats.map(ss => {
+    const supplierStatus: Array<any> = data.map(i =>
+      models.deliveryStatus.getById(i),
+    );
+
+    return supplierStatus.map(ss => {
       return {
         status: ss.status,
         timeCreated: ss.timeCreated,

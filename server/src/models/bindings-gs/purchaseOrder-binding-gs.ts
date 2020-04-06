@@ -44,7 +44,11 @@ const purchaseOrderGs: IDBModel<any> = {
       console.log('Items', models.item.getAll());
       const item: Array<any> = models.item
         .getAll()
-        .filter(x => po.purchaseOrderNo == x.purchaseOrderNo)
+        .filter(
+          x =>
+            po.purchaseOrderNo == x.purchaseOrderNo &&
+            x.deliveryAddress == x.deliveryAddress,
+        )
         .map(po => po.__metadata.uid);
 
       console.log('items', item);
