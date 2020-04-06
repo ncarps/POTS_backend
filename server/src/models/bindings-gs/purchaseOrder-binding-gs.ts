@@ -88,7 +88,7 @@ const purchaseOrderGs: IDBModel<any> = {
         itemNo: itemz.itemNo,
         productId: itemz.productId,
         deliveryAddress: itemz.deliveryAddress,
-      }).deliveryAddress;
+      }).__metadata.uid;
 
       return {
         itemNo: itemz.itemNo,
