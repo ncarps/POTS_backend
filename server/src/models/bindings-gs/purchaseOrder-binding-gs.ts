@@ -81,40 +81,15 @@ const purchaseOrderGs: IDBModel<any> = {
         });
     };
 
-    // return models.item
-    //   .getAll()
-    //   .filter(x => id.map(i => i === x.__metadata.uid))
-    //   .map(itemz => {
-    //     const deliveryAddress = models.item.get({
-    //       itemNo: itemz.itemNo,
-    //       productId: itemz.productId,
-    //     }).deliveryAddress;
-    //     return {
-    //       itemNo: itemz.itemNo,
-    //       productId: itemz.productId,
-    //       description: itemz.description,
-    //       quantity: itemz.quantity,
-    //       uom: itemz.uom,
-    //       unitPrice: itemz.unitPrice,
-    //       totalAmount: itemz.totalAmount,
-    //       discount: itemz.discount,
-    //       deliveryAddress: deliveryAddress,
-    //       supplierStatusItem: itemz.supplierStatusItem,
-    //       scheduleLine: getScheduleLine(itemz),
-    //       currency: itemz.currency,
-    //       dateUpdated: itemz.dateUpdated,
-    //       timeUpdated: itemz.timeUpdated,
-    //       id: itemz.__metadata.uid,
-    //     };
-    //   });
-
     const items: Array<any> = id.map(i => models.item.getById(i));
 
     return items.map(itemz => {
-      const deliveryAddress = models.item.get({
+      const deliveryAddress = models.deliveryAddress.get({
         itemNo: itemz.itemNo,
         productId: itemz.productId,
+        deliveryAddress: itemz.deliveryAddress,
       }).deliveryAddress;
+
       return {
         itemNo: itemz.itemNo,
         productId: itemz.productId,
@@ -140,6 +115,33 @@ const purchaseOrderGs: IDBModel<any> = {
   updateAdminStatusPurchaseOrderById: async id => {},
   deleteById: async id => {},
   updateById: async id => {},
+
+  // return models.item
+  //   .getAll()
+  //   .filter(x => id.map(i => i === x.__metadata.uid))
+  //   .map(itemz => {
+  //     const deliveryAddress = models.item.get({
+  //       itemNo: itemz.itemNo,
+  //       productId: itemz.productId,
+  //     }).deliveryAddress;
+  //     return {
+  //       itemNo: itemz.itemNo,
+  //       productId: itemz.productId,
+  //       description: itemz.description,
+  //       quantity: itemz.quantity,
+  //       uom: itemz.uom,
+  //       unitPrice: itemz.unitPrice,
+  //       totalAmount: itemz.totalAmount,
+  //       discount: itemz.discount,
+  //       deliveryAddress: deliveryAddress,
+  //       supplierStatusItem: itemz.supplierStatusItem,
+  //       scheduleLine: getScheduleLine(itemz),
+  //       currency: itemz.currency,
+  //       dateUpdated: itemz.dateUpdated,
+  //       timeUpdated: itemz.timeUpdated,
+  //       id: itemz.__metadata.uid,
+  //     };
+  //   });
 };
 
 export { purchaseOrderGs };
