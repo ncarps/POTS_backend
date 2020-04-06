@@ -42,7 +42,7 @@ const scheduleLineGs: IDBModel<any> = {
   getAllByItem: async id => {},
   getAllBySupplierStatus: async id => {
     const models = await gsModels();
-
+    console.log('supplierStatus', models.deliveryStatus.getAll());
     const suppstats: Array<any> = id.map(i => models.scheduleLine.getById(i));
     return suppstats.map(ss => {
       return {
