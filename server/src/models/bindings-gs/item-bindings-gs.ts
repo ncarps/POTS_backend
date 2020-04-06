@@ -35,8 +35,8 @@ const itemGs: IDBModel<any> = {
     console.log('item', models.item.getAll());
 
     const itemz: Array<any> = models.item.getAll().map((itemz, idx) => {
-      const deliveryAddress = models.vendorAddress.get({
-        vendorAddress: itemz.vendorAddress,
+      const deliveryAddress = models.deliveryAddress.get({
+        deliveryAddress: itemz.deliveryAddress,
       }).__metadata.uid;
       const scheduleline = models.scheduleLine.get({
         scheduleLine: itemz.scheduleLine,
@@ -67,6 +67,26 @@ const itemGs: IDBModel<any> = {
   getAllByScheduleLine: async data => {
     const models = await gsModels();
 
+    const items: Array<any> = data.map(i => models.scheduleLine.getById(i));
+
+    return items.map(sl => {
+      const supplierStatus = models.deliveryStatus.get({
+        purchaseOrderNo: sl.purchaseOrderNo,
+        itemNo: sl.itemNo,
+        productId: sl.productId,
+        scheduleLine: sl.scheduleLine,
+      });
+      return {
+        quantity: sl.quantity,
+        uom: sl.uom,
+        unitPrice: sl.unitPrice,
+        totalAmount: sl.totalAmount,
+        deliveryDateAndTime: sl.deliveryDateAndTime,
+        deliveryStatus: [supplierStatus],
+        id: sl.__metadata.uid,
+      };
+    });
+
     // return models.scheduleLine
     //   .getAll()
     //   .filter(x => data.map(i => i === x.id))
@@ -87,26 +107,6 @@ const itemGs: IDBModel<any> = {
     //       id: sl.__metadata.uid,
     //     };
     //   });
-
-    const items: Array<any> = data.map(i => models.scheduleLine.getById(i));
-
-    return items.map(sl => {
-      const supplierStatus = models.deliveryStatus.get({
-        purchaseOrderNo: sl.purchaseOrderNo,
-        itemNo: sl.itemNo,
-        productId: sl.productId,
-        scheduleLine: sl.scheduleLine,
-      });
-      return {
-        quantity: sl.quantity,
-        uom: sl.uom,
-        unitPrice: sl.unitPrice,
-        totalAmount: sl.totalAmount,
-        deliveryDateAndTime: sl.deliveryDateAndTime,
-        deliveryStatus: [supplierStatus],
-        id: sl.__metadata.uid,
-      };
-    });
   },
   updateSupplierStatusItemById: async id => {},
   updateAdminStatusPurchaseOrderById: async id => {},

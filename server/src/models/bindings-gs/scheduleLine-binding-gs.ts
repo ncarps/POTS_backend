@@ -23,11 +23,8 @@ const scheduleLineGs: IDBModel<any> = {
     const models = await gsModels();
     console.log('schedule line', models.scheduleLine.getAll());
     const sl: Array<any> = models.scheduleLine.getAll().map((sl, idx) => {
-      // const supplierStatus = models.deliveryStatus.get({
-      //   supplierStatus: sl.deliveryStatus,
-      // }).__metadata.uid;
-      const supplierStatus = models.deliveryAddress.get({
-        supplierStatus: sl.supplierStatus,
+      const supplierStatus = models.deliveryStatus.get({
+        supplierStatus: sl.deliveryStatus,
       }).__metadata.uid;
       return {
         quantity: sl.quantity,
@@ -45,18 +42,16 @@ const scheduleLineGs: IDBModel<any> = {
   getAllByItem: async id => {},
   getAllBySupplierStatus: async id => {
     const models = await gsModels();
-    const suppstat: Array<any> = models.deliveryStatus
-      .getAll()
-      .filter(x => x.deliveryStatus === id)
-      .map((ss, idx) => {
-        return {
-          status: ss.status,
-          timeCreated: ss.timeCreated,
-          dateCreated: ss.dateCreated,
-          id: ss.__metadata.uid,
-        };
-      });
-    return suppstat;
+
+    const suppstats: Array<any> = id.map(i => models.scheduleLine.getById(i));
+    return suppstats.map(ss => {
+      return {
+        status: ss.status,
+        timeCreated: ss.timeCreated,
+        dateCreated: ss.dateCreated,
+        id: ss.__metadata.uid,
+      };
+    });
   },
   getAllByScheduleLine: async data => {},
   updateSupplierStatusItemById: async id => {},
