@@ -23,16 +23,16 @@ const scheduleLineGs: IDBModel<any> = {
     const models = await gsModels();
     console.log('schedule line', models.scheduleLine.getAll());
     const sl: Array<any> = models.scheduleLine.getAll().map((sl, idx) => {
-      const supplierStatus = models.deliveryStatus.get({
-        supplierStatus: sl.deliveryStatus,
-      }).__metadata.uid;
+      // const supplierStatus = models.deliveryStatus.get({
+      //   supplierStatus: sl.deliveryStatus,
+      // }).__metadata.uid;
       return {
         quantity: sl.quantity,
         uom: sl.uom,
         unitPrice: sl.unitPrice,
         totalAmount: sl.totalAmount,
         deliveryDateAndTime: sl.deliveryDateAndTime,
-        deliveryStatus: supplierStatus,
+        deliveryStatus: sl.deliveryStatus,
         id: sl.__metadata.uid,
       };
     });
