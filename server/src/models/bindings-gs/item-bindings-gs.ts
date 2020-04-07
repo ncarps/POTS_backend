@@ -6,13 +6,22 @@ const itemGs: IDBModel<any> = {
   getById: async id => {
     const models = await gsModels();
     const itemz = models.item.getById(id);
-    // const sched = models.scheduleLineItem.getById(id);
     const deliveryAddress = models.deliveryAddress.get({
+      purchaseOrderNo: itemz.purchaseOrderNo,
+      itemNo: itemz.itemNo,
+      productId: itemz.productId,
       deliveryAddress: itemz.deliveryAddress,
     }).__metadata.uid;
-    // const scheduleline = models.scheduleLine.get({
-    //   scheduleline: itemz.scheduleLine,
-    // }).__metadata.uid;
+
+    const scheduleline: Array<any> = models.scheduleLine
+      .getAll()
+      .filter(
+        x =>
+          x.purchaseOrderNo == itemz.purchaseOrderNo &&
+          x.itemNo === itemz.itemNo &&
+          x.productId === itemz.productId,
+      )
+      .map(sl => sl.__metadata.uid);
     return {
       itemNo: itemz.itemNo,
       productId: itemz.productId,
@@ -24,7 +33,7 @@ const itemGs: IDBModel<any> = {
       discount: itemz.discount,
       deliveryAddress: deliveryAddress,
       supplierStatusItem: itemz.supplierStatusItem,
-      // scheduleLine: scheduleline,
+      scheduleLine: scheduleline,
       currency: itemz.currency,
       dateUpdated: itemz.dateUpdated,
       timeUpdated: itemz.timeUpdated,
@@ -94,7 +103,57 @@ const itemGs: IDBModel<any> = {
       };
     });
   },
-  updateSupplierStatusItemById: async id => {},
+
+  updateSupplierStatusItemById: async i => {
+    const models = await gsModels();
+    const itemz = models.item.getById(i.id);
+    const deliveryAddress = models.deliveryAddress.get({
+      purchaseOrderNo: i.purchaseOrderNo,
+      itemNo: i.itemNo,
+      productId: i.productId,
+      deliveryAddress: i.deliveryAddress,
+    }).__metadata.uid;
+
+    const scheduleline: Array<any> = models.scheduleLine
+      .getAll()
+      .filter(
+        x =>
+          x.purchaseOrderNo == itemz.purchaseOrderNo &&
+          x.itemNo === itemz.itemNo &&
+          x.productId === itemz.productId,
+      )
+      .map(sl => sl.__metadata.uid);
+
+    const gsheet = models.gsheet;
+
+    const newObj = models.item.update(itemz, {
+      supplierStatusItem: i.supplierStatusItem,
+    });
+
+    const res = await gsheet.save(
+      { headerLength: 1 },
+      models.item.getChanges(),
+    );
+    if (res.status == 200) {
+      return {
+        itemNo: newObj.itemNo,
+        productId: newObj.productId,
+        description: newObj.description,
+        quantity: newObj.quantity,
+        uom: newObj.uom,
+        unitPrice: newObj.unitPrice,
+        totalAmount: newObj.totalAmount,
+        discount: newObj.discount,
+        deliveryAddress: deliveryAddress,
+        supplierStatusItem: newObj.supplierStatusItem,
+        scheduleLine: scheduleline,
+        currency: newObj.currency,
+        dateUpdated: newObj.dateUpdated,
+        timeUpdated: newObj.timeUpdated,
+        id: i.id,
+      };
+    }
+  },
   updateAdminStatusPurchaseOrderById: async id => {},
   deleteById: async id => {},
   updateById: async id => {},
