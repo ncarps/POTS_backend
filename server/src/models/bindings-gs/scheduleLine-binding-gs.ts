@@ -23,16 +23,20 @@ const scheduleLineGs: IDBModel<any> = {
     const models = await gsModels();
     console.log('schedule line', models.scheduleLine.getAll());
     const sl: Array<any> = models.scheduleLine.getAll().map((sl, idx) => {
-      // const supplierStatus = models.deliveryStatus.get({
-      //   supplierStatus: sl.deliveryStatus,
-      // }).__metadata.uid;
+      const supplierStatus = models.deliveryStatus.get({
+        scheduleLine: sl.scheduleLine,
+        purchaseOrderNo: sl.purchaseOrderNo,
+        itemNo: sl.itemNo,
+        productId: sl.productId,
+      }).__metadata.uid;
+      console.log(supplierStatus);
       return {
         quantity: sl.quantity,
         uom: sl.uom,
         unitPrice: sl.unitPrice,
         totalAmount: sl.totalAmount,
         deliveryDateAndTime: sl.deliveryDateAndTime,
-        deliveryStatus: sl.deliveryStatus,
+        deliveryStatus: supplierStatus,
         id: sl.__metadata.uid,
       };
     });
@@ -42,18 +46,21 @@ const scheduleLineGs: IDBModel<any> = {
   getAllByItem: async id => {},
   getAllBySupplierStatus: async data => {
     const models = await gsModels();
-    const supplierStatus: Array<any> = data.map(i =>
-      models.deliveryStatus.getById(i),
+    console.log('array of status', data);
+    const supplierStatus = models.deliveryStatus.getById(data);
+    console.log('supplierStatus', supplierStatus.status);
+    const status = supplierStatus.status;
+    let arrayOfSupplierStatus = status.split('||');
+    return (
+      arrayOfSupplierStatus.map((ss, idx) => {
+        return {
+          status: ss,
+          timeCreated: supplierStatus.timeCreated,
+          dateCreated: supplierStatus.dateCreated,
+          id: idx,
+        };
+      }) || []
     );
-
-    return supplierStatus.map(ss => {
-      return {
-        status: ss.status,
-        timeCreated: ss.timeCreated,
-        dateCreated: ss.dateCreated,
-        id: ss.__metadata.uid,
-      };
-    });
   },
   getAllByScheduleLine: async data => {},
   updateSupplierStatusItemById: async id => {},

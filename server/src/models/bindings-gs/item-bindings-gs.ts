@@ -7,8 +7,9 @@ const itemGs: IDBModel<any> = {
     const models = await gsModels();
     const itemz = models.item.getById(id);
     // const sched = models.scheduleLineItem.getById(id);
-    // const deliveryAddress = models.vendorAddress.get({ address: itemz.address })
-    //   .__metadata.uid;
+    const deliveryAddress = models.deliveryAddress.get({
+      deliveryAddress: itemz.deliveryAddress,
+    }).__metadata.uid;
     // const scheduleline = models.scheduleLine.get({
     //   scheduleline: itemz.scheduleLine,
     // }).__metadata.uid;
@@ -21,7 +22,7 @@ const itemGs: IDBModel<any> = {
       unitPrice: itemz.unitPrice,
       totalAmount: itemz.totalAmount,
       discount: itemz.discount,
-      // deliveryAddress: deliveryAddress,
+      deliveryAddress: deliveryAddress,
       supplierStatusItem: itemz.supplierStatusItem,
       // scheduleLine: scheduleline,
       currency: itemz.currency,
@@ -38,9 +39,15 @@ const itemGs: IDBModel<any> = {
       const deliveryAddress = models.deliveryAddress.get({
         deliveryAddress: itemz.deliveryAddress,
       }).__metadata.uid;
-      const scheduleline = models.scheduleLine.get({
-        scheduleLine: itemz.scheduleLine,
-      }).__metadata.uid;
+      const scheduleline: Array<any> = models.scheduleLine
+        .getAll()
+        .filter(
+          x =>
+            x.purchaseOrderNo == itemz.purchaseOrderNo &&
+            x.itemNo === itemz.itemNo &&
+            x.productId === itemz.productId,
+        )
+        .map(sl => sl.__metadata.uid);
       return {
         itemNo: itemz.itemNo,
         productId: itemz.productId,
@@ -75,38 +82,17 @@ const itemGs: IDBModel<any> = {
         itemNo: sl.itemNo,
         productId: sl.productId,
         scheduleLine: sl.scheduleLine,
-      });
+      }).__metadata.uid;
       return {
         quantity: sl.quantity,
         uom: sl.uom,
         unitPrice: sl.unitPrice,
         totalAmount: sl.totalAmount,
         deliveryDateAndTime: sl.deliveryDateAndTime,
-        deliveryStatus: [supplierStatus],
+        deliveryStatus: supplierStatus,
         id: sl.__metadata.uid,
       };
     });
-
-    // return models.scheduleLine
-    //   .getAll()
-    //   .filter(x => data.map(i => i === x.id))
-    //   .map(sl => {
-    //     const supplierStatus = models.deliveryStatus.get({
-    //       purchaseOrderNo: sl.purchaseOrderNo,
-    //       itemNo: sl.itemNo,
-    //       productId: sl.productId,
-    //       scheduleLine: sl.scheduleLine,
-    //     });
-    //     return {
-    //       quantity: sl.quantity,
-    //       uom: sl.uom,
-    //       unitPrice: sl.unitPrice,
-    //       totalAmount: sl.totalAmount,
-    //       deliveryDateAndTime: sl.deliveryDateAndTime,
-    //       deliveryStatus: [supplierStatus],
-    //       id: sl.__metadata.uid,
-    //     };
-    //   });
   },
   updateSupplierStatusItemById: async id => {},
   updateAdminStatusPurchaseOrderById: async id => {},

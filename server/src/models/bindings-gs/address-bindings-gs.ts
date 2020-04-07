@@ -6,9 +6,8 @@ const addressGs: IDBModel<any> = {
   getById: async id => {
     const models = await gsModels();
     let a = models.vendorAddress.getById(id);
-
+    console.log('vendorAddress', a);
     if (a) {
-      console.log('vendorAddress', a);
       return {
         building_name: a.vendorAddress,
         street: a.vendorAddress,
@@ -22,33 +21,46 @@ const addressGs: IDBModel<any> = {
     if (!a) {
       a = models.deliveryAddress.getById(id);
       console.log('deliveryaddress', a);
-      return {
-        building_name: a.deliveryAddress,
-        street: a.deliveryAddress,
-        city: a.deliveryAddress,
-        state: a.vendorAddress,
-        zip_code: a.deliveryAddress,
-        id: a.__metadata.uid,
-      };
-    }
 
-    if (!a) {
-      a = models.address.getById(id);
-      console.log('address', a);
-      return {
-        building_name: a.address,
-        street: a.address,
-        city: a.address,
-        state: a.address,
-        zip_code: a.address,
-        id: a.__metadata.uid,
-      };
+      if (a) {
+        return {
+          building_name: a.deliveryAddress,
+          street: a.deliveryAddress,
+          city: a.deliveryAddress,
+          state: a.deliveryAddress,
+          zip_code: a.deliveryAddress,
+          id: a.__metadata.uid,
+        };
+      } else {
+        a = models.address.getById(id);
+        console.log('address', a);
+        return {
+          building_name: a.address,
+          street: a.address,
+          city: a.address,
+          state: a.address,
+          zip_code: a.address,
+          id: a.__metadata.uid,
+        };
+      }
     }
   },
   getAll: async () => {
     const models = await gsModels();
-    console.log('address', models.vendorAddress.getAll());
-    const add: Array<any> = models.vendorAddress.getAll().map((a, idx) => {
+    console.log('Vaddress', models.vendorAddress.getAll());
+    console.log('address', models.address.getAll());
+    const vadd: Array<any> = models.vendorAddress.getAll().map((a, idx) => {
+      return {
+        building_name: a.vendorAddress,
+        street: a.vendorAddress,
+        city: a.vendorAddress,
+        state: a.vendorAddress,
+        zip_code: a.vendorAddress,
+        id: a.__metadata.uid,
+      };
+    });
+
+    const add: Array<any> = models.address.getAll().map((a, idx) => {
       return {
         building_name: a.address,
         street: a.address,
@@ -58,7 +70,19 @@ const addressGs: IDBModel<any> = {
         id: a.__metadata.uid,
       };
     });
-    return add;
+
+    const dadd: Array<any> = models.deliveryAddress.getAll().map((a, idx) => {
+      return {
+        building_name: a.deliveryAddress,
+        street: a.deliveryAddress,
+        city: a.deliveryAddress,
+        state: a.deliveryAddress,
+        zip_code: a.deliveryAddress,
+        id: a.__metadata.uid,
+      };
+    });
+    vadd.concat(add);
+    return vadd.concat(dadd);
   },
 
   getAllByItem: async id => {},
