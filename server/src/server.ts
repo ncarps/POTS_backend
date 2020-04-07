@@ -116,10 +116,10 @@ const context = async session => {
     deletePurchaseOrderbyId: DeleteRecordByIDDB(purchaseOrderModel),
     getPurchaseOrderById: getByIDDB(purchaseOrderGs),
     getAllPurchaseOrders: getAllDataDB(purchaseOrderGs),
-    // getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(
-    //   purchaseOrderGs,
-    // ),
-    updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderModel),
+    getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(
+      purchaseOrderGs,
+    ),
+    updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderGs),
     getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderGs),
     //Schedule Line
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
