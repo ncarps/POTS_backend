@@ -353,6 +353,7 @@ export const gsModels = async () => {
     deliveryAddress,
     scheduleLine,
     deliveryStatus,
+    supplierStatus,
     supplier,
     address,
   ] = models;
@@ -364,6 +365,7 @@ export const gsModels = async () => {
     deliveryAddress,
     scheduleLine,
     deliveryStatus,
+    supplierStatus,
     supplier,
     address,
   };
