@@ -108,12 +108,13 @@ const itemGs: IDBModel<any> = {
     const models = await gsModels();
     const itemz = models.item.getById(i.id);
     const deliveryAddress = models.deliveryAddress.get({
-      purchaseOrderNo: i.purchaseOrderNo,
-      itemNo: i.itemNo,
-      productId: i.productId,
-      deliveryAddress: i.deliveryAddress,
+      purchaseOrderNo: itemz.purchaseOrderNo,
+      itemNo: itemz.itemNo,
+      productId: itemz.productId,
+      deliveryAddress: itemz.deliveryAddress,
     }).__metadata.uid;
 
+    console.log('SCHEDULE LINE PAKITA KA', models.scheduleLine.getAll());
     const scheduleline: Array<any> = models.scheduleLine
       .getAll()
       .filter(
@@ -122,14 +123,15 @@ const itemGs: IDBModel<any> = {
           x.itemNo === itemz.itemNo &&
           x.productId === itemz.productId,
       )
-      .map(sl => sl.__metadata.uid);
+      .map(itemz => itemz.__metadata.uid);
 
     const gsheet = models.gsheet;
-
+    console.log(itemz);
     const newObj = models.item.update(itemz, {
       supplierStatusItem: i.supplierStatusItem,
     });
 
+    console.log(newObj);
     const res = await gsheet.save(
       { headerLength: 1 },
       models.item.getChanges(),
