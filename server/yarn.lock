@@ -3369,8 +3369,8 @@ growly@^1.3.0:
   integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
 
 "gsheeez@https://github.com/odjhey/gsheeez":
-  version "0.0.5-d"
-  resolved "https://github.com/odjhey/gsheeez#c1a5636518b66b3b44203e73d845a64e9299f7d4"
+  version "0.0.7-beta.3"
+  resolved "https://github.com/odjhey/gsheeez#ce497b7727d24eec516e1571b82f3d5d30af288a"
 
 gtoken@^4.1.0:
   version "4.1.4"
