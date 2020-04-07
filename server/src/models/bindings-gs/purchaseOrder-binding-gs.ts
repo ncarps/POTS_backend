@@ -130,36 +130,58 @@ const purchaseOrderGs: IDBModel<any> = {
   getAllBySupplierStatus: async id => {},
   getAllByScheduleLine: async data => {},
   updateSupplierStatusItemById: async id => {},
-  updateAdminStatusPurchaseOrderById: async id => {},
+  updateAdminStatusPurchaseOrderById: async po => {
+    const models = await gsModels();
+    const PO = models.purchaseOrder.getById(po.id);
+    const vendorAddress = models.vendorAddress.get({
+      vendorAddress: PO.vendorAddress,
+      purchaseOrderNo: PO.purchaseOrderNo,
+    }).__metadata.uid;
+
+    console.log('Supplier', PO.supplierNo, PO.supplierName);
+    const supplier = models.supplier.get({
+      supplierNo: PO.supplierNo,
+      supplierName: PO.supplierName,
+    }).__metadata.uid;
+
+    console.log('Items', models.item.getAll());
+    const item: Array<any> = models.item
+      .getAll()
+      .filter(
+        x =>
+          PO.purchaseOrderNo == x.purchaseOrderNo &&
+          x.deliveryAddress == x.deliveryAddress,
+      )
+      .map(PO => PO.__metadata.uid);
+
+    const gsheet = models.gsheet;
+    console.log(PO);
+    const newObj = models.purchaseOrder.update(PO, {
+      adminStatus: po.adminStatus,
+    });
+    console.log(newObj);
+    const res = await gsheet.save(
+      { headerLength: 1 },
+      models.purchaseOrder.getChanges(),
+    );
+    if (res.status == 200) {
+      return {
+        purchaseOrderNo: newObj.purchaseOrderNo,
+        shipmentNo: newObj.shipmentNo,
+        adminStatus: newObj.adminStatus,
+        supplierStatusHeader: newObj.supplierStatusHeader,
+        documentDate: newObj.documentDate,
+        postingDate: newObj.postingDate,
+        vendorAddress: vendorAddress,
+        supplier: supplier,
+        items: item,
+        id: po.id,
+      };
+    }
+  },
+
   deleteById: async id => {},
   updateById: async id => {},
-
-  // return models.item
-  //   .getAll()
-  //   .filter(x => id.map(i => i === x.__metadata.uid))
-  //   .map(itemz => {
-  //     const deliveryAddress = models.item.get({
-  //       itemNo: itemz.itemNo,
-  //       productId: itemz.productId,
-  //     }).deliveryAddress;
-  //     return {
-  //       itemNo: itemz.itemNo,
-  //       productId: itemz.productId,
-  //       description: itemz.description,
-  //       quantity: itemz.quantity,
-  //       uom: itemz.uom,
-  //       unitPrice: itemz.unitPrice,
-  //       totalAmount: itemz.totalAmount,
-  //       discount: itemz.discount,
-  //       deliveryAddress: deliveryAddress,
-  //       supplierStatusItem: itemz.supplierStatusItem,
-  //       scheduleLine: getScheduleLine(itemz),
-  //       currency: itemz.currency,
-  //       dateUpdated: itemz.dateUpdated,
-  //       timeUpdated: itemz.timeUpdated,
-  //       id: itemz.__metadata.uid,
-  //     };
-  //   });
 };
 
 export { purchaseOrderGs };

@@ -23,20 +23,25 @@ const scheduleLineGs: IDBModel<any> = {
     const models = await gsModels();
     console.log('schedule line', models.scheduleLine.getAll());
     const sl: Array<any> = models.scheduleLine.getAll().map((sl, idx) => {
-      const supplierStatus = models.deliveryStatus.get({
-        scheduleLine: sl.scheduleLine,
+      const deliveryStatus = models.deliveryStatus.get({
+        deliveryStatus: sl.deliveryStatus,
         purchaseOrderNo: sl.purchaseOrderNo,
-        itemNo: sl.itemNo,
-        productId: sl.productId,
+        status: sl.status,
       }).__metadata.uid;
-      console.log(supplierStatus);
+
+      // const supplierStatus: Array<any> = models.deliveryStatus
+      //   .getAll()
+      //   .filter(
+      //     x => sl.purchaseOrderNo == x.purchaseOrderNo && sl.status == x.status,
+      //   )
+      //   .map(sl => sl.__metadata.uid);
       return {
         quantity: sl.quantity,
         uom: sl.uom,
         unitPrice: sl.unitPrice,
         totalAmount: sl.totalAmount,
         deliveryDateAndTime: sl.deliveryDateAndTime,
-        deliveryStatus: supplierStatus,
+        deliveryStatus: deliveryStatus,
         id: sl.__metadata.uid,
       };
     });
