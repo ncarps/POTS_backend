@@ -6,9 +6,11 @@ const supplierGs: IDBModel<any> = {
   getById: async id => {
     const models = await gsModels();
     const supp = models.supplier.getById(id);
-    const address = models.vendorAddress.get({
-      vendorAddress: supp.vendorAddress,
+    const address = models.address.get({
+      supplierNo: supp.supplierNo,
+      supplierName: supp.supplierName,
     }).__metadata.uid;
+
     return {
       id: supp.__metadata.uid,
       supplierNo: supp.supplierNo,
@@ -21,10 +23,14 @@ const supplierGs: IDBModel<any> = {
   },
   getAll: async () => {
     const models = await gsModels();
-    console.log('supplier', models.supplier.getAll());
+
     const supp: Array<any> = models.supplier.getAll().map((supp, idx) => {
-      const address = models.address.get({ address: supp.address }).__metadata
-        .uid;
+      const address = models.address.get({
+        supplierNo: supp.supplierNo,
+        supplierName: supp.supplierName,
+        address: supp.address,
+      }).__metadata.uid;
+      console.log('address id', address);
       return {
         id: supp.__metadata.uid,
         supplierNo: supp.supplierNo,

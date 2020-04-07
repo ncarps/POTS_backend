@@ -6,12 +6,26 @@ const purchaseOrderGs: IDBModel<any> = {
   getById: async id => {
     const models = await gsModels();
     const po = models.purchaseOrder.getById(id);
-    // const su = models.supplier.getById(id);
-    // const it = models.item.getById(id);
-    // const vendorAddress = models.address.get({ address: po.address }).__metadata
-    //   .uid;
-    // const Supplier = models.supplier.get({ supplier: su.supplier }).__metadata;
-    // const item = models.item.get({ item: it.item }).__metadata;
+    const vendorAddress = models.vendorAddress.get({
+      vendorAddress: po.vendorAddress,
+      purchaseOrderNo: po.purchaseOrderNo,
+    }).__metadata.uid;
+
+    console.log('Supplier', po.supplierNo, po.supplierName);
+    const supplier = models.supplier.get({
+      supplierNo: po.supplierNo,
+      supplierName: po.supplierName,
+    }).__metadata.uid;
+
+    console.log('Items', models.item.getAll());
+    const item: Array<any> = models.item
+      .getAll()
+      .filter(
+        x =>
+          po.purchaseOrderNo == x.purchaseOrderNo &&
+          x.deliveryAddress == x.deliveryAddress,
+      )
+      .map(po => po.__metadata.uid);
     return {
       purchaseOrderNo: po.purchaseOrderNo,
       shipmentNo: po.shipmentNo,
@@ -19,9 +33,9 @@ const purchaseOrderGs: IDBModel<any> = {
       supplierStatusHeader: po.supplierStatusHeader,
       documentDate: po.documentDate,
       postingDate: po.postingDate,
-      // vendorAddress: vendorAddress,
-      // supplier: Supplier,
-      // items: item,
+      vendorAddress: vendorAddress,
+      supplier: supplier,
+      items: item,
       id: po.__metadata.uid,
     };
   },
@@ -44,7 +58,11 @@ const purchaseOrderGs: IDBModel<any> = {
       console.log('Items', models.item.getAll());
       const item: Array<any> = models.item
         .getAll()
-        .filter(x => po.purchaseOrderNo == x.purchaseOrderNo)
+        .filter(
+          x =>
+            po.purchaseOrderNo == x.purchaseOrderNo &&
+            x.deliveryAddress == x.deliveryAddress,
+        )
         .map(po => po.__metadata.uid);
 
       console.log('items', item);

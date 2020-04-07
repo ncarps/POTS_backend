@@ -6,16 +6,16 @@ const scheduleLineGs: IDBModel<any> = {
   getById: async id => {
     const models = await gsModels();
     const sl = models.scheduleLine.getById(id);
-    const supplierStatus = models.deliveryStatus.get({
-      deliveryStatus: sl.deliveryStatus,
-    }).__metadata.uid;
+    // const supplierStatus = models.deliveryStatus.get({
+    //   deliveryStatus: sl.deliveryStatus,
+    // }).__metadata.uid;
     return {
       quantity: sl.quantity,
       uom: sl.uom,
       unitPrice: sl.unitPrice,
       totalAmount: sl.totalAmount,
       deliveryDateAndTime: sl.deliveryDateAndTime,
-      deliveryStatus: supplierStatus,
+      // deliveryStatus: supplierStatus,
       id: sl.__metadata.uid,
     };
   },
@@ -23,6 +23,7 @@ const scheduleLineGs: IDBModel<any> = {
     const models = await gsModels();
     console.log('schedule line', models.scheduleLine.getAll());
     const sl: Array<any> = models.scheduleLine.getAll().map((sl, idx) => {
+<<<<<<< HEAD
       const deliveryStatus = models.deliveryStatus.get({
         deliveryStatus: sl.deliveryStatus,
         purchaseOrderNo: sl.purchaseOrderNo,
@@ -35,13 +36,26 @@ const scheduleLineGs: IDBModel<any> = {
       //     x => sl.purchaseOrderNo == x.purchaseOrderNo && sl.status == x.status,
       //   )
       //   .map(sl => sl.__metadata.uid);
+=======
+      const supplierStatus = models.deliveryStatus.get({
+        scheduleLine: sl.scheduleLine,
+        purchaseOrderNo: sl.purchaseOrderNo,
+        itemNo: sl.itemNo,
+        productId: sl.productId,
+      }).__metadata.uid;
+      console.log(supplierStatus);
+>>>>>>> 645cd954e7a4abbc93e17cee92566197edf02cda
       return {
         quantity: sl.quantity,
         uom: sl.uom,
         unitPrice: sl.unitPrice,
         totalAmount: sl.totalAmount,
         deliveryDateAndTime: sl.deliveryDateAndTime,
+<<<<<<< HEAD
         deliveryStatus: deliveryStatus,
+=======
+        deliveryStatus: supplierStatus,
+>>>>>>> 645cd954e7a4abbc93e17cee92566197edf02cda
         id: sl.__metadata.uid,
       };
     });
@@ -49,8 +63,9 @@ const scheduleLineGs: IDBModel<any> = {
   },
 
   getAllByItem: async id => {},
-  getAllBySupplierStatus: async id => {
+  getAllBySupplierStatus: async data => {
     const models = await gsModels();
+<<<<<<< HEAD
     const deliveryStatus: Array<any> = id.map(i =>
       models.supplierStatus.getById(i),
     );
@@ -68,6 +83,23 @@ const scheduleLineGs: IDBModel<any> = {
         id: ss.__metadata.uid,
       };
     });
+=======
+    console.log('array of status', data);
+    const supplierStatus = models.deliveryStatus.getById(data);
+    console.log('supplierStatus', supplierStatus.status);
+    const status = supplierStatus.status;
+    let arrayOfSupplierStatus = status.split('||');
+    return (
+      arrayOfSupplierStatus.map((ss, idx) => {
+        return {
+          status: ss,
+          timeCreated: supplierStatus.timeCreated,
+          dateCreated: supplierStatus.dateCreated,
+          id: idx,
+        };
+      }) || []
+    );
+>>>>>>> 645cd954e7a4abbc93e17cee92566197edf02cda
   },
   getAllByScheduleLine: async data => {},
   updateSupplierStatusItemById: async id => {},
