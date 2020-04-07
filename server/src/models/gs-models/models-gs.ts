@@ -365,5 +365,6 @@ export const gsModels = async () => {
     supplierStatus,
     supplier,
     address,
+    gsheet,
   };
 };

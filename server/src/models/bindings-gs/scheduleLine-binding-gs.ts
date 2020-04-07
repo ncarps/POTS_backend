@@ -23,7 +23,6 @@ const scheduleLineGs: IDBModel<any> = {
     const models = await gsModels();
     console.log('schedule line', models.scheduleLine.getAll());
     const sl: Array<any> = models.scheduleLine.getAll().map((sl, idx) => {
-<<<<<<< HEAD
       const deliveryStatus = models.deliveryStatus.get({
         deliveryStatus: sl.deliveryStatus,
         purchaseOrderNo: sl.purchaseOrderNo,
@@ -36,26 +35,13 @@ const scheduleLineGs: IDBModel<any> = {
       //     x => sl.purchaseOrderNo == x.purchaseOrderNo && sl.status == x.status,
       //   )
       //   .map(sl => sl.__metadata.uid);
-=======
-      const supplierStatus = models.deliveryStatus.get({
-        scheduleLine: sl.scheduleLine,
-        purchaseOrderNo: sl.purchaseOrderNo,
-        itemNo: sl.itemNo,
-        productId: sl.productId,
-      }).__metadata.uid;
-      console.log(supplierStatus);
->>>>>>> 645cd954e7a4abbc93e17cee92566197edf02cda
       return {
         quantity: sl.quantity,
         uom: sl.uom,
         unitPrice: sl.unitPrice,
         totalAmount: sl.totalAmount,
         deliveryDateAndTime: sl.deliveryDateAndTime,
-<<<<<<< HEAD
         deliveryStatus: deliveryStatus,
-=======
-        deliveryStatus: supplierStatus,
->>>>>>> 645cd954e7a4abbc93e17cee92566197edf02cda
         id: sl.__metadata.uid,
       };
     });
@@ -65,25 +51,6 @@ const scheduleLineGs: IDBModel<any> = {
   getAllByItem: async id => {},
   getAllBySupplierStatus: async data => {
     const models = await gsModels();
-<<<<<<< HEAD
-    const deliveryStatus: Array<any> = id.map(i =>
-      models.supplierStatus.getById(i),
-    );
-    return deliveryStatus.map(ss => {
-      const supplierStatus1 = models.deliveryStatus.get({
-        purchaseOrderNo: ss.purchaseOrderNo,
-        itemNo: ss.itemNo,
-        scheduleLine: ss.scheduleLine,
-        status: ss.status,
-      }).__metadata.uid;
-      return {
-        status: supplierStatus1,
-        timeCreated: ss.timeCreated,
-        dateCreated: ss.dateCreated,
-        id: ss.__metadata.uid,
-      };
-    });
-=======
     console.log('array of status', data);
     const supplierStatus = models.deliveryStatus.getById(data);
     console.log('supplierStatus', supplierStatus.status);
@@ -99,7 +66,6 @@ const scheduleLineGs: IDBModel<any> = {
         };
       }) || []
     );
->>>>>>> 645cd954e7a4abbc93e17cee92566197edf02cda
   },
   getAllByScheduleLine: async data => {},
   updateSupplierStatusItemById: async id => {},
