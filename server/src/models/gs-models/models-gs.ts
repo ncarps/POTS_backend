@@ -350,11 +350,10 @@ export const gsModels = async () => {
     deliveryAddress,
     scheduleLine,
     deliveryStatus,
-    supplierStatus,
     supplier,
     address,
   ] = models;
-
+  console.log('address', address);
   return {
     purchaseOrder,
     vendorAddress,
@@ -362,7 +361,6 @@ export const gsModels = async () => {
     deliveryAddress,
     scheduleLine,
     deliveryStatus,
-    supplierStatus,
     supplier,
     address,
     gsheet,
