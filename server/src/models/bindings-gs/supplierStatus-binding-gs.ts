@@ -1,6 +1,6 @@
 import { IDBModel } from '../../commons/types';
 import { gsModels } from '../gs-models/models-gs';
-
+import moment from 'moment';
 const supplierStatusGs: IDBModel<any> = {
   insert: async suppstat => {},
   getById: async id => {

@@ -207,7 +207,7 @@ export const gsModels = async () => {
 
     //Schedule Line Item
     new createSchema({
-      range: 'A:AH',
+      range: 'A:AL',
       header: [
         'purchaseOrderNo',
         'shipmentNo',
@@ -243,6 +243,10 @@ export const gsModels = async () => {
         'unitPrice',
         'totalAmount',
         'deliveryDateAndTime',
+        'deliveryStatus',
+        'status',
+        'dateCreated',
+        'timeCreated',
       ],
       keys: ['purchaseOrderNo', 'itemNo', 'productId', 'scheduleLine'],
     }),
@@ -295,7 +299,7 @@ export const gsModels = async () => {
         'itemNo',
         'productId',
         'scheduleLine',
-        'status',
+        'deliveryStatus',
       ],
     }),
 
