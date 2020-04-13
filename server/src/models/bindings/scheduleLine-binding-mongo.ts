@@ -1,5 +1,6 @@
 import { IDBModel } from '../../commons/types';
 import { ScheduleLine, SupplierStatus } from '../mongo-models';
+import moment from 'moment';
 
 const scheduleLineModel: IDBModel<any> = {
   insert: async scheduleLine => {
@@ -73,16 +74,30 @@ const scheduleLineModel: IDBModel<any> = {
   },
 
   updateById: async data => {
+    let deliveryStatus;
+    if (data.deliveryStatus) {
+      deliveryStatus = await Promise.all(
+        data.deliveryStatus.map(async ds => {
+          const newSupplierStatus = await new SupplierStatus({
+            status: ds.status,
+            dateCreated: moment().format('YYYY-MM-DD'),
+            timeCreated: moment().format('LTS'),
+          });
+
+          return newSupplierStatus.id.toString();
+        }),
+      );
+    }
+
     let setFields = {
       ...data,
+      deliveryStatus: deliveryStatus,
     };
     for (let prop in setFields) {
       if (setFields[prop] == undefined) {
         delete setFields[prop];
       }
     }
-    delete setFields.deliveryStatus;
-    const deliveryStatus = data.deliveryStatus;
 
     let scheduleLine;
     if (deliveryStatus) {
