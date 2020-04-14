@@ -7,16 +7,19 @@ const scheduleLineGs: IDBModel<any> = {
   getById: async id => {
     const models = await gsModels();
     const sl = models.scheduleLine.getById(id);
-    // const supplierStatus = models.deliveryStatus.get({
-    //   deliveryStatus: sl.deliveryStatus,
-    // }).__metadata.uid;
+    const deliveryStatus = models.deliveryStatus.get({
+      itemNo: sl.itemNo,
+      purchaseOrderNo: sl.purchaseOrderNo,
+      scheduleLine: sl.scheduleLine,
+      productId: sl.productId,
+    }).__metadata.uid;
     return {
       quantity: sl.quantity,
       uom: sl.uom,
       unitPrice: sl.unitPrice,
       totalAmount: sl.totalAmount,
       deliveryDateAndTime: sl.deliveryDateAndTime,
-      // deliveryStatus: supplierStatus,
+      deliveryStatus: deliveryStatus,
       id: sl.__metadata.uid,
     };
   },
