@@ -1,3 +1,5 @@
+import { compareDate } from '../../../commons/dateCompare';
+
 const purchaseOrderResolvers = {
   PurchaseOrder: {
     supplier: async (parent, args, context, info) => {
@@ -80,6 +82,28 @@ const purchaseOrderResolvers = {
       );
 
       return po;
+    },
+    purchaseOrdersAdminStatus: async (parent, { status }, context, info) => {
+      const { getAllPurchaseOrders } = context;
+      const po = await getAllPurchaseOrders();
+      console.log('Po', po);
+      return po.filter(po => po.adminStatus === status);
+    },
+
+    purchaseOrdersByPostDate: async (
+      parent,
+      { fromDate, toDate },
+      context,
+      info,
+    ) => {
+      const { getAllPurchaseOrders } = context;
+      const po = await getAllPurchaseOrders();
+
+      return po.filter(po => {
+        if (compareDate(po.postingDate, fromDate, toDate)) {
+          return po;
+        }
+      });
     },
   },
   Mutation: {

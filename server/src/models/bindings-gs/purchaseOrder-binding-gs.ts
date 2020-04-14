@@ -49,7 +49,6 @@ const purchaseOrderGs: IDBModel<any> = {
         purchaseOrderNo: po.purchaseOrderNo,
       }).__metadata.uid;
 
-      console.log('Supplier', po.supplierNo, po.supplierName);
       const supplier = models.supplier.get({
         supplierNo: po.supplierNo,
         supplierName: po.supplierName,
@@ -65,7 +64,6 @@ const purchaseOrderGs: IDBModel<any> = {
         )
         .map(po => po.__metadata.uid);
 
-      console.log('items', item);
       return {
         purchaseOrderNo: po.purchaseOrderNo,
         shipmentNo: po.shipmentNo,
