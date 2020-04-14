@@ -21,6 +21,8 @@ const typeDefs = gql`
     supplierAllPurchaseOrders: [PurchaseOrder]
     supplierPurchaseOrdersByStatus(status: String): [PurchaseOrder]
     purchaseOrdersStatus(status: String): [PurchaseOrder]
+    purchaseOrdersAdminStatus(status: String): [PurchaseOrder]
+    purchaseOrdersByPostDate(fromDate: String, toDate: String): [PurchaseOrder]
   }
 
   type Mutation {
