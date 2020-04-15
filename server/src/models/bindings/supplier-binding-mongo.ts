@@ -3,21 +3,20 @@ import { Supplier, Address } from '../mongo-models';
 
 const supplierModel: IDBModel<any> = {
   insert: async supplier => {
-    // const supp: any = await Supplier.find({
-    //   supplier: supplier.supplierNo,
-    // }).exec();
-
-    // if (supp) {
-    //   return {
-    //     id: supp._id.toString(),
-    //     supplierNo: supp.supplierNo,
-    //     supplierName: supp.supplierName,
-    //     address: supp.address,
-    //     tin: supp.tin,
-    //     contactNumber: supp.contactNumber,
-    //     contactPerson: supp.contactPerson,
-    //   };
-    // }
+    const supp: any = await Supplier.findOne({
+      supplierNo: supplier.supplierNo,
+    }).exec();
+    if (supp) {
+      return {
+        id: supp._id.toString(),
+        supplierNo: supp.supplierNo,
+        supplierName: supp.supplierName,
+        address: supp.address,
+        tin: supp.tin,
+        contactNumber: supp.contactNumber,
+        contactPerson: supp.contactPerson,
+      };
+    }
     const newAddress = await new Address({
       building_name: supplier.address.building_name,
       street: supplier.address.street,
