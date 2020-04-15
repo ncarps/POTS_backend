@@ -105,6 +105,22 @@ const purchaseOrderResolvers = {
         }
       });
     },
+
+    purchaseOrdersByDocDate: async (
+      parent,
+      { fromDate, toDate },
+      context,
+      info,
+    ) => {
+      const { getAllPurchaseOrders } = context;
+      const po = await getAllPurchaseOrders();
+
+      return po.filter(po => {
+        if (compareDate(po.documentDate, fromDate, toDate)) {
+          return po;
+        }
+      });
+    },
   },
   Mutation: {
     createPurchaseOrder: async (parent, { purchaseOrder }, context, info) => {

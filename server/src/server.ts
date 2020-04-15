@@ -33,18 +33,18 @@ import {
 
 import * as controllers from './controllers';
 
-// //Database
-// mongoose.set('useFindAndModify', false);
-// const { mongoURI: db } = process.env;
-// const { PORT } = process.env;
+//Database
+mongoose.set('useFindAndModify', false);
+const { mongoURI: db } = process.env;
+const { PORT } = process.env;
 
-// mongoose
-//   .connect(db || '', {
-//     useCreateIndex: true,
-//     useNewUrlParser: true,
-//   })
-//   .then(() => console.log('MongoDB connected'))
-//   .catch(err => console.log(err));
+mongoose
+  .connect(db || '', {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+  })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
@@ -87,102 +87,102 @@ const context = async session => {
     updateUserById: updateUserByIDDB(userModel),
     deleteUserById: DeleteRecordByIDDB(userModel),
     //Adress
-    getAddressById: getByIDDB(addressGs),
-    getAllAddress: getAllDataDB(addressGs),
+    getAddressById: getByIDDB(addressModel),
+    getAllAddress: getAllDataDB(addressModel),
     //Supplier
     createSupplier: createCreateSupplierDB(supplierModel),
-    getAllSuppliers: getAllDataDB(supplierGs),
-    getSupplierById: getByIDDB(supplierGs),
+    getAllSuppliers: getAllDataDB(supplierModel),
+    getSupplierById: getByIDDB(supplierModel),
     deleteSupplierById: DeleteRecordByIDDB(supplierModel),
     updateSupplierById: updateSupplierByIDDB(supplierModel),
     //SupplierStatus
-    createSupplierStatus: createCreateSupplierStatusDB(supplierStatusGs),
+    createSupplierStatus: createCreateSupplierStatusDB(supplierStatusModel),
     updateSupplierStatusById: updateSupplierStatusByIDDB(supplierStatusModel),
     deleteSupplierStatusById: DeleteRecordByIDDB(supplierStatusModel),
-    getSupplierStatusById: getByIDDB(supplierStatusGs),
-    getAllSupplierStatus: getAllDataDB(supplierStatusGs),
+    getSupplierStatusById: getByIDDB(supplierStatusModel),
+    getAllSupplierStatus: getAllDataDB(supplierStatusModel),
     //Item
     createItem: createCreateItemDB(itemModel),
     updateItemById: updateItemByIDDB(itemModel),
-    updateSupplierStatusItemById: updateSupplierStatusItemByIDDB(itemGs),
+    updateSupplierStatusItemById: updateSupplierStatusItemByIDDB(itemModel),
     deleteItemById: DeleteRecordByIDDB(itemModel),
-    getItemById: getByIDDB(itemGs),
-    getAllItems: getAllDataDB(itemGs),
-    getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemGs),
-    getAllScheduleLinesByItem: getAllByScheduleLineDB(itemGs),
+    getItemById: getByIDDB(itemModel),
+    getAllItems: getAllDataDB(itemModel),
+    getAllSupplierStatusByItem: getAllBySupplierStatusDB(itemModel),
+    getAllScheduleLinesByItem: getAllByScheduleLineDB(itemModel),
     //Purchase Order
     createPurchaseOrder: createCreatePurchaseOrderDB(purchaseOrderModel),
     updatePurchaseOrderById: updatePurchaseOrderByIDDB(purchaseOrderModel),
     deletePurchaseOrderbyId: DeleteRecordByIDDB(purchaseOrderModel),
-    getPurchaseOrderById: getByIDDB(purchaseOrderGs),
-    getAllPurchaseOrders: getAllDataDB(purchaseOrderGs),
+    getPurchaseOrderById: getByIDDB(purchaseOrderModel),
+    getAllPurchaseOrders: getAllDataDB(purchaseOrderModel),
     getAllSupplierStatusByPurchaseOrder: getAllBySupplierStatusDB(
-      purchaseOrderGs,
+      purchaseOrderModel,
     ),
-    updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderGs),
-    getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderGs),
+    updateAdminStatusById: updateAdminStatusByIDDB(purchaseOrderModel),
+    getAllItemsByPurchaseOrder: getAllByItemDB(purchaseOrderModel),
     //Schedule Line
     createScheduleLine: createCreateScheduleLineDB(scheduleLineModel),
-    updateScheduleLine: updateScheduleLineByIDDB(scheduleLineGs),
+    updateScheduleLine: updateScheduleLineByIDDB(scheduleLineModel),
     deleteScheduleLineById: DeleteRecordByIDDB(scheduleLineModel),
-    getScheduleLineById: getByIDDB(scheduleLineGs),
-    getAllScheduleLines: getAllDataDB(scheduleLineGs),
+    getScheduleLineById: getByIDDB(scheduleLineModel),
+    getAllScheduleLines: getAllDataDB(scheduleLineModel),
     getAllSupplierStatusByScheduleLine: getAllBySupplierStatusDB(
-      scheduleLineGs,
+      scheduleLineModel,
     ),
   };
 };
 
-//Gsheet Server
-const startServer = async () => {
-  const app = express();
+// //Gsheet Server
+// const startServer = async () => {
+//   const app = express();
 
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context,
-  });
+//   const server = new ApolloServer({
+//     typeDefs,
+//     resolvers,
+//     context,
+//   });
 
-  server.applyMiddleware({ app });
+//   server.applyMiddleware({ app });
 
-  // await mongoose.connect('mongodb://localhost:27017/test3', {
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true,
-  // });
+//   // await mongoose.connect('mongodb://localhost:27017/test3', {
+//   //   useNewUrlParser: true,
+//   //   useUnifiedTopology: true,
+//   // });
 
-  app.listen({ port: 4000 }, () =>
-    console.log(
-      `🚀  Server ready at http://localhost:4000${server.graphqlPath}`,
-    ),
-  );
-};
+//   app.listen({ port: 4000 }, () =>
+//     console.log(
+//       `🚀  Server ready at http://localhost:4000${server.graphqlPath}`,
+//     ),
+//   );
+// };
 
-startServer();
+// startServer();
 
 // await mongoose.connect('mongodb://localhost:27017/test3', {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
 
-// // Mongo Server
-// const server = new ApolloServer({
-//   typeDefs,
-//   resolvers,
-//   context,
-// });
+// Mongo Server
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context,
+});
 
-// const app = express();
+const app = express();
 
-// app.use(bodyParser.json({ limit: '10mb' }));
-// app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
-// app.use(
-//   '/images',
-//   express.static('./public/images'),
-//   serveIndex('public/images', { icons: true }),
-// );
-// server.applyMiddleware({ app });
-// // The `listen` method launches a web server.
-// const _port = PORT || 4000;
-// app.listen(_port, () => {
-//   console.log(`🚀  Server ready at http:  //localhost:${_port}/`);
-// });
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+app.use(
+  '/images',
+  express.static('./public/images'),
+  serveIndex('public/images', { icons: true }),
+);
+server.applyMiddleware({ app });
+// The `listen` method launches a web server.
+const _port = PORT || 4000;
+app.listen(_port, () => {
+  console.log(`🚀  Server ready at http:  //localhost:${_port}/`);
+});

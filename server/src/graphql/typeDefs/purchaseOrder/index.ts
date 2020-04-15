@@ -15,14 +15,15 @@ const typeDefs = gql`
   }
 
   type Query {
-    purchaseOrderSupplier(id: ID!): PurchaseOrder
-    purchaseOrder(id: ID!): PurchaseOrder
-    allPurchaseOrders: [PurchaseOrder]
-    supplierAllPurchaseOrders: [PurchaseOrder]
-    supplierPurchaseOrdersByStatus(status: String): [PurchaseOrder]
-    purchaseOrdersStatus(status: String): [PurchaseOrder]
+    purchaseOrderSupplier(id: ID!): PurchaseOrder # Get 1 PO Supplier
+    purchaseOrder(id: ID!): PurchaseOrder # Get 1 PO Admin
+    allPurchaseOrders: [PurchaseOrder] # Get all PO Admin
+    supplierAllPurchaseOrders: [PurchaseOrder] # Get all PO Supplier
+    supplierPurchaseOrdersByStatus(status: String): [PurchaseOrder] # Get by status Supplier
+    purchaseOrdersStatus(status: String): [PurchaseOrder] # Get by status Admin
     purchaseOrdersAdminStatus(status: String): [PurchaseOrder]
     purchaseOrdersByPostDate(fromDate: String, toDate: String): [PurchaseOrder]
+    purchaseOrdersByDocDate(fromDate: String, toDate: String): [PurchaseOrder]
   }
 
   type Mutation {
