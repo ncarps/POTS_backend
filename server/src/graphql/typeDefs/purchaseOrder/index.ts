@@ -22,6 +22,7 @@ const typeDefs = gql`
     supplierPurchaseOrdersByStatus(status: String): [PurchaseOrder] # Get by status Supplier
     purchaseOrdersStatus(status: String): [PurchaseOrder] # Get by status Admin
     purchaseOrdersAdminStatus(status: String): [PurchaseOrder]
+    purchaseOrderSupplierNo(supplierno: String): [PurchaseOrder]
     purchaseOrdersByPostDate(fromDate: String, toDate: String): [PurchaseOrder]
     purchaseOrdersByDocDate(fromDate: String, toDate: String): [PurchaseOrder]
   }

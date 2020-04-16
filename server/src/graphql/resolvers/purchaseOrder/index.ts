@@ -83,6 +83,21 @@ const purchaseOrderResolvers = {
 
       return po;
     },
+
+    purchaseOrderSupplierNo: async (parent, { supplierno }, context, info) => {
+      const { getAllPurchaseOrders, getSupplierById } = context;
+      const poList = await getAllPurchaseOrders();
+      const po: Array<any> = await Promise.all(
+        await poList.map(async po => {
+          const poSupp = await getSupplierById(po.supplier);
+
+          if (poSupp.supplierNo === supplierno) {
+            return po;
+          }
+        }),
+      );
+      return po;
+    },
     purchaseOrdersAdminStatus: async (parent, { status }, context, info) => {
       const { getAllPurchaseOrders } = context;
       const po = await getAllPurchaseOrders();
